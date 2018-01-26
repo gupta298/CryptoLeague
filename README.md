@@ -1,5 +1,17 @@
 README FOR CRYPTOLEAGUE
 
+mkdir cs307-team8
+cd cs307-team8
+git clone https://github.com/gupta298/CryptoLeague.git 
+
+For fetching the latest code, go to the CryptoLeague directory in the cs307-team8 folder and enter the command:
+git pull origin master
+
+Note:
+Since this repository is private, any user who wants to clone this repository has to be added to the repository as a collaborator. Please email the team leader: Varun Gupta (gupta298@purdue.edu), if you would like to be added as a collaborator. 
+
+
+
 Some hard and fast rules of the game:
 	Can play with a max of 6 coins in a league, and a min of 3
 	Has to invest a total of $100,000 worth of crypto to build a league portfolio 
