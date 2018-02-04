@@ -5,6 +5,13 @@
 <body class="stackedit">
   <div class="stackedit__html"><h1 id="cryptoleague">CRYPTOLEAGUE</h1>
 <p> A web app which lets people build their cryptocurrency portfolio using virtual money so that they can practice and make informed investments in the real world with cryptocurrency. The players will be able to participate in weekly leagues and compete with other players for the most amount of gains, and winning our prize tokens in the process! The unique competitive nature of the leagues will encourage players to learn from each other, and hence get better understanding of the market for investing in real money and hence contribute to the growth of cryptocurrencies.
+
+Team Members are:
+-> Varun Gupta
+-> Ritwik Bhardwaj
+-> Nisarg Kolhe
+-> Utkarsh Jain
+
 </p>
 
 <h1 id="accessing-the-repository">Accessing the Repository</h1>
