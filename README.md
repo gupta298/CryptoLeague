@@ -7,10 +7,10 @@
 <p> A web app which lets people build their cryptocurrency portfolio using virtual money so that they can practice and make informed investments in the real world with cryptocurrency. The players will be able to participate in weekly leagues and compete with other players for the most amount of gains, and winning our prize tokens in the process! The unique competitive nature of the leagues will encourage players to learn from each other, and hence get better understanding of the market for investing in real money and hence contribute to the growth of cryptocurrencies.
 
 Team Members are:
--> Varun Gupta
--> Ritwik Bhardwaj
--> Nisarg Kolhe
--> Utkarsh Jain
+- Varun Gupta
+- Ritwik Bhardwaj
+- Nisarg Kolhe
+- Utkarsh Jain
 
 </p>
 
@@ -19,7 +19,10 @@ Team Members are:
 cd cs307-team8<br>
 git clone <a href="https://github.com/gupta298/CryptoLeague.git">https://github.com/gupta298/CryptoLeague.git</a><br>
 For fetching the latest code, go to the CryptoLeague directory in the cs307-team8 folder and enter the command:<br>
-git pull origin master</p>
+git pull origin master<br>
+For starting the app server, go to the backend folder and run <code>npm start</code>. load <code>http://localhost:3000/</code> in your browser to access the app.
+</p>
+
 <h1 id="note">Note:</h1>
 <p>Since this repository is private, any user who wants to clone this repository has to be added to the repository as a collaborator.</p>
 <pre><code>Please email the team leader: Varun Gupta (gupta298@purdue.edu), if you would like to be added as a collaborator.
