@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var UIkit: any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,4 +12,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  showAlert(): void {
+    UIkit.modal.alert('UIkit alert!');
+  }
 }
