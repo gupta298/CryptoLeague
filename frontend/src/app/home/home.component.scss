@@ -1,0 +1,45 @@
+.fullscreen {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
+
+.homeLogo {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	z-index: 1;
+  	margin-top: 2em;
+  	max-height: 3em;
+}
+
+.homeLogo img {
+	height: 3vw;
+	width: auto;
+}
+
+.flexbox-center {
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	height: 100%;
+}
+
+.rightBox{
+	flex-direction: column;
+}
+
+.rightBox div {
+	margin: 1em;
+}
+
+.hero-text{
+	font-family: 'Avenir Next';
+	font-size: 2em;
+	font-weight: 600;
+	line-height: 3em;
+	color: #ffffff;
+}
