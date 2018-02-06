@@ -3,17 +3,15 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-<<<<<<< HEAD
 import { AppRoutingModule } from './/app-routing.module';
-=======
 import { LandingComponent } from './landing/landing.component';
->>>>>>> 0c484fb2e32aace2715d423023b97dbcd1d223e9
-
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent
+    LandingComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
