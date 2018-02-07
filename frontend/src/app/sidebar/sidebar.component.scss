@@ -1,0 +1,11 @@
+.sidebar-main {
+	display: block !important;
+}
+
+.uk-offcanvas > .uk-offcanvas-bar {
+	transform: translateX(-80%);
+}
+
+.uk-offcanvas-reveal > .uk-offcanvas-bar {
+	transform: translateX(0) !important;
+}
