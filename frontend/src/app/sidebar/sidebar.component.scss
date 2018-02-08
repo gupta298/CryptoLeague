@@ -9,3 +9,54 @@
 .uk-offcanvas-reveal > .uk-offcanvas-bar {
 	transform: translateX(0) !important;
 }
+
+#navbar {
+	margin-left: 5vw;
+	transition: all ease 0.5s;
+}
+
+.sidebar {
+	width: 5vw;
+	z-index: 1;
+	top: 0;
+	height: 100%;
+	position: absolute;
+	transition: all ease 0.5s;
+}
+
+.sidebar:hover {
+	width: 22vw;
+}
+
+.sidebar:hover + #navbar {
+	margin-left: 22vw;
+}
+
+.uk-navbar-left {
+	background-color: white;
+	z-index: 2;
+}
+
+.uk-logo {
+	justify-content: left;
+}
+
+.hexLogo {
+	display: block !important;
+	max-height: 60%;
+	width: auto;
+	margin-right: 0.7em;
+}
+
+.fullLogo {
+	max-width: 80%;
+	display: block !important;
+}
+
+.uk-nav li {
+	width: 25vw;
+} 
+
+.sidebar-item {
+	margin-left: 1.9vw;
+}

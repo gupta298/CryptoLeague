@@ -1,34 +1,30 @@
-<div >
-    <nav class="uk-navbar-container" uk-navbar >
-        <div class="uk-navbar-left">
-        	<a class="uk-navbar-item uk-logo uk-margin-large-left" href="#">Logo</a>
-
-            <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="#" uk-toggle="target: #offcanvas-nav-primary">Active</a></li>
-            </ul>
-        </div>
-    </nav>
+<div class="sidebar uk-section-primary">
+	    <div class="uk-flex uk-flex-column">
+	    	<a class="uk-navbar-item uk-logo" href="#">
+	    		<img class="hexLogo" src="../assets/HexLogo.svg">
+	    		<img class="fullLogo" src="../assets/WhiteFullLogo.svg"></a>
+	        <ul class="uk-nav uk-nav-primary uk-margin-auto-vertical">
+	        	
+	       		<li class="uk-nav-divider"></li>
+	            <li class="uk-active sidebar-item"><a href="#"><span class="uk-margin-right" uk-icon="icon: home"> </span> Dashboard</a></li>
+	            <li class="uk-nav-divider"></li>
+	            <li class="sidebar-item"><a href="#"><span class="uk-margin-right" uk-icon="icon: bolt"></span> Market</a></li>
+	            <li class="uk-nav-divider"></li>
+	            <li class="sidebar-item"><a href="#"><span class="uk-margin-right" uk-icon="icon: list"></span> Leaderboard</a></li>
+	            <li class="uk-nav-divider"></li>
+	            <li class="sidebar-item"><a href="#"><span class="uk-margin-right" uk-icon="icon: plus"></span> Join a League</a></li>
+	        </ul>
+	    </div>
 </div>
 
-<div id="offcanvas-nav-primary" uk-offcanvas="mode: reveal; overlay: false" class="sidebar-main">
+<div id="navbar">
+    <nav class="uk-navbar-container uk-navbar-transparent"  uk-navbar>
+        <div class="uk-navbar-left">
+        	<a class="uk-navbar-item uk-logo" href="#">Dashboard</a>
 
-    <div class="uk-offcanvas-bar uk-flex uk-flex-column">
-
-        <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
-            <li class="uk-active"><a href="#">Active</a></li>
-            <li class="uk-parent">
-                <a href="#">Parent</a>
-                <ul class="uk-nav-sub">
-                    <li><a href="#">Sub item</a></li>
-                    <li><a href="#">Sub item</a></li>
-                </ul>
-            </li>
-            <li class="uk-nav-header">Header</li>
-            <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> Item</a></li>
-            <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Item</a></li>
-            <li class="uk-nav-divider"></li>
-            <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: trash"></span> Item</a></li>
-        </ul>
-
-    </div>
+           <!--  <ul class="uk-navbar-nav">
+                <li class="uk-active"><a href="#" uk-toggle="target: #offcanvas-nav-primary">Active</a></li>
+            </ul> -->
+        </div>
+    </nav>
 </div>
