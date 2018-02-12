@@ -9,6 +9,9 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var config = require('./config/config')
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth').Strategy;
 
 var app = express();
 
@@ -45,18 +48,20 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+// var MongoClient = require('mongodb').MongoClient
+//   , assert = require('assert');
 
-// Connection URL
-var url = 'mongodb://localhost:27017/local';
+// // Connection URL
+// var url = 'mongodb://localhost:27017/local';
 
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected successfully to server");
+// // Use connect method to connect to the server
+// MongoClient.connect(url, function(err, db) {
+//   assert.equal(null, err);
+//   console.log("Connected successfully to server");
 
-  db.close();
-});
+//   db.close();
+// });
 
+
+console.log("Success");
 module.exports = app;
