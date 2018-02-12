@@ -1,0 +1,48 @@
+02/11 1 hr b0f7048 Added mongodb dependency
+02/11 1 hr 5f2c7d5 Updated branding
+02/11 1 hr a23b8a6 Code to connect the backend the database
+02/11 1 hr b9cef3e Trying to fix MongoDB
+02/09 1 hr 2910d7d Updated modules
+02/08 1 hr ecc955e Fixed mongo
+02/08 1 hr 2a8b6be Added mongo
+02/08 1 hr 6baf331 Merge branch 'master' of github.com:gupta298/CryptoLeague
+02/08 1 hr 1bdccbf Implemented basic sidebar component
+02/07 1 hr a0cc127 Started work on basic sidebar
+02/07 1 hr 26acf27 updated npm
+02/06 1 hr 2a68a84 Updated branding
+02/06 1 hr ef771c4 Implemented homepage
+02/06 1 hr 01f330d Implemented homepage
+02/06 1 hr 6664f9e README edited
+02/06 1 hr 00f3ae4 backend setup complete
+02/06 1 hr 4a6e2bb Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/06 1 hr e2cffa9 backend created
+02/06 1 hr 8fc14c2 Added example UIKit code
+02/06 1 hr b81b751 Routing works
+02/06 1 hr 9b8c223 Merge branch 'master' of github.com:gupta298/CryptoLeague
+02/06 1 hr 438cdef Added routing module
+02/06 1 hr a1fe665 Added UIKit dependencies
+02/06 1 hr 0c484fb Added landing component
+02/05 1 hr 8c7d68d .gitignore fix
+02/05 1 hr 6eb4ed4 Initialized ng repo
+02/04 1 hr c5370f5 Merge branch 'master' of github.com:gupta298/CryptoLeague
+02/04 1 hr bec189b Added Sprint 1 Planning Document
+02/04 1 hr cd588a8 Added Design Document
+02/04 1 hr 3234783 Updated branding
+02/03 1 hr ca359ae Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/03 1 hr f250b4a Added Design Doc
+01/31 1 hr cca13dd Merge branch 'master' of github.com:gupta298/CryptoLeague
+01/31 1 hr afb32f9 Added mockups for league and portfolio
+01/31 1 hr cc28da7 Activity diagram and sequence of events
+01/30 1 hr c78529f Added dashboard mockup
+01/30 1 hr 1daeaba Updated branding - adding mockups
+01/30 1 hr 729c687 Added backlog.pdf and gitignore
+01/26 1 hr 02ae9d6 Merge branch 'master' of github.com:gupta298/CryptoLeague
+01/26 1 hr cd5aa0e Added branding
+01/26 1 hr badd5be test
+01/26 1 hr 19cedc2 Readme updated
+01/26 1 hr 42255ca Readme updated
+01/26 1 hr b0037e5 Update Readme.md
+01/26 1 hr e7f4b8d Moved docs to /docs
+01/26 1 hr 50e5c11 Update Readme.md
+01/26 1 hr bd3d609 Files
+01/23 1 hr c01e30b Initial commit
