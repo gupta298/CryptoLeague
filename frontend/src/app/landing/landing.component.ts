@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var UIkit: any;
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
