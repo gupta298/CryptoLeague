@@ -13,27 +13,6 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').Strategy;
 
-// serialize and deserialize
-passport.serializeUser (function(user, done) {
-	done(null, user);
-});
-passport.deserializeUser (function(obj, done) {
-  	done(null, obj);
-});
-
-// config
-passport.use (new FacebookStrategy ( {
-  clientID: config.facebook.CLIENT_ID,
-  clientSecret: config.facebook.CLIENT_SECRET,
-  callbackURL: config.facebook.callbackURL
-  },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      return done(null, profile);
-    });
-  }
-));
-
 var app = express();
 
 // view engine setup
