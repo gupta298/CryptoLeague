@@ -1,5 +1,9 @@
 $sidebar-width-small: 72px;
 $sidebar-width-large: 312px;
+$global-link-color: #1F87F0;
+
+@import "../../../bower_components/lovelo-fontface/css/lovelo-fontface.css";
+@lovelo-font-path: "/fonts";
 
 .sidebar-main {
 	display: block !important;
@@ -16,6 +20,18 @@ $sidebar-width-large: 312px;
 #navbar {
 	margin-left: $sidebar-width-small;
 	transition: all ease 0.5s;
+	position: absolute;
+    top: 0;
+    width: 100%;
+	background-color: #1F87F0;
+	z-index: 1;
+}
+
+.heading-title {
+	font-family: "Lovelo Black", sans-serif;
+	color: #ffffff;
+	font-size: 30px;
+	padding-left: 0;
 }
 
 .sidebar {
@@ -23,12 +39,11 @@ $sidebar-width-large: 312px;
 	z-index: 1;
 	top: 0;
 	height: 100%;
-	position: absolute;
+	position: relative;
 	transition: all ease 0.5s;
 }
 
 .uk-navbar-left {
-	background-color: white;
 	z-index: 2;
 }
 
@@ -49,8 +64,10 @@ $sidebar-width-large: 312px;
 }
 
 .fullLogo {
-	max-width: 80%;
+	// max-width: 80%;
+	max-height: 24px;
 	display: block !important;
+	margin-bottom: 2px;
 }
 
 .uk-nav li {
@@ -72,12 +89,12 @@ $sidebar-width-large: 312px;
 
 @media only screen and (min-width: 768px) {
     /* For screens larger than a phone: */
-    .sidebar-item-text {
-	 	display: inline-block;
-	}
-
 	.sidebar:hover {
 		width: $sidebar-width-large;
+	}
+
+	.sidebar-item-text {
+	 	display: inline-block;
 	}
 
 	.sidebar:hover + #navbar {
