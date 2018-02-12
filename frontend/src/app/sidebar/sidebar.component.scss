@@ -16,6 +16,11 @@ $sidebar-width-large: 312px;
 #navbar {
 	margin-left: $sidebar-width-small;
 	transition: all ease 0.5s;
+	position: absolute;
+    top: 0;
+    width: 100%;
+	background-color: white;
+	z-index: 1;
 }
 
 .sidebar {
@@ -23,12 +28,11 @@ $sidebar-width-large: 312px;
 	z-index: 1;
 	top: 0;
 	height: 100%;
-	position: absolute;
+	position: relative;
 	transition: all ease 0.5s;
 }
 
 .uk-navbar-left {
-	background-color: white;
 	z-index: 2;
 }
 
@@ -72,12 +76,12 @@ $sidebar-width-large: 312px;
 
 @media only screen and (min-width: 768px) {
     /* For screens larger than a phone: */
-    .sidebar-item-text {
-	 	display: inline-block;
-	}
-
 	.sidebar:hover {
 		width: $sidebar-width-large;
+	}
+
+	.sidebar-item-text {
+	 	display: inline-block;
 	}
 
 	.sidebar:hover + #navbar {
