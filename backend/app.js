@@ -11,7 +11,7 @@ var users = require('./routes/users');
 var config = require('./config/config')
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
-var GoogleStrategy = require('passport-google-oauth2').Strategy;
+var GoogleStrategy = require('passport-google-oauth').Strategy;
 
 var app = express();
 
@@ -62,4 +62,6 @@ app.use(function(err, req, res, next) {
 //   db.close();
 // });
 
+
+console.log("Success");
 module.exports = app;
