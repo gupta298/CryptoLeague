@@ -1,5 +1,9 @@
 $sidebar-width-small: 72px;
 $sidebar-width-large: 312px;
+$global-link-color: #1F87F0;
+
+@import "../../../bower_components/lovelo-fontface/css/lovelo-fontface.css";
+@lovelo-font-path: "/fonts";
 
 .sidebar-main {
 	display: block !important;
@@ -19,8 +23,15 @@ $sidebar-width-large: 312px;
 	position: absolute;
     top: 0;
     width: 100%;
-	background-color: white;
+	background-color: #1F87F0;
 	z-index: 1;
+}
+
+.heading-title {
+	font-family: "Lovelo Black", sans-serif;
+	color: #ffffff;
+	font-size: 30px;
+	padding-left: 0;
 }
 
 .sidebar {
@@ -53,8 +64,10 @@ $sidebar-width-large: 312px;
 }
 
 .fullLogo {
-	max-width: 80%;
+	// max-width: 80%;
+	max-height: 24px;
 	display: block !important;
+	margin-bottom: 2px;
 }
 
 .uk-nav li {
