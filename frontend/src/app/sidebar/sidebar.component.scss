@@ -1,3 +1,6 @@
+$sidebar-width-small: 72px;
+$sidebar-width-large: 312px;
+
 .sidebar-main {
 	display: block !important;
 }
@@ -11,25 +14,17 @@
 }
 
 #navbar {
-	margin-left: 5vw;
+	margin-left: $sidebar-width-small;
 	transition: all ease 0.5s;
 }
 
 .sidebar {
-	width: 5vw;
+	width: $sidebar-width-small;
 	z-index: 1;
 	top: 0;
 	height: 100%;
 	position: absolute;
 	transition: all ease 0.5s;
-}
-
-.sidebar:hover {
-	width: 22vw;
-}
-
-.sidebar:hover + #navbar {
-	margin-left: 22vw;
 }
 
 .uk-navbar-left {
@@ -54,9 +49,33 @@
 }
 
 .uk-nav li {
-	width: 25vw;
+	width: $sidebar-width-large;
 } 
 
 .sidebar-item {
-	margin-left: 1.9vw;
+	// margin-left: 18px;
+}
+
+.sidebar-item-icon {
+	width: $sidebar-width-small;
+	text-align: center;
+}
+
+.sidebar-item-text {
+ 	display: none;
+}
+
+@media only screen and (min-width: 768px) {
+    /* For screens larger than a phone: */
+    .sidebar-item-text {
+	 	display: inline-block;
+	}
+
+	.sidebar:hover {
+		width: $sidebar-width-large;
+	}
+
+	.sidebar:hover + #navbar {
+		margin-left: $sidebar-width-large;
+	}
 }
