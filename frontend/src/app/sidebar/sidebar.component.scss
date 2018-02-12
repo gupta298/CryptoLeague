@@ -36,6 +36,11 @@ $sidebar-width-large: 312px;
 	justify-content: left;
 }
 
+.uk-logo > img {
+	height: 100%;
+	width: auto;
+}
+
 .hexLogo {
 	display: block !important;
 	max-height: 60%;
