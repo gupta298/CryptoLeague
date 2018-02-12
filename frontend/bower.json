@@ -1,0 +1,20 @@
+{
+  "name": "y",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Nisarg Kolhe <nisargkolhe@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/gupta298/CryptoLeague",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lovelo-fontface": "^1.0.0"
+  }
+}
