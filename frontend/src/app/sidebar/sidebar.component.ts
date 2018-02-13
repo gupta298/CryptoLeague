@@ -13,8 +13,4 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  showAlert(): void {
-    UIkit.modal.alert('UIkit alert!');
-  }
-
 }
