@@ -5,13 +5,13 @@
 	    		<img class="fullLogo" src="../assets/WhiteFullLogo.svg"></a>
 	        <ul class="uk-nav uk-nav-primary uk-margin-auto-vertical">
 	        	
-	            <li class="uk-active sidebar-item"><a href="#"><span class="sidebar-item-icon" uk-icon="icon: home"></span><span class="sidebar-item-text">Dashboard</span></a></li>
+	            <li class="sidebar-item" [class.uk-active]="page=='dashboard'"><a href="/dashboard"><span class="sidebar-item-icon" uk-icon="icon: home"></span><span class="sidebar-item-text">Dashboard</span></a></li>
 	            <li class="uk-nav-divider"></li>
-	            <li class="sidebar-item"><a href="#"><span class="sidebar-item-icon" uk-icon="icon: bolt"></span><span class="sidebar-item-text">Market</span></a></li>
+	            <li class="sidebar-item" [class.uk-active]="page=='market'"><a href="/market"><span class="sidebar-item-icon" uk-icon="icon: bolt"></span><span class="sidebar-item-text">Market</span></a></li>
 	            <li class="uk-nav-divider"></li>
-	            <li class="sidebar-item"><a href="#"><span class="sidebar-item-icon" uk-icon="icon: list"></span><span class="sidebar-item-text">Leaderboard</span></a></li>
+	            <li class="sidebar-item" [class.uk-active]="page=='leaderboard'"><a href="/leaderboard"><span class="sidebar-item-icon" uk-icon="icon: list"></span><span class="sidebar-item-text">Leaderboard</span></a></li>
 	            <li class="uk-nav-divider"></li>
-	            <li class="sidebar-item"><a href="#"><span class="sidebar-item-icon" uk-icon="icon: plus"></span><span class="sidebar-item-text">Join a League</span></a></li>
+	            <li class="sidebar-item" [class.uk-active]="page=='join'"><a href="/join"><span class="sidebar-item-icon" uk-icon="icon: plus"></span><span class="sidebar-item-text">Join a League</span></a></li>
 	        </ul>
 	    </div>
 </div>
@@ -19,7 +19,7 @@
 <div id="navbar">
     <nav class="uk-navbar-container uk-navbar-transparent"  uk-navbar>
         <div class="uk-navbar-left">
-        	<a class="uk-navbar-item uk-logo heading-title" href="#"><span style="margin-right: 0.7em;">|</span>Dashboard</a>
+        	<a class="uk-navbar-item uk-logo heading-title" href="#"><span style="margin-right: 0.7em;">|</span>{{page}}</a>
 
            <!--  <ul class="uk-navbar-nav">
                 <li class="uk-active"><a href="#" uk-toggle="target: #offcanvas-nav-primary">Active</a></li>
