@@ -9,11 +9,23 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var config = require('./config/config')
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
-var GoogleStrategy = require('passport-google-oauth').Strategy;
+const passport = require('passport');
 
 var app = express();
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/success', (req, res) => res.send("You have successfully logged in"));
+app.get('/error', (req, res) => res.send("error logging in"));
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,20 +60,30 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// var MongoClient = require('mongodb').MongoClient
-//   , assert = require('assert');
+/*  FACEBOOK AUTH  */
+const FacebookStrategy = require('passport-facebook').Strategy;
 
-// // Connection URL
-// var url = 'mongodb://localhost:27017/local';
+const FACEBOOK_APP_ID = config.facebook.CLIENT_ID;
+const FACEBOOK_APP_SECRET = config.facebook.CLIENT_SECRET;
 
-// // Use connect method to connect to the server
-// MongoClient.connect(url, function(err, db) {
-//   assert.equal(null, err);
-//   console.log("Connected successfully to server");
+passport.use(new FacebookStrategy({
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET,
+    callbackURL: "/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+      return cb(null, profile);
+  }
+));
 
-//   db.close();
-// });
+app.get('/auth/facebook',
+  passport.authenticate('facebook'));
 
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/error' }),
+  function(req, res) {
+    res.redirect('/success');
+  });
 
 console.log("Success");
 module.exports = app;
