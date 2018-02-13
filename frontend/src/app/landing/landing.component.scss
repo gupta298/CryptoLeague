@@ -1,0 +1,80 @@
+.center {
+  margin: auto;
+  position: absolute;
+  text-align: center;
+  top: 22.5%;
+  left: 25%;
+  width: 50%;
+  background-color: #1e87f0;
+}
+
+.background-img {
+	opacity: 0.2;
+	background-image: url("../../assets/bg-landing.jpg");
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.bg {
+	background-color: #21BEDE;
+	opacity: 1;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.background {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  .back {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+}
+
+@media screen and (max-width: 650px) { /* Specific to this particular image */
+  h3 {
+    font-size: 15px;
+  }
+
+  #text {
+  	font-size: 10px;
+  }
+}
+
+
+.box-shadow {
+    -webkit-box-shadow: 0px 0px 33px 6px rgba(0,0,0,0.42);
+    -moz-box-shadow: 0px 0px 33px 6px rgba(0,0,0,0.42);
+	box-shadow: 0px 0px 33px 6px rgba(0,0,0,0.42);;
+}
+
+.input {
+	width: 50%;
+}
+
+.label {
+	font-size: 15px;
+}
+
+img {
+    border-radius: 50%;
+    width: 25%;
+}
