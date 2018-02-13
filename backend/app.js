@@ -19,14 +19,6 @@ app.use(passport.session());
 app.get('/success', (req, res) => res.send("You have successfully logged in"));
 app.get('/error', (req, res) => res.send("error logging in"));
 
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
-});
-
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
-});
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -66,24 +58,55 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const FACEBOOK_APP_ID = config.facebook.CLIENT_ID;
 const FACEBOOK_APP_SECRET = config.facebook.CLIENT_SECRET;
 
+// Passport session setup.
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+// Use the FacebookStrategy within Passport.
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
-    clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "/auth/facebook/callback"
+    clientSecret:FACEBOOK_APP_SECRET,
+    callbackURL: config.facebook.callbackURL
   },
-  function(accessToken, refreshToken, profile, cb) {
-      return cb(null, profile);
+  function(accessToken, refreshToken, profile, done) {
+    process.nextTick(function () {
+      //Check whether the User exists or not using profile.id
+      //Further DB code.
+      return done(null, profile);
+    });
   }
 ));
 
-app.get('/auth/facebook',
-  passport.authenticate('facebook'));
-
+//Router code
+app.get('/', function(req, res){
+  res.render('index', { user: req.user });
+});
+app.get('/account', ensureAuthenticated, function(req, res){
+  res.render('account', { user: req.user });
+});
+//Passport Router
+app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/error' }),
+  passport.authenticate('facebook', { 
+       successRedirect : '/', 
+       failureRedirect: '/error' 
+  }),
   function(req, res) {
-    res.redirect('/success');
+    res.redirect('/');
   });
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login')
+}
+
+
 
 console.log("Success");
 module.exports = app;
