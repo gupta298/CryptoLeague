@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments';
+
 declare var UIkit: any;
 @Component({
   selector: 'app-home',
@@ -6,13 +8,13 @@ declare var UIkit: any;
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+	environment: any;
 
-  constructor() { }
+  	constructor() { 
+  		this.environment = environment;
+  	}
 
-  ngOnInit() {
-  }
-
-  showAlert(): void {
-    UIkit.modal.alert('UIkit alert!');
-  }
+  	ngOnInit() {
+  		console.log('env', environment);
+  	}
 }
