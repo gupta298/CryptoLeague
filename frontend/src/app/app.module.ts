@@ -9,6 +9,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AuthenticationService } from './services/index';
+import { VerifyComponent } from './verify/verify.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AuthenticationService } from './services/index';
     LandingComponent,
     HomeComponent,
     SidebarComponent,
-    DashboardComponent
+    DashboardComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
