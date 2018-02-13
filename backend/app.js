@@ -4,20 +4,50 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var _ = require("lodash");
+var jwt = require('jsonwebtoken');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var token = require('./token');
 
 var config = require('./config/config')
 const passport = require('passport');
 
+require('./config/passport');
+
+//TODO: REMOVE THIS!
+var usersArr = [
+  {
+    id: "1",
+    name: 'jonathanmh',
+    password: '%2yx4'
+  },
+  {
+    id: "2",
+    name: 'test',
+    password: 'test'
+  },
+  {
+  	id: "1964124173601256",
+  	name: 'Nisarg Kolhe'
+  }
+];
+
 var app = express();
 
 app.use(passport.initialize());
-app.use(passport.session());
 
-app.get('/success', (req, res) => res.send("You have successfully logged in"));
-app.get('/error', (req, res) => res.send("error logging in"));
+// app.get('/success', (req, res) => res.send("You have successfully logged in"));
+// app.get('/error', (req, res) => res.send("error logging in"));
+
+// passport.serializeUser(function(user, cb) {
+//   cb(null, user);
+// });
+
+// passport.deserializeUser(function(obj, cb) {
+//   cb(null, obj);
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,12 +57,59 @@ app.set('view engine', 'pug');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+
+app.post("/api/login", function(req, res) {
+  if(req.body.name && req.body.password){
+    var name = req.body.name;
+    var password = req.body.password;
+  }
+  // usually this would be a database call:
+  var user = usersArr[_.findIndex(usersArr, {name: name})];
+  if( ! user ){
+    res.status(401).json({message:"no such user found"});
+  }
+
+  if(user.password === req.body.password) {
+    // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
+    var payload = {id: user.id}; //TODO: Add user object here instead
+
+    var jwtToken = token.generateAccessToken(payload);
+    res.json({message: "ok", token: jwtToken});
+  } else {
+    res.status(401).json({message:"passwords did not match"});
+  }
+});
+
+//Test secure api endpoint
+app.get('/api/secure',
+  // This request must be authenticated using a JWT, or else we will fail
+  passport.authenticate(['jwt'], { session: false }),
+  (req, res) => {
+    res.send('Secure response from ' + JSON.stringify(req.user));
+  }
+);
+
+function generateUserToken(req, res) {
+	let user = {
+		id: req.user.id
+	};
+  	const accessToken = token.generateAccessToken(user);
+  	console.log("accessToken",accessToken);
+  	res.redirect(config.APP_URL + "/dashboard?token=" + accessToken);
+}
+
+app.get('/api/login/facebook/',
+  passport.authenticate('facebook', { session: false }));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { session: false }),
+  generateUserToken);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,7 +118,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handler
+// error handlera
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
@@ -51,62 +128,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-/*  FACEBOOK AUTH  */
-const FacebookStrategy = require('passport-facebook').Strategy;
-
-const FACEBOOK_APP_ID = config.facebook.CLIENT_ID;
-const FACEBOOK_APP_SECRET = config.facebook.CLIENT_SECRET;
-
-// Passport session setup.
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
-// Use the FacebookStrategy within Passport.
-passport.use(new FacebookStrategy({
-    clientID: FACEBOOK_APP_ID,
-    clientSecret:FACEBOOK_APP_SECRET,
-    callbackURL: config.facebook.callbackURL
-  },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      //Check whether the User exists or not using profile.id
-      //Further DB code.
-      return done(null, profile);
-    });
-  }
-));
-
-//Router code
-app.get('/', function(req, res){
-  res.render('index', { user: req.user });
-});
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user });
-});
-//Passport Router
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { 
-       successRedirect : '/', 
-       failureRedirect: '/error' 
-  }),
-  function(req, res) {
-    res.redirect('/');
-  });
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
-}
-
-
 
 console.log("Success");
 module.exports = app;
