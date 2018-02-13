@@ -25,14 +25,16 @@ export class VerifyComponent implements OnInit {
   	ngOnInit() {
   		if(!this.authenticationService.loadUserFromLocalStorage()){
 			this.jwtToken = this.route.snapshot.queryParams['token'];
+ 			console.log('jwtToken', this.jwtToken);
+
   	 		let user = new User();
   	 		user.deserialize(this.jwtHelper.decodeToken(this.jwtToken));
+  	 		console.log('user', user);
 
   	 		if(user){
-  	 			this.authenticationService.saveJwt(user);
+  	 			this.authenticationService.saveJwt(this.jwtToken);
   	 			this.router.navigate(['/dashboard']);
   	 		} else {
-  	 			console.log('jwtToken', this.jwtToken);
   	 			console.log('user', user);
   	 			this.router.navigate(['/', {error:'invalidToken'}]);
   	 		}

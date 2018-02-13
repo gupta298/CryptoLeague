@@ -7,9 +7,11 @@ import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { VerifyComponent } from './verify/verify.component';
+
+import { AuthGuard } from './auth.guard';
 
 import { AuthenticationService } from './services/index';
-import { VerifyComponent } from './verify/verify.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { VerifyComponent } from './verify/verify.component';
     AppRoutingModule
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

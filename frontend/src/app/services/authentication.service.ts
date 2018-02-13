@@ -11,10 +11,9 @@ export class AuthenticationService {
 
   	constructor() { }
 
-  	saveJwt(user: User){
-  		localStorage.setItem('currentUser', JSON.stringify(this.jwtHelper.decodeToken(user.jwtToken)));
-        localStorage.setItem('jwtToken', user.jwtToken);
-        console.log("token decoded", this.jwtHelper.decodeToken(user.jwtToken));
+  	saveJwt(jwtToken: string){
+  		localStorage.setItem('currentUser', JSON.stringify(this.jwtHelper.decodeToken(jwtToken)));
+        localStorage.setItem('jwtToken', jwtToken);
   	}
 
 	generateJwt() {
@@ -32,8 +31,12 @@ export class AuthenticationService {
     loadUserFromLocalStorage() {
 	    let currentUser = new User();
 	    let jsonData = JSON.parse(localStorage.getItem("currentUser"));
-	   	let user = new User();
-	   	user.deserialize(jsonData);
-	   	return user;
+	    if(jsonData){
+		   	let user = new User();
+		   	user.deserialize(jsonData);
+		   	return user;
+		} else {
+			return null;
+		}
 	}
 }
