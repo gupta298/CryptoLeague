@@ -101,10 +101,10 @@ function generateUserToken(req, res) {
 	};
   	const accessToken = token.generateAccessToken(user);
   	console.log("accessToken",accessToken);
-  	res.redirect(config.APP_URL + "/dashboard?token=" + accessToken);
+  	res.redirect(config.APP_URL + "/verify?token=" + accessToken);
 }
 
-app.get('/api/login/facebook/',
+app.get('/auth/facebook/',
   passport.authenticate('facebook', { session: false }));
 
 app.get('/auth/facebook/callback',
