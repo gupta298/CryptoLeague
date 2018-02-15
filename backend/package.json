@@ -28,6 +28,6 @@
     "serve-favicon": "^2.4.5"
   },
   "devDependencies": {
-    "@angular/cli": "^1.6.8"
+    "@angular/cli": "^1.7.0"
   }
 }
