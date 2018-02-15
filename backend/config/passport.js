@@ -68,3 +68,27 @@ passport.use(new FacebookStrategy({
       return cb(null, user);
   }
 ));
+
+/*  GOOGLE AUTH  */
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+const GOOGLE_APP_ID = config.google.CLIENT_ID;
+const GOOGLE_APP_SECRET = config.google.CLIENT_SECRET;
+
+passport.use(new GoogleStrategy({
+    clientID: GOOGLE_APP_ID,
+    clientSecret: GOOGLE_APP_SECRET,
+    callbackURL: "/auth/google/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    let user = usersArr[_.findIndex(usersArr, {id: profile.id})]; //Getting user from db
+      
+      if(!user){ //No user in db, add one
+        user = {
+          id: profile.id,
+          name: profile.displayName
+          };
+      }
+      return cb(null, user);
+  }
+));

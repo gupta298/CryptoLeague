@@ -111,6 +111,13 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { session: false }),
   generateUserToken);
 
+app.get('/auth/google/',
+  passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/plus.login', session: false }));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { session: false }),
+  generateUserToken);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
