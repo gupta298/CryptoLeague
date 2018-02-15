@@ -17,22 +17,22 @@ const passport = require('passport');
 require('./config/passport');
 
 //TODO: REMOVE THIS!
-var usersArr = [
-  {
-    id: "1",
-    name: 'jonathanmh',
-    password: '%2yx4'
-  },
-  {
-    id: "2",
-    name: 'test',
-    password: 'test'
-  },
-  {
-  	id: "1964124173601256",
-  	name: 'Nisarg Kolhe'
-  }
-];
+// var usersArr = [
+//   {
+//     id: "1",
+//     name: 'jonathanmh',
+//     password: '%2yx4'
+//   },
+//   {
+//     id: "2",
+//     name: 'test',
+//     password: 'test'
+//   },
+//   {
+//   	id: "1964124173601256",
+//   	name: 'Nisarg Kolhe'
+//   }
+// ];
 
 var app = express();
 
@@ -64,27 +64,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
-app.post("/api/login", function(req, res) {
-  if(req.body.name && req.body.password){
-    var name = req.body.name;
-    var password = req.body.password;
-  }
-  // usually this would be a database call:
-  var user = usersArr[_.findIndex(usersArr, {name: name})];
-  if( ! user ){
-    res.status(401).json({message:"no such user found"});
-  }
+// app.post("/api/login", function(req, res) {
+//   if(req.body.name && req.body.password){
+//     var name = req.body.name;
+//     var password = req.body.password;
+//   }
+//   // usually this would be a database call:
+//   var user = usersArr[_.findIndex(usersArr, {name: name})];
+//   if( ! user ){
+//     res.status(401).json({message:"no such user found"});
+//   }
 
-  if(user.password === req.body.password) {
-    // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
-    var payload = {id: user.id}; //TODO: Add user object here instead
+//   if(user.password === req.body.password) {
+//     // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
+//     var payload = {id: user.id}; //TODO: Add user object here instead
 
-    var jwtToken = token.generateAccessToken(payload);
-    res.json({message: "ok", token: jwtToken});
-  } else {
-    res.status(401).json({message:"passwords did not match"});
-  }
-});
+//     var jwtToken = token.generateAccessToken(payload);
+//     res.json({message: "ok", token: jwtToken});
+//   } else {
+//     res.status(401).json({message:"passwords did not match"});
+//   }
+// });
 
 //Test secure api endpoint
 app.get('/api/secure',
