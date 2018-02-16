@@ -12,33 +12,14 @@ var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
 
 // Connection URL
-var url = config.mongoDBHost;
+var mongodbUrl = config.mongoDBHost;
 
 // Use connect method to connect to the server
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect(mongodbUrl, function(err, db) {
   assert.equal(null, err);
   console.log("Connected successfully to database");
-
   db.close();
 });
-
-//TODO: REMOVE THIS!
-var usersArr = [
-  {
-    id: "1",
-    name: 'jonathanmh',
-    password: '%2yx4'
-  },
-  {
-    id: "2",
-    name: 'test',
-    password: 'test'
-  },
-  {
-  	id: "1964124173601256",
-  	name: 'Nisarg Kolhe'
-  }
-];
 
 var ExtractJwt = passportJWT.ExtractJwt;
 var JwtStrategy = passportJWT.Strategy;
@@ -51,41 +32,22 @@ jwtOptions.audience = config.JWT_AUDIENCE;
 
 var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
   console.log('payload received', jwt_payload);
-  // MongoClient.connect(mongodbUrl, function (err, db) {
-  //   var collection = db.collection('Users');
 
-  //   //check if username is already assigned in our database
-  //   collection.findOne({'id' : jwt_payload.id})
-  //     .then(function (result) {
-  //       if (result != null) {
-  //         console.log("USERNAME ALREADY EXISTS:", result.username);
-  //         next(null, )
-  //       }
-  //       else  {
-  //         var hash = bcrypt.hashSync(password, 8);
-  //         var user = {
-  //           "username": username,
-  //           "password": hash,
-  //           "avatar": "http://placepuppy.it/images/homepage/Beagle_puppy_6_weeks.JPG"
-  //         }
+  MongoClient.connect(mongodbUrl, function (err, db) {
+    var collection = db.collection('Users');
 
-  //         console.log("CREATING USER:", username);
-
-  //         collection.insert(user)
-  //           .then(function () {
-  //             db.close();
-  //             deferred.resolve(user);
-  //           });
-  //       }
-  //     });
-  // });
-  // usually this would be a database call:
-  var user = usersArr[_.findIndex(usersArr, {id: jwt_payload.id})];
-  if (user) {
-    next(null, user);
-  } else {
-    next(null, false);
-  }
+    //check if username is already assigned in our database
+    collection.findOne({'id' : jwt_payload.id})
+      .then(function (result) {
+          if (result != null) {
+            console.log("USERNAME ALREADY EXISTS:", result.username);
+            next(null, result);
+          } else  {
+            console.log("USERNAME DOES NOT ALREADY EXISTS");
+            next(null, false);
+          }
+      });
+  });
 });
 
 passport.use(strategy);
@@ -112,15 +74,31 @@ passport.use(new FacebookStrategy({
     callbackURL: "/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-  		let user = usersArr[_.findIndex(usersArr, {id: profile.id})]; //Getting user from db
-	  	
-	  	if(!user){ //No user in db, add one
-	  		user = {
-	  			id: profile.id,
-    			name: profile.displayName
-   	  		};
-	  	}
-      return cb(null, user);
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      console.log(profile);
+      var collection = db.collection('Users');
+
+      collection.findOne({'id' : profile.id})
+        .then(function (result) {
+          if (result != null) {
+            console.log("USERNAME ALREADY EXISTS:", result.username);
+            cb(null, result);
+          } else  {
+            //next(null, false);
+            var user = new userSchema.facebook();
+
+            console.log("CREATING USER:", profile.username);
+
+            collection.insert(user)
+              .then(function () {
+                db.close();
+                deferred.resolve(user);
+              });
+
+            return cb(null, user);
+          }
+        });
+    });
   }
 ));
 
@@ -136,14 +114,31 @@ passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    let user = usersArr[_.findIndex(usersArr, {id: profile.id})]; //Getting user from db
-      
-      if(!user){ //No user in db, add one
-        user = {
-          id: profile.id,
-          name: profile.displayName
-          };
-      }
-      return cb(null, user);
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      console.log(profile);
+      var collection = db.collection('Users');
+
+      //check if username is already assigned in our database
+      collection.findOne({'id' : profile.id})
+        .then(function (result) {
+          if (result != null) {
+            console.log("USERNAME ALREADY EXISTS:", result.username);
+            cb(null, result);
+          } else  {
+            //next(null, false);
+            var user = new userSchema.google();
+
+            console.log("CREATING USER:", profile.username);
+
+            collection.insert(user)
+              .then(function () {
+                db.close();
+                deferred.resolve(user);
+              });
+
+            return cb(null, user);
+          }
+        });
+    });
   }
 ));
