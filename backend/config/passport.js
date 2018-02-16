@@ -74,10 +74,11 @@ const FACEBOOK_APP_SECRET = config.facebook.CLIENT_SECRET;
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "/auth/facebook/callback"
+    callbackURL: "/auth/facebook/callback",
+    profileFields: ['id', 'email', 'name', 'picture']
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log(profile);
+    //console.log(profile);
 
     MongoClient.connect(mongodbUrl, function (err, db) {
     if (err) throw err;
@@ -91,10 +92,10 @@ passport.use(new FacebookStrategy({
         } else  {
           var user = new userSchema();
           user.id = profile.id;
-          user.email = null;
-          user.lastname = null;
-          user.firstname = null;
-          user.profilePicture = null;
+          user.email = profile.emails[0].value;
+          user.lastname = profile.name.familyName;
+          user.firstname = profile.name.givenName;
+          user.profilePicture = profile.photos[0].value;
           user.tokens = 25;
           user.currentLeague_id = null;
 
@@ -127,7 +128,7 @@ passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log(profile);
+    //console.log(profile);
 
     MongoClient.connect(mongodbUrl, function (err, db) {
     if (err) throw err;
