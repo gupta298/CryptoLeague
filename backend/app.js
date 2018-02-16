@@ -23,7 +23,13 @@ var MongoClient = require('mongodb').MongoClient
 
 // Connection URL
 var mongodbUrl = config.mongoDBHost;
-var coinSchema = require('./models/coin');
+
+function Coin(name, price, ticker){
+  this.name = name;
+  this.price = price;
+  this.ticker = ticker;
+}
+
 var coinMarketAPI = config.coinMarketAPI;
 var coinData = [];
 
@@ -46,27 +52,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
-// app.post("/api/login", function(req, res) {
-//   if(req.body.name && req.body.password){
-//     var name = req.body.name;
-//     var password = req.body.password;
-//   }
-//   // usually this would be a database call:
-//   var user = usersArr[_.findIndex(usersArr, {name: name})];
-//   if( ! user ){
-//     res.status(401).json({message:"no such user found"});
-//   }
+/*
+app.post("/api/login", function(req, res) {
+  if(req.body.name && req.body.password){
+    var name = req.body.name;
+    var password = req.body.password;
+  }
+  // usually this would be a database call:
+  var user = usersArr[_.findIndex(usersArr, {name: name})];
+  if( ! user ){
+    res.status(401).json({message:"no such user found"});
+  }
 
-//   if(user.password === req.body.password) {
-//     // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
-//     var payload = {id: user.id}; //TODO: Add user object here instead
+  if(user.password === req.body.password) {
+    // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
+    var payload = {id: user.id}; //TODO: Add user object here instead
 
-//     var jwtToken = token.generateAccessToken(payload);
-//     res.json({message: "ok", token: jwtToken});
-//   } else {
-//     res.status(401).json({message:"passwords did not match"});
-//   }
-// });
+    var jwtToken = token.generateAccessToken(payload);
+    res.json({message: "ok", token: jwtToken});
+  } else {
+    res.status(401).json({message:"passwords did not match"});
+  }
+});
+*/
 
 //Test secure api endpoint
 app.get('/api/secure',
@@ -145,6 +153,15 @@ app.get('/app/users',
   }
 );
 
+app.get('/app/market',
+  // This request must be authenticated using a JWT, or else we will fail
+  passport.authenticate(['jwt'], { session: false }),
+  (req, res) => {
+    console.log(req.user.id);
+    res.send(JSON.stringify(coinData));
+  }
+);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -163,26 +180,32 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-request({
-    url: coinMarketAPI,
-    json: true
-}, function (error, response, body) {
+function callCoinMarketAPI() {
+  request({
+      url: coinMarketAPI,
+      json: true
+  }, function (error, response, body) {
+      if (!error && response.statusCode === 200) {
+          var data = JSON.parse(JSON.stringify(body));
+          var tempCoinData = [];
+          for (var temp in data) {
+              var tempCoin = new Coin (data[temp].name, data[temp].price_usd,data[temp].symbol);
+              tempCoinData.push(tempCoin);
+          }
+          console.log("Updated coins");
+          coinData = [];
+          coinData = tempCoinData;
+          // console.log(JSON.stringify(coinData));
+      } else {
+        console.log("Error updating the coin data");
+      }
+  });
+}
 
-    if (!error && response.statusCode === 200) {
-        console.log(body);
-        //var data = JSON.parse(body);
-        // for (var coin in data) {
-        //     var tempCoin = new coinSchema();
-        //     tempCoin.name = coin.name;
-        //     tempCoin.price = coin.price_usd;
-        //     tempCoin.ticker = coin.symbol;
-
-        //     coinData.push(tempCoin);
-        // }
-
-        // console.log(coinData);
-    }
-})
+callCoinMarketAPI();
+setInterval( function() {
+  callCoinMarketAPI();
+}, 100000);
 
 console.log("Success");
 module.exports = app;
