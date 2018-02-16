@@ -7,7 +7,7 @@
 			<div class="uk-text-lead">Hello, {{user.firstname}} {{user.lastname}}</div>
 			<div class="uk-flex uk-flex-center uk-margin-top">
 				<div class="uk-card uk-card-primary uk-card-small uk-card-body uk-width-1-2">
-				    <h3 class="uk-card-title">Username</h3>
+				    <h3 class="uk-card-title">{{user.username || "Username not set"}}</h3>
 				    <div class="uk-flex uk-flex-bottom uk-card-body">
 					    <ul class="uk-list">
 					    	<li><span class="uk-text-bold">Your Tokens:</span> {{user.tokens}}</li>
