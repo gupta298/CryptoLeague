@@ -12,11 +12,11 @@ export class AuthenticationService {
   	constructor() { }
 
   	saveJwt(jwtToken: string){
-  		localStorage.setItem('currentUser', JSON.stringify(this.jwtHelper.decodeToken(jwtToken)));
+  		  localStorage.setItem('currentUser', JSON.stringify(this.jwtHelper.decodeToken(jwtToken)));
         localStorage.setItem('jwtToken', jwtToken);
   	}
 
-	generateJwt() {
+	  generateJwt() {
         // create authorization header with jwt token
         //let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         let jwtToken = localStorage.getItem('jwtToken');
@@ -35,8 +35,8 @@ export class AuthenticationService {
 		   	let user = new User();
 		   	user.deserialize(jsonData);
 		   	return user;
-		} else {
-			return null;
-		}
+		  } else {
+			  return null;
+		  }
 	}
 }
