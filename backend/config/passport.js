@@ -95,6 +95,7 @@ passport.use(new FacebookStrategy({
           user.email = profile.emails[0].value;
           user.lastname = profile.name.familyName;
           user.firstname = profile.name.givenName;
+          user.username = null,
           user.profilePicture = profile.photos[0].value;
           user.tokens = 25;
           user.currentLeague_id = null;
@@ -145,6 +146,7 @@ passport.use(new GoogleStrategy({
           user.email = profile.emails[0].value;
           user.lastname = profile.name.familyName;
           user.firstname = profile.name.givenName;
+          user.username = null,
           user.profilePicture = profile._json.image.url;
           user.tokens = 25;
           user.currentLeague_id = null;

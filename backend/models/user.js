@@ -5,6 +5,7 @@ var userSchema = new mongoose.Schema({
     email: String,
     firstname: String,
     lastname: String,
+    username: String,
     tokens: Number,
     profilePicture: String,
     currentLeague_id: Number
