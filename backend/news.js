@@ -3,19 +3,19 @@ var Request = require('request');
 
 
 var config = require('./config/config.js');
-var key = config.newsapi.API_KEY;
-var url = 'https://newsapi.org/v2/everything?q=cryptocurrency&sortBy=publishedAt&' + 'apiKey=' + key;
+var key = config.newsapikey;
+var url = "https://newsapi.org/v2/everything?q=cryptocurrency&sortBy=publishedAt&apiKey=" + key;
 var req = new Request(url);
 var jResponse = [];
 
-function newsFunc(){
+function newsFunc(callback){
     fetch(req)
-    .then(function(response) {
+    .then(callback/*function(response) {
         jResponse = response;
         //console.log(response.json());
         console.log(response.status());
-    });
+    }*/);
   };
-exports.jResponse = jResponse;
+exports.jResponse = newsFunc;
 
 //console.log(response.status())
