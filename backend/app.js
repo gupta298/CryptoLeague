@@ -129,7 +129,7 @@ app.get('/app/user',
   }
 );
 
-app.get('/app/users',
+app.get('/app/all_users',
   // This request must be authenticated using a JWT, or else we will fail
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
