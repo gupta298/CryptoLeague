@@ -15,6 +15,13 @@ var config = require('./config/config')
 const passport = require('passport');
 
 require('./config/passport');
+var config = require('./config/config')
+
+var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert');
+
+// Connection URL
+var mongodbUrl = config.mongoDBHost;
 
 var app = express();
 
@@ -88,6 +95,54 @@ app.get('/auth/google/',
 app.get('/auth/google/callback',
   passport.authenticate('google', { session: false }),
   generateUserToken);
+
+app.get('/app/user',
+  // This request must be authenticated using a JWT, or else we will fail
+  passport.authenticate(['jwt'], { session: false }),
+  (req, res) => {
+    console.log(req.user.id);
+    //res.send('Secure response from ' + JSON.stringify(req.user));
+    MongoClient.connect(mongodbUrl, function (err, db) {
+    if (err) throw err;
+      var dbo = db.db("test");
+      dbo.collection("Users").findOne({'id' : req.user.id}, function(err, result) {
+        if (err) throw err;
+
+        if (result != null) {
+          res.send(JSON.stringify(result));
+        } else  {
+          res.send(null);
+        }
+
+        db.close();
+      });
+    });
+  }
+);
+
+app.get('/app/users',
+  // This request must be authenticated using a JWT, or else we will fail
+  passport.authenticate(['jwt'], { session: false }),
+  (req, res) => {
+    console.log(req.user.id);
+    //res.send('Secure response from ' + JSON.stringify(req.user));
+    MongoClient.connect(mongodbUrl, function (err, db) {
+    if (err) throw err;
+      var dbo = db.db("test");
+      dbo.collection("Users").find({}).toArray(function(err, result) {
+        if (err) throw err;
+
+        if (result != null) {
+          res.send(JSON.stringify(result));
+        } else  {
+          res.send(null);
+        }
+
+        db.close();
+      });
+    });
+  }
+);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
