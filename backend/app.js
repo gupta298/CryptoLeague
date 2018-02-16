@@ -16,38 +16,9 @@ const passport = require('passport');
 
 require('./config/passport');
 
-//TODO: REMOVE THIS!
-// var usersArr = [
-//   {
-//     id: "1",
-//     name: 'jonathanmh',
-//     password: '%2yx4'
-//   },
-//   {
-//     id: "2",
-//     name: 'test',
-//     password: 'test'
-//   },
-//   {
-//   	id: "1964124173601256",
-//   	name: 'Nisarg Kolhe'
-//   }
-// ];
-
 var app = express();
 
 app.use(passport.initialize());
-
-// app.get('/success', (req, res) => res.send("You have successfully logged in"));
-// app.get('/error', (req, res) => res.send("error logging in"));
-
-// passport.serializeUser(function(user, cb) {
-//   cb(null, user);
-// });
-
-// passport.deserializeUser(function(obj, cb) {
-//   cb(null, obj);
-// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -105,14 +76,14 @@ function generateUserToken(req, res) {
 }
 
 app.get('/auth/facebook/',
-  passport.authenticate('facebook', { session: false }));
+  passport.authenticate('facebook', {scope: ['email', 'public_profile', 'user_photos', 'user_friends', 'user_about_me'], session: false }));
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { session: false }),
   generateUserToken);
 
 app.get('/auth/google/',
-  passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/plus.login', session: false }));
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/userinfo.email'], session: false }));
 
 app.get('/auth/google/callback',
   passport.authenticate('google', { session: false }),
