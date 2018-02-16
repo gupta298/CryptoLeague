@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var _ = require("lodash");
 var jwt = require('jsonwebtoken');
+var request = require("request");
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -22,6 +23,9 @@ var MongoClient = require('mongodb').MongoClient
 
 // Connection URL
 var mongodbUrl = config.mongoDBHost;
+var coinSchema = require('./models/coin');
+var coinMarketAPI = config.coinMarketAPI;
+var coinData = [];
 
 var app = express();
 
@@ -161,6 +165,27 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+request({
+    url: coinMarketAPI,
+    json: true
+}, function (error, response, body) {
+
+    if (!error && response.statusCode === 200) {
+        console.log(body);
+        //var data = JSON.parse(body);
+        // for (var coin in data) {
+        //     var tempCoin = new coinSchema();
+        //     tempCoin.name = coin.name;
+        //     tempCoin.price = coin.price_usd;
+        //     tempCoin.ticker = coin.symbol;
+
+        //     coinData.push(tempCoin);
+        // }
+
+        // console.log(coinData);
+    }
+})
 
 console.log("Success");
 module.exports = app;
