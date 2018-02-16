@@ -74,10 +74,7 @@ app.get('/api/secure',
 );
 
 function generateUserToken(req, res) {
-	let user = {
-		id: req.user.id
-	};
-  	const accessToken = token.generateAccessToken(user);
+  	const accessToken = token.generateAccessToken(req.user);
   	console.log("accessToken",accessToken);
   	res.redirect(config.APP_URL + "/verify?token=" + accessToken);
 }
