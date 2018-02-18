@@ -11,6 +11,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var token = require('./token');
 
+var newsapi = require('./routes/newsapi');
+
 var config = require('./config/config')
 const passport = require('passport');
 
@@ -35,6 +37,8 @@ var usersArr = [
 ];
 
 var app = express();
+
+
 
 app.use(passport.initialize());
 
@@ -63,6 +67,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/newsapi', newsapi);
 
 app.post("/api/login", function(req, res) {
   if(req.body.name && req.body.password){

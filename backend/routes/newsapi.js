@@ -13,10 +13,12 @@ router.get('/', function(req, res) {
  //res.send(req.json());
   fetch(req)
       .then(function(response) {
-          //console.log(response.json());
-          res.send(response.json());
+          if (response.ok) {
+            res.send("lol, wont print");
+          } else {
+            res.send("Error hai bhai");
+          }
       });
-
   });
 
 module.exports = router;
