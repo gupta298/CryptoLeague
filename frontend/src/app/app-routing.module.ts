@@ -13,7 +13,8 @@ const routes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'landing', component: LandingComponent },
 	{ path: 'verify', component: VerifyComponent},
-	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]}
+	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

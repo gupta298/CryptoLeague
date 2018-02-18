@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments';
 
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../services/index'; 
+
 declare var UIkit: any;
 @Component({
   selector: 'app-home',
@@ -10,11 +13,16 @@ declare var UIkit: any;
 export class HomeComponent implements OnInit {
 	environment: any;
 
-  	constructor() { 
+  	constructor(
+      private route: ActivatedRoute,
+      private router: Router,
+      private authService: AuthenticationService) { 
   		this.environment = environment;
   	}
 
   	ngOnInit() {
-  		console.log('env', environment);
+  		if(this.authService.loadUserFromLocalStorage()){
+        this.router.navigate(['/dashboard']);
+      }
   	}
 }
