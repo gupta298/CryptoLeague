@@ -15,7 +15,7 @@ import { User } from '../user';
 export class VerifyComponent implements OnInit {
 
   	jwtHelper: JwtHelper = new JwtHelper();
-	jwtToken: string;
+	  jwtToken: string;
 
   	constructor(
   		private route: ActivatedRoute,

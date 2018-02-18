@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var _ = require("lodash");
 var jwt = require('jsonwebtoken');
+var request = require("request");
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -17,41 +18,26 @@ var config = require('./config/config')
 const passport = require('passport');
 
 require('./config/passport');
+var config = require('./config/config')
 
-//TODO: REMOVE THIS!
-var usersArr = [
-  {
-    id: "1",
-    name: 'jonathanmh',
-    password: '%2yx4'
-  },
-  {
-    id: "2",
-    name: 'test',
-    password: 'test'
-  },
-  {
-  	id: "1964124173601256",
-  	name: 'Nisarg Kolhe'
-  }
-];
+var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert');
+
+// Connection URL
+var mongodbUrl = config.mongoDBHost;
+
+function Coin(name, price, ticker){
+  this.name = name;
+  this.price = price;
+  this.ticker = ticker;
+}
+
+var coinMarketAPI = config.coinMarketAPI;
+var coinData = [];
 
 var app = express();
 
-
-
 app.use(passport.initialize());
-
-// app.get('/success', (req, res) => res.send("You have successfully logged in"));
-// app.get('/error', (req, res) => res.send("error logging in"));
-
-// passport.serializeUser(function(user, cb) {
-//   cb(null, user);
-// });
-
-// passport.deserializeUser(function(obj, cb) {
-//   cb(null, obj);
-// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -69,6 +55,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/newsapi', newsapi);
 
+/*
 app.post("/api/login", function(req, res) {
   if(req.body.name && req.body.password){
     var name = req.body.name;
@@ -90,6 +77,7 @@ app.post("/api/login", function(req, res) {
     res.status(401).json({message:"passwords did not match"});
   }
 });
+*/
 
 //Test secure api endpoint
 app.get('/api/secure',
@@ -101,20 +89,81 @@ app.get('/api/secure',
 );
 
 function generateUserToken(req, res) {
-	let user = {
-		id: req.user.id
-	};
-  	const accessToken = token.generateAccessToken(user);
+  	const accessToken = token.generateAccessToken(req.user);
   	console.log("accessToken",accessToken);
-  	res.redirect(config.APP_URL + "/dashboard?token=" + accessToken);
+  	res.redirect(config.APP_URL + "/verify?token=" + accessToken);
 }
 
-app.get('/api/login/facebook/',
-  passport.authenticate('facebook', { session: false }));
+app.get('/auth/facebook/',
+  passport.authenticate('facebook', {scope: ['email', 'public_profile', 'user_photos', 'user_friends', 'user_about_me'], session: false }));
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { session: false }),
   generateUserToken);
+
+app.get('/auth/google/',
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/userinfo.email'], session: false }));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { session: false }),
+  generateUserToken);
+
+app.get('/app/user',
+  // This request must be authenticated using a JWT, or else we will fail
+  passport.authenticate(['jwt'], { session: false }),
+  (req, res) => {
+    console.log(req.user.id);
+    //res.send('Secure response from ' + JSON.stringify(req.user));
+    MongoClient.connect(mongodbUrl, function (err, db) {
+    if (err) throw err;
+      var dbo = db.db("test");
+      dbo.collection("Users").findOne({'id' : req.user.id}, function(err, result) {
+        if (err) throw err;
+
+        if (result != null) {
+          res.send(JSON.stringify(result));
+        } else  {
+          res.send(null);
+        }
+
+        db.close();
+      });
+    });
+  }
+);
+
+app.get('/app/all_users',
+  // This request must be authenticated using a JWT, or else we will fail
+  passport.authenticate(['jwt'], { session: false }),
+  (req, res) => {
+    console.log(req.user.id);
+    //res.send('Secure response from ' + JSON.stringify(req.user));
+    MongoClient.connect(mongodbUrl, function (err, db) {
+    if (err) throw err;
+      var dbo = db.db("test");
+      dbo.collection("Users").find({}).toArray(function(err, result) {
+        if (err) throw err;
+
+        if (result != null) {
+          res.send(JSON.stringify(result));
+        } else  {
+          res.send(null);
+        }
+
+        db.close();
+      });
+    });
+  }
+);
+
+app.get('/app/market',
+  // This request must be authenticated using a JWT, or else we will fail
+  passport.authenticate(['jwt'], { session: false }),
+  (req, res) => {
+    console.log(req.user.id);
+    res.send(JSON.stringify(coinData));
+  }
+);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -133,6 +182,33 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+function callCoinMarketAPI() {
+  request({
+      url: coinMarketAPI,
+      json: true
+  }, function (error, response, body) {
+      if (!error && response.statusCode === 200) {
+          var data = JSON.parse(JSON.stringify(body));
+          var tempCoinData = [];
+          for (var temp in data) {
+              var tempCoin = new Coin (data[temp].name, data[temp].price_usd,data[temp].symbol);
+              tempCoinData.push(tempCoin);
+          }
+          console.log("Updated coins");
+          coinData = [];
+          coinData = tempCoinData;
+          // console.log(JSON.stringify(coinData));
+      } else {
+        console.log("Error updating the coin data");
+      }
+  });
+}
+
+callCoinMarketAPI();
+setInterval( function() {
+  callCoinMarketAPI();
+}, 100000);
 
 console.log("Success");
 module.exports = app;
