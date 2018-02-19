@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/api/news', newsapi);
+app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
 
 /*
 app.post("/api/login", function(req, res) {
