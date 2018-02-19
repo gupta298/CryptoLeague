@@ -12,7 +12,7 @@ var url = 'https://newsapi.org/v2/everything?q=cryptocurrency&sortBy=publishedAt
 router.get('/', function(req, res) {
  var req = new Request(url);
  //res.send(req.json());
-  callNewsOrgAPI();
+  res.send(callNewsOrgAPI());
   });
 
 module.exports = router;
@@ -28,14 +28,18 @@ function callNewsOrgAPI() {
           var counter = 0;
           while(counter < 16)
           {
-              tempNews.push(response.body.articles[0]);
-              console.log(response.body.articles[0]);
+              tempNews.push(response.body.articles[counter]);
+              console.log(response.body.articles[counter]);
               counter++;
           }
-          //console.log(response.body);
-          // console.log(JSON.stringify(coinData));
+          return 'Success';
       } else {
         console.log("Error updating the news data");
       }
+
   });
-}
+};
+
+setInterval( function() {
+  callNewsOrgAPI();
+}, 150000);

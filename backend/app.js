@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/newsapi', newsapi);
+app.use('/api/news', newsapi);
 
 /*
 app.post("/api/login", function(req, res) {
