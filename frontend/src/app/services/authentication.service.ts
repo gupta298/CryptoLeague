@@ -24,7 +24,7 @@ export class AuthenticationService {
             let headers = new Headers({ 'Authorization': 'Bearer ' + jwtToken });
             return new RequestOptions({ headers: headers });
         } else {
-            return false;
+            return null;
         }
     }
 
