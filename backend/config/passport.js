@@ -108,7 +108,8 @@ passport.use(new FacebookStrategy({
             db.close();
           });
 
-          return cb(null, user);
+          console.log('user', user);
+          return cb(null, user.toJSON());
         }
 
         db.close();
