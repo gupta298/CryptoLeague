@@ -9,22 +9,29 @@ var config = require('../config/config.js');
 var key = config.newsapikey;
 var url = 'https://newsapi.org/v2/everything?q=cryptocurrency&sortBy=publishedAt&apiKey=' + key;
 
+var tempNews = [];
+
 router.get('/', function(req, res) {
  var req = new Request(url);
  //res.send(req.json());
-  res.send(callNewsOrgAPI());
-  });
+  //res.send(callNewsOrgAPI());
+  if(tempNews.length < 1){
+    callNewsOrgAPI(res);
+  } else {
+    res.send(JSON.stringify(tempNews));
+  }
+});
 
 module.exports = router;
 
-function callNewsOrgAPI() {
+function callNewsOrgAPI(res) {
   request({
       url: url,
       json: true
   }, function (error, response, body) {
       if (!error) {
           var data = JSON.parse(JSON.stringify(body));
-          var tempNews = [];
+          tempNews = [];
           var counter = 0;
           while(counter < 16)
           {
@@ -32,9 +39,10 @@ function callNewsOrgAPI() {
               console.log(response.body.articles[counter]);
               counter++;
           }
-          return 'Success';
+          res.send(JSON.stringify(tempNews));
       } else {
         console.log("Error updating the news data");
+        res.send("Error updating the news data");
       }
 
   });
