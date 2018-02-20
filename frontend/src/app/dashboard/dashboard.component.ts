@@ -11,7 +11,7 @@ import { AuthenticationService, NewsService } from '../services/index';
 export class DashboardComponent implements OnInit {
 
 	user: User;
-	news: any[] = [];
+	newsArray: any[] = [];
 
   	constructor(
   		private authService: AuthenticationService,
@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   		this.newsService.getNews()
 	      .subscribe(
 	        result => {
-	          this.news = result;
+	          this.newsArray = result;
 	          console.log(result);
 	        }, error => {
 	          console.log(error);
