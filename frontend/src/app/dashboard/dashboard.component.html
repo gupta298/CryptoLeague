@@ -31,9 +31,9 @@
 							 	<div class="uk-width-1-4 news-image" [ngStyle]="{ 'background-image': 'url(' + news.urlToImage + ')'}">
 								</div>
 								<article class="uk-article uk-width-3-4 uk-margin-left">
-								    <h1 class="uk-text-lead uk-margin-remove"><a class="uk-link-reset" href="">{{news.title}}</a></h1>
-								    <p class="uk-article-meta uk-margin-remove">Written by {{news.author}} on {{news.publishedAt | date:'fullDate'}}. Posted in <a href="#">{{news.source.name}}</a></p>
-								    <p class="uk-margin-small">{{news.description}}</p>
+								    <h1 class="uk-text-lead uk-margin-remove"><a class="uk-link-reset" href="{{news.url}}">{{(news.title.length>75)? (news.title | slice:0:75)+'..':(news.title)}}</a></h1>
+								    <p class="uk-article-meta uk-margin-remove">Written by {{news.author}} on {{news.publishedAt | date:'fullDate'}}. Posted in <a href="{{news.url}}">{{news.source.name}}</a></p>
+								    <p class="uk-margin-small">{{(news.description.length>200)? (news.description | slice:0:200)+'..':(news.description)}} </p>
 								    <div class="uk-grid-small uk-child-width-auto" uk-grid>
 								        <div>
 								            <a class="uk-button uk-button-text" href="{{news.url}}" target="_blank">Read more</a>
