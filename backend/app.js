@@ -156,6 +156,33 @@ app.get('/app/all_users',
   }
 );
 
+app.put('/app/updateUser',
+  passport.authenticate(['jwt'], { session: false }),
+  (req, res) => {
+    console.log("Updating the user information of: " + req.user.id);
+    //res.send('Secure response from ' + JSON.stringify(req.user));
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+
+      var dbo = db.db("test");
+      
+      dbo.collection("Users").findOneAndUpdate({'id': req.user.id}, {$set: {id: req.user.id, email: req.user.email, lastname: req.user.lastname, 
+        firstname: req.user.firstname, username: req.user.username, profilePicture: req.user.profilePicture, tokens: req.user.tokens, 
+        currentLeague_id: req.user.currentLeague_id}}, function(err, res) {
+        if (err) {
+          res.send("Failure");
+          throw err;
+        }
+        console.log("User updated");
+        db.close();
+      });
+
+      res.send("Success");
+
+    });
+  }
+);
+
 app.get('/app/market',
   // This request must be authenticated using a JWT, or else we will fail
   passport.authenticate(['jwt'], { session: false }),
