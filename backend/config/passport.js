@@ -160,7 +160,7 @@ passport.use(new GoogleStrategy({
             db.close();
           });
 
-          return cb(null, user);
+          return cb(null, user.toJSON());
         }
 
         db.close();
