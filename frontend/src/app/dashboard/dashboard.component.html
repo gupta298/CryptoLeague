@@ -24,8 +24,25 @@
 			</div>
 			<div class="uk-container uk-card-small uk-margin-top">
 				<div class="uk-card uk-card-default uk-card-body">
-					 <h3 class="uk-card-title">Latest Cryptocurrency News</h3>
-					 <p>Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					<h3 class="uk-card-title">Latest Cryptocurrency News</h3>
+					<div class="news-scroll">
+						<div *ngFor="let news of newsArray">
+							<div *ngIf="news.urlToImage" class="uk-flex uk-margin-bottom">
+							 	<div class="uk-width-1-4 news-image" [ngStyle]="{ 'background-image': 'url(' + news.urlToImage + ')'}">
+								</div>
+								<article class="uk-article uk-width-3-4 uk-margin-left">
+								    <h1 class="uk-text-lead uk-margin-remove"><a class="uk-link-reset" href="{{news.url}}">{{(news.title.length>75)? (news.title | slice:0:75)+'..':(news.title)}}</a></h1>
+								    <p class="uk-article-meta uk-margin-remove">Written by {{news.author}} on {{news.publishedAt | date:'fullDate'}}. Posted in <a href="{{news.url}}">{{news.source.name}}</a></p>
+								    <p class="uk-margin-small">{{(news.description.length>200)? (news.description | slice:0:200)+'..':(news.description)}} </p>
+								    <div class="uk-grid-small uk-child-width-auto" uk-grid>
+								        <div>
+								            <a class="uk-button uk-button-text" href="{{news.url}}" target="_blank">Read more</a>
+								        </div>
+								    </div>
+								</article>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

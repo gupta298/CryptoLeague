@@ -7,11 +7,11 @@ var router = express.Router();
 
 var config = require('../config/config.js');
 var key = config.newsapikey;
-var url = 'https://newsapi.org/v2/everything?q=cryptocurrency&sortBy=publishedAt&apiKey=' + key;
+var url = 'https://newsapi.org/v2/everything?language=en&q=cryptocurrency&sortBy=publishedAt&apiKey=' + key;
 
 var tempNews = [];
 
-router.get('/', function(req, res) {
+router.get('/', function(req, res, next) {
  var req = new Request(url);
  //res.send(req.json());
   //res.send(callNewsOrgAPI());
@@ -21,8 +21,6 @@ router.get('/', function(req, res) {
     res.send(JSON.stringify(tempNews));
   }
 });
-
-module.exports = router;
 
 function callNewsOrgAPI(res) {
   request({
@@ -39,15 +37,19 @@ function callNewsOrgAPI(res) {
               console.log(response.body.articles[counter]);
               counter++;
           }
-          res.send(JSON.stringify(tempNews));
+          if(res)
+            res.send(JSON.stringify(tempNews));
       } else {
         console.log("Error updating the news data");
-        res.send("Error updating the news data");
+        if(res)
+          res.send("Error updating the news data");
       }
 
   });
 };
 
 setInterval( function() {
-  callNewsOrgAPI();
+  callNewsOrgAPI(null);
 }, 150000);
+
+module.exports = router;

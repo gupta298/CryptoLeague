@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule, Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -11,7 +12,7 @@ import { VerifyComponent } from './verify/verify.component';
 
 import { AuthGuard } from './auth.guard';
 
-import { AuthenticationService } from './services/index';
+import { AuthenticationService, NewsService } from './services/index';
 
 @NgModule({
   declarations: [
@@ -24,10 +25,12 @@ import { AuthenticationService } from './services/index';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
   providers: [
     AuthenticationService,
+    NewsService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

@@ -3,3 +3,13 @@
 	width: auto;
 	padding: 1em;
 }
+
+.news-scroll {
+	height: 30vw;
+	overflow-y: scroll;
+}
+
+.news-image {
+	height: 10vw;
+	background-size: cover;
+}
