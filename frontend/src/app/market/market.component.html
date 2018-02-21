@@ -3,25 +3,32 @@
 	<div class="page-content">
 		<div class="uk-container uk-overflow-auto uk-margin-top">
 			<div class="uk-text-lead">Current Market Data</div>
-			<table class="uk-table uk-table-divider uk-table-middle uk-margin-top">
+			<table class="uk-table uk-table-divider uk-table-striped uk-table-middle uk-margin-top uk-margin-bottom">
 			    <thead>
 			        <tr>
 			            <th>#</th>
 			            <th>Name</th>
 			           	<th>Ticker</th>
-			            <!-- <th>Market Cap</th> -->
 			            <th>Price</th>
-			            <!-- <th>Volume (24h)</th> -->
-			            <!-- <th>Circulating Supply</th> -->
-			            <!-- <th>Change (24h)</th> -->
+			            <th>Market Cap</th>
+			            <th>Change (1hrs)</th>
+			            <th>Change (24hrs)</th>
 			        </tr>
 			    </thead>
 			    <tbody>
 			        <tr *ngFor="let coin of coinArray; let i = index">
 			        	<td>{{i + 1}}</td>
-			            <td>{{coin.name}}</td>
-			            <td>{{coin.ticker}}</td>
-			            <td>{{coin.price}}</td>
+			            <td>
+			            	<span class="uk-icon uk-icon-image uk-margin-small-right" [ngStyle]="{ 'background-image': 'url(' + coin.image + ')'}"></span> 
+			            	{{coin.name}}
+			        	</td>
+			        	<td>{{coin.symbol}}</td>
+			            <td>${{coin.price | number}}</td>
+			            <td>${{coin.cap | number}}</td>
+			            <td *ngIf="coin.change.hour > 0;else negHourChange" class="uk-text-success"><span uk-icon="triangle-up"></span> {{coin.change.hour}}%</td>
+						<ng-template #negHourChange><td class="uk-text-danger"><span uk-icon="triangle-down"></span> {{coin.change.hour}}%</td></ng-template>     
+    			        <td *ngIf="coin.change.day > 0;else negDayChange" class="uk-text-success"><span uk-icon="triangle-up"></span> {{coin.change.day}}%</td>
+						<ng-template #negDayChange><td class="uk-text-danger"><span uk-icon="triangle-down"></span> {{coin.change.day}}%</td></ng-template>
 			        </tr>
 			    </tbody>
 			</table>
