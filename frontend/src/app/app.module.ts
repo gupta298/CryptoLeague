@@ -16,6 +16,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { AuthGuard } from './auth.guard';
 
 import { AuthenticationService, NewsService, MarketService, UserService } from './services/index';
+import { SettingsComponent } from './settings/settings.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -28,7 +29,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     DashboardComponent,
     VerifyComponent,
     LeaderboardComponent,
-    MarketComponent
+    MarketComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
