@@ -15,9 +15,9 @@ const routes: Routes = [
 	{ path: 'landing', component: LandingComponent },
 	{ path: 'verify', component: VerifyComponent},
 	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-    { path: 'leaderboard', component: LeaderboardComponent},
+  { path: 'leaderboard', component: LeaderboardComponent},
 	{ path: 'market', component: MarketComponent, canActivate: [AuthGuard]},
-    { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
