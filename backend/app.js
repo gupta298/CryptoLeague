@@ -7,12 +7,12 @@ var bodyParser = require('body-parser');
 var _ = require("lodash");
 var jwt = require('jsonwebtoken');
 var request = require("request");
-var asyncLoop = require('node-async-loop');
 
+//Routes
 var index = require('./routes/index');
+var auth = require('./routes/auth');
 var users = require('./routes/users');
-var token = require('./token');
-
+var market = require('./routes/market');
 var newsapi = require('./routes/newsapi');
 
 var config = require('./config/config')
@@ -26,15 +26,6 @@ var MongoClient = require('mongodb').MongoClient
 
 // Connection URL
 var mongodbUrl = config.mongoDBHost;
-
-// function Coin(name, price, ticker){
-//   this.name = name;
-//   this.price = price;
-//   this.ticker = ticker;
-// }
-
-// var coinMarketAPI = config.coinMarketAPI;
-var coinData = [];
 
 var app = express();
 
@@ -54,31 +45,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/auth', auth);
 app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
-
-/*
-app.post("/api/login", function(req, res) {
-  if(req.body.name && req.body.password){
-    var name = req.body.name;
-    var password = req.body.password;
-  }
-  // usually this would be a database call:
-  var user = usersArr[_.findIndex(usersArr, {name: name})];
-  if( ! user ){
-    res.status(401).json({message:"no such user found"});
-  }
-
-  if(user.password === req.body.password) {
-    // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
-    var payload = {id: user.id}; //TODO: Add user object here instead
-
-    var jwtToken = token.generateAccessToken(payload);
-    res.json({message: "ok", token: jwtToken});
-  } else {
-    res.status(401).json({message:"passwords did not match"});
-  }
-});
-*/
+app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
 
 //Test secure api endpoint
 app.get('/api/secure',
@@ -89,25 +58,6 @@ app.get('/api/secure',
   }
 );
 
-function generateUserToken(req, res) {
-  	const accessToken = token.generateAccessToken(req.user);
-  	console.log("accessToken",accessToken);
-  	res.redirect(config.APP_URL + "/verify?token=" + accessToken);
-}
-
-app.get('/auth/facebook/',
-  passport.authenticate('facebook', {scope: ['email', 'public_profile', 'user_photos', 'user_friends', 'user_about_me'], session: false }));
-
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { session: false }),
-  generateUserToken);
-
-app.get('/auth/google/',
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/userinfo.email'], session: false }));
-
-app.get('/auth/google/callback',
-  passport.authenticate('google', { session: false }),
-  generateUserToken);
 
 app.get('/app/user',
   // This request must be authenticated using a JWT, or else we will fail
@@ -188,15 +138,6 @@ app.put('/app/updateUser',
   }
 );
 
-app.get('/app/market',
-  // This request must be authenticated using a JWT, or else we will fail
-  passport.authenticate(['jwt'], { session: false }),
-  (req, res) => {
-    console.log(req.user.id);
-    res.send(JSON.stringify(coinData));
-  }
-);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -214,84 +155,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// function callCoinMarketAPI() {
-//   request({
-//       url: coinMarketAPI,
-//       json: true
-//   }, function (error, response, body) {
-//       if (!error && response.statusCode === 200) {
-//           var data = JSON.parse(JSON.stringify(body));
-//           var tempCoinData = [];
-//           for (var temp in data) {
-//               // var tempCoin = new Coin (data[temp].name, data[temp].price_usd,data[temp].symbol);
-//               // tempCoinData.push(tempCoin);
-//               tempCoinData.push(data[temp]);
-//           }
-//           console.log("Updated coins");
-//           coinData = [];
-//           coinData = tempCoinData;
-//           // console.log(JSON.stringify(coinData));
-//       } else {
-//         console.log("Error updating the coin data");
-//       }
-//   });
-// }
-
-function getJsonFromUrl(url, callback) {
-  request({
-      url: url,
-      json: true
-  }, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-        var result = JSON.parse(JSON.stringify(body));
-          //console.log(body);
-        callback(result);
-      } else {
-        callback(null);
-      }
-  });
-}
-
-var chasing_coins = config.chasing_coins;
-function buildCoinData(callback) {
-  getJsonFromUrl(chasing_coins.MarketCap, function(marketResult) {
-    var market = marketResult;
-    getJsonFromUrl(chasing_coins.Top100Coins, function(coinsResult) {
-      var result = [];
-      var coins = JSON.parse(JSON.stringify(coinsResult));
-      
-      asyncLoop(coins, function (item, next) {
-        // console.log(item);
-        getJsonFromUrl(chasing_coins.HighLowOfCoin + item.value.symbol, function(coinsResultHighLow) {
-          coins[item.key].HighLowOfCoin = coinsResultHighLow;
-
-          getJsonFromUrl(chasing_coins.HighLowOfLast24Hours + item.value.symbol, function(coinsResultHighLowOf24Hours) {
-            coins[item.key].HighLowOfLast24Hours = coinsResultHighLowOf24Hours;
-            coins[item.key].image = chasing_coins.CoinImage + item.value.symbol;
-            // console.log(coins[item.key]);
-            next();
-            result.push(item);
-          });
-        });
-      }, function () {
-        coinData = [];
-        coinData = result;
-        console.log('Got the coin data!');
-      });
-    });
-  });
-}
-
-buildCoinData();
-
-// callCoinMarketAPI();
-setInterval( function() {
-  buildCoinData(function(callback) {
-    console.log("Updated the coin data");
-  });
-  // callCoinMarketAPI();
-}, 300000);
 
 console.log("Success");
 module.exports = app;
