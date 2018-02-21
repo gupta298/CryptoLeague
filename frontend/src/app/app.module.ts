@@ -17,10 +17,11 @@ import { AuthGuard } from './auth.guard';
 
 import { AuthenticationService, NewsService, MarketService, UserService } from './services/index';
 import { SettingsComponent } from './settings/settings.component';
-
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
+    declarations: [
     AppComponent,
     LandingComponent,
     HomeComponent,
@@ -34,7 +35,9 @@ import { SettingsComponent } from './settings/settings.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     HttpClientModule,

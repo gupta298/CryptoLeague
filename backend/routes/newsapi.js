@@ -1,6 +1,4 @@
-
 var fetch = require('isomorphic-fetch');
-var Request = require('request');
 var request = require('request');
 var express = require('express');
 var router = express.Router();
@@ -50,6 +48,6 @@ function callNewsOrgAPI(res) {
 
 setInterval( function() {
   callNewsOrgAPI(null);
-}, 150000);
+}, 300000);
 
 module.exports = router;
