@@ -3,25 +3,32 @@
 	<div class="page-content">
 		<div class="uk-container uk-overflow-auto uk-margin-top">
 			<div class="uk-text-lead">Current Market Data</div>
-			<table class="uk-table uk-table-divider uk-table-middle uk-margin-top">
+			<table class="uk-table uk-table-divider uk-table-striped uk-table-middle uk-margin-top">
 			    <thead>
 			        <tr>
 			            <th>#</th>
 			            <th>Name</th>
 			           	<th>Ticker</th>
-			            <!-- <th>Market Cap</th> -->
 			            <th>Price</th>
-			            <!-- <th>Volume (24h)</th> -->
-			            <!-- <th>Circulating Supply</th> -->
-			            <!-- <th>Change (24h)</th> -->
+			            <th>Market Cap</th>
+			            <th>Change (hour)</th>
+			            <th>Change (day)</th>
 			        </tr>
 			    </thead>
 			    <tbody>
 			        <tr *ngFor="let coin of coinArray; let i = index">
 			        	<td>{{i + 1}}</td>
-			            <td>{{coin.name}}</td>
-			            <td>{{coin.ticker}}</td>
-			            <td>{{coin.price}}</td>
+			            <td>
+			            	<span class="uk-icon uk-icon-image uk-margin-small-right" [ngStyle]="{ 'background-image': 'url(' + coin.value.image + ')'}"></span> 
+			            	{{coin.value.symbol}}
+			        	</td>
+			        	<td>{{coin.value.symbol}}</td>
+			            <td>${{coin.value.price | number}}</td>
+			            <td>${{coin.value.cap | number}}</td>
+			            <td *ngIf="coin.value.change.hour > 0;else negHourChange" class="uk-text-success"><span uk-icon="triangle-up"></span> {{coin.value.change.hour}}%</td>
+						<ng-template #negHourChange><td class="uk-text-danger"><span uk-icon="triangle-down"></span> {{coin.value.change.hour}}%</td></ng-template>     
+    			        <td *ngIf="coin.value.change.day > 0;else negDayChange" class="uk-text-success"><span uk-icon="triangle-up"></span> {{coin.value.change.day}}%</td>
+						<ng-template #negDayChange><td class="uk-text-danger"><span uk-icon="triangle-down"></span> {{coin.value.change.day}}%</td></ng-template>
 			        </tr>
 			    </tbody>
 			</table>
