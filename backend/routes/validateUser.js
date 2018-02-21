@@ -19,7 +19,7 @@ router.post('/',
     console.log(req.user.id);
     // console.log(req.body);
     if (!req.body.username) {
-    	res.send("Failure");
+    	res.send({'exists': null});
     } else {
 	    //res.send('Secure response from ' + JSON.stringify(req.user));
 	    MongoClient.connect(mongodbUrl, function (err, db) {
@@ -29,9 +29,9 @@ router.post('/',
 	        if (err) throw err;
 
 	        if (result != null) {
-	          res.send("Username already exists");
+	          res.send({'exists': true});
 	        } else  {
-	          res.send("Success");
+	          res.send({'exists': false});
 	        }
 
 	        db.close();

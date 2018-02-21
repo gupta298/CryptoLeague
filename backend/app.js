@@ -46,7 +46,7 @@ app.use('/all_users', passport.authenticate(['jwt'], { session: false }), all_us
 app.use('/auth', auth);
 app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
 app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
-app.use('/validateUser', passport.authenticate(['jwt'], { session: false }), validateUser);
+app.use('/validate_user', passport.authenticate(['jwt'], { session: false }), validateUser);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
