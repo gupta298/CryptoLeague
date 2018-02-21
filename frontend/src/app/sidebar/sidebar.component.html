@@ -1,10 +1,9 @@
-<div class="sidebar uk-section-primary">
+<div class="sidebar uk-section-primary uk-flex uk-flex-column uk-flex-between">
 	    <div class="uk-flex uk-flex-column">
 	    	<a class="uk-navbar-item uk-logo" href="#">
 	    		<img class="hexLogo" src="../assets/HexLogo.svg">
 	    		<img class="fullLogo" src="../assets/WhiteFullLogo.svg"></a>
 	        <ul class="uk-nav uk-nav-primary uk-margin-auto-vertical">
-	        	
 	            <li class="sidebar-item" [class.uk-active]="page=='dashboard'"><a href="/dashboard"><span class="sidebar-item-icon" uk-icon="icon: home"></span><span class="sidebar-item-text">Dashboard</span></a></li>
 	            <li class="uk-nav-divider"></li>
 	            <li class="sidebar-item" [class.uk-active]="page=='market'"><a href="/market"><span class="sidebar-item-icon" uk-icon="icon: bolt"></span><span class="sidebar-item-text">Market</span></a></li>
@@ -12,6 +11,13 @@
 	            <li class="sidebar-item" [class.uk-active]="page=='leaderboard'"><a href="/leaderboard"><span class="sidebar-item-icon" uk-icon="icon: list"></span><span class="sidebar-item-text">Leaderboard</span></a></li>
 	            <li class="uk-nav-divider"></li>
 	            <li class="sidebar-item" [class.uk-active]="page=='join'"><a href="/join"><span class="sidebar-item-icon" uk-icon="icon: plus"></span><span class="sidebar-item-text">Join a League</span></a></li>
+	        </ul>
+	    </div>
+	    <div class="uk-flex uk-flex-column">
+	    	 <ul class="uk-nav uk-nav-primary uk-margin-auto-vertical">
+	            <li class="sidebar-item" [class.uk-active]="page=='settings'"><a href="/settings"><span class="sidebar-item-icon" uk-icon="icon: user"></span><span class="sidebar-item-text">{{user.firstname}} {{user.lastname}}</span></a></li>
+	            <li class="uk-nav-divider"></li>
+	            <li class="sidebar-item uk-margin-small-bottom"><a (click)="logout()"><span class="sidebar-item-icon" uk-icon="icon:  sign-out"></span><span class="sidebar-item-text">Sign Out</span></a></li>
 	        </ul>
 	    </div>
 </div>
