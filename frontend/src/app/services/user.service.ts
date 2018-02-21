@@ -15,7 +15,7 @@ export class UserService {
 	) { }
 
   getRankings() {
-   	return this.http.get(environment.apiUrl+'/app/all_users',  this.authService.generateJwt()).map((response: Response) => response.json());
+   	return this.http.post(environment.apiUrl+'/app/all_users', {'pageno': 0} ,this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
 }
