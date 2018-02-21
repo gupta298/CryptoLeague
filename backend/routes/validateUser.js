@@ -39,3 +39,5 @@ router.post('/',
 	}
   }
 );
+
+module.exports = router;
