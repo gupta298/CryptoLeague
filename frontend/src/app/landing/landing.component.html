@@ -8,16 +8,16 @@
 				<img src="../../assets/img_avatar.png" alt="Avatar">
 			</div>
 			<div id="text">
-				<form (ngSubmit)="onSubmit()" #f="ngForm">
+				<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" >
 					<div class="uk-margin">
 						<label class="uk-form-label label">Select a username</label>
-						<input id="username" class="uk-input uk-form-width-medium" type="text" placeholder="eg. doe_john123">				    	
+						<input id="username" name="username" [(ngModel)]="user.username" class="uk-input uk-form-width-medium" type="text" placeholder="eg. doe_john123">				    	
 						<br><br>
 						Your username is a unique name that only consists of alphanumeric characters
         	</div>
 					<div class="uk-margin">
-				    	<button type="submit" class="uk-button uk-button-default">Submit</button>
-				    </div>
+				    <button type="submit" class="uk-button uk-button-default">Submit</button>
+				   </div>
 				</form>
 			</div>
 		</div>

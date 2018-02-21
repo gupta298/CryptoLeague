@@ -52,11 +52,11 @@ router.put('/',
           res.send("Failure");
           throw err;
         }
-        console.log("User updated");
+        console.log("User updated: ",token.generateAccessToken(req.body));
         db.close();
       });
 
-      res.send(token.generateAccessToken(req.body));
+      res.send({ 'jwt' : token.generateAccessToken(req.body)});
     });
   }
 );
