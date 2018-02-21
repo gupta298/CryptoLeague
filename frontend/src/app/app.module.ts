@@ -13,7 +13,7 @@ import { VerifyComponent } from './verify/verify.component';
 
 import { AuthGuard } from './auth.guard';
 
-import { AuthenticationService, NewsService, UserService } from './services/index';
+import { AuthenticationService, NewsService, MarketService, UserService } from './services/index';
 import { MarketComponent } from './market/market.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
@@ -37,8 +37,9 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     HttpClientModule,
     AuthenticationService,
     NewsService,
+    UserService,
+    MarketService,
     AuthGuard,
-    UserService
   ],
   bootstrap: [AppComponent]
 })
