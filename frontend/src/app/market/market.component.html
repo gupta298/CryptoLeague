@@ -3,12 +3,12 @@
 	<div class="page-content">
 		<div class="uk-container uk-overflow-auto uk-margin-top">
 			<div class="uk-text-lead">Current Market Data</div>
-			<table class="uk-table uk-table-divider uk-table-middle uk-margin-top">
+			<table class="uk-table uk-table-divider uk-table-striped uk-table-middle uk-margin-top">
 			    <thead>
 			        <tr>
 			            <th>#</th>
 			            <th>Name</th>
-			           	<!-- <th>Ticker</th> -->
+			           	<th>Ticker</th>
 			            <th>Price</th>
 			            <th>Market Cap</th>
 			            <th>Change (hour)</th>
@@ -22,11 +22,12 @@
 			            	<span class="uk-icon uk-icon-image uk-margin-small-right" [ngStyle]="{ 'background-image': 'url(' + coin.value.image + ')'}"></span> 
 			            	{{coin.value.symbol}}
 			        	</td>
+			        	<td>{{coin.value.symbol}}</td>
 			            <td>${{coin.value.price | number}}</td>
 			            <td>${{coin.value.cap | number}}</td>
-			            <td *ngIf="coin.value.change.hour > 0;else negHourChange" class="uk-text-success"><span uk-icon="triangle-up"></span> {{coin.value.change.hour}}</td>
+			            <td *ngIf="coin.value.change.hour > 0;else negHourChange" class="uk-text-success"><span uk-icon="triangle-up"></span> {{coin.value.change.hour}}%</td>
 						<ng-template #negHourChange><td class="uk-text-danger"><span uk-icon="triangle-down"></span> {{coin.value.change.hour}}%</td></ng-template>     
-    			        <td *ngIf="coin.value.change.day > 0;else negDayChange" class="uk-text-success"><span uk-icon="triangle-up"></span> {{coin.value.change.day}}</td>
+    			        <td *ngIf="coin.value.change.day > 0;else negDayChange" class="uk-text-success"><span uk-icon="triangle-up"></span> {{coin.value.change.day}}%</td>
 						<ng-template #negDayChange><td class="uk-text-danger"><span uk-icon="triangle-down"></span> {{coin.value.change.day}}%</td></ng-template>
 			        </tr>
 			    </tbody>
