@@ -1,6 +1,4 @@
-$sidebar-width-small: 72px;
-$sidebar-width-large: 300px;
-$global-link-color: #1F87F0;
+@import 'variables';
 
 @import "../../../bower_components/lovelo-fontface/css/lovelo-fontface.css";
 @lovelo-font-path: "/fonts";
