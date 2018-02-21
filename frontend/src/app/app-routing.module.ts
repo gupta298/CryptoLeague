@@ -12,12 +12,12 @@ import { MarketComponent }   from './market/market.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
-	{ path: 'landing', component: LandingComponent },
 	{ path: 'verify', component: VerifyComponent},
+	{ path: 'landing', component: LandingComponent, canActivate: [AuthGuard] },
 	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  { path: 'leaderboard', component: LeaderboardComponent},
+  	{ path: 'leaderboard', component: LeaderboardComponent, canActivate: [AuthGuard]},
 	{ path: 'market', component: MarketComponent, canActivate: [AuthGuard]},
-  { path: '**', redirectTo: '' }
+  	{ path: '**', redirectTo: '' }
 ];
 
 @NgModule({
