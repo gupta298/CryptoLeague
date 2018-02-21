@@ -1,6 +1,63 @@
-
-.image-container {
-  display: flex;
+.image-container{
+  //background-image: url("../../assets/selfPic");
+  display: relative;
   justify-content: center;
-  border-radius: 50;
+  width: 300px;
+  height: 300px;
+  margin: 3rem auto;
+}
+
+.image-container:hover .userpic {
+  opacity: 0.3;
+}
+
+.hover {
+  transition: .5s ease;
+  opacity: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.image-container:hover .hover {
+  opacity: 1;
+}
+
+.text {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+.userpic{
+  display: relative;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  background-image: url("../../assets/selfPic.png");
+  background-position: center;
+  background-size: cover;
+}
+
+
+.center {
+  margin: auto;
+  position: fixed;
+  top: 22.5%;
+  height: 50%;
+  position:relative;
 }
