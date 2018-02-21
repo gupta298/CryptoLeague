@@ -48,6 +48,6 @@ function callNewsOrgAPI(res) {
 
 setInterval( function() {
   callNewsOrgAPI(null);
-}, 150000);
+}, 300000);
 
 module.exports = router;
