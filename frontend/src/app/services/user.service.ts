@@ -9,7 +9,10 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class UserService {
 
-  	private authService: AuthenticationService) { }
+  constructor(
+  	private http: Http,
+  	private authService: AuthenticationService
+  ) { }
 
   getUser() {
       return this.http.get(environment.apiUrl+'/api/user/', this.authService.generateJwt()).map((response: Response) => response.json());
