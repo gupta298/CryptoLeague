@@ -168,8 +168,7 @@ app.put('/app/updateUser',
       var dbo = db.db("test");
       
       dbo.collection("Users").findOneAndUpdate({'id': req.body.id}, {$set: {id: req.body.id, email: req.body.email, lastname: req.body.lastname, 
-        firstname: req.body.firstname, username: req.body.username, profilePicture: req.body.profilePicture, tokens: req.body.tokens, 
-        currentLeague_id: req.body.currentLeague_id}}, function(err, res) {
+        firstname: req.body.firstname, username: req.body.username, profilePicture: req.body.profilePicture}}, function(err, res) {
         if (err) {
           res.send("Failure");
           throw err;
