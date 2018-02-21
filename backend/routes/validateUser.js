@@ -17,7 +17,7 @@ router.post('/',
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
     console.log(req.user.id);
-    console.log(req.body);
+    // console.log(req.body);
     if (!req.body.username) {
     	res.send("Failure");
     } else {
