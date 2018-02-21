@@ -1,0 +1,15 @@
+tr:nth-of-type(even) {
+	background: #1e87f0;
+	color: white;
+}
+
+tr:nth-of-type(odd) {
+	background: #e5e5e5;
+	color: black;
+}
+
+th {
+	background: #2c3e50;
+ 	font-weight: bold;
+ 	color: white;
+}
