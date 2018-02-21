@@ -15,6 +15,7 @@ var user = require('./routes/user');
 var all_users = require('./routes/all_users');
 var market = require('./routes/market');
 var newsapi = require('./routes/newsapi');
+var validateUser = require('./routes/validateUser');
 
 var config = require('./config/config')
 const passport = require('passport');
@@ -45,6 +46,7 @@ app.use('/all_users', passport.authenticate(['jwt'], { session: false }), all_us
 app.use('/auth', auth);
 app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
 app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
+app.user('/validateUser', passport.authenticate(['jwt'], { session: false }), validateUser);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
