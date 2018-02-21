@@ -26,7 +26,6 @@ router.get('/',
 router.put('/',
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
-<<<<<<< HEAD
     console.log(req.user.id);
     mongo.getUserViaID(req.user.id, function(error, result) {
       if (error) {
@@ -42,30 +41,10 @@ router.put('/',
           if (error) {
             res.send("Could not update user");
           } else {
-            res.send(token);
+            res.send({ 'jwt' : token });
           }
         });
       }
-=======
-    //console.log(req);
-    console.log("Updating the user information of: " + req.body.id);
-    MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-
-      var dbo = db.db("test");
-      
-      dbo.collection("Users").findOneAndUpdate({'id': req.body.id}, {$set: {email: req.body.email, lastname: req.body.lastname, 
-        firstname: req.body.firstname, username: req.body.username, profilePicture: req.body.profilePicture}}, function(err, res) {
-        if (err) {
-          res.send("Failure");
-          throw err;
-        }
-        console.log("User updated: ",token.generateAccessToken(req.body));
-        db.close();
-      });
-
-      res.send({ 'jwt' : token.generateAccessToken(req.body)});
->>>>>>> de3a30aff7bc44d670c5d63a11987e656b6ee589
     });
   }
 );

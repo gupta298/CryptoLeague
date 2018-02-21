@@ -16,7 +16,7 @@ module.exports = {
           if (err) throw err;
 
           if (result != null) {
-            callback(null, JSON.parse(result));
+            callback(null, JSON.parse(JSON.stringify(result)));
           } else  {
             callback(null, false);
           }
@@ -35,9 +35,9 @@ module.exports = {
         if (err) throw err;
 
         if (result != null) {
-          callback(null, "Username already exists");
+          callback(null, true);
         } else  {
-          callback(null, "Success");
+          callback(null, false);
         }
 
         db.close();
@@ -74,7 +74,7 @@ module.exports = {
         if (err) throw err;
 
         if (result != null) {
-          callback(null, JSON.parse(result));
+          callback(null, JSON.parse(JSON.stringify(result)));
         } else  {
           callback(null, false);
         }
