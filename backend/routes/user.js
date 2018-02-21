@@ -46,7 +46,7 @@ router.put('/',
 
       var dbo = db.db("test");
       
-      dbo.collection("Users").findOneAndUpdate({'id': req.body.id}, {$set: {id: req.body.id, email: req.body.email, lastname: req.body.lastname, 
+      dbo.collection("Users").findOneAndUpdate({'id': req.body.id}, {$set: {email: req.body.email, lastname: req.body.lastname, 
         firstname: req.body.firstname, username: req.body.username, profilePicture: req.body.profilePicture}}, function(err, res) {
         if (err) {
           res.send("Failure");
