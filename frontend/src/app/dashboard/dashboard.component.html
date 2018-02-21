@@ -3,7 +3,7 @@
 		page="dashboard">
 	</app-sidebar>
 	<div class="page-content">
-		<div class="uk-container uk-margin-top">
+		<div class="uk-container uk-margin-top" *ngIf="user">
 			<div class="uk-text-lead">Hello, {{user.firstname}} {{user.lastname}}</div>
 			<div class="uk-flex uk-flex-center uk-margin-top">
 				<div class="uk-card uk-card-primary uk-card-small uk-card-body uk-width-1-2">

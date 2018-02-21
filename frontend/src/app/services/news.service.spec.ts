@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { HttpModule, Http } from '@angular/http';
 
-import { NewsService } from './news.service';
+import { NewsService, AuthenticationService } from '../services';
 
 describe('NewsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [NewsService]
+    	imports: [ HttpModule ], 
+      	providers: [ NewsService, AuthenticationService ]
     });
   });
 

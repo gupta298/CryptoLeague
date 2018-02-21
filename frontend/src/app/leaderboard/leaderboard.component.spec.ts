@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LeaderboardComponent } from './leaderboard.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+
+import { HttpModule, Http } from '@angular/http';
+
+import { AuthenticationService, UserService } from '../services/index'; 
 
 describe('LeaderboardComponent', () => {
   let component: LeaderboardComponent;
@@ -8,7 +13,9 @@ describe('LeaderboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LeaderboardComponent ]
+      imports: [HttpModule],
+      declarations: [ LeaderboardComponent, SidebarComponent ],
+      providers: [ AuthenticationService, UserService ]
     })
     .compileComponents();
   }));

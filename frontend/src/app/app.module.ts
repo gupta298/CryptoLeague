@@ -1,19 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpModule, Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { VerifyComponent } from './verify/verify.component';
+import { MarketComponent } from './market/market.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 import { AuthGuard } from './auth.guard';
 
-import { AuthenticationService, NewsService, UserService } from './services/index';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { AuthenticationService, NewsService, MarketService, UserService } from './services/index';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     SidebarComponent,
     DashboardComponent,
     VerifyComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    MarketComponent
   ],
   imports: [
     BrowserModule,
@@ -31,10 +35,12 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     HttpModule
   ],
   providers: [
+    HttpClientModule,
     AuthenticationService,
     NewsService,
-    AuthGuard,
-    UserService
+    UserService,
+    MarketService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

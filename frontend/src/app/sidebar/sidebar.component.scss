@@ -1,6 +1,4 @@
-$sidebar-width-small: 72px;
-$sidebar-width-large: 300px;
-$global-link-color: #1F87F0;
+@import 'variables';
 
 @import "../../../bower_components/lovelo-fontface/css/lovelo-fontface.css";
 @lovelo-font-path: "/fonts";
@@ -78,13 +76,19 @@ $global-link-color: #1F87F0;
 	// margin-left: 18px;
 }
 
+.sidebar-item a {
+	display: flex;
+}
+
 .sidebar-item-icon {
 	width: $sidebar-width-small;
 	text-align: center;
+	align-self: center;
 }
 
 .sidebar-item-text {
  	display: none;
+ 	font-size: 0.9em;
 }
 
 @media only screen and (min-width: 768px) {
