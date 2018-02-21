@@ -141,7 +141,7 @@ app.get('/app/all_users',
     MongoClient.connect(mongodbUrl, function (err, db) {
     if (err) throw err;
       var dbo = db.db("test");
-      dbo.collection("Users").find({}).toArray(function(err, result) {
+      dbo.collection("Users").find({}).sort( { tokens: -1 } ).toArray(function(err, result) {
         if (err) throw err;
 
         if (result != null) {
@@ -159,16 +159,17 @@ app.get('/app/all_users',
 app.put('/app/updateUser',
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
-    console.log("Updating the user information of: " + req.user.id);
+    //console.log(req);
+    console.log("Updating the user information of: " + req.body.id);
     //res.send('Secure response from ' + JSON.stringify(req.user));
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
 
       var dbo = db.db("test");
       
-      dbo.collection("Users").findOneAndUpdate({'id': req.user.id}, {$set: {id: req.user.id, email: req.user.email, lastname: req.user.lastname, 
-        firstname: req.user.firstname, username: req.user.username, profilePicture: req.user.profilePicture, tokens: req.user.tokens, 
-        currentLeague_id: req.user.currentLeague_id}}, function(err, res) {
+      dbo.collection("Users").findOneAndUpdate({'id': req.body.id}, {$set: {id: req.body.id, email: req.body.email, lastname: req.body.lastname, 
+        firstname: req.body.firstname, username: req.body.username, profilePicture: req.body.profilePicture, tokens: req.body.tokens, 
+        currentLeague_id: req.body.currentLeague_id}}, function(err, res) {
         if (err) {
           res.send("Failure");
           throw err;
@@ -177,8 +178,7 @@ app.put('/app/updateUser',
         db.close();
       });
 
-      res.send("Success");
-
+      res.send(token.generateAccessToken(req.body));
     });
   }
 );
