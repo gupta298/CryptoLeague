@@ -8,7 +8,6 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class UserService {
 
-  user: User;
 
   constructor(
   	private http: Http,
@@ -24,12 +23,11 @@ export class UserService {
   }
 
   isUsernameValid(username) {
-
+    
   }
 
-  setUsername(username) {
-    this.user.username = username;
-    return this.http.put(environment.apiUrl+'/app/update_user', {'user': this.user} ,this.authService.generateJwt()).map((response: Response) => response.json());
+  updateUser(user: User) {
+    return this.http.put(environment.apiUrl+'/app/update_user', user ,this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
 }
