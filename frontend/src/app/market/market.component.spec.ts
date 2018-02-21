@@ -1,26 +1,27 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpModule, Http } from '@angular/http';
 
-import { DashboardComponent } from './dashboard.component';
+import { MarketComponent } from './market.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
-import { AuthenticationService, NewsService } from '../services';
+import { AuthenticationService, MarketService } from '../services/index'; 
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+
+describe('MarketComponent', () => {
+  let component: MarketComponent;
+  let fixture: ComponentFixture<MarketComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpModule ],
-      declarations: [ DashboardComponent, SidebarComponent ],
-      providers: [ AuthenticationService, NewsService ]
+      imports: [HttpModule],
+      declarations: [ MarketComponent, SidebarComponent ],
+      providers: [ AuthenticationService, MarketService ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(MarketComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

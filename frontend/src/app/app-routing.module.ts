@@ -7,14 +7,17 @@ import { HomeComponent }   from './home/home.component';
 import { LandingComponent }   from './landing/landing.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { VerifyComponent }   from './verify/verify.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component'
+import { MarketComponent }   from './market/market.component';
 import { SettingsComponent } from './settings/settings.component';
-
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'landing', component: LandingComponent },
 	{ path: 'verify', component: VerifyComponent},
 	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+    { path: 'leaderboard', component: LeaderboardComponent},
+	{ path: 'market', component: MarketComponent, canActivate: [AuthGuard]},
 	{ path: 'settings', component: SettingsComponent},
     { path: '**', redirectTo: '' }
 ];

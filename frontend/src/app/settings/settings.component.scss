@@ -1,11 +1,4 @@
-.center {
-  margin: auto;
-  position: relative;
-  text-align: center;
-  top: 22.5%;
-  width: 50%;
-  background-color: #1e87f0;
-}
+@import 'variables.scss';
 
 .image-container{
   display: relative;
@@ -61,6 +54,9 @@
   background-size: cover;
 }
 
+.position{
+  position: relative;
+}
 
 .center {
   margin: auto;
@@ -68,4 +64,9 @@
   top: 22.5%;
   height: 50%;
   position:relative;
+  z-index: 10;
+}
+
+.username{
+  position: relative;
 }

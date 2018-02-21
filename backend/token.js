@@ -5,7 +5,7 @@ module.exports = {
   generateAccessToken: // Generate an Access Token for the given User ID 
   function generateAccessToken(user) {
     // How long will the token be valid for
-    const expiresIn = '1 hour';
+    const expiresIn = '24 hour';
     // Which service issued the token
     const issuer = config.JWT_ISSUER;
     // Which service is the token intended for

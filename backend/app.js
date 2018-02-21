@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var _ = require("lodash");
 var jwt = require('jsonwebtoken');
 var request = require("request");
+var asyncLoop = require('node-async-loop');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -26,13 +27,13 @@ var MongoClient = require('mongodb').MongoClient
 // Connection URL
 var mongodbUrl = config.mongoDBHost;
 
-function Coin(name, price, ticker){
-  this.name = name;
-  this.price = price;
-  this.ticker = ticker;
-}
+// function Coin(name, price, ticker){
+//   this.name = name;
+//   this.price = price;
+//   this.ticker = ticker;
+// }
 
-var coinMarketAPI = config.coinMarketAPI;
+// var coinMarketAPI = config.coinMarketAPI;
 var coinData = [];
 
 var app = express();
@@ -132,16 +133,22 @@ app.get('/app/user',
   }
 );
 
-app.get('/app/all_users',
+app.post('/app/all_users',
   // This request must be authenticated using a JWT, or else we will fail
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
     console.log(req.user.id);
+    var page = 1;
+    if (req.body.page) {
+      page = req.body.page;
+    }
+
+    var start = (page - 1) * 25;
     //res.send('Secure response from ' + JSON.stringify(req.user));
     MongoClient.connect(mongodbUrl, function (err, db) {
     if (err) throw err;
       var dbo = db.db("test");
-      dbo.collection("Users").find({}).toArray(function(err, result) {
+      dbo.collection("Users").find({}).sort( { tokens: -1 } ).limit(25).skip(start).toArray(function(err, result) {
         if (err) throw err;
 
         if (result != null) {
@@ -159,16 +166,15 @@ app.get('/app/all_users',
 app.put('/app/updateUser',
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
-    console.log("Updating the user information of: " + req.user.id);
-    //res.send('Secure response from ' + JSON.stringify(req.user));
+    //console.log(req);
+    console.log("Updating the user information of: " + req.body.id);
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
 
       var dbo = db.db("test");
       
-      dbo.collection("Users").findOneAndUpdate({'id': req.user.id}, {$set: {id: req.user.id, email: req.user.email, lastname: req.user.lastname, 
-        firstname: req.user.firstname, username: req.user.username, profilePicture: req.user.profilePicture, tokens: req.user.tokens, 
-        currentLeague_id: req.user.currentLeague_id}}, function(err, res) {
+      dbo.collection("Users").findOneAndUpdate({'id': req.body.id}, {$set: {id: req.body.id, email: req.body.email, lastname: req.body.lastname, 
+        firstname: req.body.firstname, username: req.body.username, profilePicture: req.body.profilePicture}}, function(err, res) {
         if (err) {
           res.send("Failure");
           throw err;
@@ -177,8 +183,7 @@ app.put('/app/updateUser',
         db.close();
       });
 
-      res.send("Success");
-
+      res.send(token.generateAccessToken(req.body));
     });
   }
 );
@@ -210,32 +215,83 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-function callCoinMarketAPI() {
+// function callCoinMarketAPI() {
+//   request({
+//       url: coinMarketAPI,
+//       json: true
+//   }, function (error, response, body) {
+//       if (!error && response.statusCode === 200) {
+//           var data = JSON.parse(JSON.stringify(body));
+//           var tempCoinData = [];
+//           for (var temp in data) {
+//               // var tempCoin = new Coin (data[temp].name, data[temp].price_usd,data[temp].symbol);
+//               // tempCoinData.push(tempCoin);
+//               tempCoinData.push(data[temp]);
+//           }
+//           console.log("Updated coins");
+//           coinData = [];
+//           coinData = tempCoinData;
+//           // console.log(JSON.stringify(coinData));
+//       } else {
+//         console.log("Error updating the coin data");
+//       }
+//   });
+// }
+
+function getJsonFromUrl(url, callback) {
   request({
-      url: coinMarketAPI,
+      url: url,
       json: true
   }, function (error, response, body) {
       if (!error && response.statusCode === 200) {
-          var data = JSON.parse(JSON.stringify(body));
-          var tempCoinData = [];
-          for (var temp in data) {
-              var tempCoin = new Coin (data[temp].name, data[temp].price_usd,data[temp].symbol);
-              tempCoinData.push(tempCoin);
-          }
-          console.log("Updated coins");
-          coinData = [];
-          coinData = tempCoinData;
-          // console.log(JSON.stringify(coinData));
+        var result = JSON.parse(JSON.stringify(body));
+          //console.log(body);
+        callback(result);
       } else {
-        console.log("Error updating the coin data");
+        callback(null);
       }
   });
 }
 
-callCoinMarketAPI();
+var chasing_coins = config.chasing_coins;
+function buildCoinData(callback) {
+  getJsonFromUrl(chasing_coins.MarketCap, function(marketResult) {
+    var market = marketResult;
+    getJsonFromUrl(chasing_coins.Top100Coins, function(coinsResult) {
+      var result = [];
+      var coins = JSON.parse(JSON.stringify(coinsResult));
+      
+      asyncLoop(coins, function (item, next) {
+        // console.log(item);
+        getJsonFromUrl(chasing_coins.HighLowOfCoin + item.value.symbol, function(coinsResultHighLow) {
+          coins[item.key].HighLowOfCoin = coinsResultHighLow;
+
+          getJsonFromUrl(chasing_coins.HighLowOfLast24Hours + item.value.symbol, function(coinsResultHighLowOf24Hours) {
+            coins[item.key].HighLowOfLast24Hours = coinsResultHighLowOf24Hours;
+            coins[item.key].image = chasing_coins.CoinImage + item.value.symbol;
+            // console.log(coins[item.key]);
+            next();
+            result.push(item);
+          });
+        });
+      }, function () {
+        coinData = [];
+        coinData = result;
+        console.log('Got the coin data!');
+      });
+    });
+  });
+}
+
+buildCoinData();
+
+// callCoinMarketAPI();
 setInterval( function() {
-  callCoinMarketAPI();
-}, 100000);
+  buildCoinData(function(callback) {
+    console.log("Updated the coin data");
+  });
+  // callCoinMarketAPI();
+}, 300000);
 
 console.log("Success");
 module.exports = app;
