@@ -34,7 +34,7 @@ function callNewsOrgAPI(res) {
           while(counter < 16)
           {
               tempNews.push(response.body.articles[counter]);
-              console.log(response.body.articles[counter]);
+              //console.log(response.body.articles[counter]);
               counter++;
           }
           if(res)
