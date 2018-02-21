@@ -44,6 +44,7 @@ router.get('/', function(req, res, next) {
 // }
 
 var coinMarketAPI = config.coinMarketAPI;
+var coinNames = [];
 function getCoinNames(callback) {
   getJsonFromUrl(coinMarketAPI, function(result) {
     var data = JSON.parse(JSON.stringify(result));
@@ -55,7 +56,8 @@ function getCoinNames(callback) {
       finalResult[currentSymbol] = name;
       next();
     }, function () {
-      callback(finalResult);
+      coinNames = finalResult;
+      callback("Success");
     });
 
   });
@@ -63,50 +65,48 @@ function getCoinNames(callback) {
 
 var chasing_coins = config.chasing_coins;
 function buildCoinData(callback) {
-  getCoinNames(function(data) {
+  getJsonFromUrl(chasing_coins.MarketCap, function(marketResult) {
+    var market = JSON.parse(JSON.stringify(marketResult));
+    
+    getJsonFromUrl(chasing_coins.Top100Coins, function(coinsResult) {
 
-    getJsonFromUrl(chasing_coins.MarketCap, function(marketResult) {
-      var market = JSON.parse(JSON.stringify(marketResult));
+      var result = [];
+      var coins = JSON.parse(JSON.stringify(coinsResult));
       
-      getJsonFromUrl(chasing_coins.Top100Coins, function(coinsResult) {
+      asyncLoop(coins, function (item, next) {
+        // console.log(item);
+        getJsonFromUrl(chasing_coins.HighLowOfCoin + item.value.symbol, function(coinsResultHighLow) {
+          coins[item.key].HighLowOfCoin = coinsResultHighLow;
 
-        var result = [];
-        var coins = JSON.parse(JSON.stringify(coinsResult));
-        
-        asyncLoop(coins, function (item, next) {
-          // console.log(item);
-          getJsonFromUrl(chasing_coins.HighLowOfCoin + item.value.symbol, function(coinsResultHighLow) {
-            coins[item.key].HighLowOfCoin = coinsResultHighLow;
-
-            getJsonFromUrl(chasing_coins.HighLowOfLast24Hours + item.value.symbol, function(coinsResultHighLowOf24Hours) {
-              coins[item.key].HighLowOfLast24Hours = coinsResultHighLowOf24Hours;
-              coins[item.key].image = chasing_coins.CoinImage + item.value.symbol;
-              // console.log(names[item.value.symbol]);
-              if (!data[item.value.symbol]) {
-                // console.log(item.value.symbol);
-                coins[item.key].name = "Not Found";
-              } else {
-                coins[item.key].name = data[item.value.symbol];
-              }
-              // console.log(coins[item.key].name);
-              result.push(coins[item.key]);
-              next();
-            });
+          getJsonFromUrl(chasing_coins.HighLowOfLast24Hours + item.value.symbol, function(coinsResultHighLowOf24Hours) {
+            coins[item.key].HighLowOfLast24Hours = coinsResultHighLowOf24Hours;
+            coins[item.key].image = chasing_coins.CoinImage + item.value.symbol;
+            // console.log(names[item.value.symbol]);
+            if (!coinNames[item.value.symbol]) {
+              // console.log(item.value.symbol);
+              coins[item.key].name = "Not Found";
+            } else {
+              coins[item.key].name = coinNames[item.value.symbol];
+            }
+            // console.log(coins[item.key].name);
+            result.push(coins[item.key]);
+            next();
           });
-        }, function () {
-          coinData = [];
-          coinData = result;
-          console.log('Got the coin data!');
         });
-
+      }, function () {
+        coinData = [];
+        coinData = result;
+        callback("Success");
       });
-
     });
-
   });
 }
 
-buildCoinData();
+getCoinNames(function(callback) {
+  buildCoinData(function(callback) {
+      console.log('Got the coin data!');
+  });
+});
 
 // callCoinMarketAPI();
 setInterval( function() {
