@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { JwtHelper } from 'angular2-jwt';
 
+import { Router } from '@angular/router';
 import { User } from '../user'
 
 @Injectable()
@@ -9,7 +10,7 @@ export class AuthenticationService {
 
   jwtHelper: JwtHelper = new JwtHelper();
 
-  	constructor() { }
+  	constructor(private router: Router) { }
 
   	saveJwt(jwtToken: string){
   		  localStorage.setItem('currentUser', JSON.stringify(this.jwtHelper.decodeToken(jwtToken)));
@@ -34,6 +35,9 @@ export class AuthenticationService {
 	    if(jsonData){
 		   	let user = new User();
 		   	user.deserialize(jsonData);
+        if(user.username == null) {
+          this.router.navigate(['/landing']);
+        }
 		   	return user;
 		  } else {
 			  return null;
