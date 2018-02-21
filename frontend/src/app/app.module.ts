@@ -14,6 +14,7 @@ import { VerifyComponent } from './verify/verify.component';
 import { AuthGuard } from './auth.guard';
 
 import { AuthenticationService, NewsService } from './services/index';
+import { MarketComponent } from './market/market.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AuthenticationService, NewsService } from './services/index';
     HomeComponent,
     SidebarComponent,
     DashboardComponent,
-    VerifyComponent
+    VerifyComponent,
+    MarketComponent
   ],
   imports: [
     BrowserModule,

@@ -7,12 +7,14 @@ import { HomeComponent }   from './home/home.component';
 import { LandingComponent }   from './landing/landing.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { VerifyComponent }   from './verify/verify.component';
+import { MarketComponent }   from './market/market.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'landing', component: LandingComponent },
 	{ path: 'verify', component: VerifyComponent},
 	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+	{ path: 'market', component: MarketComponent, canActivate: [AuthGuard]},
     { path: '**', redirectTo: '' }
 ];
 
