@@ -1,22 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppRoutingModule } from '../app-routing.module';
 
-import { HomeComponent } from './home.component';
+import { MarketComponent } from './market.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('MarketComponent', () => {
+  let component: MarketComponent;
+  let fixture: ComponentFixture<MarketComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ AppRoutingModule ],
-      declarations: [ HomeComponent ]
+      declarations: [ MarketComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(MarketComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

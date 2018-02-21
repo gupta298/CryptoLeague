@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpModule, Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { VerifyComponent } from './verify/verify.component';
 import { AuthGuard } from './auth.guard';
 
 import { AuthenticationService, NewsService, UserService } from './services/index';
+import { MarketComponent } from './market/market.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
@@ -24,6 +26,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     DashboardComponent,
     VerifyComponent,
     LeaderboardComponent
+    MarketComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     HttpModule
   ],
   providers: [
+    HttpClientModule,
     AuthenticationService,
     NewsService,
     AuthGuard,
