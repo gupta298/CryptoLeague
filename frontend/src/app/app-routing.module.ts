@@ -7,6 +7,7 @@ import { HomeComponent }   from './home/home.component';
 import { LandingComponent }   from './landing/landing.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { VerifyComponent }   from './verify/verify.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
 	{ path: 'landing', component: LandingComponent },
 	{ path: 'verify', component: VerifyComponent},
 	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+	{ path: 'settings', component: SettingsComponent},
     { path: '**', redirectTo: '' }
 ];
 
