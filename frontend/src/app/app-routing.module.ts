@@ -8,7 +8,6 @@ import { LandingComponent }   from './landing/landing.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { VerifyComponent }   from './verify/verify.component';
 
-
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'landing', component: LandingComponent },

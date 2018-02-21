@@ -10,7 +10,8 @@ import { User } from '../user';
 @Component({
   selector: 'app-verify',
   templateUrl: './verify.component.html',
-  styleUrls: ['./verify.component.scss']
+  styleUrls: ['./verify.component.scss'],
+  providers: [ AuthenticationService ]
 })
 export class VerifyComponent implements OnInit {
 
@@ -23,17 +24,21 @@ export class VerifyComponent implements OnInit {
       	private authenticationService: AuthenticationService) { }
 
   	ngOnInit() {
-  		if(!this.authenticationService.loadUserFromLocalStorage()){
-			this.jwtToken = this.route.snapshot.queryParams['token'];
- 			console.log('jwtToken', this.jwtToken);
+      this.jwtToken = this.route.snapshot.queryParams['token'];
+  		if(!this.authenticationService.loadUserFromLocalStorage() && this.jwtToken){
+ 			  console.log('jwtToken', this.jwtToken);
 
   	 		let user = new User();
   	 		user.deserialize(this.jwtHelper.decodeToken(this.jwtToken));
   	 		console.log('user', user);
 
   	 		if(user){
-  	 			this.authenticationService.saveJwt(this.jwtToken);
-  	 			this.router.navigate(['/dashboard']);
+          this.authenticationService.saveJwt(this.jwtToken);
+           if(user.username){
+  	 			    this.router.navigate(['/dashboard']);
+           } else {
+               this.router.navigate(['/landing']);
+           }
   	 		} else {
   	 			console.log('user', user);
   	 			this.router.navigate(['/', {error:'invalidToken'}]);

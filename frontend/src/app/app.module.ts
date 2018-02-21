@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpModule, Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { AuthenticationService, NewsService } from './services/index';
     HttpModule
   ],
   providers: [
+    HttpClientModule,
     AuthenticationService,
     NewsService,
     AuthGuard
