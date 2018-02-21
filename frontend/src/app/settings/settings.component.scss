@@ -12,6 +12,18 @@
   opacity: 1;
 }
 
+.fname{
+  width: 50%;
+}
+
+.names{
+  display: flex;
+}
+
+.lname{
+  width: 50%;
+}
+
 .hover {
   transition: .5s ease;
   opacity: 0;
