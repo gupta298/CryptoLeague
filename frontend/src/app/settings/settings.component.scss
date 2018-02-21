@@ -1,5 +1,13 @@
+.center {
+  margin: auto;
+  position: relative;
+  text-align: center;
+  top: 22.5%;
+  width: 50%;
+  background-color: #1e87f0;
+}
+
 .image-container{
-  //background-image: url("../../assets/selfPic");
   display: relative;
   justify-content: center;
   width: 300px;
@@ -8,7 +16,7 @@
 }
 
 .image-container:hover .userpic {
-  opacity: 0.3;
+  opacity: 1;
 }
 
 .hover {
@@ -26,13 +34,13 @@
 
 .text {
   display: block;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
-  background-color: #4CAF50;
+  background-color: #1e87f0;
   color: white;
-  font-size: 16px;
-  padding: 16px 32px;
+  font-size: 15px;
+  padding: 14px 28px;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
