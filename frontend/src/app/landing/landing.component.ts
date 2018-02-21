@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from '../user';
+import { NgForm, NgModel, NG_VALUE_ACCESSOR, FormGroup,FormBuilder,Validators } from '@angular/forms';
+import { AuthenticationService, UserService } from '../services/index';
+import { Router } from '@angular/router';
 
 declare var UIkit: any;
 
@@ -10,17 +14,36 @@ declare var UIkit: any;
 
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+	user: User;
 
+	constructor(
+		private router: Router,
+    private authService: AuthenticationService,
+    private userService: UserService,
+
+  ) { }
   submitted = false;
  
-  onSubmit() { 
+  onSubmit(form) { 
   	this.submitted = true;
-  	console.log('this.submitted: '+this.submitted); 
+  	console.log('username: ',this.user.username);
+  	this.userService.updateUser(this.user)
+      .subscribe(
+        result => {
+          console.log(result);
+          this.authService.saveJwt(result.jwt);
+          this.router.navigate(['/dashboard']);
+
+        }, error => {
+          console.log(error);
+        }
+    	);
+
   }
 
   ngOnInit() {
-  	
+  	this.user = this.authService.loadUserFromLocalStorage();
+  	//console.log(this.user);
   }
 
 }

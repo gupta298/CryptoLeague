@@ -24,4 +24,19 @@ export class User implements Serializable<User>{
     	this.currentLeague = input.currentLeague;
     	return this;
     }
+
+    serialize() {
+        var obj = {
+            id: this.id,
+            email: this.email,
+            username : this.username,
+            jwtToken : this.jwtToken,
+            firstname : this.firstname,
+            lastname : this.lastname,
+            tokens : this.tokens,
+            profilePicture : this.profilePicture,
+            currentLeague : this.currentLeague
+        }
+        return obj;
+    }
 }

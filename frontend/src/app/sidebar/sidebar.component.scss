@@ -20,7 +20,7 @@
 	transition: all ease 0.5s;
 	position: absolute;
     top: 0;
-    width: 100%;
+    width: calc(100% - 72px);
 	background-color: #1F87F0;
 	z-index: 1;
 }
