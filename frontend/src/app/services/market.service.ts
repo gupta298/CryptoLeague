@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { environment } from '../../environments'
 
-import { AuthenticationService } from '../services/'
+import { AuthenticationService } from './authentication.service'
 
 @Injectable()
 export class MarketService {

@@ -25,7 +25,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     SidebarComponent,
     DashboardComponent,
     VerifyComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
     MarketComponent
   ],
   imports: [
@@ -39,7 +39,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     NewsService,
     UserService,
     MarketService,
-    AuthGuard,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
