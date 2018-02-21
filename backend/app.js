@@ -141,7 +141,7 @@ app.get('/app/all_users',
     MongoClient.connect(mongodbUrl, function (err, db) {
     if (err) throw err;
       var dbo = db.db("test");
-      dbo.collection("Users").find({}).toArray(function(err, result) {
+      dbo.collection("Users").find({}).sort( { tokens: -1 } ).toArray(function(err, result) {
         if (err) throw err;
 
         if (result != null) {
