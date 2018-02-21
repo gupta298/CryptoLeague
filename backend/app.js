@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var _ = require("lodash");
 var jwt = require('jsonwebtoken');
 var request = require("request");
+var asyncLoop = require('node-async-loop');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -32,7 +33,7 @@ var mongodbUrl = config.mongoDBHost;
 //   this.ticker = ticker;
 // }
 
-var coinMarketAPI = config.coinMarketAPI;
+// var coinMarketAPI = config.coinMarketAPI;
 var coinData = [];
 
 var app = express();
@@ -214,33 +215,83 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-function callCoinMarketAPI() {
+// function callCoinMarketAPI() {
+//   request({
+//       url: coinMarketAPI,
+//       json: true
+//   }, function (error, response, body) {
+//       if (!error && response.statusCode === 200) {
+//           var data = JSON.parse(JSON.stringify(body));
+//           var tempCoinData = [];
+//           for (var temp in data) {
+//               // var tempCoin = new Coin (data[temp].name, data[temp].price_usd,data[temp].symbol);
+//               // tempCoinData.push(tempCoin);
+//               tempCoinData.push(data[temp]);
+//           }
+//           console.log("Updated coins");
+//           coinData = [];
+//           coinData = tempCoinData;
+//           // console.log(JSON.stringify(coinData));
+//       } else {
+//         console.log("Error updating the coin data");
+//       }
+//   });
+// }
+
+function getJsonFromUrl(url, callback) {
   request({
-      url: coinMarketAPI,
+      url: url,
       json: true
   }, function (error, response, body) {
       if (!error && response.statusCode === 200) {
-          var data = JSON.parse(JSON.stringify(body));
-          var tempCoinData = [];
-          for (var temp in data) {
-              // var tempCoin = new Coin (data[temp].name, data[temp].price_usd,data[temp].symbol);
-              // tempCoinData.push(tempCoin);
-              tempCoinData.push(data[temp]);
-          }
-          console.log("Updated coins");
-          coinData = [];
-          coinData = tempCoinData;
-          // console.log(JSON.stringify(coinData));
+        var result = JSON.parse(JSON.stringify(body));
+          //console.log(body);
+        callback(result);
       } else {
-        console.log("Error updating the coin data");
+        callback(null);
       }
   });
 }
 
-callCoinMarketAPI();
+var chasing_coins = config.chasing_coins;
+function buildCoinData(callback) {
+  getJsonFromUrl(chasing_coins.MarketCap, function(marketResult) {
+    var market = marketResult;
+    getJsonFromUrl(chasing_coins.Top100Coins, function(coinsResult) {
+      var result = [];
+      var coins = JSON.parse(JSON.stringify(coinsResult));
+      
+      asyncLoop(coins, function (item, next) {
+        // console.log(item);
+        getJsonFromUrl(chasing_coins.HighLowOfCoin + item.value.symbol, function(coinsResultHighLow) {
+          coins[item.key].HighLowOfCoin = coinsResultHighLow;
+
+          getJsonFromUrl(chasing_coins.HighLowOfLast24Hours + item.value.symbol, function(coinsResultHighLowOf24Hours) {
+            coins[item.key].HighLowOfLast24Hours = coinsResultHighLowOf24Hours;
+            coins[item.key].image = chasing_coins.CoinImage + item.value.symbol;
+            // console.log(coins[item.key]);
+            next();
+            result.push(item);
+          });
+        });
+      }, function () {
+        coinData = [];
+        coinData = result;
+        console.log('Got the coin data!');
+      });
+    });
+  });
+}
+
+buildCoinData();
+
+// callCoinMarketAPI();
 setInterval( function() {
-  callCoinMarketAPI();
-}, 100000);
+  buildCoinData(function(callback) {
+    console.log("Updated the coin data");
+  });
+  // callCoinMarketAPI();
+}, 300000);
 
 console.log("Success");
 module.exports = app;
