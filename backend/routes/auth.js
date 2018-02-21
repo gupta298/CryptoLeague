@@ -2,7 +2,6 @@ var express = require('express');
 var request = require('request');
 var asyncLoop = require('node-async-loop');
 
-
 var config = require('../config/config');
 var token = require('../utils/token');
 require('../config/passport');

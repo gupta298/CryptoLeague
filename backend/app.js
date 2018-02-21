@@ -8,10 +8,11 @@ var _ = require("lodash");
 var jwt = require('jsonwebtoken');
 var request = require("request");
 
-//Routes
+//Requiring Routes
 var index = require('./routes/index');
 var auth = require('./routes/auth');
-var users = require('./routes/users');
+var user = require('./routes/user');
+var all_users = require('./routes/all_users');
 var market = require('./routes/market');
 var newsapi = require('./routes/newsapi');
 
@@ -20,12 +21,6 @@ const passport = require('passport');
 
 require('./config/passport');
 var config = require('./config/config')
-
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
-
-// Connection URL
-var mongodbUrl = config.mongoDBHost;
 
 var app = express();
 
@@ -43,100 +38,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Defining Routes
 app.use('/', index);
-app.use('/users', users);
+app.use('/user', user);
+app.use('/all_users', passport.authenticate(['jwt'], { session: false }), all_users);
 app.use('/auth', auth);
 app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
 app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
-
-//Test secure api endpoint
-app.get('/api/secure',
-  // This request must be authenticated using a JWT, or else we will fail
-  passport.authenticate(['jwt'], { session: false }),
-  (req, res) => {
-    res.send('Secure response from ' + JSON.stringify(req.user));
-  }
-);
-
-
-app.get('/app/user',
-  // This request must be authenticated using a JWT, or else we will fail
-  passport.authenticate(['jwt'], { session: false }),
-  (req, res) => {
-    console.log(req.user.id);
-    //res.send('Secure response from ' + JSON.stringify(req.user));
-    MongoClient.connect(mongodbUrl, function (err, db) {
-    if (err) throw err;
-      var dbo = db.db("test");
-      dbo.collection("Users").findOne({'id' : req.user.id}, function(err, result) {
-        if (err) throw err;
-
-        if (result != null) {
-          res.send(JSON.stringify(result));
-        } else  {
-          res.send(null);
-        }
-
-        db.close();
-      });
-    });
-  }
-);
-
-app.post('/app/all_users',
-  // This request must be authenticated using a JWT, or else we will fail
-  passport.authenticate(['jwt'], { session: false }),
-  (req, res) => {
-    console.log(req.user.id);
-    var page = 1;
-    if (req.body.page) {
-      page = req.body.page;
-    }
-
-    var start = (page - 1) * 25;
-    //res.send('Secure response from ' + JSON.stringify(req.user));
-    MongoClient.connect(mongodbUrl, function (err, db) {
-    if (err) throw err;
-      var dbo = db.db("test");
-      dbo.collection("Users").find({}).sort( { tokens: -1 } ).limit(25).skip(start).toArray(function(err, result) {
-        if (err) throw err;
-
-        if (result != null) {
-          res.send(JSON.stringify(result));
-        } else  {
-          res.send(null);
-        }
-
-        db.close();
-      });
-    });
-  }
-);
-
-app.put('/app/updateUser',
-  passport.authenticate(['jwt'], { session: false }),
-  (req, res) => {
-    //console.log(req);
-    console.log("Updating the user information of: " + req.body.id);
-    MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-
-      var dbo = db.db("test");
-      
-      dbo.collection("Users").findOneAndUpdate({'id': req.body.id}, {$set: {id: req.body.id, email: req.body.email, lastname: req.body.lastname, 
-        firstname: req.body.firstname, username: req.body.username, profilePicture: req.body.profilePicture}}, function(err, res) {
-        if (err) {
-          res.send("Failure");
-          throw err;
-        }
-        console.log("User updated");
-        db.close();
-      });
-
-      res.send(token.generateAccessToken(req.body));
-    });
-  }
-);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
