@@ -26,11 +26,11 @@ var MongoClient = require('mongodb').MongoClient
 // Connection URL
 var mongodbUrl = config.mongoDBHost;
 
-function Coin(name, price, ticker){
-  this.name = name;
-  this.price = price;
-  this.ticker = ticker;
-}
+// function Coin(name, price, ticker){
+//   this.name = name;
+//   this.price = price;
+//   this.ticker = ticker;
+// }
 
 var coinMarketAPI = config.coinMarketAPI;
 var coinData = [];
@@ -132,16 +132,22 @@ app.get('/app/user',
   }
 );
 
-app.get('/app/all_users',
+app.post('/app/all_users',
   // This request must be authenticated using a JWT, or else we will fail
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
     console.log(req.user.id);
+    var page = 1;
+    if (req.body.page) {
+      page = req.body.page;
+    }
+
+    var start = (page - 1) * 25;
     //res.send('Secure response from ' + JSON.stringify(req.user));
     MongoClient.connect(mongodbUrl, function (err, db) {
     if (err) throw err;
       var dbo = db.db("test");
-      dbo.collection("Users").find({}).sort( { tokens: -1 } ).toArray(function(err, result) {
+      dbo.collection("Users").find({}).sort( { tokens: -1 } ).limit(25).skip(start).toArray(function(err, result) {
         if (err) throw err;
 
         if (result != null) {
@@ -161,7 +167,6 @@ app.put('/app/updateUser',
   (req, res) => {
     //console.log(req);
     console.log("Updating the user information of: " + req.body.id);
-    //res.send('Secure response from ' + JSON.stringify(req.user));
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
 
@@ -218,8 +223,9 @@ function callCoinMarketAPI() {
           var data = JSON.parse(JSON.stringify(body));
           var tempCoinData = [];
           for (var temp in data) {
-              var tempCoin = new Coin (data[temp].name, data[temp].price_usd,data[temp].symbol);
-              tempCoinData.push(tempCoin);
+              // var tempCoin = new Coin (data[temp].name, data[temp].price_usd,data[temp].symbol);
+              // tempCoinData.push(tempCoin);
+              tempCoinData.push(data[temp]);
           }
           console.log("Updated coins");
           coinData = [];
