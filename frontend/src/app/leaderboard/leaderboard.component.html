@@ -1,0 +1,27 @@
+<div class="page-container">
+	<app-sidebar
+		page="Leaderboard">
+	</app-sidebar>
+	<div class="page-content">
+		<div class="uk-container uk-margin-top uk-overflow-auto">
+			<div class="uk-text-lead">Live Rankings</div>
+			<table class="uk-table uk-margin-top uk-table-divider uk-table-middle">
+		    <thead>
+		        <tr>
+		            <th>Rank</th>
+		            <th>User</th>
+		            <th>Coins</th>
+		        </tr>
+		    </thead>
+
+			  <tbody>
+	        <tr *ngFor="let user of allUsers">
+	            <td>{{user.rank}}</td>
+	            <td>{{user.username}}</td>
+	            <td>{{user.tokens}}</td>
+	        </tr>
+			  </tbody>  
+		</table>
+		</div>
+	</div>
+</div>

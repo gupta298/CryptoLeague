@@ -12,7 +12,8 @@ import { VerifyComponent } from './verify/verify.component';
 
 import { AuthGuard } from './auth.guard';
 
-import { AuthenticationService, NewsService } from './services/index';
+import { AuthenticationService, NewsService, UserService } from './services/index';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthenticationService, NewsService } from './services/index';
     HomeComponent,
     SidebarComponent,
     DashboardComponent,
-    VerifyComponent
+    VerifyComponent,
+    LeaderboardComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { AuthenticationService, NewsService } from './services/index';
   providers: [
     AuthenticationService,
     NewsService,
-    AuthGuard
+    AuthGuard,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
