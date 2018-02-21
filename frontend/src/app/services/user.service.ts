@@ -15,11 +15,11 @@ export class UserService {
   ) { }
 
   getUser() {
-      return this.http.get(environment.apiUrl+'/api/user/', this.authService.generateJwt()).map((response: Response) => response.json());
+      return this.http.get(environment.apiUrl+'/user/', this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
   getRankings() {
-   	return this.http.post(environment.apiUrl+'/app/all_users', {'page': 1} ,this.authService.generateJwt()).map((response: Response) => response.json());
+   	return this.http.post(environment.apiUrl+'/all_users', {'page': 1} ,this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
   isUsernameValid(username) {
@@ -27,7 +27,7 @@ export class UserService {
   }
 
   updateUser(user: User) {
-    return this.http.put(environment.apiUrl+'/app/update_user', user ,this.authService.generateJwt()).map((response: Response) => response.json());
+    return this.http.put(environment.apiUrl+'/user', user ,this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
 }
