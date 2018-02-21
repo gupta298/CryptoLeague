@@ -8,17 +8,26 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class UserService {
 
+
   constructor(
   	private http: Http,
   	private authService: AuthenticationService
   ) { }
 
   getUser() {
-      return this.http.get(environment.apiUrl+'/api/user/', this.authService.generateJwt()).map((response: Response) => response.json());
+      return this.http.get(environment.apiUrl+'/user/', this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
   getRankings() {
-   	return this.http.get(environment.apiUrl+'/app/all_users',  this.authService.generateJwt()).map((response: Response) => response.json());
+   	return this.http.post(environment.apiUrl+'/all_users', {'page': 1} ,this.authService.generateJwt()).map((response: Response) => response.json());
+  }
+
+  isUsernameValid(username) {
+    
+  }
+
+  updateUser(user: User) {
+    return this.http.put(environment.apiUrl+'/user', user ,this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
 }

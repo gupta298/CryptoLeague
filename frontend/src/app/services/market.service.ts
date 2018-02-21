@@ -12,7 +12,7 @@ export class MarketService {
   	private authService: AuthenticationService) { }
 
   getMarketData() {
-      return this.http.get(environment.apiUrl+'/app/market/', this.authService.generateJwt()).map((response: Response) => response.json());
+      return this.http.get(environment.apiUrl+'/market/', this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
 }

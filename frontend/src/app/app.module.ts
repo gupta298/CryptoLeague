@@ -16,10 +16,11 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { AuthGuard } from './auth.guard';
 
 import { AuthenticationService, NewsService, MarketService, UserService } from './services/index';
-
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
+    declarations: [
     AppComponent,
     LandingComponent,
     HomeComponent,
@@ -32,7 +33,9 @@ import { AuthenticationService, NewsService, MarketService, UserService } from '
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     HttpClientModule,

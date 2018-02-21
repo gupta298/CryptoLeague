@@ -8,15 +8,15 @@
 				<img src="../../assets/img_avatar.png" alt="Avatar">
 			</div>
 			<div id="text">
-				<form>
+				<form (ngSubmit)="onSubmit()" #f="ngForm">
 					<div class="uk-margin">
 						<label class="uk-form-label label">Select a username</label>
-						<input class="uk-input uk-form-width-medium" type="text" placeholder="eg. doe_john123">				    	
+						<input id="username" class="uk-input uk-form-width-medium" type="text" placeholder="eg. doe_john123">				    	
 						<br><br>
 						Your username is a unique name that only consists of alphanumeric characters
-        			</div>
+        	</div>
 					<div class="uk-margin">
-				    	<button class="uk-button uk-button-default">Submit</button>
+				    	<button type="submit" class="uk-button uk-button-default">Submit</button>
 				    </div>
 				</form>
 			</div>
