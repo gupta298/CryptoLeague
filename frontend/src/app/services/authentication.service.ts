@@ -38,5 +38,11 @@ export class AuthenticationService {
 		  } else {
 			  return null;
 		  }
-	}
+	  }
+
+    logout() {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('jwtToken');
+    }
 }

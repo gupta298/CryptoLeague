@@ -76,13 +76,19 @@
 	// margin-left: 18px;
 }
 
+.sidebar-item a {
+	display: flex;
+}
+
 .sidebar-item-icon {
 	width: $sidebar-width-small;
 	text-align: center;
+	align-self: center;
 }
 
 .sidebar-item-text {
  	display: none;
+ 	font-size: 0.9em;
 }
 
 @media only screen and (min-width: 768px) {
