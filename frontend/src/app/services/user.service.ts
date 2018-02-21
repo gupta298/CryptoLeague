@@ -27,7 +27,27 @@ export class UserService {
   }
 
   updateUser(user: User) {
-    return this.http.put(environment.apiUrl+'/user', user ,this.authService.generateJwt()).map((response: Response) => response.json());
+    console.log(user.serialize());
+    return this.http.put(environment.apiUrl+'/user', user.serialize() ,this.authService.generateJwt()).map((response: Response)=> response.json());
+  }
+
+  public convertJsonToFormData(item){
+    var formData = new FormData();
+
+    for (var key in item) {
+      if(item[key] !== undefined && item[key] !== null
+        //Numbers and objects are always allowed, otherwise the length must be greater than 0
+        && ((typeof item[key] === "number")
+        || (typeof item[key] === "boolean")
+        || (typeof item[key] === "object")
+        || (typeof item[key] === "string" && item[key].length && item[key].length > 0))) {
+          formData.append(key, item[key]);
+        } else {
+          console.log("Excluding " + key);
+        }
+    }
+
+    return formData;
   }
 
 }
