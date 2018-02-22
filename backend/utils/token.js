@@ -19,7 +19,7 @@ module.exports = {
       issuer: issuer,
       subject: ''+user.id
     });
-    console.log("token", token);
+    // console.log("token", token);
     return token;
   }
 };

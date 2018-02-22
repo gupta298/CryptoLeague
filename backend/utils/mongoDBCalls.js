@@ -5,6 +5,7 @@ var MongoClient = require('mongodb').MongoClient
 var config = require('../config/config');
 var mongodbUrl = config.mongoDBHost;
 var token = require('../utils/token');
+var asyncLoop = require('node-async-loop');
 
 module.exports = {
   connectToMongo:
@@ -25,13 +26,13 @@ module.exports = {
         var dbo = db.db("test");
         dbo.collection("Users").findOne({'id' : jwt_payload.id}, function(err, result) {
           if (err) throw err;
-          console.log("Found user in DB");
+          // console.log("Found user in DB");
 
           if (result != null) {
-            console.log("USERNAME ALREADY EXISTS:", result.id);
+            // console.log("USERNAME ALREADY EXISTS:", result.id);
             callback(null, result);
           } else  {
-            console.log("USERNAME DOES NOT ALREADY EXISTS");
+            // console.log("USERNAME DOES NOT ALREADY EXISTS");
             callback(null, false);
           }
 
@@ -139,6 +140,35 @@ module.exports = {
           callback(null, false);
         }
 
+        db.close();
+      });
+    });
+  },
+
+  getUserRank:
+  function getUserRank(id, callback) {
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("test");
+      dbo.collection("Users").find({}).sort( { tokens: -1 } ).toArray(function(err, result) {
+        if (err) throw err;
+
+        if (result != null) {
+          var resultIndex = 0;
+          var counter = 1;
+          asyncLoop(result, function (item, next) {
+            if (item._id.equals(id)) {
+              resultIndex = counter;
+            }
+            counter++;
+            next();
+          }, function () {
+            var object = { "rank" : resultIndex };
+            callback(null, JSON.parse(JSON.stringify(object)));
+          });
+        } else  {
+          callback(null, false);
+        }
         db.close();
       });
     });
