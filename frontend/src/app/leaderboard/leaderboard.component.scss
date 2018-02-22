@@ -1,15 +1,22 @@
-tr:nth-of-type(even) {
-	background: #1e87f0;
-	color: white;
-}
+@import 'variables';
 
-tr:nth-of-type(odd) {
-	background: #e5e5e5;
-	color: black;
-}
+// tr:nth-of-type(even) {
+// 	background: #1e87f0;
+// 	color: white;
+// }
 
-th {
-	background: #2c3e50;
- 	font-weight: bold;
- 	color: white;
+// tr:nth-of-type(odd) {
+// 	background: #e5e5e5;
+// 	color: black;
+// }
+
+// th {
+// 	background: #2c3e50;
+//  	font-weight: bold;
+//  	color: white;
+// }
+
+.uk-table-striped tbody tr:nth-of-type(odd) {
+	background: #4ea0f3;
+	color: $off-white;
 }

@@ -5,11 +5,24 @@
 }
 
 .news-scroll {
-	height: 30vw;
-	overflow-y: scroll;
+	height: 100%;
+	overflow-y: hidden;
 }
 
 .news-image {
-	height: 10vw;
+	height: 25vw;
 	background-size: cover;
+}
+
+
+@media only screen and (min-width: 768px) {
+	.news-scroll {
+		height: 30vw;
+		overflow-y: scroll;
+	}
+
+	.news-image {
+		height: 10vw;
+		background-size: cover;
+	}
 }

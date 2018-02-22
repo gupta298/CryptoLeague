@@ -11,9 +11,11 @@
 				<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" >
 					<div class="uk-margin">
 						<label class="uk-form-label label">Select a username</label>
-						<input id="username" name="username" [(ngModel)]="user.username" class="uk-input uk-form-width-medium" type="text" placeholder="eg. doe_john123">				    	
-						<br><br>
-						Your username is a unique name that only consists of alphanumeric characters
+						<input id="username" name="username" [(ngModel)]="user.username" class="uk-input uk-form-width-medium" type="text" placeholder="eg. doe_john123" [class.uk-form-danger]="userExists">		
+						<div *ngIf="userExists" class="uk-margin-top">
+						    <p class="uk-text-danger"><span uk-icon="warning"></span> Username already exists!</p>
+						</div>		    	
+						<p>Your username is a unique name that only consists of alphanumeric characters</p>
         	</div>
 					<div class="uk-margin">
 				    <button type="submit" class="uk-button uk-button-default">Submit</button>
