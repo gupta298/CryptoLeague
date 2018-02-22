@@ -22,8 +22,8 @@ export class UserService {
    	return this.http.post(environment.apiUrl+'/all_users', {'page': 1} ,this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
-  isUsernameValid(username) {
-    
+  isUsernameValid(user: User) {
+    return this.http.post(environment.apiUrl+'/validate_user', user.serialize() ,this.authService.generateJwt()).map((response: Response)=> response.json());
   }
 
   updateUser(user: User) {
