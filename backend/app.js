@@ -17,6 +17,7 @@ var market = require('./routes/market');
 var newsapi = require('./routes/newsapi');
 var validateUser = require('./routes/validateUser');
 var userRank = require('./routes/userRank');
+var totalUsers = require('./routes/totalUsers');
 
 var config = require('./config/config')
 const passport = require('passport');
@@ -49,6 +50,7 @@ app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
 app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
 app.use('/validate_user', passport.authenticate(['jwt'], { session: false }), validateUser);
 app.use('/user_rank', passport.authenticate(['jwt'], { session: false }), userRank);
+app.use('/totalUsers', passport.authenticate(['jwt'], { session: false }), totalUsers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
