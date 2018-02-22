@@ -15,6 +15,7 @@ export class SettingsComponent implements OnInit {
 
   	user: User;
   	submitted: boolean = false;
+  	success: boolean = false;
   	userExists: boolean = false;
 
    	constructor(
@@ -32,6 +33,7 @@ export class SettingsComponent implements OnInit {
 	  		.subscribe(
 	  			result => {
 	  				this.submitted = false;
+	  				this.success = true;
 		          console.log("user exists: ",result);
 		          if(!result.exists) {
 		          	this.userService.updateUser(this.user)
@@ -46,10 +48,11 @@ export class SettingsComponent implements OnInit {
 		          } else {
 		          	this.submitted = false;
 		          	this.userExists = true;
+		          	this.success = false;
 		        	}
 		        }, error => {
 		        	this.submitted = false;
-
+		        	this.success = false;
 		          console.log(error);
 		        }
 	  		);
