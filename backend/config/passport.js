@@ -62,7 +62,7 @@ passport.use(new FacebookStrategy({
     user.lastname = profile.name.familyName;
     user.firstname = profile.name.givenName;
     user.username = null,
-    user.profilePicture = profile.photos[0].value;
+    user.profilePicture = 'http://graph.facebook.com/' + profile.id + '/picture?type=large';
     user.tokens = 25;
     user.currentLeague_id = null;
 
@@ -92,7 +92,7 @@ passport.use(new GoogleStrategy({
     user.lastname = profile.name.familyName;
     user.firstname = profile.name.givenName;
     user.username = null,
-    user.profilePicture = profile._json.image.url;
+    user.profilePicture = profile._json.image.url + '0';
     user.tokens = 25;
     user.currentLeague_id = null;
 
