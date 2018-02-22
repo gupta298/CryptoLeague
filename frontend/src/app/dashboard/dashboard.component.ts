@@ -3,7 +3,7 @@ import { User } from '../user';
 import { Observable } from "rxjs";
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 
-import { AuthenticationService, NewsService } from '../services/index'; 
+import { AuthenticationService, NewsService, UserService } from '../services/index'; 
 
 @Component({
   selector: 'app-dashboard',
@@ -15,10 +15,12 @@ export class DashboardComponent implements OnInit {
 	user: User;
 	newsArray: any[] = [];
   loadingNews: boolean = false;
+  ranking: number;
 
   	constructor(
   		private authService: AuthenticationService,
-  		private newsService: NewsService
+  		private newsService: NewsService,
+      private userService: UserService
   		) { 
     }
 
@@ -30,6 +32,15 @@ export class DashboardComponent implements OnInit {
       .subscribe(() => {
         this.getNews();
       });
+
+      this.userService.getCurrentUserRank(this.user)
+        .subscribe(
+          result => {
+            this.ranking = result.rank;
+          }, error => {
+            console.log(error);
+          }
+      );
   	}
 
     getNews() {
