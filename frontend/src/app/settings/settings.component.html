@@ -46,7 +46,12 @@
 						    </div>
 						    <div class="uk-margin">
 						        <div uk-form-custom>
-						            <button class="uk-button uk-button-primary" type="submit" tabindex="-1">Submit</button>
+						        	<div *ngIf="submitted;else other_content">
+										<button class="uk-button uk-button-primary" type="submit" tabindex="-1" disabled><div uk-spinner></div> Saving</button>
+									</div>
+									<ng-template #other_content>
+										<button class="uk-button uk-button-primary" type="submit" tabindex="-1">Submit</button>
+									</ng-template>
 						        </div>
 						    </div>
 						</form>

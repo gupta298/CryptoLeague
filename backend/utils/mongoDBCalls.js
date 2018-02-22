@@ -59,7 +59,7 @@ module.exports = {
             db.close();
           });
           // console.log('user', user);
-          callback(null, user.toJSON());
+          callback(null, user);
         }
 
         db.close();
@@ -120,7 +120,7 @@ module.exports = {
         db.close();
       });
 
-      callback(null, token.generateAccessToken(JSON.parse(user)));
+      callback(null, token.generateAccessToken(user));
     });
   },
 

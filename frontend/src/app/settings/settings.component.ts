@@ -28,9 +28,11 @@ export class SettingsComponent implements OnInit {
 		this.userService.updateUser(this.user)
 	  .subscribe(
 	        result => {
+	        	this.submitted = false;
 	          console.log(result);
 	          this.authService.saveJwt(result.jwt);
 	        }, error => {
+	        	this.submitted = false;
 	          console.log(error);
 	        }
 		);

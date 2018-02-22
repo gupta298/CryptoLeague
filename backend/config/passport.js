@@ -67,7 +67,7 @@ passport.use(new FacebookStrategy({
     user.currentLeague_id = null;
 
     mongo.addUser(user, function(error, result) {
-      return cb(null, result);
+      return cb(null, JSON.parse(JSON.stringify(result)));
     });
   }
 ));
@@ -97,7 +97,7 @@ passport.use(new GoogleStrategy({
     user.currentLeague_id = null;
 
     mongo.addUser(user, function(error, result) {
-      return cb(null, result);
+      return cb(null, JSON.parse(JSON.stringify(result)));
     });
   }
 ));
