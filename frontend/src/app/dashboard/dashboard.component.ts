@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
+import { Observable } from "rxjs";
+import { TimerObservable } from "rxjs/observable/TimerObservable";
 
 import { AuthenticationService, NewsService } from '../services/index'; 
 
@@ -12,6 +14,7 @@ export class DashboardComponent implements OnInit {
 
 	user: User;
 	newsArray: any[] = [];
+  loadingNews: boolean = false;
 
   	constructor(
   		private authService: AuthenticationService,
@@ -21,15 +24,27 @@ export class DashboardComponent implements OnInit {
 
   	ngOnInit() {
   		this.user = this.authService.loadUserFromLocalStorage();
-  		this.newsService.getNews()
-	      .subscribe(
-	        result => {
-	          this.newsArray = result;
-	          console.log(result);
-	        }, error => {
-	          console.log(error);
-	        }
-	    );
+  		this.getNews();
+
+      TimerObservable.create(0, 900000)
+      .subscribe(() => {
+        this.getNews();
+      });
   	}
 
+    getNews() {
+      console.log("inside getnews");
+      this.loadingNews = true;
+      this.newsService.getNews()
+        .subscribe(
+          result => {
+            this.newsArray = result;
+            this.loadingNews = false;
+            console.log(result);
+          }, error => {
+            this.loadingNews = false;
+            console.log(error);
+          }
+      );
+    }
 }
