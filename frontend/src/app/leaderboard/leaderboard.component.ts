@@ -8,10 +8,18 @@ import { AuthenticationService, UserService } from '../services/index';
   templateUrl: './leaderboard.component.html',
   styleUrls: ['./leaderboard.component.scss']
 })
+
+// interface LeaderboardUser {
+//   rank: number, username: string, tokens: number
+// }
+
 export class LeaderboardComponent implements OnInit {
+
 
 	user: User;
 	allUsers: any[] = [];
+  currentUser: any;
+  currentPage: number;
 
 	tmp = [{rank: 1, username: "ritw123", tokens: 1000}, 
 					{rank: 2, username: "bobby", tokens: 100},
@@ -24,6 +32,7 @@ export class LeaderboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.currentPage = 1;
   	this.allUsers = this.tmp;
     this.user = this.authService.loadUserFromLocalStorage();
     this.userService.getRankings()
@@ -40,6 +49,21 @@ export class LeaderboardComponent implements OnInit {
             this.allUsers.push(tmpUser);
           } 
           console.log(result);
+        }, error => {
+          console.log(error);
+        }
+    );
+
+    this.userService.getCurrentUserRank(this.user)
+      .subscribe(
+        result => {
+          console.log("Get current user rank: ",result.rank);
+          var tmp = {
+            rank : result.rank,
+            username : this.user.username,
+            tokens : this.user.tokens
+          };
+          this.currentUser = tmp;
         }, error => {
           console.log(error);
         }

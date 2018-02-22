@@ -31,6 +31,10 @@ export class UserService {
     return this.http.put(environment.apiUrl+'/user', user.serialize() ,this.authService.generateJwt()).map((response: Response)=> response.json());
   }
 
+  getCurrentUserRank(user: User) {
+    return this.http.post(environment.apiUrl+'/user_rank', user.serialize() ,this.authService.generateJwt()).map((response: Response)=> response.json());
+  }
+
   public convertJsonToFormData(item){
     var formData = new FormData();
 

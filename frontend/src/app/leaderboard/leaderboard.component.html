@@ -23,5 +23,29 @@
 			  </tbody>  
 		</table>
 		</div>
+		<div class="uk-margin-xlarge-top uk-container uk-table-striped uk-overflow-auto">
+			<div class="uk-text">Your Ranking</div>
+			<table class="uk-table uk-margin-top uk-table-divider uk-table-middle">
+			<thead>
+		        <tr>
+		            <th>Rank</th>
+		            <th>User</th>
+		            <th>Coins</th>
+		        </tr>
+		    </thead>
+			  <tbody *ngIf="currentUser">
+		        <tr>
+		            <td>{{currentUser.rank}}</td>
+		            <td>{{currentUser.username}}</td>
+		            <td>{{currentUser.tokens}}</td>
+		        </tr>
+			  </tbody>  
+		</table>
+		</div>
+		<div class="uk-margin-large-top uk-container uk-nav-center">
+			<button class="uk-button uk-button-default">Prev</button>
+			<button class="uk-button uk-button-default uk-disabled">{{currentPage}}</button>
+			<button class="uk-button uk-button-default">Next</button>
+		</div>
 	</div>
 </div>
