@@ -2,23 +2,16 @@ var passport = require('passport');
 var jwt = require('jsonwebtoken');
 var passportJWT = require('passport-jwt');
 var _ = require("lodash");
+var mongo = require('../utils/mongoDBCalls');
 
 var mongoose = require('mongoose');
 const userSchema = require('./../models/user');
 
 var config = require('./config')
 
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
-
-// Connection URL
-var mongodbUrl = config.mongoDBHost;
-
 // Use connect method to connect to the server
-MongoClient.connect(mongodbUrl, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected successfully to database");
-  db.close();
+mongo.connectToMongo(function(error, response) {
+  console.log("connected: " + response);
 });
 
 var ExtractJwt = passportJWT.ExtractJwt;
@@ -32,24 +25,8 @@ jwtOptions.audience = config.JWT_AUDIENCE;
 
 var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
   console.log('payload received', jwt_payload);
-
-  MongoClient.connect(mongodbUrl, function (err, db) {
-    if (err) throw err;
-      var dbo = db.db("test");
-      dbo.collection("Users").findOne({'id' : jwt_payload.id}, function(err, result) {
-        if (err) throw err;
-        console.log("Found user in DB");
-
-        if (result != null) {
-          console.log("USERNAME ALREADY EXISTS:", result.id);
-          next(null, result);
-        } else  {
-          console.log("USERNAME DOES NOT ALREADY EXISTS");
-          next(null, false);
-        }
-
-        db.close();
-    });
+  mongo.checkUserExists(jwt_payload, function(error, result) {
+    next(null, result);
   });
 });
 
@@ -79,41 +56,18 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     //console.log(profile);
+    var user = new userSchema();
+    user.id = profile.id;
+    user.email = profile.emails[0].value;
+    user.lastname = profile.name.familyName;
+    user.firstname = profile.name.givenName;
+    user.username = null,
+    user.profilePicture = 'http://graph.facebook.com/' + profile.id + '/picture?type=large';
+    user.tokens = 25;
+    user.currentLeague_id = null;
 
-    MongoClient.connect(mongodbUrl, function (err, db) {
-    if (err) throw err;
-      var dbo = db.db("test");
-      dbo.collection("Users").findOne({'id' : profile.id}, function(err, result) {
-        if (err) throw err;
-
-        if (result != null) {
-          console.log("USERNAME ALREADY EXISTS:", result.id);
-          return cb(null, result);
-        } else  {
-          var user = new userSchema();
-          user.id = profile.id;
-          user.email = profile.emails[0].value;
-          user.lastname = profile.name.familyName;
-          user.firstname = profile.name.givenName;
-          user.username = null,
-          user.profilePicture = profile.photos[0].value;
-          user.tokens = 25;
-          user.currentLeague_id = null;
-
-          console.log("CREATING USER:", user);
-
-          dbo.collection("Users").insertOne(user, function(err, res) {
-            if (err) throw err;
-            console.log("User created!!");
-            db.close();
-          });
-
-          console.log('user', user);
-          return cb(null, user.toJSON());
-        }
-
-        db.close();
-      });
+    mongo.addUser(user, function(error, result) {
+      return cb(null, result);
     });
   }
 ));
@@ -132,39 +86,18 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, cb) {
     //console.log(profile);
 
-    MongoClient.connect(mongodbUrl, function (err, db) {
-    if (err) throw err;
-      var dbo = db.db("test");
-      dbo.collection("Users").findOne({'id' : profile.id}, function(err, result) {
-        if (err) throw err;
+    var user = new userSchema();
+    user.id = profile.id;
+    user.email = profile.emails[0].value;
+    user.lastname = profile.name.familyName;
+    user.firstname = profile.name.givenName;
+    user.username = null,
+    user.profilePicture = profile._json.image.url + '0';
+    user.tokens = 25;
+    user.currentLeague_id = null;
 
-        if (result != null) {
-          console.log("USERNAME ALREADY EXISTS:", result.id);
-          return cb(null, result);
-        } else  {
-          var user = new userSchema();
-          user.id = profile.id;
-          user.email = profile.emails[0].value;
-          user.lastname = profile.name.familyName;
-          user.firstname = profile.name.givenName;
-          user.username = null,
-          user.profilePicture = profile._json.image.url;
-          user.tokens = 25;
-          user.currentLeague_id = null;
-
-          console.log("CREATING USER:", user);
-
-          dbo.collection("Users").insertOne(user, function(err, res) {
-            if (err) throw err;
-            console.log("User created!!");
-            db.close();
-          });
-
-          return cb(null, user.toJSON());
-        }
-
-        db.close();
-      });
+    mongo.addUser(user, function(error, result) {
+      return cb(null, result);
     });
   }
 ));

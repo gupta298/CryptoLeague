@@ -1,42 +1,49 @@
 <div class="page-container">
-	<app-sidebar
-		page="dashboard">
+	<app-sidebar page="dashboard">
 	</app-sidebar>
 	<div class="page-content">
 		<div class="uk-container uk-margin-top" *ngIf="user">
 			<div class="uk-text-lead">Hello, {{user.firstname}} {{user.lastname}}</div>
 			<div class="uk-flex uk-flex-center uk-margin-top">
 				<div class="uk-card uk-card-primary uk-card-small uk-card-body uk-width-1-2">
-				    <h3 class="uk-card-title">{{user.username || "Username not set"}}</h3>
-				    <div class="uk-flex uk-flex-bottom uk-card-body">
-					    <ul class="uk-list">
-					    	<li><span class="uk-text-bold">Your Tokens:</span> {{user.tokens}}</li>
-					    	<li><span class="uk-text-bold">World Rank:</span> #45</li>
-					    </ul>
+					<h3 class="uk-card-title">{{user.username || "Username not set"}}</h3>
+					<div class="uk-flex uk-flex-bottom uk-card-body">
+						<ul class="uk-list">
+							<li><span class="uk-text-bold">Your Tokens:</span> {{user.tokens}}</li>
+							<li><span class="uk-text-bold">World Rank:</span> #45</li>
+						</ul>
 					</div>
 				</div>
 				<div class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body uk-margin-left uk-width-1-2">
-				    <h3 class="uk-card-title">Join a League</h3>
-				    <a class="uk-flex uk-flex-center" href="/join">
+					<h3 class="uk-card-title">Join a League</h3>
+					<a class="uk-flex uk-flex-center" href="/join">
 				    	<span class=" join-button" uk-icon="icon: plus; ratio: 5"></span>
 					</a>
 				</div>
 			</div>
 			<div class="uk-container uk-card-small uk-margin-top">
 				<div class="uk-card uk-card-default uk-card-body">
-					<h3 class="uk-card-title">Latest Cryptocurrency News</h3>
-					<div class="news-scroll">
-						<div *ngFor="let news of newsArray">
-							<div *ngIf="news.urlToImage" class="uk-flex uk-margin-bottom">
-							 	<div class="uk-width-1-4 news-image" [ngStyle]="{ 'background-image': 'url(' + news.urlToImage + ')'}">
+					<div class="uk-flex uk-flex-between">
+						<div>
+							<h3 class="uk-card-title">Latest Cryptocurrency News</h3>
+						</div>
+						<div *ngIf="loadingNews;else other_content">
+							<div uk-spinner></div>
+						</div>
+						<ng-template #other_content><span uk-icon="refresh" class="uk-button" (click)="getNews()"></span></ng-template>
+					</div>
+					<div class="news-scroll ">
+						<div *ngFor="let news of newsArray ">
+							<div *ngIf="news.urlToImage " class="uk-flex uk-margin-bottom ">
+							 	<div class="uk-width-1-4 news-image " [ngStyle]="{ 'background-image': 'url(' + news.urlToImage + ')'} ">
 								</div>
-								<article class="uk-article uk-width-3-4 uk-margin-left">
-								    <h1 class="uk-text-lead uk-margin-remove"><a class="uk-link-reset" href="{{news.url}}">{{(news.title.length>75)? (news.title | slice:0:75)+'..':(news.title)}}</a></h1>
-								    <p class="uk-article-meta uk-margin-remove">Written by {{news.author}} on {{news.publishedAt | date:'fullDate'}}. Posted in <a href="{{news.url}}">{{news.source.name}}</a></p>
-								    <p class="uk-margin-small">{{(news.description.length>200)? (news.description | slice:0:200)+'..':(news.description)}} </p>
-								    <div class="uk-grid-small uk-child-width-auto" uk-grid>
+								<article class="uk-article uk-width-3-4 uk-margin-left ">
+								    <h1 class="uk-text-lead uk-margin-remove "><a class="uk-link-reset " href=" {{news.url}} ">{{(news.title.length>75)? (news.title | slice:0:75)+'..':(news.title)}}</a></h1>
+								    <p class="uk-article-meta uk-margin-remove ">Written by {{news.author}} on {{news.publishedAt | date:'fullDate'}}. Posted in <a href=" {{news.url}} ">{{news.source.name}}</a></p>
+								    <p class="uk-margin-small ">{{(news.description.length>200)? (news.description | slice:0:200)+'..':(news.description)}} </p>
+								    <div class="uk-grid-small uk-child-width-auto " uk-grid>
 								        <div>
-								            <a class="uk-button uk-button-text" href="{{news.url}}" target="_blank">Read more</a>
+								            <a class="uk-button uk-button-text " href=" {{news.url}} " target="_blank ">Read more</a>
 								        </div>
 								    </div>
 								</article>

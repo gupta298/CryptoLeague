@@ -1,18 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpModule, Http, Headers, Response, RequestOptions } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpModule, Http, Headers, Response, RequestOptions } from '@angular/http';
 
-import { DashboardComponent } from './dashboard.component';
+import { SettingsComponent } from './settings.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
-import { AuthenticationService, NewsService } from '../services';
-// import { AuthenticationServiceStub } from '../services/authentication.service.stub';
+import { AuthenticationService } from '../services';
 
 import { User } from '../user';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('SettingsComponent', () => {
+  let component: SettingsComponent;
+  let fixture: ComponentFixture<SettingsComponent>;
 
   let userServiceStub = {
     loadUserFromLocalStorage() {
@@ -34,22 +33,20 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpModule, RouterTestingModule ],
-      declarations: [ DashboardComponent, SidebarComponent ],
-      providers: [ {provide: AuthenticationService, useValue: userServiceStub }, NewsService ]
+      imports: [ RouterTestingModule ],
+      declarations: [ SettingsComponent, SidebarComponent ],
+      providers: [ {provide: AuthenticationService, useValue: userServiceStub } ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(SettingsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    component.user = new User();
-    component.user.firstname = "Nisarg";
     expect(component).toBeTruthy();
   });
 });

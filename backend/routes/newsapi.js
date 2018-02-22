@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
   if(tempNews.length < 1){
     callNewsOrgAPI(res);
   } else {
-    res.send(JSON.stringify(tempNews));
+    res.send(JSON.parse(JSON.stringify(tempNews)));
   }
 });
 

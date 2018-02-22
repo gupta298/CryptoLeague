@@ -17,7 +17,7 @@ var coinData = [];
 
 router.get('/', function(req, res, next) {
  	console.log(req.user.id);
-    res.send(JSON.stringify(coinData));
+    res.send(JSON.parse(JSON.stringify(coinData)));
 });
 
 // function callCoinMarketAPI() {

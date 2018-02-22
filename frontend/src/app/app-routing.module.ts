@@ -9,6 +9,7 @@ import { DashboardComponent }   from './dashboard/dashboard.component';
 import { VerifyComponent }   from './verify/verify.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component'
 import { MarketComponent }   from './market/market.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
 	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   	{ path: 'leaderboard', component: LeaderboardComponent, canActivate: [AuthGuard]},
 	{ path: 'market', component: MarketComponent, canActivate: [AuthGuard]},
-  	{ path: '**', redirectTo: '' }
+	{ path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
