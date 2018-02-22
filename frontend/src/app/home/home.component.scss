@@ -43,3 +43,22 @@
 	line-height: 3em;
 	color: #ffffff;
 }
+
+.facebook-button {
+	background-image: url(/assets/btn_facebook.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+    width: 250px;
+    height: 60px;
+}
+
+.google-button {
+	background-image: url(/assets/btn_google_signin_light_normal_web@2x.png);
+	background-size: cover;
+    width: 250px;
+    height: 60px;
+}
+
+.google-button:hover {
+	background-image: url(/assets/btn_google_signin_light_pressed_web@2x.png);
+}

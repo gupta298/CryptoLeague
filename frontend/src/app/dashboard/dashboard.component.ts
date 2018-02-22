@@ -16,7 +16,8 @@ export class DashboardComponent implements OnInit {
   	constructor(
   		private authService: AuthenticationService,
   		private newsService: NewsService
-  		) { }
+  		) { 
+    }
 
   	ngOnInit() {
   		this.user = this.authService.loadUserFromLocalStorage();
