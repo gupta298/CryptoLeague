@@ -172,5 +172,24 @@ module.exports = {
         db.close();
       });
     });
+  },
+
+  getTotalUsers:
+  function getTotalUsers(callback) {
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("test");
+      dbo.collection("Users").find({}).toArray(function(err, result) {
+        if (err) throw err;
+
+        if (result != null) {
+          var object = { "totalUsers" : result.length };
+          callback(null, JSON.parse(JSON.stringify(object)));
+        } else  {
+          callback(null, false);
+        }
+        db.close();
+      });
+    });
   }
 };
