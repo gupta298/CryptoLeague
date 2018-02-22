@@ -15,6 +15,7 @@ export class SettingsComponent implements OnInit {
 
   	user: User;
   	submitted: boolean = false;
+  	userExists: boolean = false;
 
    	constructor(
 		private router: Router,
@@ -24,18 +25,34 @@ export class SettingsComponent implements OnInit {
 
 	onSubmit(form) { 
 		this.submitted = true;
+		this.userExists = false;
+
 		console.log('username: ', this.user.username);
-		this.userService.updateUser(this.user)
-	  .subscribe(
-	        result => {
-	        	this.submitted = false;
-	          console.log(result);
-	          this.authService.saveJwt(result.jwt);
-	        }, error => {
-	        	this.submitted = false;
-	          console.log(error);
-	        }
-		);
+		this.userService.isUsernameValid(this.user)
+	  		.subscribe(
+	  			result => {
+	  				this.submitted = false;
+		          console.log("user exists: ",result);
+		          if(!result.exists) {
+		          	this.userService.updateUser(this.user)
+						      .subscribe(
+						        result => {
+						          console.log(result);
+						          this.authService.saveJwt(result.jwt);
+						        }, error => {
+						          console.log(error);
+						        }
+						    	);
+		          } else {
+		          	this.submitted = false;
+		          	this.userExists = true;
+		        	}
+		        }, error => {
+		        	this.submitted = false;
+
+		          console.log(error);
+		        }
+	  		);
 	}
 
 	ngOnInit() {

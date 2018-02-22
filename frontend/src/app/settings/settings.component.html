@@ -22,9 +22,12 @@
 				    <div class="uk-width-1-2@m">
 				    	<form class="uk-form-stacked" name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
 						    <div class="uk-margin">
-						        <label class="uk-form-label" for="form-stacked-text">Change your Username</label>
+						        <label class="uk-form-label" for="form-stacked-text" >Change your Username</label>
 						        <div class="uk-form-controls">
-						            <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{user.username}}" name="username" [(ngModel)]="user.username">
+						            <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{user.username}}" name="username" [(ngModel)]="user.username" [class.uk-form-danger]="userExists">
+						        </div>
+						        <div *ngIf="userExists" class="uk-margin-top">
+						        	<p class="uk-text-danger"><span uk-icon="warning"></span> Username already exists!</p>
 						        </div>
 						    </div>
 						    <div class="uk-margin">
