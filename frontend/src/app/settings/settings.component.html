@@ -9,7 +9,7 @@
 				<div uk-grid>
 				    <div class="uk-width-1-2@s">
 				    	<div class="uk-card-media-top image-container">
-							<div class="userpic">
+							<div class="userpic"  [ngStyle]="{ 'background-image': 'url(' + user.profilePicture + ')'} ">
 								<div class=" hover .uk-align-center">
 									<div class="text" align="center">
 										Upload a new Picture
@@ -20,23 +20,23 @@
 						</div>
 				    </div>
 				    <div class="uk-width-1-2@m">
-				    	<form class="uk-form-stacked">
+				    	<form class="uk-form-stacked" name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
 						    <div class="uk-margin">
 						        <label class="uk-form-label" for="form-stacked-text">Change your Username</label>
 						        <div class="uk-form-controls">
-						            <input class="uk-input" id="form-stacked-text" type="text" placeholder="Some text...">
+						            <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{user.username}}" name="username" [(ngModel)]="user.username">
 						        </div>
 						    </div>
 						    <div class="uk-margin">
 						        <label class="uk-form-label" for="form-stacked-text">Change your First Name</label>
 						        <div class="uk-form-controls">
-						            <input class="uk-input" id="form-stacked-text" type="text" placeholder="Some text...">
+						            <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{user.firstname}}" name="firstname" [(ngModel)]="user.firstname">
 						        </div>
 						    </div>
 						    <div class="uk-margin">
 						        <label class="uk-form-label" for="form-stacked-text">Change your Last Name</label>
 						        <div class="uk-form-controls">
-						            <input class="uk-input" id="form-stacked-text" type="text" placeholder="Some text...">
+						            <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{user.lastname}}" name="lastname" [(ngModel)]="user.lastname">
 						        </div>
 						    </div>
 						    <div class="uk-margin">
