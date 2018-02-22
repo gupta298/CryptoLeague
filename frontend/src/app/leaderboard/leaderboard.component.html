@@ -14,12 +14,12 @@
 		        </tr>
 		    </thead>
 
-			  <tbody>
-	        <tr *ngFor="let user of allUsers">
-	            <td>{{user.rank}}</td>
-	            <td>{{user.username}}</td>
-	            <td>{{user.tokens}}</td>
-	        </tr>
+			  <tbody *ngIf="allUsers">
+		        <tr *ngFor="let user of allUsers" >
+		            <td>{{user.rank}}</td>
+		            <td>{{user.username}}</td>
+		            <td>{{user.tokens}}</td>
+		        </tr>
 			  </tbody>  
 		</table>
 		</div>

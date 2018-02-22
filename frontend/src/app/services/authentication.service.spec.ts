@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AuthenticationService } from './authentication.service';
 
 describe('AuthenticationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthenticationService]
+    	imports: [RouterTestingModule],
+      	providers: [AuthenticationService]
     });
   });
 

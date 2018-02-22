@@ -1,12 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpModule, Http } from '@angular/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { MarketService, AuthenticationService } from '../services';
 
 describe('MarketService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    	imports: [HttpModule],
+    	imports: [HttpModule, RouterTestingModule],
       	providers: [MarketService, AuthenticationService]
     });
   });
