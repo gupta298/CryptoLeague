@@ -5,7 +5,7 @@
 		<div class= "uk-margin">
 			<h3 class="uk-padding uk-padding-remove-bottom uk-card-title"> You are almost there...<br>Let's finalize your account</h3>
 			<div class="uk-margin">
-				<img src="../../assets/img_avatar.png" alt="Avatar">
+				<img src="{{user.profilePicture}}" alt="Avatar">
 			</div>
 			<div id="text">
 				<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" >
