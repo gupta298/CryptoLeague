@@ -1,3 +1,12 @@
+.landingLogo {
+  position: absolute;
+  top: 7.5%;
+  left: 25%;
+  z-index: 1;
+  max-height: 3em;
+  width: 50%;
+}
+
 .center {
   margin: auto;
   position: absolute;
@@ -74,7 +83,7 @@
 	font-size: 15px;
 }
 
-img {
+.uk-margin img {
     border-radius: 50%;
     width: 25%;
 }
