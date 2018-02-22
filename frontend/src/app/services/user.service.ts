@@ -18,8 +18,12 @@ export class UserService {
       return this.http.get(environment.apiUrl+'/user/', this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
-  getRankings() {
-   	return this.http.post(environment.apiUrl+'/all_users', {'page': 1} ,this.authService.generateJwt()).map((response: Response) => response.json());
+  getTotalUsers() {
+      return this.http.get(environment.apiUrl+'/total_users/', this.authService.generateJwt()).map((response: Response) => response.json());
+  }
+
+  getRankings(page: number) {
+   	return this.http.post(environment.apiUrl+'/all_users', {'page': page} ,this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
   isUsernameValid(user: User) {
