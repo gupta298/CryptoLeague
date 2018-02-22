@@ -23,7 +23,7 @@
 						        <div class="uk-form-controls">
 						            <input class="uk-input" id="form-stacked-text" type="text" placeholder="{{user.profilePicture}}" name="profilePicture" [(ngModel)]="user.profilePicture" [class.uk-form-danger]="userExists" #profilePicture="ngModel" pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)">
 						        </div>
-						        <div *ngIf="profilePicture.hasError('pattern')"><p class="uk-text-danger"><span uk-icon="warning"></span> Please correct URL for image.</p></div> 
+						        <div *ngIf="profilePicture.hasError('pattern')"><p class="uk-text-danger"><span uk-icon="warning"></span> Please enter correct URL for image.</p></div> 
 						    </div>
 					    </div>
 					    <div class="uk-width-1-2@m">
