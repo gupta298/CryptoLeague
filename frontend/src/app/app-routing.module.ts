@@ -18,7 +18,7 @@ const routes: Routes = [
 	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   	{ path: 'leaderboard', component: LeaderboardComponent, canActivate: [AuthGuard]},
 	{ path: 'market', component: MarketComponent, canActivate: [AuthGuard]},
-	{ path: 'settings', component: SettingsComponent},
+	{ path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
     { path: '**', redirectTo: '' }
 ];
 
