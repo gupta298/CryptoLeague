@@ -21,6 +21,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LeagueDetailComponent } from './league-detail/league-detail.component';
+import { LeagueWaitingOverlayComponent } from './league-waiting-overlay/league-waiting-overlay.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { LeagueDetailComponent } from './league-detail/league-detail.component';
     MarketComponent,
     SettingsComponent,
     PortfolioComponent,
-    LeagueDetailComponent
+    LeagueDetailComponent,
+    LeagueWaitingOverlayComponent
   ],
   imports: [
     BrowserModule,
