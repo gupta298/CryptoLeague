@@ -20,6 +20,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { LeagueDetailComponent } from './league-detail/league-detail.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,8 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
     LeaderboardComponent,
     MarketComponent,
     SettingsComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    LeagueDetailComponent
   ],
   imports: [
     BrowserModule,
