@@ -191,5 +191,52 @@ module.exports = {
         db.close();
       });
     });
+  },
+
+  getLeague:
+  function getLeague(callback) {
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("test");
+      dbo.collection("Leagues").findOne({'id' : jwt_payload.currentLeague_id}, function(err, result) {
+        if (err) throw err;
+
+        if (result != null) {
+          callback(null, JSON.parse(JSON.stringify(result)));
+        } else  {
+          callback(null, false);
+        }
+        db.close();
+      });
+    });
+  },
+
+  getPortfolio:
+  function getPortfolio(callback) {
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("test");
+      dbo.collection("Leagues").findOne({'id' : jwt_payload.currentLeague_id}, function(err, result) {
+        if (err) throw err;
+
+        if (result != null) {
+          
+          dbo.collection("Portfolios").findOne({'id' : result.portfolio_ids[jwt_payload.id]}, function(errPorfolio, resultPortfolio) {
+            if (errPorfolio) throw errPorfolio;
+
+            if (resultPortfolio != null) {
+              callback(null, JSON.parse(JSON.stringify(resultPortfolio)));
+            } else  {
+              callback(null, false);
+            }
+            db.close();
+          });
+
+        } else  {
+          callback(null, false);
+        }
+        db.close();
+      });
+    });
   }
 };
