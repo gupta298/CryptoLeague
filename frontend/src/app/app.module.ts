@@ -19,6 +19,7 @@ import { AuthenticationService, NewsService, MarketService, UserService } from '
 import { SettingsComponent } from './settings/settings.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     VerifyComponent,
     LeaderboardComponent,
     MarketComponent,
-    SettingsComponent
+    SettingsComponent,
+    PortfolioComponent
   ],
   imports: [
     BrowserModule,
