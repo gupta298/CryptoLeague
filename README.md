@@ -13,6 +13,11 @@
 
   </p>
 
+  <p>
+    To run the app, you will have to enable CORS in Google Chrome. You can do it by using the following command: 
+    open -a Google\ Chrome --args --disable-web-security --user-data-dir
+  </p>
+
   <h1 id="accessing-the-repository">Accessing the Repository</h1>
   <p>mkdir cs307-team8<br>
   cd cs307-team8<br>
