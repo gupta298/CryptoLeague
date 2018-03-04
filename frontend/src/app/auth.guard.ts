@@ -3,7 +3,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import { Observable } from 'rxjs/Observable';
 import { JwtHelper } from 'angular2-jwt';
 
-import { AuthenticationService } from './services/index';
+import { AuthenticationService, UserService } from './services/index';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -12,7 +12,8 @@ export class AuthGuard implements CanActivate {
 
     constructor(
       private router: Router,
-      private authService: AuthenticationService
+      private authService: AuthenticationService,
+      private userService: UserService
     ) { }
 
     canActivate(
@@ -20,13 +21,33 @@ export class AuthGuard implements CanActivate {
       state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         let token = localStorage.getItem('jwtToken');
   		  if (token && !this.jwtHelper.isTokenExpired(token)) {
-          // logged in so return true
+          this.userService.getUser()
+          .subscribe(
+              result => {
+                console.log('getUser res', result);
+
+                //update jwt token
+                localStorage.setItem('currentUser', JSON.stringify(this.jwtHelper.decodeToken(result.jwt)));
+                localStorage.setItem('jwtToken', result.jwt);
+
+                return true;
+              }, error => {
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('jwtToken');
+                // things went wrong so redirect to login page with the return url
+                this.router.navigate(['/'], { queryParams: { returnUrl: state.url }});
+                console.log(error);
+                return false;
+              }
+          );
           return true;
-      	}
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('jwtToken');
-      	// not logged in so redirect to login page with the return url
-      	this.router.navigate(['/'], { queryParams: { returnUrl: state.url }});
-      	return false;
+      	} else {
+          localStorage.removeItem('currentUser');
+          localStorage.removeItem('jwtToken');
+
+        	// not logged in so redirect to login page with the return url
+        	this.router.navigate(['/'], { queryParams: { returnUrl: state.url }});
+        	return false;
+        }
     }
 }
