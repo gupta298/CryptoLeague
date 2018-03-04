@@ -8,7 +8,8 @@ var userSchema = new mongoose.Schema({
     username: String,
     tokens: Number,
     profilePicture: String,
-    currentLeague_id: Number
+    currentLeague_id: Number,
+    past_leagues: [String]
 });
 
 var User = mongoose.model('User', userSchema);
