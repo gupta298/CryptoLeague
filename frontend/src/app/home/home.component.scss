@@ -5,6 +5,10 @@
 }
 
 .homeLogo {
+	display: none;
+}
+
+.homeLogoMobile {
 	position: absolute;
 	width: 100%;
 	top: 0;
@@ -16,8 +20,8 @@
   	max-height: 3em;
 }
 
-.homeLogo img {
-	height: 3vw;
+.homeLogoMobile img {
+	height: 5vh;
 	width: auto;
 }
 
@@ -38,7 +42,7 @@
 
 .hero-text{
 	font-family: 'Lato', sans-serif;
-	font-size: 2em;
+	font-size: 1.5em;
 	font-weight: 600;
 	line-height: 3em;
 	color: #ffffff;
@@ -61,4 +65,41 @@
 
 .google-button:hover {
 	background-image: url(/assets/btn_google_signin_light_pressed_web@2x.png);
+}
+
+@media only screen and (min-width: 768px) {
+	.news-scroll {
+		height: 30vw;
+		overflow-y: scroll;
+	}
+
+	.news-image {
+		height: 10vw;
+		background-size: cover;
+	}
+
+	.homeLogoMobile {
+		display: none;
+	}
+
+	.homeLogo {
+		position: absolute;
+		width: 100%;
+		top: 0;
+		display: flex;
+	  	align-items: center;
+	  	justify-content: center;
+	  	z-index: 1;
+	  	margin-top: 2em;
+	  	max-height: 3em;
+	}
+
+	.homeLogo img {
+		height: 3vw;
+		width: auto;
+	}
+
+	.hero-text{
+		font-size: 1.5em;
+	}
 }
