@@ -17,7 +17,7 @@ router.get('/',
       if (error) {
         res.send(null);
       } else {
-        res.send(result);
+        res.send({ 'jwt' : token.generateAccessToken(result) });
       }
     });
   }
