@@ -1,0 +1,38 @@
+=== Weekly Team Report (Team 8: CryptoLeague) ===
+
+Week 4 (Summary) (Scrum master: Varun Gupta)
+03/04 N/A 360c42d Added the portfolio and league get request
+03/04 2 hr 27f0b2c Adding the get request for both portfolio and league
+03/04 1 hr 44452c7 created service for leagues
+03/04 1 hr 7dd10a3 Added League Waiting Overlay component
+03/04 2 hr 0b3b7a2 created service for portfolio
+03/04 1 hr 42509b1 Added League Detail component
+03/04 N/A 5179c5d Merge pull request #24 from gupta298/frontend/dev Updated JWT authentication check on canActivat
+03/04 N/A 7c67485 Merge pull request #23 from gupta298/frontend/portfolio-Ritwik cleaned rep
+03/04 2 hr 52fc7f2 Updated authentication check on canActivate
+03/04 1 hr 26e97c1 cleaned repo
+03/04 N/A a422914 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+03/04 0.25 hr 150505e Updated some models in the backend
+03/04 N/A ff0cb47 Merge pull request #22 from gupta298/frontend/portfolio-Ritwik Frontend/portfolio ritwi
+03/04 3 hr 9ed048a Added files for League select
+03/04 N/A 6e952a8 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio-Ritwik
+03/04 1.5 hr 8c0c4ab Added all of the required models for the backend
+03/04 2 hr 9adbcfc added portfolio component
+03/04 N/A 52d3e0a Merge remote-tracking branch 'origin/master'
+03/04 1 hr 659b486 Made Market table responsive
+03/04 N/A bf38f24 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+03/04 1 hr 6e42f85 CORS Message
+03/04 1 hr d2b3efb Adding the json file for apidoc
+03/04 1 hr 5d065a0 Get user now returns the jwt token
+03/02 0.5 hr 786eb6e Updating packages 
+
+Week 5 (Plan) (Scrum master: Varun Gupta)
+[Meetings]
+02/19 Discuss the routes for the leagues and portfolios and the functionality each route will have
+02/21 Discuss Mongodb (SandBox) and discuss changes accordingly
+
+[Individual Goals]
+Varun: Finish the backend route for the portfolio
+Ritwik: Finish league route and start on the UI for portfolio
+Utkarsh: Implement the SandBox and league selection
+Nisarg: Design and Implement the league UI

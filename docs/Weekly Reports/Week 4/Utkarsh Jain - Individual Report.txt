@@ -1,0 +1,16 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Utkarsh Jain
+
+Week 4 (Summary)
+
+03/04 3 hr 9ed048a Added files for League select
+03/04 1 hr 6e42f85 CORS Message 
+03/04 N/A  bf38f24 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+
+
+Week 5 (Plan)
+04/06 5 hr Implement the SandBox. 
+04/07 8 hr League selection UI
+
+
+Note: I had a midterm this week for OS on Friday and 307 on Monday, due to which I was unable to work for long on this project

@@ -1,0 +1,38 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Varun Gupta
+
+Week 3 (Summary)
+02/22 1 hr 2f61d34 Added the route to get total users
+02/22 1 hr 430a491 Added the functionality to get the user rank
+02/21 1 hr 6e1edaa Edited the user profile image url
+02/21 1 hr 80cf1f4 Added the setting page update request to the backend
+02/21 N/A dd07535 Used the mongodb class for the login
+02/21 1 hr cfcce81 Used the mongodb class for the login
+02/21 5 min 99b2666 Updating all of the packages
+02/21 0.25 hr 76607b6 Fixed all of the merge conflicts
+02/21 N/A a59dd1f Merge
+02/21 2 hr 60a3857 Mongo is now in it's own class
+02/21 10 min 34ec6ab Updated getting coin data and it calls the coinmarketapi once
+02/21 5 min 0258ad9 Changed what the user can update about their profile
+02/21 N/A deda77d Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/21 1.5 hr baa36c2 Added the coin name to the coin object
+02/21 N/A f2374e8 Removing some console.log
+02/21 5 min 5e9cef1 Validating the username is now implemented
+02/21 N/A 6ffea78 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/21 5 min e2e5b0c Fixed the syntax error
+02/21 N/A bf3dfe0 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/21 2.5 hr f648c56 Adding validate username route
+02/21 2.5 hr b858800 Used a different API for the cryptocurrency and now returns a lot more information about the coins
+02/21 N/A 101b7b7 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/20 3.5 hr 084dc23 Added the page number functionality to get all users
+02/20 N/A 5552d22 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/20 5 min 2d94ccb Added some security measures
+02/20 1.5 hr 331f09a Post request for users now requires a user object
+02/20 2.5 hr a02d579 All users route now returns the users in descending order of there tokens
+02/20 5 min 1c85540 Fixed the payload error when logining in for the first time
+02/20 4 hr d7717ee Implemented the put request to update the users' information in backend / DB
+
+Week 4 (Plan) 
+03/01 3 hr Set up the npm doc for the backend
+03/02 5 hr Start implementing the leagues in the backend
+03/03 2 hr Set up all of the API required for the leagues
