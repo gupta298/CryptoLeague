@@ -19,6 +19,7 @@ import { AuthenticationService, NewsService, MarketService, UserService } from '
 import { SettingsComponent } from './settings/settings.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LeagueSelectComponent } from './league-select/league-select.component';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { LeagueSelectComponent } from './league-select/league-select.component';
     LeaderboardComponent,
     MarketComponent,
     SettingsComponent,
+    PortfolioComponent
     LeagueSelectComponent
   ],
   imports: [

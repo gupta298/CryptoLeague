@@ -1,0 +1,14 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) === 
+Name: Ritwik Bhardwaj 
+Week 1 (Summary) 
+02/06 6 hr e2cffa9 backend created (researching the best way to implement the backend for our project and then setting it up with different dependencies and modules)
+02/06 1 hr 00f3ae4 backend setup complete
+02/06 0.25 hr 6664f9e README edited
+02/06 N/A 4a6e2bb Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+
+Week 2 (Plan)
+02/12 Finish the UI login page
+02/14 Make the design responsive
+02/16 Implement the landing page
+
+Note: I was very busy this week, so couldn't log 10 hours. I would make up for the time in the next week.

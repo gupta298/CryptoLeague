@@ -35,9 +35,9 @@ export class AuthenticationService {
 	    if(jsonData){
 		   	let user = new User();
 		   	user.deserialize(jsonData);
-        if(user.username == null) {
-          this.router.navigate(['/landing']);
-        }
+        // if(user.username == null) {
+        //   this.router.navigate(['/landing']);
+        // }
 		   	return user;
 		  } else {
 			  return null;

@@ -1,0 +1,16 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) === 
+Name: Ritwik Bhardwaj 
+Week 4 (Summary) 
+03/04 1 hr 44452c7 created service for leagues
+03/04 2 hr 0b3b7a2 created service for portfolio
+03/04 N/A hr 7c67485 Merge pull request #23 from gupta298/frontend/portfolio-Ritwik cleaned repo
+03/04 1 hr 26e97c1 cleaned repo
+03/04 N/A hr ff0cb47 Merge pull request #22 from gupta298/frontend/portfolio-Ritwik Frontend/portfolio ritwik
+03/04 N/A hr 6e952a8 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio-Ritwik
+03/04 2 hr 9adbcfc added portfolio component 
+
+Week 5 (Plan)
+03/09 17 hr Finish the UI portfolio page
+03/09 2 hr Finish the backend route for leagues
+
+Note: Due to 3 midterms during the week and another midterm on upcoming Monday I wasn't able to contribute significantly. I plan to balance out the hours work in the upcoming week.

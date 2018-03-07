@@ -1,0 +1,41 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Nisarg Kolhe
+
+Week 2 (Summary)
+02/17 0.5 hr e284a5a Added authService to dashboard  
+02/16 N/A 4a77e34 Merge remote-tracking branch 'origin/master'  
+02/16 0.5 hr 872c153 Added username to user class on frontend  
+02/16 1.5 hr 62d01f0 User details saves and renders in the frontend now  
+02/14 0.5 hr 4dc67fe Fixed auth routes  
+02/13 0.5 hr 47780ce Improved sidebar design  
+02/13 1 hr 03748de Added auth link and set up prod and dev env variables  
+02/13 2 hr 6cf1f81 Saving JWT token and user object works  
+02/13 1 hr 8d0e135 Merge branch 'backend/login' of github.com:gupta298/CryptoLeague into frontend/jwt  
+02/13 1 hr b2ad464 Added verify component to verify and save JWT token  
+02/13 0.5 hr 6568d1d Added code to support jwt authentication  
+02/13 5 mins 069b4e8 Added User class  
+02/13 N/A 3fc4f1b Merge remote-tracking branch 'origin/backend/login' into backend/login  
+02/13 3 hr d803f45 Implemented social login with passport.js  
+02/12 0.5 hr 2352514 Made sidebar component modular  
+02/12 N/A 34b80fc Updated readme  
+02/12 5 mins 8069612 Initialized bower (run "npm i -g bower")  
+02/12 0.5 hr f78826a Updated sidebar and navbar  
+02/12 N/A 4a8f815 Merge branch 'master' of github.com:gupta298/CryptoLeague into frontend/dashboard  
+02/12 2 hr b400e8f Dashboard UI pretty much done  
+02/12 0.5 hr ae88739 Fixed page formatting with flex  
+02/12 1 hr 78a4539 Fixed sidebar and added supporting styles  
+02/12 N/A aecd1a9 Merge branch 'master' of github.com:gupta298/CryptoLeague into frontend/dashboard  
+02/12 0.25 hrs 23d6c59 Added demo cards  
+02/12 5 mins ad27831 Fixed logo in firefox  
+02/12 1 hr c5f0242 Merge branch 'master' of github.com:gupta298/CryptoLeague  
+02/12 1.5 hr d0b75ec Fixed sidebar and made it responsive  
+02/12 N/A 0673a13 Merge remote-tracking branch 'origin/master' into dashboard  
+02/12 5 mins 2e23d93 Fixed font again  
+02/12 0.25 hr bd1de24 Added dashboard component and added it to its route  
+02/12 5 mins c538010 Fixed fonts  
+02/12 N/A 383a19c Merge branch 'master' of github.com:gupta298/CryptoLeague  
+
+Week 3 (Plan) 
+02/19 4 hr Implement news service and display news article in the frontend
+02/21 6 hr Design and implement UI for market route
+02/23 2 hr Prepare angular codebase for leagues

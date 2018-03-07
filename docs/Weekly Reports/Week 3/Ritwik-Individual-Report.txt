@@ -1,0 +1,38 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) === 
+Name: Ritwik Bhardwaj 
+Week 3 (Summary) 
+02/22 N/A 1edcbd0 Merge pull request #21 from gupta298/frontend/leaderboard-Ritwik Frontend/leaderboard ritwik 
+02/22 N/A 3776a70 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/22 0.25 hr 31eb349 added logo to landing
+02/22 N/A c1d8806 Merge pull request #20 from gupta298/frontend/leaderboard-Ritwik Frontend/leaderboard ritwik
+02/22 5 min 83a43a8 minor UI changes(margins and paddings)
+02/22 2 hr dd5d461 pages implemented in leaderboard
+02/22 1 hr ec5779b Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/22 10 min 69f9d2c removed unwanted files
+02/22 2 hr 5094d41 added current user to the bottom of the leaderboard
+02/21 N/A 6d1432a Merge pull request #19 from gupta298/frontend/leaderboard-Ritwik Frontend/leaderboard ritwik
+02/21 N/A a6b110b Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/21 2 hr 71febea validation added
+02/21 N/A de3a30a Merge pull request #16 from gupta298/frontend/leaderboard-Ritwik Frontend/leaderboard ritwik
+02/21 1 hr 019d05b validation works for username
+02/21 N/A 8b0a814 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/21 2 hr ef0b4a6 landing re-routing to dashboard working
+02/21 N/A e0a1200 Merge pull request #14 from gupta298/frontend/leaderboard-Ritwik minor bug fix (misspelled syntax)
+02/21 5 min 0c1a97b minor bug fix (misspelled syntax)
+02/21 N/A c62aa36 Merge pull request #13 from gupta298/frontend/leaderboard-Ritwik Frontend/leaderboard ritwik
+02/21 N/A 9b03e77 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/21 10 min 0004075 updated PUT request for updating user 
+02/21 N/A 2b80490 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik 
+02/21 2 hr c327e62 implementing front-end for landing page 
+02/21 N/A cfd54bb Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/21 0.5 hr 4ac754b converting get to post for getting ranks
+02/20 N/A da0833c Merge pull request #9 from gupta298/frontend/leaderboard-Ritwik Frontend/leaderboard ritwik 
+02/20 N/A fb92c67 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/20 0.25 hr 72e4f92 modified UI for leaderboard page
+02/20 8 hr ffb8b4a Leaderboard UI almost done. Frontend for leaderboard implemented as well 
+
+Week 4 (Plan)
+03/01 Finish the UI leagues page
+03/02 Make the design responsive
+03/03 Start working on the front-end for leagues.
+

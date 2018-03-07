@@ -1,0 +1,25 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) === 
+Name: Utkarsh Jain
+Week 2 (Summary)
+
+This week I had implemented the NEWS API for the Dashboard. This meant that I had to call the API from NEWSAPI.org and had to create an API of my own. 
+This was something I had not done before and was really interested in learning and implementing. I had spent a lot of time learning and breaking the build
+but in the end since everything worked and I learnt how to create an API, I was really happy with my progress. 
+
+02/18 0.5 hr 4dbe7f1 Added timer to news 
+02/18 3 hr 134ad90 NEWS API Works
+02/18 0.5 hr e0dd8cf Merged in master 
+02/18 0.5 hr 0732763 Had conflicts 
+02/18 1 hr 7ffb88c Resolved issues of news API
+02/16 N/A 659dc72 Merge remote-tracking branch ‘origin/backend/newsapi’ into backend/newsapi Pulling code from master
+02/16 0.5 hr 160de62 Calling newsorg API 
+02/16 3 hr 986f4d2 Calling newsorg API 
+02/16 3 hr 5ccd31f Added files for backend news API
+02/12 1 hr 61d1373 removed stray Databases 
+02/12 N/A hr 9cafd3d Merge remote-tracking branch ‘origin/master’
+
+Next Weeks Goal:
+
+Implement Settings Frontend
+Update User data /api/user route
+Display from /api/market
