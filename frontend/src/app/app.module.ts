@@ -33,7 +33,7 @@ import { LeagueSelectComponent } from './league-select/league-select.component';
     LeaderboardComponent,
     MarketComponent,
     SettingsComponent,
-    PortfolioComponent
+    PortfolioComponent,
     LeagueSelectComponent
   ],
   imports: [
