@@ -1,0 +1,137 @@
+=== Weekly Team Report (Team 8: CryptoLeague) ===
+
+Week 3 (Summary) (Scrum master: Varun Gupta)
+02/22 0.5 hr 2643d5c Fixed ranking
+02/22 0.5 hr 7181ca6 Made home responsive
+02/22 0.5 hr d9522d4 Made Settings responsive
+02/22 N/A 1edcbd0 Merge pull request #21 from gupta298/frontend/leaderboard-Ritwik Frontend/leaderboard ritwik
+02/22 N/A 3776a70 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/22 0.25 hr 31eb349 added logo to landing
+02/22 N/A c1d8806 Merge pull request #20 from gupta298/frontend/leaderboard-Ritwik Frontend/leaderboard ritwik
+02/22 5 min 83a43a8 minor UI changes(margins and paddings)
+02/22 2 hr dd5d461 pages implemented in leaderboard
+02/22 1 hr ec5779b Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/22 1 hr 2f61d34 Added the route to get total users
+02/22 10 min 69f9d2c removed unwanted files
+02/22 2 hr 5094d41 added current user to the bottom of the leaderboard
+02/22 1 hr 430a491 Added the functionality to get the user rank
+02/21 0.5 hr 9595c76 Fixed test case for SettingsComponent
+02/21 0.25 hr 5b29d0b Added profile image in /landing
+02/21 0.25 hr 66478e5 Added success message of profile change
+02/21 0.5 hr d5e049d Edit profile picture works
+02/21 0.5 hr 471e640 Made dashboard responsive
+02/21 0.5 hr 9cd3d43 Added userExists warning on settings
+02/21 N/A 5b1e9a9 Merge remote-tracking branch 'origin/master'
+02/21 0.5 hr 9f9c6db Implemented Settings update
+02/21 N/A 6d1432a Merge pull request #19 from gupta298/frontend/leaderboard-Ritwik Frontend/leaderboard ritwik
+02/21 N/A a6b110b Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/21 2 hr 71febea validation added
+02/21 N/A fdbae52 Merge remote-tracking branch 'origin/master'
+02/21 1 hr dfcf0f4 Worked on Settings
+02/21 1 hr 6e1edaa Edited the user profile image url
+02/21 N/A 69636b0 Merge remote-tracking branch 'origin/master'
+02/21 0.5 hr ea2f189 Improved Settings UI
+02/21 1 hr 80cf1f4 Added the setting page update request to the backend
+02/21 5 min 685b679 Added canActivate to Settings
+02/21 0.5 hr 341d3c1 Implemented refreshing news
+02/21 N/A 7e04e72 Deleted auth stub
+02/21 N/A 1b411e6 Merge pull request #18 from gupta298/frontend/dev Fixed unit tests on frontend
+02/21 0.5 hr b807f2e Fixed remaining test cases
+02/21 N/A 5cd09ea Merge branch 'master' of github.com:gupta298/CryptoLeague into frontend/dev
+02/21 0.5 hr 6614ebe Added facebook button
+02/21 N/A dd07535 Used the mongodb class for the login
+02/21 1 hr cfcce81 Used the mongodb class for the login
+02/21 0.5 hr 954316e Added Google button styles
+02/21 1 hr fa6b566 Merge pull request #17 from gupta298/frontend/settings Pushing Settings Page to Master
+02/21 1 hr ebc6861 testing UI
+02/21 5 min 99b2666 Updating all of the packages
+02/21 0.25 hr 76607b6 Fixed all of the merge conflicts
+02/21 N/A a59dd1f Merge
+02/21 2 hr 60a3857 Mongo is now in it's own class
+02/21 N/A de3a30a Merge pull request #16 from gupta298/frontend/leaderboard-Ritwik Frontend/leaderboard ritwik
+02/21 N/A ae81d98 Merged from master
+02/21 15 min 7e790d8 fixed UI
+02/21 0.5 hr 045b2a7 added email features
+02/21 1 hr 019d05b validation works for username
+02/21 2 hr 82372b0 Added Fname Lname text boxes
+02/21 N/A 8b0a814 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/21 2 hr ef0b4a6 landing re-routing to dashboard working
+02/21 N/A a9985dd Merge remote-tracking branch 'origin/master'
+02/21 1.5 hr 6ed5705 Updated market and fixed padding
+02/21 10 min 34ec6ab Updated getting coin data and it calls the coinmarketapi once
+02/21 5 hr 942dbed Added card container
+02/21 5 min 0258ad9 Changed what the user can update about their profile
+02/21 N/A deda77d Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/21 1.5 hr baa36c2 Added the coin name to the coin object
+02/21 N/A 1ff5dda Merge pull request #15 from gupta298/frontend/market Added name to market table
+02/21 5 min 53713ac Added name to market table
+02/21 N/A 4b889a6 Merge remote-tracking branch 'origin/master'
+02/21 1 hr 502233e Implemented Market UI
+02/21 N/A f2374e8 Removing some console.log
+02/21 5 min 5e9cef1 Validating the username is now implemented
+02/21 N/A 6ffea78 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/21 5 min e2e5b0c Fixed the syntax error
+02/21 N/A e0a1200 Merge pull request #14 from gupta298/frontend/leaderboard-Ritwik minor bug fix (misspelled syntax)
+02/21 5 min 0c1a97b minor bug fix (misspelled syntax)
+02/21 N/A 7692e02 Merge remote-tracking branch 'origin/master'
+02/21 0.5 hr 3aa82f6 Fixed canActivate on some routes
+02/21 N/A bf3dfe0 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/21 2.5 hr f648c56 Adding validate username route
+02/21 0.25 hr 1d2845f Updated user routes
+02/21 N/A c62aa36 Merge pull request #13 from gupta298/frontend/leaderboard-Ritwik Frontend/leaderboard ritwik
+02/21 N/A 9b03e77 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/21 10 min 0004075 updated PUT request for updating user
+02/21 0.5 hr 4db3a98 Fixed market route
+02/21 N/A 2b80490 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/21 2 hr c327e62 implementing front-end for landing page
+02/21 0.5 hr 6950c94 Organized users and all_users route
+02/21 1 hr f49fdb7 Organized market, auth and news routes
+02/21 2 hr 07db709 Added name change and card feature
+02/21 N/A cfd54bb Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/21 0.5 hr 4ac754b converting get to post for getting ranks
+02/21 3 hr 2ac33d9 Added profile pic
+02/21 2.5 hr b858800 Used a different API for the cryptocurrency and now returns a lot more information about the coins
+02/21 N/A 101b7b7 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/21 N/A 5e45eb0 Merge pull request #12 from gupta298/frontend/dev Fixed Unit Tests and added/changed UI elements
+02/21 0.5 hr 1e5f63e Added logout and updated sidebar
+02/21 0.25 hr 4d5062c Fixed SCSS variables and made /verify prettier
+02/21 1.5 hr cb22d2c All unit tests passing
+02/21 N/A e63b64b /dev:
+02/20 3.5 hr 084dc23 Added the page number functionality to get all users
+02/20 5 min d9eb446 Fixed more stupid merge errors
+02/20 5 min 2213745 Fixed stupid merge error
+02/20 1 hr 90d2162 Merge pull request #11 from gupta298/frontend/market Implemented Market component
+02/20 1 hr 78942a7 Implemented Market component
+02/20 1 hr 423e757 Merge pull request #10 from gupta298/frontend/dev Pushing random frontend dev changes to master
+02/20 N/A 690a4b0 Merged in master
+02/20 0.25 hr 3539de5 Fixed JWT token
+02/20 N/A 5552d22 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/20 N/A da0833c Merge pull request #9 from gupta298/frontend/leaderboard-Ritwik Frontend/leaderboard ritwik
+02/20 5 min 2d94ccb Added some security measures
+02/20 N/A fb92c67 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leaderboard-Ritwik
+02/20 0.25 hr 72e4f92 modified UI for leaderboard page
+02/20 1.5 hr 331f09a Post request for users now requires a user object
+02/20 0.5 hr fb1b404 Added market component
+02/20 8 hr ffb8b4a Leaderboard UI almost done. Frontend for leaderboard implemented as well
+02/20 3 hr e46c59f Files for Settings Page
+02/20 N/A f06deb6 Merge branch 'master' of github.com:gupta298/CryptoLeague into frontend/dev
+02/20 0.25 hr 4924c99 Added landing redirect
+02/20 2 hr e892917 Added and fixed frontend unit tests
+02/20 2.5 hr a02d579 All users route now returns the users in descending order of there tokens
+02/20 5 min 1c85540 Fixed the payload error when logining in for the first time
+02/20 4 hr d7717ee Implemented the put request to update the users' information in backend / DB
+02/19 N/A 1cbad4e Merge pull request #7 from gupta298/frontend/news Merging News Scroll implementation on frontend and fix for News API on the backend
+02/19 5 min 256bf97 Fixed design for news scroll
+02/19 5 min c81afdf Fixed News API Route
+02/19 1 hr c6b879d Implemented News API on the frontend
+
+Week 4 (Plan) (Scrum master: Varun Gupta)
+[Meetings]
+02/26 Discuss Sprint 1 Retrospective and Sprint 2 goals
+02/21 Discuss the infrastructure for the leagues
+
+[Individual Goals]
+Varun: Make the npm doc for the backend and start implementing the league infrastructure
+Ritwik: Design and implement leagues UI
+Utkarsh: Connect the backend and frontend and set up the API calls
+Nisarg: Design and implement portfolio UI

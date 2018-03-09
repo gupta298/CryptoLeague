@@ -1,0 +1,15 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Nisarg Kolhe
+
+Week 4 (Summary)
+03/04 1 hr 7dd10a3 Added League Waiting Overlay component
+03/04 1 hr 42509b1 Added League Detail component
+03/04 2 hr 52fc7f2 Updated authentication check on canActivate
+03/04 N/A 52d3e0a Merge remote-tracking branch 'origin/master'
+03/04 1 hr 659b486 Made Market table responsive
+
+Week 5 (Plan)
+03/07 12 hr Design and implement the league details UI 
+03/10 7 hr Design and implement league waiting room UI
+
+Note: Due to 3 midterms during the week and another midterm on upcoming Monday I wasn't able to contribute significantly. I plan to balance out the hours work in the upcoming week.

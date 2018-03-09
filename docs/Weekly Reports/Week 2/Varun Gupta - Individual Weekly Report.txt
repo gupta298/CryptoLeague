@@ -1,0 +1,43 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Varun Gupta
+
+Week 2 (Summary)
+02/16 0.25 hr a23ab4a Updated the routes
+02/16 1.5 hr 09ed597 Coin market api is fully functional and the routes are also implemented
+02/16 N/A a7c9cf7 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/16 1 hr 46d0556 Adding the coin market api calls and added username to the user object
+02/16 1 hr 57c17bf Fixed the api call to the facebook api for login
+02/16 0.75 hr b4de1de Added the /app/user and /app/users routes
+02/16 N/A 616676a Updating all packages
+02/16 5 hr 1114864 User's data now gets stored in the DB 
+02/15 1.25 hr 2420c24 Adding the code to connect to mongodb and store the data 
+02/15 0.25 mins 480395f Fixed the issue with npm preventing update or install 
+02/15 N/A ed5269e Adding the user object for the schema of DB 
+02/15 4 hr b8ace0b Adding the user object for the schema of DB 
+02/15 1 hr 02e928f Added google auth 
+02/15 5 mins 3053525 Updating dependencies 
+02/13 N/A 0e25a04 Merge branch 'backend/login' of https://github.com/gupta298/CryptoLeague into backend/login 
+02/13 N/A 91bcc34 Merge remote-tracking branch 'origin/master' into backend/login 
+        package-lock.json 
+02/12 5 mins c65a45e Uploading the index file 
+02/12 N/A 9012ebd Merge remote-tracking branch 'origin/master' into backend/login 
+02/12 5 hr 007b770 Adding facebook auth to the app.js 
+02/12 N/A 1aa748c Merge remote-tracking branch 'origin/master' into backend/login 
+02/12 N/A df325ad Removing views in the backend 
+02/12 N/A 8bbea42 Removing all of the passport js code 
+02/12 5 mins 316d13a Adding more required packages 
+02/12 N/A b39af06 Merge remote-tracking branch 'origin/master' into backend/login 
+02/12 10 mins 4443ba6 Testing branching 
+02/12 1 hr fbaa41e Fixed an error in app.js 
+02/12 5 mins f538a2d Fixed an error in app.js 
+02/12 5 mins 199c6e4 Adding more required packages to the app.js and commenting out the mongoDB code for testing 
+02/12 5 mins 330623c Merge branch 'master' of https://github.com/gupta298/CryptoLeague 
+02/12 N/A 38643f1 Adding all of the required packages for passport js 
+02/12 N/A 414b0c8 Added the require statement to app.js 
+02/12 0.5 hr 342142c Added the config folder in the backend and added it to git ignore 
+
+Week 3 (Plan)
+02/19 2 hr Implement the APIDOC and update documentation for the backend
+02/19 2 hr Organize the backend code and make it readable
+02/20 5 hr Implement the updating user data functionality and also implement respective post / put requests
+02/23 10 hr Start implementing the league functionality in the backend

@@ -1,0 +1,58 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Nisarg Kolhe
+
+Week 3 (Summary)
+
+02/22 0.5 hr 2643d5c Fixed ranking
+02/22 0.5 hr 7181ca6 Made home responsive
+02/22 0.5 hr d9522d4 Made Settings responsive
+02/21 0.5 hr 9595c76 Fixed test case for SettingsComponent
+02/21 0.25 hr 5b29d0b Added profile image in /landing
+02/21 0.25 hr 66478e5 Added success message of profile change
+02/21 0.5 hr d5e049d Edit profile picture works
+02/21 0.5 hr 471e640 Made dashboard responsive
+02/21 0.5 hr 9cd3d43 Added userExists warning on settings
+02/21 N/A 5b1e9a9 Merge remote-tracking branch 'origin/master'
+02/21 0.5 hr 9f9c6db Implemented Settings update
+02/21 N/A fdbae52 Merge remote-tracking branch 'origin/master'
+02/21 1 hr dfcf0f4 Worked on Settings
+02/21 N/A 69636b0 Merge remote-tracking branch 'origin/master'
+02/21 0.5 hr ea2f189 Improved Settings UI
+02/21 5 min 685b679 Added canActivate to Settings
+02/21 0.5 hr 341d3c1 Implemented refreshing news
+02/21 N/A 7e04e72 Deleted auth stub
+02/21 0.5 hr b807f2e Fixed remaining test cases
+02/21 N/A 5cd09ea Merge branch 'master' of github.com:gupta298/CryptoLeague into frontend/dev
+02/21 0.5 hr 6614ebe Added facebook button
+02/21 0.5 hr 954316e Added Google button styles
+02/21 N/A a9985dd Merge remote-tracking branch 'origin/master'
+02/21 1.5 hr 6ed5705 Updated market and fixed padding
+02/21 5 min 53713ac Added name to market table
+02/21 N/A 4b889a6 Merge remote-tracking branch 'origin/master'
+02/21 1 hr 502233e Implemented Market UI
+02/21 N/A 7692e02 Merge remote-tracking branch 'origin/master'
+02/21 0.5 hr 3aa82f6 Fixed canActivate on some routes
+02/21 0.25 hr 1d2845f Updated user routes
+02/21 0.5 hr 4db3a98 Fixed market route
+02/21 0.5 hr 6950c94 Organized users and all_users route
+02/21 1 hr f49fdb7 Organized market, auth and news routes
+02/21 0.5 hr 1e5f63e Added logout and updated sidebar
+02/21 0.25 hr 4d5062c Fixed SCSS variables and made /verify prettier
+02/21 1.5 hr cb22d2c All unit tests passing
+02/21 N/A e63b64b /dev:
+02/20 5 min d9eb446 Fixed more stupid merge errors
+02/20 5 min 2213745 Fixed stupid merge error
+02/20 1 hr 78942a7 Implemented Market component
+02/20 N/A 690a4b0 Merged in master
+02/20 0.25 hr 3539de5 Fixed JWT token
+02/20 0.5 hr fb1b404 Added market component
+02/20 N/A f06deb6 Merge branch 'master' of github.com:gupta298/CryptoLeague into frontend/dev
+02/20 0.25 hr 4924c99 Added landing redirect
+02/20 2 hr e892917 Added and fixed frontend unit tests
+02/19 5 min 256bf97 Fixed design for news scroll
+02/19 5 min c81afdf Fixed News API Route
+02/19 1 hr c6b879d Implemented News API on the frontend
+
+Week 4 (Plan) 
+02/28 5 hr Design the portfolio UI 
+03/02 7 hr Connect portfolio frontend with backend APIs
