@@ -1,3 +1,45 @@
-<p>
-  league-detail works!
-</p>
+<div class="page-container">
+	<app-sidebar page="league">
+	</app-sidebar>
+	<div class="page-content">
+		<div class="uk-container uk-margin-top">
+			<div class="uk-text-lead">League #132</div>
+			<div class="uk-margin-top card-container uk-grid-small uk-grid-match uk-child-width-expand@s" uk-grid>
+				<app-portfolio></app-portfolio>
+				<div>
+					<div class="uk-card uk-card-secondary uk-card-small uk-card-body ">
+						<h3 class="uk-card-title">Stats & Distribution</h3>
+						<div class="uk-flex uk-flex-bottom uk-card-body">
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="uk-container uk-card-small uk-margin-top">
+				<div class="uk-card uk-card-default uk-card-body">
+					<div class="uk-flex uk-flex-between">
+						<div>
+							<h3 class="uk-card-title">League Leaderboard</h3>
+						</div>
+						<div *ngIf="loadingNews;else other_content">
+							<div uk-spinner></div>
+						</div>
+						<ng-template #other_content><span uk-icon="refresh" class="uk-button" (click)="getNews()"></span></ng-template>
+					</div>
+					<div class="uk-container uk-table-striped uk-margin-top uk-overflow-auto">
+						<table class="uk-table uk-margin-top uk-table-divider uk-table-middle">
+						    <thead>
+						        <tr>
+						            <th>Rank</th>
+						            <th>Username</th>
+						            <th>Total Gains</th>
+						            <th>Captain Coin</th>
+						        </tr>
+						    </thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
