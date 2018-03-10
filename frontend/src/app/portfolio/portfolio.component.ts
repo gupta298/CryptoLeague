@@ -26,14 +26,25 @@ export class PortfolioComponent implements OnInit {
 			radius: 0.9,
 			collapsing: true,
 			proportions: proportions,
-	        //drawSegment: this.drawSegmentOutlineOnly,
-	        drawNode: this.drawNode,
-	        onchange: this.onPieChartChange
+	        drawNode: this.hideNode,
+	        onchange: this.onPieChartChange,
+	        dragDisabled: true
 	    };
 
 	    var newPie = new DraggablePiechart(setup);
 
 	}
+
+	hideNode (context, piechart, x, y, centerX, centerY, hover) {
+		context.save();
+		context.translate(centerX, centerY);
+		context.fillStyle = '#fefefe';
+		context.beginPath();
+		context.arc(x, y, 0, 0, Math.PI * 2, true);
+		context.fill();
+        //context.stroke();
+        context.restore();
+    }
 
 	drawNode (context, piechart, x, y, centerX, centerY, hover) {
 		context.save();

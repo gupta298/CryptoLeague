@@ -34,17 +34,19 @@
         this.drawSegment = setup.drawSegment;
         this.drawNode = setup.drawNode;
         this.onchange = setup.onchange;
+        this.dragDisabled = setup.dragDisabled;
 
-
-        // Bind appropriate events
-        if (is_touch_device()) {
-            this.$canvas.bind('touchstart', touchStart);
-            this.$canvas.bind('touchmove',touchMove);
-            $(document).bind('touchend', touchEnd);
-        } else {
-            this.$canvas.mousedown(touchStart);
-            this.$canvas.mousemove(touchMove);
-            $(document).mouseup(touchEnd);
+        if(!this.dragDisabled){
+            // Bind appropriate events
+            if (is_touch_device()) {
+                this.$canvas.bind('touchstart', touchStart);
+                this.$canvas.bind('touchmove',touchMove);
+                $(document).bind('touchend', touchEnd);
+            } else {
+                this.$canvas.mousedown(touchStart);
+                this.$canvas.mousemove(touchMove);
+                $(document).mouseup(touchEnd);
+            }
         }
 
         this.draw();
