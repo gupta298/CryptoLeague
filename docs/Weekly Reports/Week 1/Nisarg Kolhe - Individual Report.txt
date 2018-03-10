@@ -1,0 +1,21 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Nisarg Kolhe
+
+Week 1 (Summary)
+02/11 0.25 hr 5f2c7d5 Updated branding
+02/08 2 hr 1bdccbf Implemented basic sidebar component
+02/07 2 hr a0cc127 Started work on basic sidebar
+02/06 0.25 hr 2a68a84 Updated branding
+02/06 N/A ef771c4 Implemented homepage (duplicate)
+02/06 1.5 hr 01f330d Implemented homepage
+02/06 0.25 hr 8fc14c2 Added example UIKit code
+02/06 1 hr b81b751 Routing works
+02/06 1 hr 438cdef Added routing module
+02/06 0.5 hr a1fe665 Added UIKit dependencies
+02/06 0.5 hr 0c484fb Added landing component
+02/05 2 hr 6eb4ed4 Initialized ng repo (ng stands for Angular CLI)
+
+Week 2 (Plan) 
+02/12 Learn and Implement JWT authentication on the front end
+02/14 Design and implement basic dashboard UI
+02/16 Display data from /api/news to the dashboard UI

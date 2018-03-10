@@ -1,0 +1,15 @@
+Individual Report (Team 8: CryptoLeague) ===
+Name: Utkarsh Jain
+
+Week 1 (Summary)
+    02/08 4.5 hr 2a8b6be Implemented MongoDB. Watched 3 hrs worth of online tutorials to understand how MongoDB worked. 
+    02/08 0.5 hr ecc955e Added the entire code of Mongo. Had to delete the source code and fixed it. Now only the required work exists. 
+
+
+Week 2 (Plan)
+    02/13 3 hr Learn how to make and implement an API in JS
+    02/14 6 hrs Implement the API which will give the news for frontend to display
+    02/14 4 hrs Call the newsapi.org API which will give the current news and then store it locally
+
+Note: 
+This week I had a lot of work and I only had to implement MongoDB. That did not take around 10 hrs. I will make up for it in the next week. 
