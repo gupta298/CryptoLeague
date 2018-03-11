@@ -8,10 +8,10 @@ var mongo = require('../utils/mongoDBCalls');
  * @apiName GetAllUsers
  * @apiGroup User
  *
- * @apiParam {Number} page number of the list.
- * @apiHeader {String} jwt token of the user.
+ * @apiParam {Number} page page number of the list.
+ * @apiHeader {String} jwt jwt token of the user.
  *
- * @apiSuccess {User[]} returns array of user objects of a user.
+ * @apiSuccess {User[]} Users returns array of user objects of a user.
  */
 
 router.post('/', (req, res) => {

@@ -13,7 +13,7 @@ define({ "api": [
             "type": "Number",
             "optional": false,
             "field": "page",
-            "description": "<p>number of the list.</p>"
+            "description": "<p>page number of the list.</p>"
           }
         ]
       }
@@ -26,7 +26,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "jwt",
-            "description": "<p>token of the user.</p>"
+            "description": "<p>jwt token of the user.</p>"
           }
         ]
       }
@@ -38,8 +38,8 @@ define({ "api": [
             "group": "Success 200",
             "type": "User[]",
             "optional": false,
-            "field": "returns",
-            "description": "<p>array of user objects of a user.</p>"
+            "field": "Users",
+            "description": "<p>returns array of user objects of a user.</p>"
           }
         ]
       }
