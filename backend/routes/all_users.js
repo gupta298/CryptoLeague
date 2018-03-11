@@ -3,6 +3,17 @@ var router = express.Router();
 var config = require('../config/config');
 var mongo = require('../utils/mongoDBCalls');
 
+/**
+ * @api {post} /all_users/:page Request User information
+ * @apiName GetAllUsers
+ * @apiGroup User
+ *
+ * @apiParam {Number} page number of the list.
+ * @apiHeader {String} jwt token of the user.
+ *
+ * @apiSuccess {User[]} returns array of user objects of a user.
+ */
+
 router.post('/', (req, res) => {
     console.log("userid: " + req.user.id);
     var page = 1;
