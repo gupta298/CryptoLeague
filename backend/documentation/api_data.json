@@ -1,9 +1,9 @@
 [
   {
-    "type": "get",
-    "url": "/user/:id",
+    "type": "post",
+    "url": "/all_users/:page",
     "title": "Request User information",
-    "name": "GetUser",
+    "name": "GetAllUsers",
     "group": "User",
     "parameter": {
       "fields": {
@@ -12,8 +12,21 @@
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "id",
-            "description": "<p>Users unique ID.</p>"
+            "field": "page",
+            "description": "<p>number of the list.</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "jwt",
+            "description": "<p>token of the user.</p>"
           }
         ]
       }
@@ -23,17 +36,10 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "User[]",
             "optional": false,
-            "field": "firstname",
-            "description": "<p>Firstname of the User.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "lastname",
-            "description": "<p>Lastname of the User.</p>"
+            "field": "returns",
+            "description": "<p>array of user objects of a user.</p>"
           }
         ]
       }
