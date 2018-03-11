@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 declare var $: any;
 declare var DraggablePiechart: any;
@@ -10,11 +10,17 @@ declare var DraggablePiechart: any;
 })
 export class PortfolioComponent implements OnInit {
 
+	@Input() onClickCallback: Function;
+
 	constructor() { }
 
 	ngOnInit() {
 		this.setupPieChart();
 	}
+
+	// onClickCallback() {
+	// 	console.log("clicked");
+	// }
 
 	setupPieChart() {
 		var proportions = [

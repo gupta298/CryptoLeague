@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeagueDetailComponent implements OnInit {
 
-  constructor() { }
+	portfolioOpened: boolean = false;
+	hideCards: boolean = false;
 
-  ngOnInit() {
-  }
+  	constructor() { }
 
+  	ngOnInit() {
+  		this.onPortfolioClicked = this.onPortfolioClicked.bind(this);
+  	}
+
+  	onPortfolioClicked(){
+  		console.log("onPortfolioclicked");
+  		this.portfolioOpened = !this.portfolioOpened;
+  		setTimeout(()=>{ 
+  			this.hideCards = !this.hideCards;
+  		}, 1000);
+  	}
 }
