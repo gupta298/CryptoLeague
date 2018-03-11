@@ -6,42 +6,12 @@ var router = express.Router();
 
 var config = require('../config/config');
 
-// function Coin(name, price, ticker){
-//   this.name = name;
-//   this.price = price;
-//   this.ticker = ticker;
-// }
-
-// var coinMarketAPI = config.coinMarketAPI;
 var coinData = [];
 
 router.get('/', function(req, res, next) {
  	console.log(req.user.id);
     res.send(JSON.parse(JSON.stringify(coinData)));
 });
-
-// function callCoinMarketAPI() {
-//   request({
-//       url: coinMarketAPI,
-//       json: true
-//   }, function (error, response, body) {
-//       if (!error && response.statusCode === 200) {
-//           var data = JSON.parse(JSON.stringify(body));
-//           var tempCoinData = [];
-//           for (var temp in data) {
-//               // var tempCoin = new Coin (data[temp].name, data[temp].price_usd,data[temp].symbol);
-//               // tempCoinData.push(tempCoin);
-//               tempCoinData.push(data[temp]);
-//           }
-//           console.log("Updated coins");
-//           coinData = [];
-//           coinData = tempCoinData;
-//           // console.log(JSON.stringify(coinData));
-//       } else {
-//         console.log("Error updating the coin data");
-//       }
-//   });
-// }
 
 var coinMarketAPI = config.coinMarketAPI;
 var coinNames = [];
