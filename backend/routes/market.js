@@ -40,6 +40,9 @@ function buildCoinData(callback) {
     
     getJsonFromUrl(chasing_coins.Top100Coins, function(coinsResult) {
 
+      if(!coinsResult)
+        return;
+
       var result = [];
       var coins = JSON.parse(JSON.stringify(coinsResult));
       
