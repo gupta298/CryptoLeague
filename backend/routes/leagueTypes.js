@@ -3,13 +3,11 @@ var router = express.Router();
 var config = require('../config/config');
 var mongo = require('../utils/mongoDBCalls');
 
-router.get('/', (req, res) => {
-    console.log("League Type: " + req.league.id);
+var leagues = ["Bronze League", "Silver League", "Gold League", "Platinum League"];
 
-    mongo.getTotalUsers(function(error, response) {
-      res.send(response);
-    });
-  }
-);
+
+router.get('/', function(req, res, next) {
+    res.send(JSON.parse(JSON.stringify(leagues)));
+});
 
 module.exports = router;

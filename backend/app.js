@@ -52,7 +52,7 @@ app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
 app.use('/validate_user', passport.authenticate(['jwt'], { session: false }), validateUser);
 app.use('/user_rank', passport.authenticate(['jwt'], { session: false }), userRank);
 app.use('/total_users', passport.authenticate(['jwt'], { session: false }), totalUsers);
-app.use('/league_types' passport.authenticate(['jwt'], { session: false }), totalUsers);
+app.use('/league_types', passport.authenticate(['jwt'], { session: false }), totalUsers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
