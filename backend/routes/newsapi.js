@@ -3,16 +3,22 @@ var request = require('request');
 var express = require('express');
 var router = express.Router();
 
-var config = require('../config/config.js');
-var key = config.newsapikey;
-var url = 'https://newsapi.org/v2/everything?language=en&q=cryptocurrency&sortBy=publishedAt&apiKey=' + key;
+const config = require('../config/config.js');
+const url = config.newsapiURL;
 
 var tempNews = [];
 
+/**
+ * @api {GET} /news Request the news data
+ * @apiName News
+ * @apiGroup News
+ *
+ * @apiHeader {String} JWT JWT token of the user.
+ *
+ * @apiSuccess {JSON} News_Data Returns an array of the top 15 news related to cryptocurrency.
+*/
 router.get('/', function(req, res, next) {
  var req = new Request(url);
- //res.send(req.json());
-  //res.send(callNewsOrgAPI());
   if(tempNews.length < 1){
     callNewsOrgAPI(res);
   } else {
@@ -20,6 +26,7 @@ router.get('/', function(req, res, next) {
   }
 });
 
+// Gets the new data
 function callNewsOrgAPI(res) {
   request({
       url: url,
@@ -32,7 +39,6 @@ function callNewsOrgAPI(res) {
           while(counter < 16)
           {
               tempNews.push(response.body.articles[counter]);
-              //console.log(response.body.articles[counter]);
               counter++;
           }
           if(res)
@@ -46,8 +52,9 @@ function callNewsOrgAPI(res) {
   });
 };
 
+// Helps get the new data every 10 mins
 setInterval( function() {
   callNewsOrgAPI(null);
-}, 300000);
+}, 600000);
 
 module.exports = router;
