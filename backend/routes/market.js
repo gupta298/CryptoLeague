@@ -4,17 +4,28 @@ var asyncLoop = require('node-async-loop');
 
 var router = express.Router();
 
-var config = require('../config/config');
+const config = require('../config/config');
+const coinMarketAPI = config.coinMarketAPI;
+const chasing_coins = config.chasing_coins;
 
 var coinData = [];
+var coinNames = [];
 
+/**
+ * @api {GET} /market Request the market data
+ * @apiName Market
+ * @apiGroup Market
+ *
+ * @apiHeader {String} JWT JWT token of the user.
+ *
+ * @apiSuccess {JSON} Coin_Data Returns an array of the top 100 coins based on the chasing_coin.
+*/
 router.get('/', function(req, res, next) {
  	console.log(req.user.id);
     res.send(JSON.parse(JSON.stringify(coinData)));
 });
 
-var coinMarketAPI = config.coinMarketAPI;
-var coinNames = [];
+// Gets the coin names
 function getCoinNames(callback) {
   getJsonFromUrl(coinMarketAPI, function(result) {
     var data = JSON.parse(JSON.stringify(result));
@@ -33,7 +44,7 @@ function getCoinNames(callback) {
   });
 }
 
-var chasing_coins = config.chasing_coins;
+// Helps build the coin data object
 function buildCoinData(callback) {
   getJsonFromUrl(chasing_coins.MarketCap, function(marketResult) {
     var market = JSON.parse(JSON.stringify(marketResult));
@@ -75,13 +86,14 @@ function buildCoinData(callback) {
   });
 }
 
+// helps get the coin names
 getCoinNames(function(callback) {
   buildCoinData(function(callback) {
       console.log('Got the coin data!');
   });
 });
 
-// callCoinMarketAPI();
+// Helps update coin data every 5 mins
 setInterval( function() {
   buildCoinData(function(callback) {
     console.log("Updated the coin data");
@@ -89,6 +101,7 @@ setInterval( function() {
   // callCoinMarketAPI();
 }, 300000);
 
+//Gets Json from a url
 function getJsonFromUrl(url, callback) {
   request({
       url: url,

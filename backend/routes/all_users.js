@@ -1,19 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var config = require('../config/config');
-var mongo = require('../utils/mongoDBCalls');
+
+const config = require('../config/config');
+const mongo = require('../utils/mongoDBCalls');
 
 /**
- * @api {post} /all_users/:page Request User information
- * @apiName GetAllUsers
+ * @api {POST} /all_users/:page Request the User information for the leader board
+ * @apiName Get_All_Users
  * @apiGroup User
  *
- * @apiParam {Number} page page number of the list.
- * @apiHeader {String} jwt jwt token of the user.
+ * @apiParam {Number} Page Page number of the list.
+ * @apiHeader {String} JWT JWT token of the user.
  *
- * @apiSuccess {User[]} Users returns array of user objects of a user.
- */
-
+ * @apiSuccess {JSON} User[] Returns an array of user object for a particular page.
+*/
 router.post('/', (req, res) => {
     console.log("userid: " + req.user.id);
     var page = 1;
