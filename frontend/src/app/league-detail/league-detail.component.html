@@ -4,11 +4,11 @@
 	<div class="page-content">
 		<div class="uk-container uk-margin-top">
 			<div class="uk-text-lead">League #132</div>
-			<div class="uk-margin-top card-container uk-grid-small uk-grid-match uk-child-width-expand@s" uk-grid>
+			<div class="uk-margin-top card-container" [ngClass]="(hideCards)?'uk-flex-1':'uk-flex-2'">
 				<app-portfolio
 					[onClickCallback]="onPortfolioClicked">	
 				</app-portfolio>
-				<div *ngIf="!hideCards">
+				<div *ngIf="!hideCards" class="uk-margin-left uk-flex-stretch">
 					<div class="uk-card uk-card-secondary uk-card-small uk-card-body uk-animation-reverse" [class.uk-animation-slide-right]="portfolioOpened">
 						<h3 class="uk-card-title">Stats & Distribution</h3>
 						<div class="uk-flex uk-flex-bottom uk-card-body">
