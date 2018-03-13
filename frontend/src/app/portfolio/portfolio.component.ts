@@ -11,6 +11,10 @@ declare var DraggablePiechart: any;
 export class PortfolioComponent implements OnInit {
 
 	@Input() onClickCallback: Function;
+	@Input() hideCards: boolean;
+	proportions: any[] = [
+			{ proportion: 50, format: { color: "#2665da", label: 'Cats' } },
+			{ proportion: 50, format: { color: "#6dd020", label: 'Dogs' } }];
 
 	constructor() { }
 
@@ -18,27 +22,47 @@ export class PortfolioComponent implements OnInit {
 		this.setupPieChart();
 	}
 
-	// onClickCallback() {
-	// 	console.log("clicked");
-	// }
+	portfolioExpand() {
+		if(!this.hideCards){
+			var setup = {
+				canvas: document.getElementById('piechart'),
+				radius: 0.9,
+				collapsing: true,
+				proportions: this.proportions,
+				drawNode: this.drawNode,
+				onchange: this.onPieChartChange,
+				dragDisabled: false
+			};
+
+			var newPie = new DraggablePiechart(setup);
+		} else {
+			var setup = {
+				canvas: document.getElementById('piechart'),
+				radius: 0.9,
+				collapsing: true,
+				proportions: this.proportions,
+				drawNode: this.hideNode,
+				onchange: this.onPieChartChange,
+				dragDisabled: true
+			};
+
+			var newPie = new DraggablePiechart(setup);
+		}
+    	this.onClickCallback();
+  	}
 
 	setupPieChart() {
-		var proportions = [
-			{ proportion: 50, format: { color: "#2665da", label: 'Cats' } },
-			{ proportion: 50, format: { color: "#6dd020", label: 'Dogs' } }];
-
 		var setup = {
 			canvas: document.getElementById('piechart'),
 			radius: 0.9,
 			collapsing: true,
-			proportions: proportions,
+			proportions: this.proportions,
 			drawNode: this.hideNode,
 			onchange: this.onPieChartChange,
-			dragDisabled: true
+			dragDisabled: false
 		};
 
 		var newPie = new DraggablePiechart(setup);
-
 	}
 
 	hideNode(context, piechart, x, y, centerX, centerY, hover) {
