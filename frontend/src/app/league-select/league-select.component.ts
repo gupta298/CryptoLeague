@@ -14,7 +14,11 @@ export class LeagueSelectComponent implements OnInit {
   }
 
   selected(leagueType) {
-    console.log(leagueType);
+    UIkit.modal.confirm('Please make sure that you are joining the league. Once you join, you will not be able to exit the league. ').then(function() {
+      console.log(leagueType);
+    }, function () {
+      console.log('Cancel.');
+    });
   }
 
 }
