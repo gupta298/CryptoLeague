@@ -1,6 +1,29 @@
 [
   {
     "type": "GET",
+    "url": "/apidoc",
+    "title": "Request the documentation for the backend",
+    "name": "Documentation",
+    "group": "Documentation",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Redirect",
+            "optional": false,
+            "field": "Index_File_ApiDoc",
+            "description": "<p>Redirects the user to the Index file for the apidocs.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/apidoc.js",
+    "groupTitle": "Documentation"
+  },
+  {
+    "type": "GET",
     "url": "/",
     "title": "Get the index file",
     "name": "Index",
