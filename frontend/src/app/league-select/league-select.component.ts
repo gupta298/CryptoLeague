@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var UIkit: any;
 
 @Component({
   selector: 'app-league-select',
@@ -10,6 +11,10 @@ export class LeagueSelectComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  selected(leagueType) {
+    console.log(leagueType);
   }
 
 }

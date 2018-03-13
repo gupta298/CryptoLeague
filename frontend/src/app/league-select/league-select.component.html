@@ -8,9 +8,8 @@
 
         <div>
           <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body bronze">
-            <!-- <h3 class="uk-card-title">{{user.username || "Username not set"}}</h3> -->
             <div class="uk-flex uk-flex-bottom uk-card-body">
-							<a class="uk-flex uk-flex-center" href="/join">
+							<a class="uk-flex uk-flex-center" href="/join" (click)="selected('bronze')">
 	              <ul class="uk-list">
 	                <li><span class="uk-text-bold">Bronze League</span></li>
 	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
@@ -22,9 +21,8 @@
 
         <div>
           <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body silver">
-            <!-- <h3 class="uk-card-title">{{user.username || "Username not set"}}</h3> -->
             <div class="uk-flex uk-flex-bottom uk-card-body ">
-							<a class="uk-flex uk-flex-center" href="/join">
+							<a class="uk-flex uk-flex-center" href="/join" (click)="selected('silver')">
 	              <ul class="uk-list">
 	                <li><span class="uk-text-bold">Bronze League</span></li>
 	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
@@ -36,9 +34,8 @@
 
         <div>
           <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body gold ">
-            <!-- <h3 class="uk-card-title">{{user.username || "Username not set"}}</h3> -->
             <div class="uk-flex uk-flex-bottom uk-card-body">
-							<a class="uk-flex uk-flex-center" href="/join">
+							<a class="uk-flex uk-flex-center" href="/join" (click)="selected('gold')">
 	              <ul class="uk-list">
 	                <li><span class="uk-text-bold">Bronze League</span></li>
 	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
@@ -50,9 +47,8 @@
 
         <div>
           <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body platinum">
-            <!-- <h3 class="uk-card-title">{{user.username || "Username not set"}}</h3> -->
             <div class="uk-flex uk-flex-bottom uk-card-body">
-							<a class="uk-flex uk-flex-center" href="/join">
+							<a class="uk-flex uk-flex-center" href="/join" (click)="selected('platinum')">
 	              <ul class="uk-list">
 	                <li><span class="uk-text-bold">Bronze League</span></li>
 	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
