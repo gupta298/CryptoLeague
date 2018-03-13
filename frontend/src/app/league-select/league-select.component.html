@@ -1,0 +1,64 @@
+<div class="page-container">
+	<app-sidebar page="leagueSelect">
+	</app-sidebar>
+	<div class="page-content">
+		<div class="uk-container uk-margin-top">
+			<div class="uk-text-lead">Select your league</div>
+      <div class="uk-margin-top card-container uk-grid-small uk-grid-match uk-child-width-expand@s" uk-grid>
+
+        <div>
+          <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body bronze">
+            <div class="uk-flex uk-flex-bottom uk-card-body">
+							<a class="uk-flex uk-flex-center" (click)="selected('bronze')">
+	              <ul class="uk-list">
+	                <li><span class="uk-text-bold">Bronze League</span></li>
+	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
+	              </ul>
+							</a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body silver">
+            <div class="uk-flex uk-flex-bottom uk-card-body ">
+							<a class="uk-flex uk-flex-center" (click)="selected('silver')">
+	              <ul class="uk-list">
+	                <li><span class="uk-text-bold">Bronze League</span></li>
+	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
+	              </ul>
+							</a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body gold ">
+            <div class="uk-flex uk-flex-bottom uk-card-body">
+							<a class="uk-flex uk-flex-center"(click)="selected('gold')">
+	              <ul class="uk-list">
+	                <li><span class="uk-text-bold">Bronze League</span></li>
+	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
+	              </ul>
+							</a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body platinum">
+            <div class="uk-flex uk-flex-bottom uk-card-body">
+							<a class="uk-flex uk-flex-center" (click)="selected('platinum')">
+	              <ul class="uk-list">
+	                <li><span class="uk-text-bold">Bronze League</span></li>
+	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
+	              </ul>
+							</a>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    </div>
+  </div>
+</div>
