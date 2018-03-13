@@ -37,7 +37,7 @@ import { LeagueSelectComponent } from './league-select/league-select.component';
     SettingsComponent,
     PortfolioComponent,
     LeagueDetailComponent,
-    LeagueWaitingOverlayComponent
+    LeagueWaitingOverlayComponent,
     LeagueSelectComponent
   ],
   imports: [
