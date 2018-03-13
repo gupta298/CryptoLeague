@@ -22,6 +22,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LeagueDetailComponent } from './league-detail/league-detail.component';
 import { LeagueWaitingOverlayComponent } from './league-waiting-overlay/league-waiting-overlay.component';
+import { LeagueSelectComponent } from './league-select/league-select.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { LeagueWaitingOverlayComponent } from './league-waiting-overlay/league-w
     PortfolioComponent,
     LeagueDetailComponent,
     LeagueWaitingOverlayComponent
+    LeagueSelectComponent
   ],
   imports: [
     BrowserModule,
