@@ -8,7 +8,7 @@ var userSchema = new mongoose.Schema({
     username: String,
     tokens: Number,
     profilePicture: String,
-    currentLeague_id: Number,
+    currentLeague_id: String,
     past_leagues: [String]
 });
 

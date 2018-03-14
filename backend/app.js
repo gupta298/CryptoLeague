@@ -18,6 +18,8 @@ var newsapi = require('./routes/newsapi');
 var validateUser = require('./routes/validateUser');
 var userRank = require('./routes/userRank');
 var totalUsers = require('./routes/totalUsers');
+var league = require('./routes/league');
+var league_types = require('./routes/leagueTypes');
 
 const config = require('./config/config')
 const passport = require('passport');
@@ -42,14 +44,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Defining Routes
 app.use('/', index);
+
+// User
 app.use('/auth', auth);
 app.use('/user', user);
 app.use('/validate_user', passport.authenticate(['jwt'], { session: false }), validateUser);
 app.use('/user_rank', passport.authenticate(['jwt'], { session: false }), userRank);
 app.use('/total_users', passport.authenticate(['jwt'], { session: false }), totalUsers); 
 app.use('/all_users', passport.authenticate(['jwt'], { session: false }), all_users);
+
+// News
 app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
+
+// Market
 app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
+
+// League
+app.use('/league_types', passport.authenticate(['jwt'], { session: false }), league_types);
+app.use('/league', passport.authenticate(['jwt'], { session: false }), league);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
