@@ -9,6 +9,7 @@ export class LeagueDetailComponent implements OnInit {
 
 	portfolioOpened: boolean = false;
 	hideCards: boolean = false;
+	waiting: boolean = true;
 
   	constructor() { }
 

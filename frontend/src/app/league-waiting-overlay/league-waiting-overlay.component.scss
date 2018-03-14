@@ -1,0 +1,34 @@
+@import 'variables';
+
+.overlay {
+	width: 100%;
+	height: 100%;
+	//background-color: transparentize($black, 0.8);
+	filter: blur(5px) contrast(70%);
+}
+
+.flex-grow-1 {
+	flex-grow: 1;
+}
+
+.waiting-users {
+	z-index: 2;
+	position: absolute; 
+	left: 50%;
+	top: 25%;
+}
+
+.waiting-table-content{
+	text-align: center;
+	position: relative;
+	left: -50%;
+	color: $white;
+}
+
+.waiting-table-content h3 {
+	color: $white;
+}
+
+th {
+	color: $white;
+}
