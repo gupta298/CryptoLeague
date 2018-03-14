@@ -6,56 +6,48 @@
 			<div class="uk-text-lead">Select your league</div>
       <div class="uk-margin-top card-container uk-grid-small uk-grid-match uk-child-width-expand@s" uk-grid>
 
-            <div>
-              <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body bronze">
-                <!-- <h3 class="uk-card-title">{{user.username || "Username not set"}}</h3> -->
-                <div class="uk-flex uk-flex-bottom uk-card-body">
-                  <ul class="uk-list">
-                    <li><span class="uk-text-bold">Bronze League</span></li>
-                    <li><span class="uk-text">Number of current players:</span> #{{users}}</li>
-                    <li><span class="uk-text">Buy in: 25</span> </li>
-                  </ul>
-                </div>
-              </div>
+        <div>
+          <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body bronze">
+            <div class="uk-flex uk-flex-bottom uk-card-body">
+							<a class="uk-flex uk-flex-center" (click)="selected('bronze')">
+	              <ul class="uk-list">
+	                <li><span class="uk-text-bold">Bronze League</span></li>
+	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
+	              </ul>
+							</a>
             </div>
 
-            <div>
-              <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body silver">
-                <!-- <h3 class="uk-card-title">{{user.username || "Username not set"}}</h3> -->
-                <div class="uk-flex uk-flex-bottom uk-card-body ">
-                  <ul class="uk-list">
-                    <li><span class="uk-text-bold">Silver League</span></li>
-                    <li><span class="uk-text">Number of current players:</span> #{{users}}</li>
-                    <li><span class="uk-text">Buy in: 100</span> </li>
-                  </ul>
-                </div>
-              </div>
+        <div>
+          <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body silver">
+            <div class="uk-flex uk-flex-bottom uk-card-body ">
+							<a class="uk-flex uk-flex-center" (click)="selected('silver')">
+	              <ul class="uk-list">
+	                <li><span class="uk-text-bold">Bronze League</span></li>
+	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
+	              </ul>
+							</a>
             </div>
 
-            <div>
-              <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body gold ">
-                <!-- <h3 class="uk-card-title">{{user.username || "Username not set"}}</h3> -->
-                <div class="uk-flex uk-flex-bottom uk-card-body">
-                  <ul class="uk-list">
-                    <li><span class="uk-text-bold">Gold League</span></li>
-                    <li><span class="uk-text">Number of current players:</span> #{{users}}</li>
-                    <li><span class="uk-text">Buy in: 500</span> </li>
-                  </ul>
-                </div>
-              </div>
+        <div>
+          <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body gold ">
+            <div class="uk-flex uk-flex-bottom uk-card-body">
+							<a class="uk-flex uk-flex-center"(click)="selected('gold')">
+	              <ul class="uk-list">
+	                <li><span class="uk-text-bold">Bronze League</span></li>
+	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
+	              </ul>
+							</a>
             </div>
 
-            <div>
-              <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body platinum">
-                <!-- <h3 class="uk-card-title">{{user.username || "Username not set"}}</h3> -->
-                <div class="uk-flex uk-flex-bottom uk-card-body">
-                  <ul class="uk-list">
-                    <li><span class="uk-text-bold">Platinum Leagues</span></li>
-                    <li><span class="uk-text">Number of current players:</span> #{{users}}</li>
-                    <li><span class="uk-text">Buy in: 1000</span> </li>
-                  </ul>
-                </div>
-              </div>
+        <div>
+          <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body platinum">
+            <div class="uk-flex uk-flex-bottom uk-card-body">
+							<a class="uk-flex uk-flex-center" (click)="selected('platinum')">
+	              <ul class="uk-list">
+	                <li><span class="uk-text-bold">Bronze League</span></li>
+	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
+	              </ul>
+							</a>
             </div>
 
 

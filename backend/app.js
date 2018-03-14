@@ -20,11 +20,10 @@ var userRank = require('./routes/userRank');
 var totalUsers = require('./routes/totalUsers');
 var leagueTypes = require('./routes/leagueTypes');
 
-var config = require('./config/config')
+const config = require('./config/config')
 const passport = require('passport');
 
 require('./config/passport');
-var config = require('./config/config')
 
 var app = express();
 
@@ -44,9 +43,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Defining Routes
 app.use('/', index);
-app.use('/user', user);
-app.use('/all_users', passport.authenticate(['jwt'], { session: false }), all_users);
 app.use('/auth', auth);
+app.use('/user', user);
+app.use('/validate_user', passport.authenticate(['jwt'], { session: false }), validateUser);
+app.use('/user_rank', passport.authenticate(['jwt'], { session: false }), userRank);
+app.use('/total_users', passport.authenticate(['jwt'], { session: false }), totalUsers); 
+app.use('/all_users', passport.authenticate(['jwt'], { session: false }), all_users);
 app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
 app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
 app.use('/validate_user', passport.authenticate(['jwt'], { session: false }), validateUser);
@@ -61,7 +63,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlera
+// error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
