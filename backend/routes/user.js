@@ -18,7 +18,7 @@ var token = require('../utils/token');
  * @apiSuccess {JSON} JWT Returns the updated JWT token of the current user.
 */
 router.get('/', (req, res) => {
-  console.log(req);
+  console.log(req.user);
   mongo.getUserViaID(req.user.id, function(error, result) {
     if (error) {
       res.send(null);
