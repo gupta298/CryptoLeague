@@ -17,20 +17,16 @@ var token = require('../utils/token');
  *
  * @apiSuccess {JSON} JWT Returns the updated JWT token of the current user.
 */
-router.get('/',
-  // This request must be authenticated using a JWT, or else we will fail
-  passport.authenticate(['jwt'], { session: false }),
-  (req, res) => {
-    console.log(req.user.id);
-    mongo.getUserViaID(req.user.id, function(error, result) {
-      if (error) {
-        res.send(null);
-      } else {
-        res.send({ 'jwt' : token.generateAccessToken(result) });
-      }
-    });
-  }
-);
+router.get('/', (req, res) => {
+  console.log(req);
+  mongo.getUserViaID(req.user.id, function(error, result) {
+    if (error) {
+      res.send(null);
+    } else {
+      res.send({ 'jwt' : token.generateAccessToken(result) });
+    }
+  });
+});
 
 /**
  * @api {PUT} /user Request to update the user's information
@@ -42,27 +38,24 @@ router.get('/',
  *
  * @apiSuccess {JSON} JWT Returns the updated JWT token of the current user.
 */
-router.put('/',
-  passport.authenticate(['jwt'], { session: false }),
-  (req, res) => {
-    mongo.getUserViaID(req.user.id, function(error, result) {
-      if (error) {
-        res.send("User does not exists");
-      } else {
-        if (req.body.email) result.email = req.body.email;
-        if (req.body.username) result.username = req.body.username;
-        if (req.body.profilePicture) result.profilePicture = req.body.profilePicture;
+router.put('/', (req, res) => {
+  mongo.getUserViaID(req.user.id, function(error, result) {
+    if (error) {
+      res.send("User does not exists");
+    } else {
+      if (req.body.email) result.email = req.body.email;
+      if (req.body.username) result.username = req.body.username;
+      if (req.body.profilePicture) result.profilePicture = req.body.profilePicture;
 
-        mongo.updateUser(result, function(error, token) {
-          if (error) {
-            res.send("Could not update user");
-          } else {
-            res.send({ 'jwt' : token });
-          }
-        });
-      }
-    });
-  }
-);
+      mongo.updateUser(result, function(error, token) {
+        if (error) {
+          res.send("Could not update user");
+        } else {
+          res.send({ 'jwt' : token });
+        }
+      });
+    }
+  });
+});
 
 module.exports = router;

@@ -17,18 +17,14 @@ const mongo = require('../utils/mongoDBCalls');
  *
  * @apiSuccess {JSON} Exists Returns a boolean value based on if the username already exists.
 */
-router.post('/',
-  // This request must be authenticated using a JWT, or else we will fail
-  passport.authenticate(['jwt'], { session: false }),
-  (req, res) => {
-    if (!req.body.username) {
-    	res.send({'exists': null});
-    } else {
-	    mongo.getUserViaUsername(req.body.username, function(error, response) {
-	    	res.send({ 'exists' : response });
-	    });
-	}
+router.post('/', (req, res) => {
+  if (!req.body.username) {
+  	res.send({'exists': null});
+  } else {
+    mongo.getUserViaUsername(req.body.username, function(error, response) {
+    	res.send({ 'exists' : response });
+    });
   }
-);
+});
 
 module.exports = router;
