@@ -82,6 +82,55 @@ define({ "api": [
     "groupTitle": "League"
   },
   {
+    "type": "POST",
+    "url": "/league",
+    "title": "Request to create or join a league",
+    "name": "Join_Or_Create_League",
+    "group": "League",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "League_Type_ID",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>League type Id.</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "League",
+            "description": "<p>Returns the league object that the current user was added to.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/league.js",
+    "groupTitle": "League"
+  },
+  {
     "type": "GET",
     "url": "/market",
     "title": "Request the market data",

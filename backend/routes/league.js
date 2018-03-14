@@ -11,6 +11,16 @@ router.get('/', (req, res) => {
   }
 );
 
+/**
+ * @api {POST} /league Request to create or join a league
+ * @apiName Join_Or_Create_League
+ * @apiGroup League
+ *
+ * @apiParam {League_Type_ID} ID League type Id.
+ * @apiHeader {String} JWT JWT token of the user.
+ *
+ * @apiSuccess {JSON} League Returns the league object that the current user was added to.
+*/
 router.post('/', (req, res) => {
 	if (!req.user.currentLeague_id) {
 		if (!req.body.league_type_id) {
