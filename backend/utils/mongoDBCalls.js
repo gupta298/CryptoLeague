@@ -193,6 +193,24 @@ module.exports = {
     });
   },
 
+  getLeagueTypes:
+  function getLeagueTypes(callback) {
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("cryptoleague_database");
+      dbo.collection("League_Types").find({}).toArray(function(err, result) {
+        if (err) throw err;
+
+        if (result != null) {
+          callback(null, JSON.parse(JSON.stringify(result)));
+        } else  {
+          callback(null, false);
+        }
+        db.close();
+      });
+    });
+  },
+
   getLeague:
   function getLeague(callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {

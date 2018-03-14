@@ -47,6 +47,42 @@ define({ "api": [
   },
   {
     "type": "GET",
+    "url": "/league_types",
+    "title": "Request to get all league types",
+    "name": "Get_League_Types",
+    "group": "League",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "League_Types",
+            "description": "<p>Returns all available league types.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/leagueTypes.js",
+    "groupTitle": "League"
+  },
+  {
+    "type": "GET",
     "url": "/market",
     "title": "Request the market data",
     "name": "Market",
