@@ -336,6 +336,9 @@ module.exports = {
                     league_result.status = "Waiting_Locked";
 
                     league_result.start_time = date2;
+
+                    // TODO Call the function that will execute when this league starts, so after 24 hours
+
                   }
 
                   dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result._id}, {$set: {status : league_result.status, 
