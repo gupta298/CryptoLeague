@@ -326,18 +326,17 @@ module.exports = {
                 if (err) throw err;
 
                 if (league_result.portfolio_ids.length == 10 || league_result.portfolio_ids.length == 100) {
-                  var date = new Date();
-                  var date2 = new Date(date);
-                  
                   if (league_result.portfolio_ids.length == 100) {
-                    date2.setMinutes(date.getMinutes() + (12 * 60));
                     league_result.status = "Locked";
                   } else {
+                    var date = new Date();
+                    var date2 = new Date(date);
+                  
                     date2.setMinutes(date.getMinutes() + (24 * 60));
                     league_result.status = "Waiting_Locked";
+
+                    league_result.start_time = date2;
                   }
-                  
-                  league_result.start_time = date2;
 
                   dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result._id}, {$set: {status : league_result.status, 
                     start_time: date2}}, function(err, league_result_final) {
