@@ -3,7 +3,7 @@ import { User } from '../user';
 import { Observable } from "rxjs";
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 
-import { AuthenticationService, NewsService, UserService } from '../services/index'; 
+import { AuthenticationService, NewsService, UserService } from '../services/index';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,8 +20,8 @@ export class DashboardComponent implements OnInit {
   	constructor(
   		private authService: AuthenticationService,
   		private newsService: NewsService,
-      private userService: UserService
-  		) { 
+      private userService: Us.erService
+  		) {
     }
 
   	ngOnInit() {

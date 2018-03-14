@@ -7,6 +7,7 @@ var leagues = ["Bronze League", "Silver League", "Gold League", "Platinum League
 
 
 router.get('/', function(req, res, next) {
+    console.log("I came here");
     res.send(JSON.parse(JSON.stringify(leagues)));
 });
 
