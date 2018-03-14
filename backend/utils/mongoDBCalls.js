@@ -23,7 +23,7 @@ module.exports = {
   function checkUserExists(jwt_payload, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
-        var dbo = db.db("test");
+        var dbo = db.db("cryptoleague_database");
         dbo.collection("Users").findOne({'id' : jwt_payload.id}, function(err, result) {
           if (err) throw err;
           // console.log("Found user in DB");
@@ -45,7 +45,7 @@ module.exports = {
   function addUser(user, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
     if (err) throw err;
-      var dbo = db.db("test");
+      var dbo = db.db("cryptoleague_database");
       dbo.collection("Users").findOne({'id' : user.id}, function(err, result) {
         if (err) throw err;
 
@@ -72,7 +72,7 @@ module.exports = {
   function getUserViaID(userID, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
-        var dbo = db.db("test");
+        var dbo = db.db("cryptoleague_database");
         dbo.collection("Users").findOne({'id' : userID}, function(err, result) {
           if (err) throw err;
 
@@ -91,7 +91,7 @@ module.exports = {
   function getUserViaUsername(username, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
-      var dbo = db.db("test");
+      var dbo = db.db("cryptoleague_database");
       dbo.collection("Users").findOne({'username' : username}, function(err, result) {
         if (err) throw err;
 
@@ -111,7 +111,7 @@ module.exports = {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
 
-      var dbo = db.db("test");
+      var dbo = db.db("cryptoleague_database");
       dbo.collection("Users").findOneAndUpdate({'id': user.id}, {$set: {email: user.email, lastname: user.lastname, 
         firstname: user.firstname, username: user.username, profilePicture: user.profilePicture}}, function(err, res) {
         if (err) {
@@ -129,7 +129,7 @@ module.exports = {
   function getAllUsers(page, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
-      var dbo = db.db("test");
+      var dbo = db.db("cryptoleague_database");
       dbo.collection("Users").find({}).sort( { tokens: -1 } ).limit(25).skip(page).toArray(function(err, result) {
         console.log("result: " + JSON.stringify(result));
         if (err) throw err;
@@ -149,7 +149,7 @@ module.exports = {
   function getUserRank(id, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
-      var dbo = db.db("test");
+      var dbo = db.db("cryptoleague_database");
       dbo.collection("Users").find({}).sort( { tokens: -1 } ).toArray(function(err, result) {
         if (err) throw err;
 
@@ -178,7 +178,7 @@ module.exports = {
   function getTotalUsers(callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
-      var dbo = db.db("test");
+      var dbo = db.db("cryptoleague_database");
       dbo.collection("Users").find({}).toArray(function(err, result) {
         if (err) throw err;
 
