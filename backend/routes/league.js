@@ -18,10 +18,10 @@ router.post('/', (req, res) => {
 	  	} else {
 	  		mongo.checkLeagueType(req.body.league_type_id, function(error, response) {
 				if (!error && response == true) {
-					mongo.createLeague(req.body.league_type_id, req.user._id, function(error, response) {
-						req.user.currentLeague_id = response._id;
+					mongo.createLeague(req.body.league_type_id, req.user._id, function(error, response_league) {
+						req.user.currentLeague_id = response_league._id;
 						mongo.updateUserLeague(req.user, function(error, response) {
-							res.send(response);
+							res.send(response_league);
 						});
 					});
 				} else {
@@ -29,6 +29,8 @@ router.post('/', (req, res) => {
 				}
 		    });
 	  	}
+	} else {
+		res.send({'message' : "Already in a league"});
 	}
 });
 

@@ -10,6 +10,46 @@ var asyncLoop = require('node-async-loop');
 
 const league_schema = require('./../models/league');
 
+function findLeagueType(league_Types_id, callback) {
+  MongoClient.connect(mongodbUrl, function (err, db) {
+    if (err) throw err;
+      var dbo = db.db("cryptoleague_database");
+      dbo.collection("League_Types").findOne({'league_type_id' : league_Types_id}, function(err, result) {
+        if (err) throw err;
+
+        if (result != null) {
+          callback(null, JSON.parse(JSON.stringify(result)));
+        } else  {
+          callback(null, false);
+        }
+
+        db.close();
+    });
+  });
+}
+
+function findWaitingLeague(league_type, callback) {
+  MongoClient.connect(mongodbUrl, function (err, db) {
+    if (err) throw err;
+      var dbo = db.db("cryptoleague_database");
+      dbo.collection("Leagues").findOne({ $and : [ {'league_type' : league_type},
+                                                    { $or : [
+                                                        { 'status' : "Waiting" }, { 'status' : "Waiting_Locked" }
+                                                      ] }
+                                                  ] }, function(err, result) {
+        if (err) throw err;
+
+        if (result != null) {
+          callback(null, JSON.parse(JSON.stringify(result)));
+        } else  {
+          callback(null, false);
+        }
+
+        db.close();
+    });
+  });
+}
+
 module.exports = {
   connectToMongo:
   function connectToMongo(callback) {
@@ -113,6 +153,8 @@ module.exports = {
         if (err) {
           throw err;
         }
+
+        console.log(res);
 
         callback(null, token.generateAccessToken(user));
 
@@ -243,58 +285,17 @@ module.exports = {
     });
   },
 
-  findLeagueType:
-  function findLeagueType(league_Types_id, callback) {
-    MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-        var dbo = db.db("cryptoleague_database");
-        dbo.collection("League_Types").findOne({'league_type_id' : league_Types_id}, function(err, result) {
-          if (err) throw err;
-
-          if (result != null) {
-            callback(null, JSON.parse(JSON.stringify(result)));
-          } else  {
-            callback(null, false);
-          }
-
-          db.close();
-      });
-    });
-  },
-
-  findWaitingLeague:
-  function findWaitingLeague(league_type, callback) {
-    MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-        var dbo = db.db("cryptoleague_database");
-        dbo.collection("Leagues").findOne({ $and : [ {'league_type' : league_type},
-                                                      { $or : [
-                                                          { 'status' : "Waiting" }, { 'status' : "Waiting_Locked" }
-                                                        ] }
-                                                    ] }, function(err, result) {
-          if (err) throw err;
-
-          if (result != null) {
-            callback(null, JSON.parse(JSON.stringify(result)));
-          } else  {
-            callback(null, false);
-          }
-
-          db.close();
-      });
-    });
-  },
-
   createLeague:
   function createLeague(league_Types_id, user_id, callback) {
-    var user = { "user_id": user_id, "portfolio_id": null};
+    var user = { "user_id": user_id, "portfolio_id": null };
 
     findLeagueType(league_Types_id, function(err, result) {
       findWaitingLeague(result.title, function(error, league_result) {
-        if (error || league == false) {
+        if (error || league_result == false) {
 
           var league = new league_schema();
 
+          league.league_id = league._id;
           league.league_type =  result.title;
           league.status = "Waiting";
           league.portfolio_ids.push(user);
@@ -316,22 +317,35 @@ module.exports = {
           MongoClient.connect(mongodbUrl, function (err, db) {
             if (err) throw err;
             var dbo = db.db("cryptoleague_database");
-            dbo.collection("Leagues").findOneAndUpdate({'_id' : league_result._id}, {$push: {portfolio_ids : user}}, 
-              function(err, league_result_exists) {
+            league_result.portfolio_ids.push(user);
+            // console.log(league_result.portfolio_ids.length);
+
+            dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result._id}, 
+              {$push: {'portfolio_ids': {"user_id": user_id, "portfolio_id": null}}},
+              function(err, res) {
                 if (err) throw err;
 
-                if (league_result_exists.portfolio_ids.length >= 10) {
+                if (league_result.portfolio_ids.length == 10 || league_result.portfolio_ids.length == 100) {
                   var date = new Date();
                   var date2 = new Date(date);
-                  date2.setMinutes(date.getMinutes() + (24 * 60));
+                  
+                  if (league_result.portfolio_ids.length == 100) {
+                    date2.setMinutes(date.getMinutes() + (12 * 60));
+                    league_result.status = "Locked";
+                  } else {
+                    date2.setMinutes(date.getMinutes() + (24 * 60));
+                    league_result.status = "Waiting_Locked";
+                  }
+                  
+                  league_result.start_time = date2;
 
-                  dbo.collection("Leagues").findOneAndUpdate({'_id' : league_result._id}, {$set: {status : "Waiting_Locked", 
+                  dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result._id}, {$set: {status : league_result.status, 
                     start_time: date2}}, function(err, league_result_final) {
-                      callback(null, JSON.parse(JSON.stringify(league_result_final)));
+                      callback(null, JSON.parse(JSON.stringify(league_result)));
                   });
 
                 } else {
-                  callback(null, JSON.parse(JSON.stringify(league_result_exists)));
+                  callback(null, JSON.parse(JSON.stringify(league_result)));
                 }
 
                 db.close();
@@ -340,7 +354,7 @@ module.exports = {
         }
       });
     });
-  },
+  }
 
   // getLeague:
   // function getLeague(callback) {
