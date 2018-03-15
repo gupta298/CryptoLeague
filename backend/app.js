@@ -45,6 +45,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Defining Routes
 app.use('/', index);
 
+//API Documentation
+app.use('/docs', express.static(__dirname + '/public/apidoc'));
+
 // User
 app.use('/auth', auth);
 app.use('/user', user);
