@@ -2,12 +2,12 @@
 	<app-sidebar page="league">
 	</app-sidebar>
 	<div class="page-content">
-		<div *ngIf="waiting;else leagueDetail" style="height: 100%;">
+		<div *ngIf="league.status == 'waiting';else leagueDetail" style="height: 100%;">
 			<app-league-waiting-overlay></app-league-waiting-overlay>
 		</div>
 		<ng-template #leagueDetail>
 			<div class="uk-container uk-margin-top">
-				<div class="uk-text-lead">League #132</div>
+				<div class="uk-text-lead">League #{{league.league_id}}</div>
 				<div class="uk-margin-top card-container uk-flex uk-flex-stretch uk-flex-wrap uk-flex-wrap-stretch">
 					<app-portfolio
 						[onClickCallback]="onPortfolioClicked"

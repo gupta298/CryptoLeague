@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
+import { LeagueService } from '../services/index';
+
+import { League } from '../league';
 
 @Component({
   selector: 'app-league-detail',
@@ -10,10 +15,33 @@ export class LeagueDetailComponent implements OnInit {
 	portfolioOpened: boolean = false;
 	hideCards: boolean = false;
 	waiting: boolean = true;
+  leagueID: string;
+  league: League;
 
-  	constructor() { }
+  	constructor(
+      private leagueService: LeagueService,
+      private route: ActivatedRoute,
+      private router: Router) { }
 
   	ngOnInit() {
+      this.route.params.subscribe(params => {
+        if(!params['id'])
+          this.router.navigate(['/']);
+
+        this.leagueID = params['id'];
+
+        this.leagueService.getLeague(this.leagueID).subscribe(
+          result => {
+            let league = new League();
+            league.deserialize(result);
+            this.league = league;
+            console.log(this.league);
+          }, error => {
+            console.log(error);
+            this.router.navigate(['/']);
+          } 
+        );
+      });
   		this.onPortfolioClicked = this.onPortfolioClicked.bind(this);
   	}
 
