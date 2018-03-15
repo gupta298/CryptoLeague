@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LeagueService } from '../services/index';
+
 declare var UIkit: any;
 
 @Component({
