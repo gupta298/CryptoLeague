@@ -62,6 +62,7 @@ app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
 // League
 app.use('/league_types', passport.authenticate(['jwt'], { session: false }), league_types);
 app.use('/league', passport.authenticate(['jwt'], { session: false }), league);
+app.use('/league/:league_id', passport.authenticate(['jwt'], { session: false }), league);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

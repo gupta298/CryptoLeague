@@ -367,5 +367,25 @@ module.exports = {
         }
       });
     });
+  },
+
+  getLeague:
+  function getLeague(league_id, callback) {
+    console.log(league_id);
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("Leagues").findOne({'league_id' : league_id}, function(err, result) {
+          if (err) throw err;
+
+          if (result != null) {
+            callback(null, result);
+          } else  {
+            callback(null, false);
+          }
+
+          db.close();
+      });
+    });
   }
 };

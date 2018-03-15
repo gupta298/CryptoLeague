@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var leagueSchema = new mongoose.Schema({
-	league_id: Number,
+	league_id: String,
     league_type: String,
     status: String,
     portfolio_ids: [{ user_id: String, portfolio_id: String}],
