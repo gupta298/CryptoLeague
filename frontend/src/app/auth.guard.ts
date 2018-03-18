@@ -27,8 +27,14 @@ export class AuthGuard implements CanActivate {
                 console.log('getUser res', result);
 
                 //update jwt token
-                localStorage.setItem('currentUser', JSON.stringify(this.jwtHelper.decodeToken(result.jwt)));
+                var user = this.jwtHelper.decodeToken(result.jwt);
+                localStorage.setItem('currentUser', JSON.stringify(user));
                 localStorage.setItem('jwtToken', result.jwt);
+
+                
+                if(!user.username) {
+                  this.router.navigate(['/landing'], { queryParams: { returnUrl: state.url }});
+                }
 
                 return true;
               }, error => {
