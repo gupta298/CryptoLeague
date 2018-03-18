@@ -45,9 +45,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Defining Routes
 app.use('/', index);
 
-//API Documentation
-app.use('/docs', express.static(__dirname + '/public/apidoc'));
-
 // User
 app.use('/auth', auth);
 app.use('/user', user);
@@ -65,6 +62,7 @@ app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
 // League
 app.use('/league_types', passport.authenticate(['jwt'], { session: false }), league_types);
 app.use('/league', passport.authenticate(['jwt'], { session: false }), league);
+app.use('/league/:league_id', passport.authenticate(['jwt'], { session: false }), league);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
