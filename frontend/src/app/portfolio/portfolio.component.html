@@ -5,6 +5,10 @@
 				<h3 class="uk-card-title">Your Portfolio</h3>
 			</div>
 			<div *ngIf="hideCards;else other_content">
+				<form class="uk-search uk-search uk-search-default">
+					<a href="" class="uk-search-icon-flip" uk-search-icon></a>
+					<input class="uk-search-input" type="search" placeholder="Search for a coin">
+				</form>
 				<span uk-icon="close" class="uk-button" (click)="portfolioExpand()"></span>
 			</div>
 			<ng-template #other_content><span uk-icon="pencil" class="uk-button" (click)="portfolioExpand()"></span></ng-template>
@@ -33,7 +37,6 @@
 					</ul>
 				</div>	
 			</div>
-			<canvas id="asd" width="200" height="200">Your browser is too old!</canvas>
 		</div>
 
 
@@ -53,32 +56,5 @@
 			</div>
     	<canvas id="piechart" width="200" height="200">Your browser is too old!</canvas>
 		</div>
-		<div *ngIf="hideCards" class="uk-animation-fade-in">
-			<div uk-grid>
-				<ul class="uk-list uk-list-large">
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				</ul>
-				<ul class="uk-list uk-list-large">
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				</ul>
-			</div>
-			<div uk-grid>
-				<ul class="uk-list uk-list-large">
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				</ul>
-				<ul class="uk-list uk-list-large">
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				</ul>
-			</div>
-		</div>
-		
 	</div>
 </div>
