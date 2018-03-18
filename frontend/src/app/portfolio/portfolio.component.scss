@@ -5,3 +5,14 @@
 .flex-full {
     flex: 1;
 }
+
+.upper-half {
+	margin: auto;
+}
+@media only screen and (min-width: 1200px) {
+
+   .upper-half { 
+      font-size: 1.3em; 
+   }
+
+}

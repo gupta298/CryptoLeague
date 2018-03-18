@@ -63,6 +63,18 @@ export class PortfolioComponent implements OnInit {
 		};
 
 		var newPie = new DraggablePiechart(setup);
+
+		var stp = {
+				canvas: document.getElementById('asd'),
+				radius: 0.9,
+				collapsing: true,
+				proportions: this.proportions,
+				drawNode: this.hideNode,
+				onchange: this.onPieChartChange,
+				dragDisabled: true
+			};
+
+			var newPie2 = new DraggablePiechart(stp);
 	}
 
 	hideNode(context, piechart, x, y, centerX, centerY, hover) {

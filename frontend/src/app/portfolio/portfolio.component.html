@@ -8,7 +8,36 @@
 				<span uk-icon="close" class="uk-button" (click)="portfolioExpand()"></span>
 			</div>
 			<ng-template #other_content><span uk-icon="pencil" class="uk-button" (click)="portfolioExpand()"></span></ng-template>
-		</div>		
+		</div>
+
+		
+
+
+		<div *ngIf="hideCards" class="uk-animation-fade-in">
+			<div uk-grid class="uk-flex uk-flex-center">
+				<div class="upper-half">	
+					<ul class="uk-list uk-list-large">
+					    <li>● Search for a coin or Add a coin manually</li>
+					    <li>● Drag the Pie Chart to adjust equity</li>
+					    <li align="center">
+							  OR
+							</li>
+					    <li>● Enter in custom equity percentage value</li>
+					</ul>
+				</div>
+				<div class="upper-half">
+					<ul class="uk-list uk-list-large">
+					    <li>● Expected coins shows no. of coins you would</li>
+					    <li> get for the selected percentage out of $100,000</li>
+					    <li>● Close the window to go back to the league</li>
+					</ul>
+				</div>	
+			</div>
+			<canvas id="asd" width="200" height="200">Your browser is too old!</canvas>
+		</div>
+
+
+
 		<div class="uk-flex uk-flex-between uk-flex-middle uk-margin uk-padding uk-padding-remove-vertical" >
 			<div uk-grid *ngIf="!hideCards">
 				<ul class="uk-list uk-list-large">
@@ -22,7 +51,7 @@
 				    <li>● BTC: 43%</li>
 				</ul>
 			</div>
-    		<canvas id="piechart" width="200" height="200">Your browser is too old!</canvas>
+    	<canvas id="piechart" width="200" height="200">Your browser is too old!</canvas>
 		</div>
 		<div *ngIf="hideCards" class="uk-animation-fade-in">
 			<div uk-grid>
@@ -50,5 +79,6 @@
 				</ul>
 			</div>
 		</div>
+		
 	</div>
 </div>
