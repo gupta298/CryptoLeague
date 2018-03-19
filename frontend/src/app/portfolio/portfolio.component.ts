@@ -22,6 +22,18 @@ export class PortfolioComponent implements OnInit {
 		this.setupPieChart();
 	}
 
+	private portfolioFieldArray: Array<any> = [];
+  private portfolioNewAttribute: any = {};
+
+	rowInsert() {
+		this.portfolioFieldArray.push(this.portfolioNewAttribute);
+		this.portfolioNewAttribute = {};
+	}
+
+	rowDelete(index) {
+		this.portfolioFieldArray.splice(index, 1);
+	}
+
 	portfolioExpand() {
 		if(!this.hideCards){
 			var setup = {

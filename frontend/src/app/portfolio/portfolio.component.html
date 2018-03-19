@@ -6,7 +6,7 @@
 			</div>
 			<div *ngIf="hideCards;else other_content">
 				<form class="uk-search uk-search uk-search-default">
-					<a href="" class="uk-search-icon-flip" uk-search-icon></a>
+					<a class="uk-search-icon-flip" uk-search-icon></a>
 					<input class="uk-search-input" type="search" placeholder="Search for a coin">
 				</form>
 				<span uk-icon="close" class="uk-button" (click)="portfolioExpand()"></span>
@@ -54,13 +54,17 @@
 				    <li>● BTC: 43%</li>
 				</ul>
 			</div>
-			<div *ngIf="hideCards" class="uk-margin-large-top">
-				<table class="uk-table uk-table-small uk-table-divider">
+			<div *ngIf="hideCards" class="uk-margin-large-top uk-animation-fade-in">
+				<table id="portfolio-list" class="uk-table uk-table-small uk-table-divider">
 			    <thead>
 			      <tr>
-			        <th>Table Heading</th>
-			        <th>Table Heading</th>
-			        <th>Table Heading</th>
+			        <th>#</th>
+			        <th>name</th>
+			        <th>color</th>
+			        <th>ticker</th>
+			        <th>percentage</th>
+			        <th>exp. coins</th>
+			        <th></th>
 			      </tr>
 			    </thead>
 			    <tbody>
@@ -68,16 +72,28 @@
 			        <td>Table Data</td>
 			        <td>Table Data</td>
 			        <td>Table Data</td>
+			        <td>Table Data</td>
+			        <td>Table Data</td>
+			        <td>Table Data</td>
+			        <td><span uk-icon="close" class="uk-button" (click)="portfolioExpand()"></span></td>
 			    	</tr>
 	          <tr>
 			        <td>Table Data</td>
 			        <td>Table Data</td>
 			        <td>Table Data</td>
+			        <td>Table Data</td>
+			        <td>Table Data</td>
+			        <td>Table Data</td>
+			        <td><span uk-icon="close" class="uk-button" (click)="portfolioExpand()"></span></td>
 			      </tr>
 			      <tr>
 			        <td>Table Data</td>
 			        <td>Table Data</td>
 			        <td>Table Data</td>
+			        <td>Table Data</td>
+			        <td>Table Data</td>
+			        <td>Table Data</td>
+			        <td><span uk-icon="close" class="uk-button" (click)="portfolioExpand()"></span></td>
 			      </tr>
 			    </tbody>
 				</table>
