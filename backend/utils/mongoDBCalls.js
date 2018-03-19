@@ -96,16 +96,13 @@ function getUserObject(user_id, callback) {
       if (err) throw err;
 
       if (result) {
-        // getRankOfUser(user_id, function(error, rank) {
-          var object = {
-            'username' : result.username,
-            'tokens' : result.tokens,
-            'profilePicture' : result.profilePicture,
-            'user_id' : result._id
-            // 'world_rank' : rank.rank
-          };
-          callback(null, JSON.parse(JSON.stringify(object)));
-        // });
+        var object = {
+          'username' : result.username,
+          'tokens' : result.tokens,
+          'profilePicture' : result.profilePicture,
+          'user_id' : result._id
+        };
+        callback(null, JSON.parse(JSON.stringify(object)));
       } else  {
         callback(null, null);
       }
@@ -334,74 +331,82 @@ module.exports = {
 
   createLeague:
   function createLeague(league_Types_id, user_id, callback) {
-    var user = { "user_id": user_id, "portfolio_id": null };
+    getUserObject(user_id, function(err, user) {
+      findLeagueType(league_Types_id, function(err, result) {
+        findWaitingLeague(result.title, function(error, league_result) {
+          if (error || league_result == false) {
 
-    findLeagueType(league_Types_id, function(err, result) {
-      findWaitingLeague(result.title, function(error, league_result) {
-        if (error || league_result == false) {
+            getNextSequenceValue(function(error, next_number) {
+              var league = new league_schema();
 
-          getNextSequenceValue(function(error, next_number) {
-            var league = new league_schema();
+              league.league_id = next_number;
+              league.league_type =  result.title;
+              league.status = "Waiting";
+              league.portfolio_ids.push({
+                "username": user.username,
+                "tokens": user.tokens,
+                "profilePicture": user.profilePicture,
+                "user_id": user.user_id,
+                "portfolio_id" : null
+              });
+              league.start_time = null;
 
-            league.league_id = next_number;
-            league.league_type =  result.title;
-            league.status = "Waiting";
-            league.portfolio_ids.push(user);
-            league.start_time = null;
+              MongoClient.connect(mongodbUrl, function (err, db) {
+                if (err) throw err;
+                var dbo = db.db("cryptoleague_database");
+                dbo.collection("Leagues").insertOne(league, function(err, res) {
+                  if (err) throw err;
 
+                  callback(null, JSON.parse(JSON.stringify(league)));
+
+                  db.close();
+                });
+              });
+            });
+
+          } else {
             MongoClient.connect(mongodbUrl, function (err, db) {
               if (err) throw err;
               var dbo = db.db("cryptoleague_database");
-              dbo.collection("Leagues").insertOne(league, function(err, res) {
-                if (err) throw err;
+              user.portfolio_id = null;
+              league_result.portfolio_ids.push(user);
 
-                callback(null, JSON.parse(JSON.stringify(league)));
+              dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, 
+                {$push: {'portfolio_ids': user}}, function(err, res) {
+                  if (err) throw err;
 
-                db.close();
-              });
-            });
-          });
+                  console.log("current users in the league: " + league_result.portfolio_ids.length);
 
-        } else {
-          MongoClient.connect(mongodbUrl, function (err, db) {
-            if (err) throw err;
-            var dbo = db.db("cryptoleague_database");
-            league_result.portfolio_ids.push(user);
+                  if (league_result.portfolio_ids.length == 10 || league_result.portfolio_ids.length >= 100) {
+                    if (league_result.portfolio_ids.length >= 100) {
+                      league_result.status = "Locked";
+                    } else {
+                      var date = new Date();
+                      var date2 = new Date(date);
+                    
+                      date2.setMinutes(date.getMinutes() + (24 * 60));
+                      league_result.status = "Waiting_Locked";
 
-            dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, 
-              {$push: {'portfolio_ids': {"user_id": user_id, "portfolio_id": null}}},
-              function(err, res) {
-                if (err) throw err;
+                      league_result.start_time = date2;
 
-                if (league_result.portfolio_ids.length == 10 || league_result.portfolio_ids.length == 100) {
-                  if (league_result.portfolio_ids.length == 100) {
-                    league_result.status = "Locked";
+                      // TODO Call the function that will execute when this league starts, so after 24 hours
+
+                    }
+
+                    dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, 
+                      start_time: date2}}, function(err, league_result_final) {
+                        callback(null, JSON.parse(JSON.stringify(league_result)));
+                    });
+
                   } else {
-                    var date = new Date();
-                    var date2 = new Date(date);
-                  
-                    date2.setMinutes(date.getMinutes() + (24 * 60));
-                    league_result.status = "Waiting_Locked";
-
-                    league_result.start_time = date2;
-
-                    // TODO Call the function that will execute when this league starts, so after 24 hours
-
+                    callback(null, JSON.parse(JSON.stringify(league_result)));
                   }
 
-                  dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, 
-                    start_time: date2}}, function(err, league_result_final) {
-                      callback(null, JSON.parse(JSON.stringify(league_result)));
-                  });
-
-                } else {
-                  callback(null, JSON.parse(JSON.stringify(league_result)));
-                }
-
-                db.close();
+                  db.close();
+              });
             });
-          });
-        }
+          }
+        });
       });
     });
   },
@@ -414,23 +419,17 @@ module.exports = {
         dbo.collection("Leagues").findOne({'league_id' : league_id}, function(err, result) {
           if (err) throw err;
 
-          if (result != null) {
+          if (result) {
             var foundUser = false;
             asyncLoop(result.portfolio_ids, function (item, next) {
-              getUserObject(item.user_id, function(error, user) {
-                if (item.user_id == user_id) {
-                  // Get portfolio here
-                  foundUser = true;
-                } else {
-                  if (result.status != 'Finished') {
-                    item.portfolio_id = null;
-                  }
+              if (item.user_id == user_id) {
+                foundUser = true;
+              } else {
+                if (result.status != 'Finished') {
+                  item.portfolio_id = null;
                 }
-                if (user) {
-                  item.user_id = user;
-                }
-                next();
-              });
+              }
+              next();
             }, function () {
               if (foundUser == false) {
                 if (result.status == 'Finished') {
