@@ -15,8 +15,8 @@ const mongo = require('../utils/mongoDBCalls');
  *
  * @apiSuccess {JSON} League Returns the league object that is requested.
 */
-router.get('/:league_id', (req, res) => {
-    mongo.getLeague(req.params.league_id, function(error, response) {
+router.get('/:league_id', passport.authenticate(['jwt'], { session: false }), (req, res) => {
+    mongo.getLeague(req.params.league_id, req.user._id, function(error, response) {
       res.send(response);
     });
   }
@@ -33,7 +33,7 @@ router.get('/:league_id', (req, res) => {
 */
 router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
 	if (req.user.currentLeague_id) {
-		mongo.getLeague(req.user.currentLeague_id, function(error, response) {
+		mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
 	      res.send(response);
 	    });
 	} else {

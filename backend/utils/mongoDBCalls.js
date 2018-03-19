@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+  , assert = require('assert')
+  , ObjectId = require('mongodb').ObjectID;
 
-// Connection URL
 const config = require('../config/config');
 const mongodbUrl = config.mongoDBHost;
 
@@ -57,6 +57,61 @@ function getNextSequenceValue(callback) {
     dbo.collection("League_Counter").findOneAndUpdate({'_id': 'Leagues' }, {$inc: { 'sequence_value': 1 }}, function(error, result) {
       callback(null, result.value.sequence_value);
      });
+  });
+}
+
+function getRankOfUser(id, callback) {
+  MongoClient.connect(mongodbUrl, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("cryptoleague_database");
+    dbo.collection("Users").find({}).sort( { tokens: -1 } ).toArray(function(err, result) {
+      if (err) throw err;
+
+      if (result != null) {
+        var resultIndex = 0;
+        var counter = 1;
+        asyncLoop(result, function (item, next) {
+          if (item._id.equals(id)) {
+            resultIndex = counter;
+          }
+          counter++;
+          next();
+        }, function () {
+          var object = { "rank" : resultIndex };
+          callback(null, JSON.parse(JSON.stringify(object)));
+        });
+      } else  {
+        callback(null, false);
+      }
+      db.close();
+    });
+  });
+}
+
+function getUserObject(user_id, callback) {
+  MongoClient.connect(mongodbUrl, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("cryptoleague_database");
+    dbo.collection("Users").findOne({'_id' : ObjectId(user_id)}, function(err, result) {
+      if (err) throw err;
+
+      if (result) {
+        // getRankOfUser(user_id, function(error, rank) {
+          var object = {
+            'username' : result.username,
+            'tokens' : result.tokens,
+            'profilePicture' : result.profilePicture,
+            'user_id' : result._id
+            // 'world_rank' : rank.rank
+          };
+          callback(null, JSON.parse(JSON.stringify(object)));
+        // });
+      } else  {
+        callback(null, null);
+      }
+
+      db.close();
+    });
   });
 }
 
@@ -118,19 +173,19 @@ module.exports = {
   function getUserViaID(userID, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
-        var dbo = db.db("cryptoleague_database");
-        dbo.collection("Users").findOne({'_id' : userID}, function(err, result) {
-          if (err) throw err;
+      var dbo = db.db("cryptoleague_database");
+      dbo.collection("Users").findOne({'_id' : userID}, function(err, result) {
+        if (err) throw err;
 
-          if (result != null) {
-            callback(null, JSON.parse(JSON.stringify(result)));
-          } else  {
-            callback(null, false);
-          }
+        if (result != null) {
+          callback(null, JSON.parse(JSON.stringify(result)));
+        } else  {
+          callback(null, false);
+        }
 
-          db.close();
-        });
+        db.close();
       });
+    });
   },
 
   getUserViaUsername:
@@ -182,7 +237,7 @@ module.exports = {
           if (err) {
             throw err;
           }
-          
+
           callback(null, token.generateAccessToken(user));
           db.close();
       });
@@ -210,30 +265,8 @@ module.exports = {
 
   getUserRank:
   function getUserRank(id, callback) {
-    MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").find({}).sort( { tokens: -1 } ).toArray(function(err, result) {
-        if (err) throw err;
-
-        if (result != null) {
-          var resultIndex = 0;
-          var counter = 1;
-          asyncLoop(result, function (item, next) {
-            if (item._id.equals(id)) {
-              resultIndex = counter;
-            }
-            counter++;
-            next();
-          }, function () {
-            var object = { "rank" : resultIndex };
-            callback(null, JSON.parse(JSON.stringify(object)));
-          });
-        } else  {
-          callback(null, false);
-        }
-        db.close();
-      });
+    getRankOfUser(id, function(error, result) {
+      callback(error, result);
     });
   },
 
@@ -374,8 +407,7 @@ module.exports = {
   },
 
   getLeague:
-  function getLeague(league_id, callback) {
-    console.log(league_id);
+  function getLeague(league_id, user_id, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
         var dbo = db.db("cryptoleague_database");
@@ -383,9 +415,35 @@ module.exports = {
           if (err) throw err;
 
           if (result != null) {
-            callback(null, result);
+            var foundUser = false;
+            asyncLoop(result.portfolio_ids, function (item, next) {
+              getUserObject(item.user_id, function(error, user) {
+                if (item.user_id == user_id) {
+                  // Get portfolio here
+                  foundUser = true;
+                } else {
+                  if (result.status != 'Finished') {
+                    item.portfolio_id = null;
+                  }
+                }
+                if (user) {
+                  item.user_id = user;
+                }
+                next();
+              });
+            }, function () {
+              if (foundUser == false) {
+                if (result.status == 'Finished') {
+                  callback(null, JSON.parse(JSON.stringify(result)));
+                } else {
+                  callback(null, {'message' : "Access denied! User not in the league!"});
+                }
+              } else {
+                callback(null, JSON.parse(JSON.stringify(result)));
+              }
+            });
           } else  {
-            callback(null, false);
+            callback(null, { 'message' : "League does not exist!" });
           }
 
           db.close();
