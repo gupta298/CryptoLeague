@@ -1,0 +1,38 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Varun Gupta
+
+Week 5 (Summary)
+03/18 N/A 5b2f5a0 Merge branch 'master' of https://github.com/gupta298/CryptoLeague 
+03/18 1 hr 5bc7afa Fixed an issue with the put request to update the user information 
+03/15 2.5 hr 9a2a970 Implemented get league and fixed some errors in post league route 
+03/14 N/A 36a94b3 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into backend/leagues 
+03/14 2 hr 33dc2e8 Added the league id auto incremental number 
+03/14 0.5 hr 5dd7e35 Updated the apidocs routes
+03/14 5 mins 7dd0636 Adding comments 
+03/14 0.5 hr 1bea6a7 Fixed a timer issue 
+03/14 0.5 hr 87b41ba Updating documentation and packages 
+03/14 2 hr 4aff7e0 Finished create and join route for the league in the backend 
+03/14 5 mins 1358dc4 Adding console logs 
+03/14 2 hr f310d15 Implementing league for the backend 
+03/14 1 hr 995e89c Implemented a route to get all league types 
+03/13 N/A a133643 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into backend/leagues 
+03/13 4 hr 367bc87 Adding Sandbox to the backend 
+03/13 0.5 hr 3405888 Updating the league model and adding three collection to mongodb for the leagues 
+03/12 0.25 hr 9823e8f Updating the docs 
+03/12 0.5 hr 7b3d968 Adding the route to view the backend documentation 
+03/12 5 mins 36dc231 Fixed the merge conflicts
+03/12 N/A 7a1a40c Merging
+03/12 6 hr 83f70fa Updated the documentation, orgainzed the postman requests, and changed some variables for the backend
+03/10 1 hr aa1abbc Updated the model for leagues 
+03/10 N/A 6797c36 Merge branch 'master' of https://github.com/gupta298/CryptoLeague 
+03/10 1.5 hr 41a933f Cleaned the backend 
+03/05 N/A 1b9d8d4 Merge remote-tracking branch 'origin' into backend/leagues 
+03/05 5 mins 426f4e3 Updating the project backlog 
+03/05 N/A ed7c09e Merge branch 'master' of https://github.com/gupta298/CryptoLeague into backend/leagues 
+03/05 2 hr 404b813 Updating the docs folder
+
+Week 6 (Plan) 
+03/19 3 hr Finish the GET league route
+03/20 4 hr Implement the GET portfolio route
+03/21 2 hr Implement the gains / losses for the portfolio and make a route accordingly
+03/24 3 hr Finish all manual testing of the backend, update the records, and make some Unit tests if time allows

@@ -119,7 +119,7 @@ module.exports = {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
         var dbo = db.db("cryptoleague_database");
-        dbo.collection("Users").findOne({'id' : userID}, function(err, result) {
+        dbo.collection("Users").findOne({'_id' : userID}, function(err, result) {
           if (err) throw err;
 
           if (result != null) {
@@ -158,13 +158,11 @@ module.exports = {
       if (err) throw err;
 
       var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOneAndUpdate({'id': user.id}, {$set: {email: user.email, username: user.username, 
+      dbo.collection("Users").findOneAndUpdate({'_id': user._id}, {$set: {email: user.email, username: user.username, 
         profilePicture: user.profilePicture}}, function(err, res) {
         if (err) {
           throw err;
         }
-
-        console.log(res);
 
         callback(null, token.generateAccessToken(user));
 
@@ -179,14 +177,14 @@ module.exports = {
       if (err) throw err;
 
       var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOneAndUpdate({'id': user.id}, {$set: {currentLeague_id: user.currentLeague_id}}, function(err, res) {
-        if (err) {
-          throw err;
-        }
-
-        callback(null, token.generateAccessToken(user));
-
-        db.close();
+      dbo.collection("Users").findOneAndUpdate({'_id': user._id}, {$set: {currentLeague_id: user.currentLeague_id, tokens: user.tokens}}, 
+        function(err, res) {
+          if (err) {
+            throw err;
+          }
+          
+          callback(null, token.generateAccessToken(user));
+          db.close();
       });
     });
   },
@@ -277,7 +275,7 @@ module.exports = {
   },
 
   checkLeagueType:
-  function checkLeagueType(league_Types_id, callback) {
+  function checkLeagueType(league_Types_id, user_id, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
         var dbo = db.db("cryptoleague_database");
@@ -285,9 +283,15 @@ module.exports = {
           if (err) throw err;
 
           if (result != null) {
-            callback(null, true);
+            dbo.collection("Users").findOne({'_id' : user_id}, function(err, result_user) {
+              if (result_user.tokens < result.buy_in) {
+                callback('No enough tokens', null);
+              } else {
+                callback(null, result);
+              }
+            });
           } else  {
-            callback(null, false);
+            callback('League does not exist', null);
           }
 
           db.close();

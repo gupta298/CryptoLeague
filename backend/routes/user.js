@@ -21,7 +21,7 @@ router.get('/',
   // This request must be authenticated using a JWT, or else we will fail
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
-    mongo.getUserViaID(req.user.id, function(error, result) {
+    mongo.getUserViaID(req.user._id, function(error, result) {
       if (error) {
         res.send(null);
       } else {
@@ -44,7 +44,7 @@ router.get('/',
 router.put('/',
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
-    mongo.getUserViaID(req.user.id, function(error, result) {
+    mongo.getUserViaID(req.user._id, function(error, result) {
       if (error) {
         res.send("User does not exists");
       } else {
