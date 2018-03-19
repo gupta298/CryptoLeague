@@ -1,0 +1,20 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) === 
+Name: Ritwik Bhardwaj 
+
+Week 5 (Summary) 
+03/18 2 hr 306ab4d added deleting row functionality and search bar, minor bug fixes
+03/18 1 hr 17a3e16 table added on portfolio
+03/18 1 hr 805441d updated the portfolio UI
+03/18 3 hr 4df4ffe basic portfolio UI implemented
+03/18 N/A 9ff5086 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leagues
+03/17 N/A f597fa0 Merge branch 'frontend/leagues' of https://github.com/gupta298/CryptoLeague into frontend/portfolio-Ritwik
+03/17 4 hr 88ab8c0 fixed the null "username not set" issue
+03/10 N/A 3a1fcec Merge pull request #26 from gupta298/frontend/portfolio-Ritwik added more documentation
+03/10 1 hr 0522928 Added more documentation
+03/10 N/A a182456 Merge pull request #25 from gupta298/frontend/portfolio-Ritwik Frontend/portfolio ritwik
+03/10 2 hr 2c66846 documentation functionality added
+03/10 N/A d0b15c6 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio-Ritwik
+
+Week 6 (Plan)
+03/22 10 hr Make the UI for portfolio page responsive
+03/22 10 hr Finish the frontend for the portfolio page
