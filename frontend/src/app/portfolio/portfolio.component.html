@@ -7,7 +7,17 @@
 			<div *ngIf="hideCards;else other_content">
 				<form class="uk-search uk-search uk-search-default">
 					<a class="uk-search-icon-flip" uk-search-icon></a>
-					<input class="uk-search-input" type="search" placeholder="Search for a coin">
+					<input class="uk-search-input" type="search" placeholder="Search for a coin" (input)="onSearchChange($event.target.value)">
+					<div uk-dropdown >
+					    <ul class="uk-nav uk-dropdown-nav">				
+					        
+					        	<li *ngFor="let c of autoComplete">
+					        		{{c}}
+					        	</li>
+					        	<li class="uk-nav-divider"></li>
+					    
+					    </ul>
+					</div>
 				</form>
 				<span uk-icon="close" class="uk-button" (click)="portfolioExpand()"></span>
 			</div>
@@ -20,6 +30,12 @@
 		<div *ngIf="hideCards" class="uk-animation-fade-in">
 			<div uk-grid class="uk-flex uk-flex-center">
 				<div class="upper-half">	
+					<!--input type="text" class="form-control" (input)="onSearchChange($event.target.value)">
+					<ul>
+					  <li *ngFor="let c of autoComplete">
+					    {{c}}
+					  </li>
+					</ul-->
 					<ul class="uk-list uk-list-large">
 					    <li>● Search for a coin or Add a coin manually</li>
 					    <li>● Drag the Pie Chart to adjust equity</li>
@@ -68,33 +84,42 @@
 			      </tr>
 			    </thead>
 			    <tbody>
-			      <tr>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td><span uk-icon="close" class="uk-button" (click)="portfolioExpand()"></span></td>
+			    	<tr *ngFor = "let field of portfolioFieldArray; let i = index">
+			    		<!--"comment"-->
+			    		<td>{{i+1}}</td>
+			        <td>{{field.name}}</td>
+			        <td>{{field.color}}</td>
+			        <td>{{field.ticker}}</td>
+			        <td>{{field.percentage}}</td>
+			        <td>{{field.exp_coins}}</td>
+			        <td>
+			        	<span uk-icon="close" class="uk-button" (click)="rowDelete(i)"></span>
+			        </td>
 			    	</tr>
-	          <tr>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td><span uk-icon="close" class="uk-button" (click)="portfolioExpand()"></span></td>
-			      </tr>
-			      <tr>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td>Table Data</td>
-			        <td><span uk-icon="close" class="uk-button" (click)="portfolioExpand()"></span></td>
-			      </tr>
+			    	<tr *ngIf="isNewRow">
+			    		<td></td>
+	            <td>
+                <input class="uk-input" type="text" id="newAttributeName" [(ngModel)]="portfolioNewAttribute.name" name="newAttributeName" />
+	            </td>
+	            <td>
+                {{portfolioNewAttribute.color}}
+		          </td>
+		          <td>
+		            {{portfolioNewAttribute.ticker}}
+		          </td>
+		          <td>
+                <input class="uk-input" type="text" id="newAttributePercentage" [(ngModel)]="portfolioNewAttribute.percentage" name="newAttributePercentage" />
+	            </td>
+	            <td>
+		            {{portfolioNewAttribute.exp_coins}}
+		          </td>
+		          <td>
+		            <span uk-icon="check" class="uk-button" (click)="rowInsert()"></span>
+		          </td>
+		        </tr>
+			    	<tr *ngIf="!isNewRow">
+			    		<td (click)="clickRowInsert()" colspan="7" align="center">+ Add a coin</td>
+			    	</tr>
 			    </tbody>
 				</table>
 			</div>
