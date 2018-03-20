@@ -16,7 +16,7 @@ export class LeagueDetailComponent implements OnInit {
 	hideCards: boolean = false;
 	waiting: boolean = true;
   leagueID: string;
-  league: League;
+  league: League = new League();
 
   	constructor(
       private leagueService: LeagueService,
@@ -32,9 +32,7 @@ export class LeagueDetailComponent implements OnInit {
 
         this.leagueService.getLeague(this.leagueID).subscribe(
           result => {
-            let league = new League();
-            league.deserialize(result);
-            this.league = league;
+            this.league.deserialize(result);
             console.log(this.league);
           }, error => {
             console.log(error);
