@@ -10,6 +10,8 @@ Run `npm install -g bower` to install bower and `bower install` to install bower
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+For testing locally, you'll have to disable same origin policy on your browser. Run `open -a Google\ Chrome --args --disable-web-security --user-data-dir` to disable same origin policy on Chrome on macOS.
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.

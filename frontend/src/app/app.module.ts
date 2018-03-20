@@ -15,11 +15,13 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 import { AuthGuard } from './auth.guard';
 
-import { AuthenticationService, NewsService, MarketService, UserService } from './services/index';
+import { AuthenticationService, NewsService, MarketService, UserService, LeagueService } from './services/index';
 import { SettingsComponent } from './settings/settings.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { LeagueDetailComponent } from './league-detail/league-detail.component';
+import { LeagueWaitingOverlayComponent } from './league-waiting-overlay/league-waiting-overlay.component';
 import { LeagueSelectComponent } from './league-select/league-select.component';
 
 @NgModule({
@@ -34,6 +36,8 @@ import { LeagueSelectComponent } from './league-select/league-select.component';
     MarketComponent,
     SettingsComponent,
     PortfolioComponent,
+    LeagueDetailComponent,
+    LeagueWaitingOverlayComponent,
     LeagueSelectComponent
   ],
   imports: [
@@ -49,6 +53,7 @@ import { LeagueSelectComponent } from './league-select/league-select.component';
     NewsService,
     UserService,
     MarketService,
+    LeagueService,
     AuthGuard
   ],
   bootstrap: [AppComponent]
