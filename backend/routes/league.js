@@ -7,7 +7,7 @@ const mongo = require('../utils/mongoDBCalls');
 
 /**
  * @api {GET} /league/:league_id Request to get the league
- * @apiName Get_League
+ * @apiName Get_League_With_LeagueId
  * @apiGroup League
  *
  * @apiParam {Number} league_id ID of the requested league.
@@ -19,8 +19,7 @@ router.get('/:league_id', passport.authenticate(['jwt'], { session: false }), (r
     mongo.getLeague(req.params.league_id, req.user._id, function(error, response) {
       res.send(response);
     });
-  }
-);
+});
 
 /**
  * @api {GET} /league Request to get the league
@@ -39,8 +38,7 @@ router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 	} else {
 		res.send({'message' : "Not in a league"})
 	}
-  }
-);
+});
 
 /**
  * @api {POST} /league Request to create or join a league
