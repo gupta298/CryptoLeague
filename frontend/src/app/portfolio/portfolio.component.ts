@@ -34,11 +34,6 @@ export class PortfolioComponent implements OnInit {
 	ngOnInit() {
 		this.setupPieChart();
 
-		this.coins.push("abcd");
-		this.coins.push("akshfvbkj");
-		this.coins.push("abcalfdasdd");
-		this.coins.push("abcdeasdflklnj");
-
 		this.portfolioNewAttribute.name = "bitcoin";
 		this.portfolioNewAttribute.ticker = "btc";
 		this.portfolioNewAttribute.color = "blue";
