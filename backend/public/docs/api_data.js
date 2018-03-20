@@ -47,6 +47,91 @@ define({ "api": [
   },
   {
     "type": "GET",
+    "url": "/league/:league_id",
+    "title": "Request to get the league",
+    "name": "Get_League",
+    "group": "League",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "league_id",
+            "description": "<p>ID of the requested league.</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "League",
+            "description": "<p>Returns the league object that is requested.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/league.js",
+    "groupTitle": "League"
+  },
+  {
+    "type": "GET",
+    "url": "/league",
+    "title": "Request to get the league",
+    "name": "Get_League",
+    "group": "League",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "League",
+            "description": "<p>Returns the league object that the current user is in.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/league.js",
+    "groupTitle": "League"
+  },
+  {
+    "type": "GET",
     "url": "/league_types",
     "title": "Request to get all league types",
     "name": "Get_League_Types",
