@@ -59,10 +59,10 @@ router.post('/', passport.authenticate(['jwt'], { session: false }), (req, res) 
 	  	} else {
 	  		mongo.checkLeagueType(req.body.league_type_id, req.user._id, function(error, response) {
 				if (!error && response) {
-					mongo.createLeague(req.body.league_type_id, req.user._id, function(error, response_league) {
+					mongo.createLeague(response.league_type, response.user, function(error, response_league) {
 						req.user.currentLeague_id = response_league.league_id;
-						req.user.tokens -=  response.buy_in;
-						mongo.updateUserLeague(req.user, function(error, response) {
+						req.user.tokens -=  response.league_type.buy_in;
+						mongo.updateUserLeague(req.user, function(err, resp) {
 							res.send(response_league);
 						});
 					});

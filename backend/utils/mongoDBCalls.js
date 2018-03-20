@@ -17,7 +17,7 @@ function findLeagueType(league_Types_id, callback) {
     dbo.collection("League_Types").findOne({'league_type_id' : league_Types_id}, function(err, result) {
       if (err) throw err;
 
-      if (result != null) {
+      if (result) {
         callback(null, JSON.parse(JSON.stringify(result)));
       } else  {
         callback(null, false);
@@ -39,7 +39,7 @@ function findWaitingLeague(league_type, callback) {
                                                   ] }, function(err, result) {
         if (err) throw err;
 
-        if (result != null) {
+        if (result) {
           callback(null, JSON.parse(JSON.stringify(result)));
         } else  {
           callback(null, false);
@@ -67,7 +67,7 @@ function getRankOfUser(id, callback) {
     dbo.collection("Users").find({}).sort( { tokens: -1 } ).toArray(function(err, result) {
       if (err) throw err;
 
-      if (result != null) {
+      if (result) {
         var resultIndex = 0;
         var counter = 1;
         asyncLoop(result, function (item, next) {
@@ -130,7 +130,6 @@ function updateUserInLeagues(user) {
           }
           next_portfolio();
         }, function () {
-          // Update in the database
           dbo.collection("Leagues").findOneAndUpdate({'league_id': item}, {$set: {'portfolio_ids': result.portfolio_ids}});
         });
 
@@ -162,7 +161,7 @@ module.exports = {
       dbo.collection("Users").findOne({'id' : jwt_payload.id}, function(err, result) {
         if (err) throw err;
 
-        if (result != null) {
+        if (result) {
           callback(null, result);
         } else  {
           callback(null, false);
@@ -181,7 +180,7 @@ module.exports = {
       dbo.collection("Users").findOne({'id' : user.id}, function(err, result) {
         if (err) throw err;
 
-        if (result != null) {
+        if (result) {
           callback(null, result);
         } else  {
           dbo.collection("Users").insertOne(user, function(err, res) {
@@ -204,7 +203,7 @@ module.exports = {
       dbo.collection("Users").findOne({'_id' : ObjectId(userID)}, function(err, result) {
         if (err) throw err;
 
-        if (result != null) {
+        if (result) {
           callback(null, JSON.parse(JSON.stringify(result)));
         } else  {
           callback(null, false);
@@ -223,7 +222,7 @@ module.exports = {
       dbo.collection("Users").findOne({'username' : username}, function(err, result) {
         if (err) throw err;
 
-        if (result != null) {
+        if (result) {
           callback(null, true);
         } else  {
           callback(null, false);
@@ -284,7 +283,7 @@ module.exports = {
       dbo.collection("Users").find({}).sort( { tokens: -1 } ).limit(25).skip(page).toArray(function(err, result) {
         if (err) throw err;
 
-        if (result != null) {
+        if (result) {
           callback(null, JSON.parse(JSON.stringify(result)));
         } else  {
           callback(null, false);
@@ -310,7 +309,7 @@ module.exports = {
       dbo.collection("Users").find({}).toArray(function(err, result) {
         if (err) throw err;
 
-        if (result != null) {
+        if (result) {
           var object = { "totalUsers" : result.length };
           callback(null, JSON.parse(JSON.stringify(object)));
         } else  {
@@ -329,7 +328,7 @@ module.exports = {
       dbo.collection("League_Types").find({}).toArray(function(err, result) {
         if (err) throw err;
 
-        if (result != null) {
+        if (result) {
           callback(null, JSON.parse(JSON.stringify(result)));
         } else  {
           callback(null, false);
@@ -343,106 +342,109 @@ module.exports = {
   function checkLeagueType(league_Types_id, user_id, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
-        var dbo = db.db("cryptoleague_database");
-        dbo.collection("League_Types").findOne({'league_type_id' : league_Types_id}, function(err, result) {
-          if (err) throw err;
+      var dbo = db.db("cryptoleague_database");
+      dbo.collection("League_Types").findOne({'league_type_id' : league_Types_id}, function(err, result) {
+        if (err) throw err;
 
-          if (result != null) {
-            dbo.collection("Users").findOne({'_id' : ObjectId(user_id)}, function(err, result_user) {
-              if (result_user.tokens < result.buy_in) {
-                callback('No enough tokens', null);
-              } else {
-                callback(null, result);
-              }
-            });
-          } else  {
-            callback('League does not exist', null);
-          }
+        if (result != null) {
+          dbo.collection("Users").findOne({'_id' : ObjectId(user_id)}, function(err, result_user) {
+            if (result_user.tokens < result.buy_in) {
+              callback('No enough tokens', null);
+            } else {
+              callback(null, {'league_type' : result, 'user' : result_user});
+            }
+          });
+        } else  {
+          callback('League does not exist', null);
+        }
 
-          db.close();
+        db.close();
       });
     });
   },
 
   createLeague:
-  function createLeague(league_Types_id, user_id, callback) {
-    getUserObject(user_id, function(err, user) {
-      findLeagueType(league_Types_id, function(err, result) {
-        findWaitingLeague(result.title, function(error, league_result) {
-          if (error || league_result == false) {
+  function createLeague(league_Type, user, callback) {
+    findWaitingLeague(league_Type.title, function(error, league_result) {
+      if (league_result == false) {
+        getNextSequenceValue(function(error, next_number) {
 
-            getNextSequenceValue(function(error, next_number) {
-              var league = new league_schema();
+          var league = new league_schema();
+          league.league_id = next_number;
+          league.league_type =  league_Type.title;
+          league.status = "Waiting";
+          league.portfolio_ids.push({
+            "username": user.username,
+            "tokens": user.tokens,
+            "profilePicture": user.profilePicture,
+            "user_id": user._id,
+            "portfolio_id" : null
+          });
+          league.start_time = null;
 
-              league.league_id = next_number;
-              league.league_type =  result.title;
-              league.status = "Waiting";
-              league.portfolio_ids.push({
+          MongoClient.connect(mongodbUrl, function (err, db) {
+            if (err) throw err;
+            var dbo = db.db("cryptoleague_database");
+            dbo.collection("Leagues").insertOne(league, function(err, res) {
+              if (err) throw err;
+
+              callback(null, JSON.parse(JSON.stringify(league)));
+
+              db.close();
+            });
+          });
+        });
+
+      } else {
+        MongoClient.connect(mongodbUrl, function (err, db) {
+          if (err) throw err;
+          var dbo = db.db("cryptoleague_database");
+
+          league_result.portfolio_ids.push({
+            "username": user.username,
+            "tokens": user.tokens,
+            "profilePicture": user.profilePicture,
+            "user_id": user._id,
+            "portfolio_id" : null
+          });
+
+          dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, 
+            {$push: {'portfolio_ids': {
                 "username": user.username,
                 "tokens": user.tokens,
                 "profilePicture": user.profilePicture,
-                "user_id": user.user_id,
+                "user_id": user._id,
                 "portfolio_id" : null
-              });
-              league.start_time = null;
+              }
+            }});
 
-              MongoClient.connect(mongodbUrl, function (err, db) {
-                if (err) throw err;
-                var dbo = db.db("cryptoleague_database");
-                dbo.collection("Leagues").insertOne(league, function(err, res) {
-                  if (err) throw err;
+          console.log("current users in the league: " + league_result.portfolio_ids.length);
 
-                  callback(null, JSON.parse(JSON.stringify(league)));
+          if (league_result.portfolio_ids.length == 10 || league_result.portfolio_ids.length >= 100) {
+            if (league_result.portfolio_ids.length >= 100) {
+              league_result.status = "Locked";
+            } else {
+              var date = new Date();
+              var date2 = new Date(date);
+            
+              date2.setMinutes(date.getMinutes() + (24 * 60));
+              league_result.status = "Waiting_Locked";
 
-                  db.close();
-                });
-              });
-            });
+              league_result.start_time = date2;
 
+              // TODO Call the function that will execute when this league starts, so after 24 hours
+            }
+
+            dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
+            
+            callback(null, JSON.parse(JSON.stringify(league_result)));
           } else {
-            MongoClient.connect(mongodbUrl, function (err, db) {
-              if (err) throw err;
-              var dbo = db.db("cryptoleague_database");
-              user.portfolio_id = null;
-              league_result.portfolio_ids.push(user);
-
-              dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, 
-                {$push: {'portfolio_ids': user}}, function(err, res) {
-                  if (err) throw err;
-
-                  console.log("current users in the league: " + league_result.portfolio_ids.length);
-
-                  if (league_result.portfolio_ids.length == 10 || league_result.portfolio_ids.length >= 100) {
-                    if (league_result.portfolio_ids.length >= 100) {
-                      league_result.status = "Locked";
-                    } else {
-                      var date = new Date();
-                      var date2 = new Date(date);
-                    
-                      date2.setMinutes(date.getMinutes() + (24 * 60));
-                      league_result.status = "Waiting_Locked";
-
-                      league_result.start_time = date2;
-
-                      // TODO Call the function that will execute when this league starts, so after 24 hours
-
-                    }
-
-                    dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, 
-                      start_time: date2}}, function(err, league_result_final) {
-                        callback(null, JSON.parse(JSON.stringify(league_result)));
-                    });
-
-                  } else {
-                    callback(null, JSON.parse(JSON.stringify(league_result)));
-                  }
-
-                  db.close();
-              });
-            });
+            callback(null, JSON.parse(JSON.stringify(league_result)));
           }
+
+          db.close();
         });
-      });
+      }
     });
   },
 
@@ -456,7 +458,10 @@ module.exports = {
 
           if (result) {
             var foundUser = false;
+            console.log(user_id);
             asyncLoop(result.portfolio_ids, function (item, next) {
+              console.log(item);
+              // console.log(item.user_id);
               if (item.user_id == user_id) {
                 foundUser = true;
               } else {
