@@ -112,6 +112,36 @@ function getUserObject(user_id, callback) {
   });
 }
 
+function updateUserInLeagues(user) {
+  var all_leagues = user.past_leagues;
+  all_leagues.push(user.currentLeague_id);
+
+  asyncLoop(all_leagues, function (item, next) {
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("cryptoleague_database");
+      dbo.collection("Leagues").findOne({'league_id' : item}, function(err, result) {
+        if (err) throw err;
+
+        asyncLoop(result.portfolio_ids, function (portfolio, next_portfolio) {
+          if (portfolio.user_id == user._id) {
+            portfolio.username = user.username;
+            portfolio.profilePicture = user.profilePicture;
+          }
+          next_portfolio();
+        }, function () {
+          // Update in the database
+          dbo.collection("Leagues").findOneAndUpdate({'league_id': item}, {$set: {'portfolio_ids': result.portfolio_ids}});
+        });
+
+        db.close();
+        next();
+      });
+    });
+  }, function () {
+  });  
+}
+
 module.exports = {
   connectToMongo:
   function connectToMongo(callback) {
@@ -171,7 +201,7 @@ module.exports = {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
       var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOne({'_id' : userID}, function(err, result) {
+      dbo.collection("Users").findOne({'_id' : ObjectId(userID)}, function(err, result) {
         if (err) throw err;
 
         if (result != null) {
@@ -210,11 +240,16 @@ module.exports = {
       if (err) throw err;
 
       var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOneAndUpdate({'_id': user._id}, {$set: {email: user.email, username: user.username, 
+      dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {email: user.email, username: user.username, 
         profilePicture: user.profilePicture}}, function(err, res) {
         if (err) {
           throw err;
         }
+
+        res.value.email = user.email;
+        res.value.username = user.username;
+        res.value.profilePicture = user.profilePicture;
+        updateUserInLeagues(res.value);
 
         callback(null, token.generateAccessToken(user));
 
@@ -229,7 +264,7 @@ module.exports = {
       if (err) throw err;
 
       var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOneAndUpdate({'_id': user._id}, {$set: {currentLeague_id: user.currentLeague_id, tokens: user.tokens}}, 
+      dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {currentLeague_id: user.currentLeague_id, tokens: user.tokens}}, 
         function(err, res) {
           if (err) {
             throw err;
@@ -313,7 +348,7 @@ module.exports = {
           if (err) throw err;
 
           if (result != null) {
-            dbo.collection("Users").findOne({'_id' : user_id}, function(err, result_user) {
+            dbo.collection("Users").findOne({'_id' : ObjectId(user_id)}, function(err, result_user) {
               if (result_user.tokens < result.buy_in) {
                 callback('No enough tokens', null);
               } else {
