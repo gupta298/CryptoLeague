@@ -25,6 +25,7 @@ export class PortfolioComponent implements OnInit {
   coinsArray: Array<any> = [];
   autoComplete: Array<any> = [];
   inSearchBar: boolean = false;
+  addWithSearch: boolean = false;
 
   //temporary- remove all this hard-coded stuff
   coins: Array<any> = [];
@@ -76,19 +77,42 @@ export class PortfolioComponent implements OnInit {
 	}	
 
 	onSearchChange(searchValue : string ) {  
-		this.inSearchBar = true;
-		//console.log(searchValue);
 		this.autoComplete = [];
 		for(let i=0;i<this.coinsArray.length;i++) {
-			if(this.coinsArray[i].name.toLowerCase().startsWith(searchValue)) {
+			if(this.coinsArray[i].name.toLowerCase().startsWith(searchValue.toLowerCase())) {
 				this.autoComplete.push(this.coinsArray[i].name);
 			}
 		}
 
 	}
 
+	addRowFromSearch(name) {
+		console.log(name);
+		this.isNewRow = false;
+		this.addWithSearch = true;
+		this.portfolioNewAttribute = {};
+		for(var i=0;i<this.coinsArray.length;i++) {
+			if(this.coinsArray[i].name == name) {
+				console.log("here");
+				this.portfolioNewAttribute.name = name;
+				this.portfolioNewAttribute.ticker = this.coinsArray[i].symbol;
+				this.portfolioNewAttribute.color = "green";
+				this.portfolioNewAttribute.price = this.coinsArray[i].price;
+				break;
+			}
+		}
+	}
+
 	clickRowInsert() {
+		this.addWithSearch = false;
 		this.isNewRow = true;
+	}
+
+	rowWithSearchInsert() {
+		this.portfolioNewAttribute.exp_coins = this.precisionRound(this.portfolioNewAttribute.percentage*1000/this.portfolioNewAttribute.price, 4);
+		this.portfolioFieldArray.push(this.portfolioNewAttribute);
+		this.portfolioNewAttribute = {};
+		this.addWithSearch = false;
 	}
 
 	rowInsert() {
@@ -99,6 +123,19 @@ export class PortfolioComponent implements OnInit {
 
 	rowDelete(index) {
 		this.portfolioFieldArray.splice(index, 1);
+	}
+
+	deleteNewRow() {
+		this.isNewRow = !this.isNewRow;
+		this.portfolioNewAttribute = {};
+	}
+
+	focusFunction() {
+		this.inSearchBar = true;
+	} 
+
+	focusOutFunction() {
+		this.inSearchBar = false;
 	}
 
 	portfolioExpand() {
@@ -174,5 +211,10 @@ export class PortfolioComponent implements OnInit {
 		var percentages = piechart.getAllSliceSizePercentages();
 		//console.log("percentages", percentages);
 
+	}
+
+	precisionRound(number, precision) {
+  	var factor = Math.pow(10, precision);
+  	return Math.round(number * factor) / factor;
 	}
 }

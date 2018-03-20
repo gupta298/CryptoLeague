@@ -7,17 +7,28 @@
 			<div *ngIf="hideCards;else other_content">
 				<form class="uk-search uk-search uk-search-default">
 					<a class="uk-search-icon-flip" uk-search-icon></a>
-					<input class="uk-search-input" type="search" placeholder="Search for a coin" (input)="onSearchChange($event.target.value)">
-					<div uk-dropdown >
-					    <ul class="uk-nav uk-dropdown-nav">				
+					<input class="uk-search-input" type="search" placeholder="Search for a coin" (input)="onSearchChange($event.target.value)" (focus)="focusFunction()" (focusout)="focusOutFunction()">
+					<div uk-dropdown class="background">
+					    <ul class="uk-nav uk-dropdown-nav dropdown">				
 					        
-					        	<li *ngFor="let c of autoComplete">
-					        		{{c}}
-					        	</li>
-					        	<li class="uk-nav-divider"></li>
-					    
+					        	<li class="uk-margin-right item" align="center" *ngFor="let c of autoComplete">
+					        		<div (click)="addRowFromSearch(c)">{{c}}</div>
+					        		<div class="uk-margin-small uk-nav-divider">
+					        		</div>
+					        	</li> 
 					    </ul>
 					</div>
+					<!--div uk-dropdown class="uk-margin background" >
+		            <ul class="uk-nav uk-dropdown-nav dropdown">				
+								        
+								        	<option style="color=white" class="uk-margin-right item" align="center" *ngFor="let c of autoComplete" (click)="addRowFromSearch()">
+								        		<div>{{c}}</div>
+								        		<div class="uk-margin-small uk-nav-divider">
+								        		</div>
+								        	</option> 
+
+								   </ul>
+		        </div-->
 				</form>
 				<span uk-icon="close" class="uk-button" (click)="portfolioExpand()"></span>
 			</div>
@@ -30,12 +41,6 @@
 		<div *ngIf="hideCards" class="uk-animation-fade-in">
 			<div uk-grid class="uk-flex uk-flex-center">
 				<div class="upper-half">	
-					<!--input type="text" class="form-control" (input)="onSearchChange($event.target.value)">
-					<ul>
-					  <li *ngFor="let c of autoComplete">
-					    {{c}}
-					  </li>
-					</ul-->
 					<ul class="uk-list uk-list-large">
 					    <li>● Search for a coin or Add a coin manually</li>
 					    <li>● Drag the Pie Chart to adjust equity</li>
@@ -97,7 +102,9 @@
 			        </td>
 			    	</tr>
 			    	<tr *ngIf="isNewRow">
-			    		<td></td>
+			    		<td>
+			    			<span uk-icon="close" (click)="deleteNewRow(i)"></span>
+			    		</td>
 	            <td>
                 <input class="uk-input" type="text" id="newAttributeName" [(ngModel)]="portfolioNewAttribute.name" name="newAttributeName" />
 	            </td>
@@ -117,7 +124,30 @@
 		            <span uk-icon="check" class="uk-button" (click)="rowInsert()"></span>
 		          </td>
 		        </tr>
-			    	<tr *ngIf="!isNewRow">
+			    	<tr *ngIf="addWithSearch">
+			    		<td>
+			    			<span uk-icon="close" (click)="deleteNewRow(i)"></span>
+			    		</td>
+	            <td>
+                {{portfolioNewAttribute.name}}
+	            </td>
+	            <td>
+                {{portfolioNewAttribute.color}}
+		          </td>
+		          <td>
+		            {{portfolioNewAttribute.ticker}}
+		          </td>
+		          <td>
+                <input class="uk-input" type="text" id="newAttributePercentage" [(ngModel)]="portfolioNewAttribute.percentage" name="newAttributePercentage" />
+	            </td>
+	            <td>
+		            {{portfolioNewAttribute.exp_coins}}
+		          </td>
+		          <td>
+		            <span uk-icon="check" class="uk-button" (click)="rowWithSearchInsert()"></span>
+		          </td>
+		        </tr>
+		        <tr *ngIf="!isNewRow">
 			    		<td (click)="clickRowInsert()" colspan="7" align="center">+ Add a coin</td>
 			    	</tr>
 			    </tbody>
