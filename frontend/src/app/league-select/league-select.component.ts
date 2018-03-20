@@ -18,7 +18,6 @@ export class LeagueSelectComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    UIkit.alert('#joiningAlert').close();
   }
 
   selected(leagueType) {
