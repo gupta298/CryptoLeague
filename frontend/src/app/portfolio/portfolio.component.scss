@@ -10,15 +10,18 @@
 	margin: auto;
 }
 
+#captain {
+   position: absolute;
+   bottom: 3%;
+   right: 10%;
+}
+
 .background {
 	background: #4ea0f3;
 	color: white;
 }
 
 .dropdown {
-	//position: fixed;
-	//display: block;
-	//width: 320px;
 	max-height: 140px;
 	overflow-y: scroll;
 	z-index: 3;
@@ -30,7 +33,7 @@
 
 @media only screen and (min-width: 1200px) {
   .upper-half { 
-    font-size: 1.3em; 
+    font-size: 1.2em; 
   }
 }
 
@@ -45,6 +48,12 @@
     right: 0;
     border-radius: 3px;
     box-shadow: 0 0 3px rgba(0,0,0,0.2);
+}
+
+.option {
+	opacity: 0.5;
+	background: #4ea0f3;
+	color: white;
 }
 
 /* Let's get this party started */

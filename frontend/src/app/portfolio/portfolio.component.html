@@ -8,7 +8,7 @@
 				<form class="uk-search uk-search uk-search-default">
 					<a class="uk-search-icon-flip" uk-search-icon></a>
 					<input class="uk-search-input" type="search" placeholder="Search for a coin" (input)="onSearchChange($event.target.value)" (focus)="focusFunction()" (focusout)="focusOutFunction()">
-					<div uk-dropdown class="background">
+					<div uk-dropdown="mode: click" class="background">
 					    <ul class="uk-nav uk-dropdown-nav dropdown">				
 					        
 					        	<li class="uk-margin-right item" align="center" *ngFor="let c of autoComplete">
@@ -103,10 +103,20 @@
 			    	</tr>
 			    	<tr *ngIf="isNewRow">
 			    		<td>
-			    			<span uk-icon="close" (click)="deleteNewRow(i)"></span>
+			    			<span uk-icon="close" (click)="deleteNewRow()"></span>
 			    		</td>
 	            <td>
-                <input class="uk-input" type="text" id="newAttributeName" [(ngModel)]="portfolioNewAttribute.name" name="newAttributeName" />
+                <input (input)="onSearchChange($event.target.value)" class="uk-input" type="text" id="newAttributeName" [(ngModel)]="portfolioNewAttribute.name" name="newAttributeName" />
+                <div uk-dropdown="mode: click; pos: top-right" class="background">
+							    <ul class="uk-nav uk-dropdown-nav dropdown">				
+							        
+							        	<li class="uk-margin-right item" align="center" *ngFor="let c of autoComplete">
+							        		<div (click)="addRowFromSearch(c)">{{c}}</div>
+							        		<div class="uk-margin-small uk-nav-divider">
+							        		</div>
+							        	</li> 
+							    </ul>
+								</div>
 	            </td>
 	            <td>
                 {{portfolioNewAttribute.color}}
@@ -126,7 +136,7 @@
 		        </tr>
 			    	<tr *ngIf="addWithSearch">
 			    		<td>
-			    			<span uk-icon="close" (click)="deleteNewRow(i)"></span>
+			    			<span uk-icon="close" (click)="deleteNewRowWithSearch()"></span>
 			    		</td>
 	            <td>
                 {{portfolioNewAttribute.name}}
@@ -153,7 +163,27 @@
 			    </tbody>
 				</table>
 			</div>
-    	<canvas id="piechart" width="200" height="200">Your browser is too old!</canvas>
+
+				<div id="canvas">
+	    		<canvas id="piechart" width="200" height="200">Your browser is too old!</canvas>
+	    	</div>
+
+
+	    	<div id="captain">
+		    	<form *ngIf="hideCards">
+					    <fieldset class="uk-fieldset">
+					        <div class="uk-margin">
+					            <select [(ngModel)]="captainCoin" class="uk-select" placeholder="select a captain coin">
+					            		<option class="option uk-margin-right item" selected="selected">Select Captain Coin</option>
+					                <option *ngFor="let opt of portfolioFieldArray" class="option uk-margin-right item"><div class="option">{{opt.name}}</div></option>
+					                <!--option class="option">Option 02</option-->
+					            </select>
+					        </div>
+					    </fieldset>
+					</form>
+				</div>
+
+
 		</div>
 	</div>
 </div>

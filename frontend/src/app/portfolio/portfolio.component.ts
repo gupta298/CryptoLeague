@@ -26,6 +26,7 @@ export class PortfolioComponent implements OnInit {
   autoComplete: Array<any> = [];
   inSearchBar: boolean = false;
   addWithSearch: boolean = false;
+  captainCoin: String;
 
   //temporary- remove all this hard-coded stuff
   coins: Array<any> = [];
@@ -123,6 +124,11 @@ export class PortfolioComponent implements OnInit {
 
 	rowDelete(index) {
 		this.portfolioFieldArray.splice(index, 1);
+	}
+
+	deleteNewRowWithSearch() {
+		this.addWithSearch = false;
+		this.portfolioNewAttribute = {};
 	}
 
 	deleteNewRow() {
