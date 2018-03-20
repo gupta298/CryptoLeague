@@ -20,7 +20,7 @@ var coinNames = [];
  *
  * @apiSuccess {JSON} Coin_Data Returns an array of the top 100 coins based on the chasing_coin.
 */
-router.get('/', function(req, res, next) {
+router.get('/market/', function(req, res, next) {
   res.send(JSON.parse(JSON.stringify(coinData)));
 });
 
@@ -41,6 +41,12 @@ function getCoinNames(callback) {
     });
 
   });
+}
+
+// Get top 3 coins
+function top3Coins(callback) {
+  var object = {'1' : coinData[0].symbol, '2' : coinData[1].symbol, '3' : coinData[2].symbol};
+  callback(null, object);
 }
 
 // Helps build the coin data object
@@ -108,4 +114,7 @@ function getJsonFromUrl(url, callback) {
   });
 }
 
-module.exports = router;
+module.exports = {
+  router : router,
+  top3Coins : top3Coins
+}

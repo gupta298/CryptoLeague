@@ -57,7 +57,8 @@ app.use('/all_users', passport.authenticate(['jwt'], { session: false }), all_us
 app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
 
 // Market
-app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
+app.use(market.router);
+// app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
 
 // League
 app.use('/league_types', passport.authenticate(['jwt'], { session: false }), league_types);
