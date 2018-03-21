@@ -49,6 +49,20 @@ function top3Coins(callback) {
   callback(null, object);
 }
 
+// Get just coin prices 
+function getCurrentCoinPrices() {
+  var coinPrices = [];
+
+  for(coin of coinData){
+    coinPrices.push({
+      symbol: coin.symbol,
+      price: coin.price
+    });
+  }
+
+  return coinPrices;
+}
+
 // Helps build the coin data object
 function buildCoinData(callback) {
   getJsonFromUrl(chasing_coins.Top100Coins, function(coinsResult) {
@@ -116,5 +130,6 @@ function getJsonFromUrl(url, callback) {
 
 module.exports = {
   router : router,
-  top3Coins : top3Coins
+  top3Coins : top3Coins,
+  getCurrentCoinPrices: getCurrentCoinPrices
 }
