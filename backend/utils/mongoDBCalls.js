@@ -126,7 +126,7 @@ function updateUserInLeagues(user) {
         if (err) throw err;
 
         asyncLoop(result.portfolio_ids, function (portfolio, next_portfolio) {
-          if (portfolio.user_id == user._id) {
+          if (portfolio.user_id.toString() === user._id.toString()) {
             portfolio.username = user.username;
             portfolio.profilePicture = user.profilePicture;
           }
@@ -500,10 +500,10 @@ module.exports = {
             var foundUser = false;
             asyncLoop(result.portfolio_ids, function (item, next) {
               if (item) {
-                if (item.user_id == user_id) {
+                if (item.user_id.toString() === user_id.toString()) {
                   foundUser = true;
                 } else {
-                  if (result.status != 'Finished') {
+                  if (result.status.toString() !== 'Finished') {
                     item.portfolio_id = null;
                   }
                 }
@@ -511,7 +511,7 @@ module.exports = {
               next();
             }, function () {
               if (foundUser == false) {
-                if (result.status == 'Finished') {
+                if (result.status.toString() === 'Finished') {
                   callback(null, JSON.parse(JSON.stringify(result)));
                 } else {
                   callback(null, {'message' : "Access denied! User not in the league!"});
@@ -540,11 +540,11 @@ module.exports = {
         if (result) {
           asyncLoop(result.portfolio_ids, function (item, next) {
             if (item) {
-              if (item.user_id == user_id) {
+              if (item.user_id.toString() === user_id.toString()) {
 
-                if (user_id != user_actual_id) {
+                if (user_id.toString() !== user_actual_id.toString()) {
 
-                  if (result.status == 'Finished') {
+                  if (result.status.toString() === 'Finished') {
                     getPortfolioWithID(item.portfolio_id, function(err, res) {
                       callback(null, res);
                       return;
