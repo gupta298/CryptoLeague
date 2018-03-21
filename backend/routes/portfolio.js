@@ -68,10 +68,24 @@ router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
  * @apiSuccess {JSON} Portfolio_Object Returns the final updated portfolio object.
 */
 router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
-	// Follow the below logic please:
-		// 1. check if the user is in a league
-		// 2. check the status of the league (it has to be "Waiting" or "Waiting_Locked" or "Locked" to make any changes to the portfolio)
-		// 3. Check to see of the portfolio is valid
+	//check if person is in the league or not
+		if (req.user.currentLeague_id) {
+			res.send(response)
+		} //move on
+			 else {
+			res.send({'message' : "Not in a league"})
+		}
+		//check the status of the league (it has to be "Waiting" or "Waiting_Locked" or "Locked" to make any changes to the portfolio)
+		if(req.user.currentLeague_id.status.toString() == "Waiting_Locked" ||
+			 req.user.currentLeague_id.status.toString() == "Waiting" ||
+		 	 req.user.currentLeague_id.status.toString() == "Locked"){
+				 res.send(response)
+			 } //move on
+			 else {
+			 	res.send({'message' : "Portfolio Locked"})
+			 }
+		//Check to see if the portfolio is valid
+
 		// 4. update the portfolio and return the final updated portfolio
 });
 
