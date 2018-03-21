@@ -70,32 +70,48 @@ router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 */
 router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
 	//console.log(req.body.holdings);
+	// var doubleFlag = 0;
+	// uniqueArray = req.body.holdings.length.filter(function(elem, pos) {
+	// 	uniqueArray.indexOf(item) == pos;
+	// 	if(uniqueArray.length != req.body.holdings.length){
+	// 		doubleFlag = 1;
+	// 	}
+	// });
 	if (req.user.currentLeague_id) {
 		//console.log(req.body.holdings.length);
 		if(req.body.holdings.length < 3 && req.body.holdings.length > 6){
 			res.send({'message' : "Number of coins not correct"});
 		}
-		else{
+	// else if(doubleFlag == 1){
+	// 	res.send({'message' : "You can not have duplicate coins in the portfolio"});
+	else{
 			mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
 				if (response.status.toString() === "Waiting" || response.status.toString() === "Waiting_Locked" || response.status.toString() === "Locked") {
 						//res.send(response);
 						var counter = 0;
 						var minusFlag = 0;
 						var topcapFlag = 0;
+						var capcoinFlag = 0;
 						asyncLoop(req.body.holdings, function (item, next) {
 		          counter += item.percentage;
 							if(item.percentage <= 0){minusFlag = 1;}
-							if(item.percentage > 40){topcapFlag = 1;}
+							if(item.percentage > 35){topcapFlag = 1;}
+							if(item.coin_symbol.toString() != req.body.captain_coin){capcoinFlag = 1;}
 		          next();
 		        }, function () {
+							//capital coin is already in there
+							//have to actual coins
+							//console.log(req.body);
 								if(counter != 100){
 									res.send({'message' : "Total percentage is not equal to 100"});
 								} else if(minusFlag != 0){
 									res.send({'message' : "Coins can not have percentage less than or equal to 0"});
 								} else if(topcapFlag != 0){
-									res.send({'message' : "Coins can not make up more than 40% of your portfolio"});
+									res.send({'message' : "Coins can not make up more than 35% of your portfolio"});
+								} else if(capcoinFlag != 0){
+									res.send({'message' : "Captain Coin must be a coin that you've chosen in your portfolio. It can not be a new coin"});
 								} else{
-									console.log("Portfolio is Correct")
+									console.log("Portfolio is Correct");
 								}
 		        });
 
