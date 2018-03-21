@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var portfolioSchema = new mongoose.Schema({
-    caption_coin: String,
+    captain_coin: String,
     holdings: [{
     	'coin_symbol' : String,
     	'percentage' : Number
