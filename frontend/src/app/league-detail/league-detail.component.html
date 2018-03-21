@@ -1,0 +1,70 @@
+<div class="page-container">
+	<app-sidebar page="league">
+	</app-sidebar>
+	<div class="page-content">
+		<div *ngIf="league.status === 'Waiting';else leagueDetail" style="height: 100%;">
+			<app-league-waiting-overlay></app-league-waiting-overlay>
+		</div>
+		<ng-template #leagueDetail>
+			<div class="uk-container uk-margin-top">
+				<div class="uk-text-lead">League #{{league.league_id}}</div>
+				<div class="uk-margin-top card-container uk-flex uk-flex-stretch uk-flex-wrap uk-flex-wrap-stretch">
+					<app-portfolio
+						[onClickCallback]="onPortfolioClicked"
+						[hideCards]="hideCards"
+						[class.flex-full]="hideCards">	
+					</app-portfolio>
+						<div *ngIf="!hideCards" class="uk-card uk-card-secondary uk-card-small uk-margin-left uk-flex-1 uk-card-body uk-animation-reverse" [class.uk-animation-slide-right]="portfolioOpened">
+							<h3 class="uk-card-title">Stats & Distribution</h3>
+							<div class="uk-flex uk-flex-bottom uk-card-body">
+								<div uk-grid *ngIf="!hideCards">
+									<ul class="uk-list uk-list-large">
+									    <li>Your Rank: #5</li>
+									    <li>No. of players: 100</li>
+									    <li>Prize Pool: 2500</li>
+									    <li>Most Gains (24h): asturtony</li>
+									</ul>
+									<ul class="uk-list uk-list-large">
+										<li><b>Prize Distribution:</b></li>
+									    <li>#1-10: 50</li>
+									    <li>#11-25: 37.5</li>
+									    <li>#26-50: 25</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="uk-container uk-card-small uk-margin-top uk-animation-reverse" [class.uk-animation-slide-bottom]="portfolioOpened" *ngIf="!hideCards">
+					<div class="uk-card uk-card-default uk-card-body">
+						<div class="uk-flex uk-flex-between">
+							<div>
+								<h3 class="uk-card-title">League Leaderboard</h3>
+							</div>
+							<div *ngIf="loadingNews;else other_content">
+								<div uk-spinner></div>
+							</div>
+							<ng-template #other_content><span uk-icon="refresh" class="uk-button" (click)="getNews()"></span></ng-template>
+						</div>
+						<div class="uk-container uk-table-striped uk-margin-top uk-overflow-auto">
+							<table class="uk-table uk-margin-top uk-table-divider uk-table-middle">
+							    <thead>
+							        <tr>
+							            <th>Rank</th>
+							            <th>Username</th>
+							            <th>Total Gains</th>
+							            <th>Captain Coin</th>
+							        </tr>
+							    </thead>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="progress-bar">
+				<div class="progress"></div>
+				<p>3d 13h 24m left...</p>
+			</div>
+		</ng-template>
+	</div>
+</div>

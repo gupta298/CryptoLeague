@@ -9,7 +9,7 @@
         <div>
           <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body bronze">
             <div class="uk-flex uk-flex-bottom uk-card-body">
-							<a class="uk-flex uk-flex-center" (click)="selected('bronze')">
+							<a class="uk-flex uk-flex-center" (click)="selected(1)">
 	              <ul class="uk-list">
 	                <li><span class="uk-text-bold">Bronze League</span></li>
 	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
@@ -22,7 +22,7 @@
         <div>
           <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body silver">
             <div class="uk-flex uk-flex-bottom uk-card-body ">
-							<a class="uk-flex uk-flex-center" (click)="selected('silver')">
+							<a class="uk-flex uk-flex-center" (click)="selected(2)">
 	              <ul class="uk-list">
 	                <li><span class="uk-text-bold">Bronze League</span></li>
 	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
@@ -35,7 +35,7 @@
         <div>
           <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body gold ">
             <div class="uk-flex uk-flex-bottom uk-card-body">
-							<a class="uk-flex uk-flex-center"(click)="selected('gold')">
+							<a class="uk-flex uk-flex-center"(click)="selected(3)">
 	              <ul class="uk-list">
 	                <li><span class="uk-text-bold">Bronze League</span></li>
 	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
@@ -48,7 +48,7 @@
         <div>
           <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body platinum">
             <div class="uk-flex uk-flex-bottom uk-card-body">
-							<a class="uk-flex uk-flex-center" (click)="selected('platinum')">
+							<a class="uk-flex uk-flex-center" (click)="selected(4)">
 	              <ul class="uk-list">
 	                <li><span class="uk-text-bold">Bronze League</span></li>
 	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
@@ -62,3 +62,4 @@
     </div>
   </div>
 </div>
+<div uk-alert id="joiningAlert" *ngIf="loading">Joining a league...<div uk-spinner class="uk-margin-small-left"></div></div>
