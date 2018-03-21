@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { League } from '../league';
+
+import { LeagueService } from '../services';
 
 @Component({
   selector: 'app-league-waiting-overlay',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeagueWaitingOverlayComponent implements OnInit {
 
-  constructor() { }
+	@Input() league: League;
 
-  ngOnInit() {
-  }
+  	constructor(private leagueService: LeagueService) { }
+
+  	ngOnInit() {
+  		this.leagueService.getLeague().subscribe(
+  			result => {
+  				console.log(result);
+  			}, error => {
+  				console.log(error);
+  			}
+  		);
+  	}
 
 }

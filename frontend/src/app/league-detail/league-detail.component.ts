@@ -30,7 +30,7 @@ export class LeagueDetailComponent implements OnInit {
 
         this.leagueID = params['id'];
 
-        this.leagueService.getLeague(this.leagueID).subscribe(
+        this.leagueService.getLeague().subscribe(
           result => {
             this.league.deserialize(result);
             console.log(this.league);

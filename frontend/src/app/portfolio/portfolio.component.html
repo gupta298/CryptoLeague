@@ -5,11 +5,65 @@
 				<h3 class="uk-card-title">Your Portfolio</h3>
 			</div>
 			<div *ngIf="hideCards;else other_content">
+				<form class="uk-search uk-search uk-search-default">
+					<a class="uk-search-icon-flip" uk-search-icon></a>
+					<input class="uk-search-input" type="search" placeholder="Search for a coin" (input)="onSearchChange($event.target.value)" (focus)="focusFunction()" (focusout)="focusOutFunction()">
+					<div uk-dropdown="mode: click" class="background">
+					    <ul class="uk-nav uk-dropdown-nav dropdown">				
+					        
+					        	<li class="uk-margin-right item" align="center" *ngFor="let c of autoComplete">
+					        		<div (click)="addRowFromSearch(c)">{{c}}</div>
+					        		<div class="uk-margin-small uk-nav-divider">
+					        		</div>
+					        	</li> 
+					    </ul>
+					</div>
+					<!--div uk-dropdown class="uk-margin background" >
+		            <ul class="uk-nav uk-dropdown-nav dropdown">				
+								        
+								        	<option style="color=white" class="uk-margin-right item" align="center" *ngFor="let c of autoComplete" (click)="addRowFromSearch()">
+								        		<div>{{c}}</div>
+								        		<div class="uk-margin-small uk-nav-divider">
+								        		</div>
+								        	</option> 
+
+								   </ul>
+		        </div-->
+				</form>
 				<span uk-icon="close" class="uk-button" (click)="portfolioExpand()"></span>
 			</div>
 			<ng-template #other_content><span uk-icon="pencil" class="uk-button" (click)="portfolioExpand()"></span></ng-template>
-		</div>		
-		<div class="uk-flex uk-flex-between uk-flex-middle uk-margin uk-padding uk-padding-remove-vertical" >
+		</div>
+
+		
+
+
+		<div *ngIf="hideCards" class="uk-animation-fade-in">
+			<div uk-grid class="uk-flex uk-flex-center">
+				<div class="upper-half">	
+					<ul class="uk-list uk-list-large">
+					    <li>● Search for a coin or Add a coin manually</li>
+					    <li>● Drag the Pie Chart to adjust equity</li>
+					    <li align="center">
+							  OR
+							</li>
+					    <li>● Enter in custom equity percentage value</li>
+					</ul>
+				</div>
+				<div class="upper-half">
+					<ul class="uk-list uk-list-large">
+					    <li>● Expected coins shows no. of coins you would</li>
+					    <li> get for the selected percentage out of $100,000</li>
+					    <li>● Select a captain coin for 2x gains on that coin</li>
+					    <li>● Close the window to go back to the league</li>
+					</ul>
+				</div>	
+			</div>
+		</div>
+
+
+
+		<div uk-grid class="uk-flex uk-flex-between uk-flex-middle uk-margin uk-padding uk-padding-remove-vertical" >
 			<div uk-grid *ngIf="!hideCards">
 				<ul class="uk-list uk-list-large">
 				    <li>● BTC: 43%</li>
@@ -22,33 +76,118 @@
 				    <li>● BTC: 43%</li>
 				</ul>
 			</div>
-    		<canvas id="piechart" width="200" height="200">Your browser is too old!</canvas>
-		</div>
-		<div *ngIf="hideCards" class="uk-animation-fade-in">
-			<div uk-grid>
-				<ul class="uk-list uk-list-large">
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				</ul>
-				<ul class="uk-list uk-list-large">
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				</ul>
+			<div class="uk-first-column uk-width-2-3 uk-flex uk-flex-center uk-margin-large-top uk-animation-fade-in" *ngIf="hideCards" style="display: block">
+
+				<div class="">
+					<table id="portfolio-list" class="uk-table uk-table-small uk-table-divider">
+				    <thead>
+				      <tr>
+				        <th>#</th>
+				        <th>name</th>
+				        <th>color</th>
+				        <th>ticker</th>
+				        <th>%</th>
+				        <th>exp. coins</th>
+				        <th></th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				    	<tr *ngFor = "let field of portfolioFieldArray; let i = index">
+				    		<!--"comment"-->
+				    		<td>{{i+1}}</td>
+				        <td>{{field.name}}</td>
+				        <td>{{field.color}}</td>
+				        <td>{{field.ticker}}</td>
+				        <td>{{field.percentage}}</td>
+				        <td>{{field.exp_coins}}</td>
+				        <td>
+				        	<span uk-icon="close" class="uk-button" (click)="rowDelete(i)"></span>
+				        </td>
+				    	</tr>
+				    	<tr *ngIf="isNewRow">
+				    		<td>
+				    			<span uk-icon="close" (click)="deleteNewRow()"></span>
+				    		</td>
+		            <td style="width: 20%">
+	                <input (input)="onSearchChange($event.target.value)" class="uk-input" type="text" id="newAttributeName" [(ngModel)]="portfolioNewAttribute.name" name="newAttributeName" />
+	                <div uk-dropdown="mode: click; pos: top-right" class="background">
+								    <ul class="uk-nav uk-dropdown-nav dropdown">				
+								        
+								        	<li class="uk-margin-right item" align="center" *ngFor="let c of autoComplete">
+								        		<div (click)="addRowFromSearch(c)">{{c}}</div>
+								        		<div class="uk-margin-small uk-nav-divider">
+								        		</div>
+								        	</li> 
+								    </ul>
+									</div>
+		            </td>
+		            <td>
+	                {{portfolioNewAttribute.color}}
+			          </td>
+			          <td>
+			            {{portfolioNewAttribute.ticker}}
+			          </td>
+			          <td style="width: 15%">
+	                <input class="uk-input" type="text" id="newAttributePercentage" [(ngModel)]="portfolioNewAttribute.percentage" name="newAttributePercentage" />
+		            </td>
+		            <td>
+			            {{portfolioNewAttribute.exp_coins}}
+			          </td>
+			          <td>
+			            <span uk-icon="check" class="uk-button" (click)="rowInsert()"></span>
+			          </td>
+			        </tr>
+				    	<tr *ngIf="addWithSearch">
+				    		<td>
+				    			<span uk-icon="close" (click)="deleteNewRowWithSearch()"></span>
+				    		</td>
+		            <td>
+	                {{portfolioNewAttribute.name}}
+		            </td>
+		            <td>
+	                {{portfolioNewAttribute.color}}
+			          </td>
+			          <td>
+			            {{portfolioNewAttribute.ticker}}
+			          </td>
+			          <td style="width: 15%">
+	                <input class="uk-input" type="text" id="newAttributePercentage" [(ngModel)]="portfolioNewAttribute.percentage" name="newAttributePercentage" />
+		            </td>
+		            <td>
+			            {{portfolioNewAttribute.exp_coins}}
+			          </td>
+			          <td>
+			            <span uk-icon="check" class="uk-button" (click)="rowWithSearchInsert()"></span>
+			          </td>
+			        </tr>
+			        <tr *ngIf="!isNewRow">
+				    		<td (click)="clickRowInsert()" colspan="7" align="center">+ Add a coin</td>
+				    	</tr>
+				    </tbody>
+					</table>
+				</div>
+
 			</div>
-			<div uk-grid>
-				<ul class="uk-list uk-list-large">
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				</ul>
-				<ul class="uk-list uk-list-large">
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				</ul>
-			</div>
+
+				<div align="center" id="canvas" class="">
+	    		<canvas id="piechart" width="200" height="200">Your browser is too old!</canvas>
+	    	</div>
+
+
+	    	<div id="captain" class="uk-align-center">
+		    	<form *ngIf="hideCards">
+					    <fieldset class="uk-fieldset">
+					        <div class="uk-margin">
+					            <select [(ngModel)]="captainCoin" class="uk-select" placeholder="select a captain coin" name="captainCoin">
+					            		<option class="option uk-margin-right item" selected="selected">Select Captain Coin</option>
+					                <option *ngFor="let opt of portfolioFieldArray" class="option uk-margin-right item"><div class="option">{{opt.name}}</div></option>
+					                <!--option class="option">Option 02</option-->
+					            </select>
+					        </div>
+					        <div class="uk-margin-small-left"><button class="uk-button uk-button-default">Submit</button></div>
+					    </fieldset>
+					</form>
+				</div>
 		</div>
 	</div>
 </div>
