@@ -45,7 +45,7 @@
             }
         );
         if(this.user.currentLeague_id){
-          this.leagueService.getLeague(this.user.currentLeague_id)
+          this.leagueService.getLeague()
             .subscribe(
               result => {
                 this.league = new League();
