@@ -73,7 +73,7 @@ function getRankOfUser(id, callback) {
         var resultIndex = 0;
         var counter = 1;
         asyncLoop(result, function (item, next) {
-          if (item._id.equals(id)) {
+          if (item._id.toString() === id.toString()) {
             resultIndex = counter;
           }
           counter++;
