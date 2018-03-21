@@ -14,6 +14,8 @@ import { MarketComponent } from './market/market.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 import { AuthGuard } from './auth.guard';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 import { AuthenticationService, NewsService, MarketService, UserService, LeagueService } from './services/index';
 import { SettingsComponent } from './settings/settings.component';
@@ -38,14 +40,15 @@ import { LeagueSelectComponent } from './league-select/league-select.component';
     PortfolioComponent,
     LeagueDetailComponent,
     LeagueWaitingOverlayComponent,
-    LeagueSelectComponent
+    LeagueSelectComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+   // Ng2SearchPipeModule
   ],
   providers: [
     HttpClientModule,
