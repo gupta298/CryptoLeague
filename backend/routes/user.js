@@ -21,7 +21,7 @@ router.get('/',
   // This request must be authenticated using a JWT, or else we will fail
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
-    mongo.getUserViaID(req.user.id, function(error, result) {
+    mongo.getUserViaID(req.user._id, function(error, result) {
       if (error) {
         res.send(null);
       } else {
@@ -44,21 +44,37 @@ router.get('/',
 router.put('/',
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
-    mongo.getUserViaID(req.user.id, function(error, result) {
+    mongo.getUserViaID(req.user._id, function(error, result) {
       if (error) {
         res.send("User does not exists");
       } else {
         if (req.body.email) result.email = req.body.email;
-        if (req.body.username) result.username = req.body.username;
         if (req.body.profilePicture) result.profilePicture = req.body.profilePicture;
 
-        mongo.updateUser(result, function(error, token) {
-          if (error) {
-            res.send("Could not update user");
-          } else {
-            res.send({ 'jwt' : token });
-          }
-        });
+        if (req.body.username) {
+          mongo.getUserViaUsername(req.body.username, function(error, response) {
+            if (!response) {
+              result.username = req.body.username;
+            }
+
+            mongo.updateUser(result, function(error, token) {
+              if (error) {
+                res.send("Could not update user");
+              } else {
+                res.send({ 'jwt' : token });
+              }
+            });
+            
+          });
+        } else {
+          mongo.updateUser(result, function(error, token) {
+            if (error) {
+              res.send("Could not update user");
+            } else {
+              res.send({ 'jwt' : token });
+            }
+          });
+        }
       }
     });
   }
