@@ -69,9 +69,27 @@ router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 */
 router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
 	// Follow the below logic please:
-		// 1. check if the user is in a league
-		// 2. check the status of the league (it has to be "Waiting" or "Waiting_Locked" or "Locked" to make any changes to the portfolio)
+		// check if the user is in a league
+		if (req.user.currentLeague_id) {
+			// mongo.getPortfolio(req.user.currentLeague_id, req.user._id, req.user._id, function(error, response) {
+		  //     res.send(response);
+		  //   });
+		} else {
+			res.send({'message' : "Not in any league"})
+		}
+		//check the status of the league (it has to be "Waiting" or "Waiting_Locked" or "Locked" to make any changes to the portfolio)
+		if (req.user.currentLeague_id.status == "Waiting" ||
+				req.user.currentLeague_id.status == "Waiting_Locked" ||
+				req.user.currentLeague_id.status == "Locked"
+			  ) {
+			mongo.getPortfolio(req.user.currentLeague_id, req.user._id, req.user._id, function(error, response) {
+		      res.send(response);
+		    });
+		} else {
+			res.send({'message' : "Portfolio Locked"})
+		}
 		// 3. Check to see of the portfolio is valid
+		
 		// 4. update the portfolio and return the final updated portfolio
 });
 
