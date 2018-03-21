@@ -53,7 +53,7 @@ router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 	      res.send(response);
 	    });
 	} else {
-		res.send({'message' : "Not in a league"})
+		res.send({'message' : "Not in any league"})
 	}
 });
 
