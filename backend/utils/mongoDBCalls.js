@@ -479,17 +479,12 @@ module.exports = {
                 var date = new Date();
                 var date2 = new Date(date);
               
-                //TODO: Uncomment this line and remove the line after it
                 date2.setMinutes(date.getMinutes() + (24 * 60));
                 league_result.status = "Waiting_Locked";
-
                 league_result.start_time = date2;
 
-                // TODO Call the function that will execute when this league starts, so after 24 hours
                 console.log('scheduling job at '+date2);
-                schedule.scheduleJob(date2, startLeague.bind(null,league_result.league_id));
-                
-                // schedule.scheduleJob(date2, leagueStartedJob.bind(null, league_result));
+                schedule.scheduleJob(date2, startLeague.bind(null,league_result.league_id));                
               }
 
               dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
