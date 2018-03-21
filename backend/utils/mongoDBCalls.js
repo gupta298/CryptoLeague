@@ -147,7 +147,7 @@ function makeNewPortfolio(callback) {
   market.top3Coins(function(err, res) {
     var portfolio = new portfolio_schema;
 
-    portfolio.caption_coin = null;
+    portfolio.captain_coin = null;
     portfolio.holdings.push({ 'coin_symbol' : res['1'], 'percentage' : 35 });
     portfolio.holdings.push({ 'coin_symbol' : res['2'], 'percentage' : 35 });
     portfolio.holdings.push({ 'coin_symbol' : res['3'], 'percentage' : 30 });
