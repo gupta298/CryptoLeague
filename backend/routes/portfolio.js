@@ -80,16 +80,23 @@ router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 				if (response.status.toString() === "Waiting" || response.status.toString() === "Waiting_Locked" || response.status.toString() === "Locked") {
 						//res.send(response);
 						var counter = 0;
+						var minusFlag = 0;
+						var topcapFlag = 0;
 						asyncLoop(req.body.holdings, function (item, next) {
 		          counter += item.percentage;
+							if(item.percentage <= 0){minusFlag = 1;}
+							if(item.percentage > 40){topcapFlag = 1;}
 		          next();
 		        }, function () {
-		         	if(counter != 100){
-								res.send({'message' : "Percentage not correct"});
-							}else{
-								console.log("Portfolio is Correct");
-								//
-							}
+								if(counter != 100){
+									res.send({'message' : "Total percentage is not equal to 100"});
+								} else if(minusFlag != 0){
+									res.send({'message' : "Coins can not have percentage less than or equal to 0"});
+								} else if(topcapFlag != 0){
+									res.send({'message' : "Coins can not make up more than 40% of your portfolio"});
+								} else{
+									console.log("Portfolio is Correct")
+								}
 		        });
 
 					} else {
