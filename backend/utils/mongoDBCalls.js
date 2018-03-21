@@ -193,7 +193,6 @@ function startLeague(league_id){
 }
 
 module.exports = {
-  startLeague: startLeague,
   connectToMongo:
   function connectToMongo(callback) {
     MongoClient.connect(mongodbUrl, function(err, db) {
@@ -484,8 +483,8 @@ module.exports = {
                 league_result.status = "1";
                 league_result.start_time = date2;
 
-                console.log('scheduling job at '+date2);
-                schedule.scheduleJob(date2, startLeague.bind(null,league_result.league_id));                
+                console.log('scheduling job at ' + date2);
+                schedule.scheduleJob(date2, startLeague.bind(null, league_result.league_id));                
               }
 
               dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
