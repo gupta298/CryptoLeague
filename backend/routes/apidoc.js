@@ -1,5 +1,5 @@
 /**
- * @api {GET} /apidoc Request the documentation for the backend
+ * @api {GET} /docs Request the documentation for the backend
  * @apiName Documentation
  * @apiGroup Documentation
  *
