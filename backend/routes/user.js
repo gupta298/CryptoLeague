@@ -80,4 +80,25 @@ router.put('/',
   }
 );
 
+/**
+ * @api {GET} /user/null_out Request the null out the current league
+ * @apiName Get_And_Update_User_Information
+ * @apiGroup User
+ *
+ * @apiHeader {String} JWT JWT token of the user.
+ *
+ * @apiSuccess {JSON} JWT Returns the updated JWT token of the current user.
+*/
+router.get('/null_out',
+  passport.authenticate(['jwt'], { session: false }),
+  (req, res) => {
+    // Follow the below logic please:
+      // 1. check if the user is in a league and the league has ended
+      // 2. Add the current league in the past leagues array
+      // 3. Null out the current league
+      // 4. update the user object in the database
+      // 5. return the updated jwt token
+  }
+);
+
 module.exports = router;
