@@ -143,7 +143,7 @@ function updateUserInLeagues(user) {
       });
     });
   }, function () {
-  });  
+  });
 }
 
 function makeNewPortfolio(callback) {
@@ -163,7 +163,7 @@ function makeNewPortfolio(callback) {
         db.close();
       });
     });
-    
+
     callback(null, portfolio);
   });
 }
@@ -290,7 +290,7 @@ module.exports = {
       if (err) throw err;
 
       var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {email: user.email, username: user.username, 
+      dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {email: user.email, username: user.username,
         profilePicture: user.profilePicture}}, function(err, res) {
         if (err) {
           throw err;
@@ -314,7 +314,7 @@ module.exports = {
       if (err) throw err;
 
       var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {currentLeague_id: user.currentLeague_id, tokens: user.tokens}}, 
+      dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {currentLeague_id: user.currentLeague_id, tokens: user.tokens}},
         function(err, res) {
           if (err) {
             throw err;
@@ -460,7 +460,7 @@ module.exports = {
               "portfolio_id" : portfolio._id
             });
 
-            dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, 
+            dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id},
               {$push: {'portfolio_ids': {
                   "username": user.username,
                   "tokens": user.tokens,
@@ -478,7 +478,7 @@ module.exports = {
               } else {
                 var date = new Date();
                 var date2 = new Date(date);
-              
+
                 date2.setMinutes(date.getMinutes() + (24 * 60));
                 league_result.status = "Waiting_Locked";
                 league_result.start_time = date2;
@@ -488,7 +488,7 @@ module.exports = {
               }
 
               dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
-              
+
               callback(null, JSON.parse(JSON.stringify(league_result)));
             } else {
               callback(null, JSON.parse(JSON.stringify(league_result)));
@@ -591,4 +591,5 @@ module.exports = {
       });
     });
   }
+
 };
