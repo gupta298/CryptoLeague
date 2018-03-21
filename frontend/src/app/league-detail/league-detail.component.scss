@@ -11,7 +11,7 @@
 .progress-bar{
 	position: absolute;
 	bottom: 0;
-	width: 100%;
+	width: calc(100% - 72px);
 	height: 2em;
 	background-color: transparentize($green, 0.5);
 	display: inline-block;
