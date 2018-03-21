@@ -1,0 +1,95 @@
+=== Weekly Team Report (Team 8: CryptoLeague) ===
+
+Week 5 (Summary) (Scrum master: Varun Gupta)
+03/18 1 hr 17a3e16 table added on portfolio
+03/18 1 hr 805441d updated the portfolio UI
+03/18 1 hr 4df4ffe basic portfolio UI implemented
+03/18 N/A 5b2f5a0 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+03/18 1 hr 5bc7afa Fixed an issue with the put request to update the user information
+03/18 1 hr 9ff5086 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/leagues
+03/17 1 hr f597fa0 Merge branch 'frontend/leagues' of https://github.com/gupta298/CryptoLeague into frontend/portfolio-Ritwik
+03/17 1 hr 88ab8c0 fixed the null "username not set" issue
+03/15 2.5 hr 9a2a970 Implemented get league and fixed some errors in post league route
+03/15 N/A 9930193 Fixed styles for joining alert
+03/15 0.25 hr 41db2df League detail route now gets the league object from the route
+03/15 N/A b282ae1 Added alert and redirect on selecting a league
+03/15 N/A a76d625 Fixed module error
+03/15 N/A ec187fb Updated GET /league on league service
+03/15 2 hr 9b0fb21 Added league class
+03/14 N/A 36a94b3 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into backend/leagues
+03/14 2 hr 33dc2e8 Added the league id auto incremental number
+03/14 0.5 hr 5dd7e35 Updated the apidocs routes
+03/14 N/A e71bc23 Merge branch 'master' into frontend/leagues
+03/14 N/A 7005733 Added route to serve API Documentation
+03/14 N/A 5ea18a2 Updated League Select to proper League Types
+03/14 1 hr aa86b72 Implemented League API Service
+03/14 N/A 2e38181 Merge branch 'master' into frontend/leagues
+03/14 0.25 hr 6309624 Added text shadows
+03/14 5 mins 7dd0636 Adding comments
+03/14 0.5 hr 1bea6a7 Fixed a timer issue
+03/14 0.5 hr 87b41ba Updating documentation and packages
+03/14 2 hr 4aff7e0 Finished create and join route for the league in the backend
+03/14 5 mins 1358dc4 Adding console logs
+03/14 2 hr f310d15 Implementing league for the backend
+03/14 2 hr 46cf822 Implemented League Waiting Overlay UI
+03/14 1 hr 995e89c Implemented a route to get all league types
+03/13 N/A a133643 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into backend/leagues
+03/13 4 hr 367bc87 Adding Sandbox to the backend
+03/13 0.5 hr 3405888 Updating the league model and adding three collection to mongodb for the leagues
+03/13 0.5 hr 811d472 Implemented progress bar for league detail
+03/13 0.25 hr a5d0769 Worked on portfolio card
+03/13 5 mins 88e8df3 Fixed merge issue
+03/13 N/A 53d37e5 Merge branch 'master' into frontend/leagues
+03/13 N/A 16b68fb Merge pull request #27 from gupta298/frontend/leagueSelection Frontend/league selection
+03/13 N/A 22ce2ac Merge branch 'master' of github.com:gupta298/CryptoLeague into frontend/leagues
+03/13 N/A d22816a Merge remote-tracking branch 'origin/master'
+03/13 5 mins 93a329d Fixed GET /user_rank on frontend
+03/13 0.5 hr 1b0b927 Modal works
+03/13 N/A 475d21d Merge branch 'master' of github.com:gupta298/CryptoLeague into frontend/leagues
+03/13 0.5 hr 4e1e073 Worked on portfolio card
+03/12 1.5 hr d1bdeae Made card expand smoother and moved onClick to button
+03/12 1 hr ba80403 Added code to call API to join league
+03/12 0.25 hr 9823e8f Updating the docs
+03/12 0.5 hr 7b3d968 Adding the route to view the backend documentation
+03/12 2 hr 4a40988 Adding modal
+03/12 N/A 92cb196 Merge branch 'master' of github.com:gupta298/CryptoLeague into frontend/leagues
+03/12 3 hr f6114ca Worked on portfolio card expand
+03/12 5 mins 36dc231 Fixed the merge conflicts
+03/12 N/A 7a1a40c Merging
+03/12 6 hr 83f70fa Updated the documentation, orgainzed the postman requests, and changed some variables for the backend
+03/10 1 hr aa1abbc Updated the model for leagues
+03/10 1.5 hr cf5dc29 Added animation for portfolio card
+03/10 N/A 3a1fcec Merge pull request #26 from gupta298/frontend/portfolio-Ritwik added more documentation
+03/10 N/A 7d6c183 Merged from master
+03/10 N/A d2ef69d Merged from master
+03/10 1 hr 0522928 Added more documentation
+03/10 N/A 6797c36 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+03/10 1.5 hr 41a933f Cleaned the backend
+03/10 N/A a182456 Merge pull request #25 from gupta298/frontend/portfolio-Ritwik Frontend/portfolio ritwik
+03/10 2 hr 2c66846 documentation functionality added
+03/10 2.5 hr fbb19f6 Added dragDisabled option to draggable-piechart
+03/10 N/A d0b15c6 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio-Ritwik
+03/09 2 hr 374ffc3 Added demo draggable piechart to portfolio component
+03/09 N/A e9a9be8 Updated readme to include command to disable CORS
+03/09 3 hr e1cf020 Added league detail component to /league/:id route
+03/09 N/A 06bb6b5 Merge branch 'master' of github.com:gupta298/CryptoLeague into frontend/leagues
+03/09 0.5 hr 82463a2 Fixed a null pointer exception
+03/07 3 hr 262b0dd Added color component
+03/07 4 hr 5a46358 Added cards for league types
+03/06 N/A ec23649 Merged from master
+03/06 N/A 6e91894 Pulling
+03/05 N/A 1b9d8d4 Merge remote-tracking branch 'origin' into backend/leagues
+03/05 5 mins 426f4e3 Updating the project backlog
+03/05 N/A ed7c09e Merge branch 'master' of https://github.com/gupta298/CryptoLeague into backend/leagues
+03/05 2 hr 404b813 Updating the docs folder
+
+Week 6 (Plan) (Scrum master: Varun Gupta)
+[Meetings]
+02/19 Discuss the progress of sprint 2 and the routes for the leagues and portfolios
+02/21 Discuss testing for sprint 2 and any tasks that are still not completed
+
+[Individual Goals]
+Varun: Finish all of the routes for the league and portfolios in the backend and start on the Unit test for the backend if possible
+Ritwik: Finish UI for portfolio and its functionality
+Utkarsh: Implement the post route for the portfolio and the statistics of the league
+Nisarg: Implement the timers in the backend to change the status of the league and finish the Unit test for the frontend
