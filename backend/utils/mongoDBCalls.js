@@ -600,6 +600,18 @@ module.exports = {
       dbo.collection("Portfolios").findOneAndUpdate({'portfolio_id': portfolio_id}, {$set: {holdings : holding, caption_coin: captain_coin}});
       db.close();
     });
+  },
+
+  updatePortfolioWithID:
+  function updatePortfolioWithID(portfolio_id, callback){
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("cryptoleague_database");
+      dbo.collection("Portfolios").findOneAndUpdate({'_id': ObjectId(portfolio_id)}, {$set: {caption_coin: 'BTC'}}, function(err, result) {
+        callback(err, result);
+      });
+      db.close();
+    });
   }
 
 
