@@ -603,11 +603,11 @@ module.exports = {
   },
 
   updatePortfolioWithID:
-  function updatePortfolioWithID(portfolio_id, callback){
+  function updatePortfolioWithID(portfolio_id, holding, callback){
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
       var dbo = db.db("cryptoleague_database");
-      dbo.collection("Portfolios").findOneAndUpdate({'_id': ObjectId(portfolio_id)}, {$set: {caption_coin: 'BTC'}}, function(err, result) {
+      dbo.collection("Portfolios").findOneAndUpdate({'_id': ObjectId(portfolio_id)}, {$set: {holdings : holding, caption_coin: 'BTC'}}, function(err, result) {
         callback(err, result);
       });
       db.close();

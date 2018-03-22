@@ -73,7 +73,7 @@ router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 
 	console.log(req.body);
 	console.log(req.body._id);
-	mongo.updatePortfolioWithID(req.body._id, function(error, result) {
+	mongo.updatePortfolioWithID(req.body._id, req.body.holdings, function(error, result) {
 		res.send("Worked");
 	});
 
