@@ -95,12 +95,7 @@ var express = require('express');
 						res.send({'message' : "Captain Coin must be a coin that you've chosen in your portfolio. It can not be a new coin"});
 					 } else{
 						console.log("Portfolio is Correct");
-						// mongo.updatePortfolio(req.body._id.$oid, req.body.holdings, req.body.captain_coin, function(error, response) {
-						//     res.send(response);
-						// 		console.log("Success");
-						//
-						//   });
-						//console.log(req.body._id);
+
 						mongo.updatePortfolioWithID(req.body._id.$oid, req.body.holdings, req.body.captain_coin, function(error, result) {
 							if(error)
 								console.log(error);
@@ -111,7 +106,7 @@ var express = require('express');
 			});
 
  			mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
- 				if (response.status.toString() == "1" || response.status === "Waiting_Locked" || response.status === "Locked") {
+ 				if (response.status.toString() == "0" || response.status.toString() == "1" || response.status.toString() == "2") {
 				} else {
 						res.send({'message' : "League Locked"});
 				}
