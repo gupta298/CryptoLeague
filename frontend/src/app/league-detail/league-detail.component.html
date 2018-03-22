@@ -34,7 +34,7 @@
 							</div>
 						</div>
 				</div>
-				<div class="uk-container uk-card-small uk-margin-top uk-animation-reverse" [class.uk-animation-slide-bottom]="portfolioOpened" *ngIf="!hideCards">
+				<div class="uk-container uk-card-small uk-margin-top uk-margin-large-bottom uk-animation-reverse" [class.uk-animation-slide-bottom]="portfolioOpened" *ngIf="!hideCards">
 					<div class="uk-card uk-card-default uk-card-body">
 						<div class="uk-flex uk-flex-between">
 							<div>
@@ -50,20 +50,28 @@
 							    <thead>
 							        <tr>
 							            <th>Rank</th>
+							            <th></th>
 							            <th>Username</th>
-							            <th>Total Gains</th>
+							            <th>Total Earnings</th>
 							            <th>Captain Coin</th>
 							        </tr>
 							    </thead>
+							    <tr *ngFor="let user of league.portfolio_ids" _ngcontent-c1="">
+							     	<td>-</td>
+							     	<td><span class="uk-icon uk-icon-image" [ngStyle]="{'background-image': 'url(' + user.profilePicture +')'}"></span></td>
+							     	<td _ngcontent-c1="">{{user.username}}</td>
+						            <td _ngcontent-c1="">0</td>
+						            <td _ngcontent-c1="">-</td>
+						        </tr>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="progress-bar">
-				<div class="progress"></div>
-				<p>3d 13h 24m left...</p>
+			<div class="progress-bar" [class.starting]="league.status === 'Waiting_Locked'" [class.started]="league.status !== 'Waiting_Locked'" >
+				<div class="progress" [style.width]="timeRemainingPercent + '%'" [class.starting]="league.status === 'Waiting_Locked'" [class.started]="league.status !== 'Waiting_Locked'"></div>
+				<p>{{timeRemaining}}</p>
 			</div>
 		</ng-template>
 	</div>

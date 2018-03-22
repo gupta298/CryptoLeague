@@ -12,7 +12,7 @@ export class League implements Serializable<League>{
 		this.league_id = input.league_id;
 		this.league_type = input.league_type;
 		this.status = input.status;
-		this.start_time = input.start_time;
+		this.start_time = new Date(input.start_time);
 		this.current_market_coin = input.current_market_coin;
 		this.portfolio_ids = input.portfolio_ids;
 		return this;
