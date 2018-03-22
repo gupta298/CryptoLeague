@@ -14,45 +14,20 @@
 </div>
 <div class="waiting-users">
 	<div class="waiting-table-content">
-		<h3>Waiting for 4 more users<div uk-spinner class="uk-margin-small-left"></div></h3>
+		<h3>Waiting for {{10 - league.portfolio_ids.length}} more users<div uk-spinner class="uk-margin-small-left"></div></h3>
 		<table class="uk-table uk-table-divider">
 		    <thead>
 		        <tr>
+		        	<th></th>
 		            <th>Username</th>
 		            <th>Tokens</th>
-		            <th>World Rank</th>
 		        </tr>
 		    </thead>
 		    <tbody>
-		        <tr _ngcontent-c1="">
-		            <td _ngcontent-c1="">asturtony</td>
-		            <td _ngcontent-c1="">497</td>
-		        	<td _ngcontent-c1="">1</td>
-		        </tr>
-		        <tr _ngcontent-c1="">
-		            <td _ngcontent-c1="">dscollan11</td>
-		            <td _ngcontent-c1="">493</td>
-		        	<td _ngcontent-c1="">2</td>
-		        </tr>
-		        <tr _ngcontent-c1="">
-		            <td _ngcontent-c1="">jmatterface1k</td>
-		            <td _ngcontent-c1="">489</td>
-		        	<td _ngcontent-c1="">3</td>
-		        </tr>
-		        <tr _ngcontent-c1="">
-		            <td _ngcontent-c1="">hibell1y</td>
-		            <td _ngcontent-c1="">487</td>
-		        	<td _ngcontent-c1="">4</td>
-		        </tr>
-		        <tr _ngcontent-c1="">
-		            <td _ngcontent-c1="">hdeath2f</td>
-		            <td _ngcontent-c1="">484</td>
-		        	<td _ngcontent-c1="">5</td>
-		        </tr>
-		        <tr _ngcontent-c1="">
-		        	<td _ngcontent-c1="">rraggatt1a</td>
-		        	<td _ngcontent-c1="">324</td>
-		            <td _ngcontent-c1="">6</td>
+		        <tr *ngFor="let user of league.portfolio_ids" _ngcontent-c1="">
+		        	<td><span class="uk-icon uk-icon-image" [ngStyle]="{'background-image': 'url(' + user.profilePicture +')'}"></span></td>
+		            <td _ngcontent-c1="">{{user.username}}</td>
+		            <td _ngcontent-c1="">{{user.tokens}}</td>
 		        </tr>
 		    </tbody>
 		</table>

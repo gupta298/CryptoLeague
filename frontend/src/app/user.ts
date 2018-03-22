@@ -9,7 +9,7 @@ export class User implements Serializable<User>{
     lastname: string;
     tokens: number;
     profilePicture: string;
-    currentLeague: string;
+    currentLeague_id: string;
     //pastLeagues: League[]; 
 
     deserialize(input) {
@@ -21,7 +21,7 @@ export class User implements Serializable<User>{
     	this.lastname = input.lastname;
     	this.tokens = input.tokens;
     	this.profilePicture = input.profilePicture;
-    	this.currentLeague = input.currentLeague;
+    	this.currentLeague_id = input.currentLeague_id;
     	return this;
     }
 
@@ -35,7 +35,7 @@ export class User implements Serializable<User>{
             lastname : this.lastname,
             tokens : this.tokens,
             profilePicture : this.profilePicture,
-            currentLeague : this.currentLeague
+            currentLeague_id : this.currentLeague_id
         }
         return obj;
     }

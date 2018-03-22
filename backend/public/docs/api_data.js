@@ -1,7 +1,7 @@
 define({ "api": [
   {
     "type": "GET",
-    "url": "/apidoc",
+    "url": "/docs",
     "title": "Request the documentation for the backend",
     "name": "Documentation",
     "group": "Documentation",

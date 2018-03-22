@@ -15,8 +15,12 @@ export class LeagueService {
       return this.http.get(environment.apiUrl+'/league_types/', this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
-  getLeague(leagueID: string) {
+  getLeagueById(leagueID: string) {
   	  return this.http.get(environment.apiUrl+'/league/'+leagueID, this.authService.generateJwt()).map((response: Response) => response.json());
+  }
+
+  getLeague() {
+      return this.http.get(environment.apiUrl+'/league/', this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
   joinLeague(leagueType: number) {

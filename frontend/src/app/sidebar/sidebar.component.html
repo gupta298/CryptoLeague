@@ -10,7 +10,10 @@
 	            <li class="uk-nav-divider"></li>
 	            <li class="sidebar-item" [class.uk-active]="page=='leaderboard'"><a href="/leaderboard"><span class="sidebar-item-icon" uk-icon="icon: list"></span><span class="sidebar-item-text">Leaderboard</span></a></li>
 	            <li class="uk-nav-divider"></li>
-	            <li class="sidebar-item" [class.uk-active]="page=='join'"><a href="/join"><span class="sidebar-item-icon" uk-icon="icon: plus"></span><span class="sidebar-item-text">Join a League</span></a></li>
+	            <li *ngIf="league;else joinLeague" class="sidebar-item" [class.uk-active]="page=='league'"><a href="/league/{{league.league_id}}"><span class="sidebar-item-icon" uk-icon="icon: users"></span><span class="sidebar-item-text">League {{league.league_id}}</span></a></li>
+				<ng-template #joinLeague>
+	            	<li class="sidebar-item" [class.uk-active]="page=='join'"><a href="/join"><span class="sidebar-item-icon" uk-icon="icon: plus"></span><span class="sidebar-item-text">Join a League</span></a></li>
+	        	</ng-template>
 	        </ul>
 	    </div>
 	    <div class="uk-flex uk-flex-column">
