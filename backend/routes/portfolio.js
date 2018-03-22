@@ -77,69 +77,46 @@ var express = require('express');
  	if (req.user.currentLeague_id) {
  		//console.log(req.body.holdings.length);
  		if(req.body.holdings.length < 3 && req.body.holdings.length > 6){
- 			res.send({'message' : "Number of coins not correct"});
- 		}
- 	// else if(doubleFlag == 1){
- 	// 	res.send({'message' : "You can not have duplicate coins in the portfolio"});
- 	else{
- 			mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
- 				console.log("response:");
- 				console.log(response);
- 				if (response.status.toString() == "1" || response.status === "Waiting_Locked" || response.status === "Locked") {
- 						//res.send(response);
- 						var counter = 0;
- 						var minusFlag = 0;
- 						var topcapFlag = 0;
-						var capcoinFlag = 1;
-						var validcoinFlag = 0;
-
-
- 						asyncLoop(req.body.holdings, function (item, next) {
- 		          counter += item.percentage;
- 							if(item.percentage <= 0){minusFlag = 1;}
- 							if(item.percentage > 35){topcapFlag = 1;}
- 							if(item.coin_symbol.toString() == req.body.captain_coin){capcoinFlag = 0;}
- 							if(!market.getCoinTickers().includes(item.coin_symbol.toString())){validcoinFlag = 1;}
- 		          next();
- 		        }, function () {
- 							//console.log(req.body);
- 								if(counter != 100){
- 									res.send({'message' : "Total percentage is not equal to 100"});
- 								} else if(minusFlag != 0){
- 									res.send({'message' : "Coins can not have percentage less than or equal to 0"});
- 								} else if(topcapFlag != 0){
- 									res.send({'message' : "Coins can not make up more than 35% of your portfolio"});
- 								} else if(capcoinFlag != 0){
- 									res.send({'message' : "Captain Coin must be a coin that you've chosen in your portfolio. It can not be a new coin"});
- 								 } else if(validcoinFlag != 0){
- 								 	res.send({'message' : "Please select a valid coin"});
- 								} else{
- 									// console.log("Body:");
- 									// console.log(req.body);
- 									// console.log("trying to get the id");
- 									// console.log(req.body._id.$oid);
- 									console.log("Portfolio is Correct");
- 									//console.log(req.body.holdings);
- 									// mongo.updatePortfolio(req.body._id.$oid, req.body.holdings, req.body.captain_coin, function(error, response) {
- 								  //     res.send(response);
- 									// 		console.log("Success");
-									//
- 								  //   });
-									mongo.updatePortfolioWithID(req.body._id, req.body.holdings, function(error, result) {
-										res.send("Worked");
-									});
- 								}
- 		        });
-
-					} else {
-						res.send({'message' : "League Locked"});
+ 			res.send({'message' : "Number of coins is not correct"});
+ 		} else {
+			var counter = 0;
+			var capcoinFlag = 1;
+			asyncLoop(req.body.holdings, function (item, next) {
+				counter += item.percentage;
+				if(item.percentage <= 0){res.send({'message' : "Coins can not have percentage less than or equal to 0"});}
+				if(item.percentage > 35){res.send({'message' : "Coins can not make up more than 35% of your portfolio"});}
+				if(!market.getCoinTickers().includes(item.coin_symbol.toString())){res.send({'message' : "Please select a valid coin"}); }
+				if(item.coin_symbol.toString() == req.body.captain_coin){capcoinFlag = 0;}
+				next();
+			}, function () {
+					if(counter != 100){
+						res.send({'message' : "Total percentage is not equal to 100"});
+					}else if(capcoinFlag != 0){
+						res.send({'message' : "Captain Coin must be a coin that you've chosen in your portfolio. It can not be a new coin"});
+					 } else{
+						console.log("Portfolio is Correct");
+						// mongo.updatePortfolio(req.body._id.$oid, req.body.holdings, req.body.captain_coin, function(error, response) {
+						//     res.send(response);
+						// 		console.log("Success");
+						//
+						//   });
+						//console.log(req.body._id);
+						mongo.updatePortfolioWithID(req.body._id.$oid, req.body.holdings, req.body.captain_coin, function(error, result) {
+							res.send("Worked");
+						});
 					}
+			});
+
+ 			mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
+ 				if (response.status.toString() == "1" || response.status === "Waiting_Locked" || response.status === "Locked") {
+				} else {
+						res.send({'message' : "League Locked"});
+				}
 			});
 		}
 	} else {
 		res.send({'message' : "Not in any league"})
 	}
-
  });
 
  module.exports = router;
