@@ -102,6 +102,9 @@ var express = require('express');
 						//   });
 						//console.log(req.body._id);
 						mongo.updatePortfolioWithID(req.body._id.$oid, req.body.holdings, req.body.captain_coin, function(error, result) {
+							if(error)
+								console.log(error);
+							console.log(result);
 							res.send("Worked");
 						});
 					}
