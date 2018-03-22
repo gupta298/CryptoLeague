@@ -99,7 +99,7 @@ router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 					// check if the captain coin was found if it is not null
 
 						// get the league object from the database
-						
+
 						// check the status of the league (should be '0', '1', or '2')
 
 							// now update the portfolio in the database
@@ -135,19 +135,21 @@ router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 	// 	res.send({'message' : "You can not have duplicate coins in the portfolio"});
 	else{
 			mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
-				if (response.status.toString() === "Waiting" || response.status.toString() === "Waiting_Locked" || response.status.toString() === "Locked") {
+				console.log("response:");
+				console.log(response);
+				if (response.status.toString() == "1" || response.status === "Waiting_Locked" || response.status === "Locked") {
 						//res.send(response);
 						var counter = 0;
 						var minusFlag = 0;
 						var topcapFlag = 0;
-						var capcoinFlag = 0;
+						var capcoinFlag = 1;
 						var validcoinFlag = 0;
 
 						asyncLoop(req.body.holdings, function (item, next) {
 		          counter += item.percentage;
 							if(item.percentage <= 0){minusFlag = 1;}
 							if(item.percentage > 35){topcapFlag = 1;}
-							if(item.coin_symbol.toString() != req.body.captain_coin){capcoinFlag = 1;}
+							if(item.coin_symbol.toString() == req.body.captain_coin){capcoinFlag = 0;}
 							if(!market.getCoinTickers().includes(item.coin_symbol.toString())){validcoinFlag = 1;}
 		          next();
 		        }, function () {
@@ -163,7 +165,17 @@ router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 								 } else if(validcoinFlag != 0){
 								 	res.send({'message' : "Please select a valid coin"});
 								} else{
+									// console.log("Body:");
+									// console.log(req.body);
+									// console.log("trying to get the id");
+									// console.log(req.body._id.$oid);
 									console.log("Portfolio is Correct");
+									//console.log(req.body.holdings);
+									mongo.updatePortfolio(req.body._id.$oid, req.body.holdings, req.body.captain_coin, function(error, response) {
+								      res.send(response);
+											console.log("Success");
+
+								    });
 								}
 		        });
 

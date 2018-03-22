@@ -143,5 +143,6 @@ function getJsonFromUrl(url, callback) {
 module.exports = {
   router : router,
   top3Coins : top3Coins,
-  getCurrentCoinPrices: getCurrentCoinPrices
+  getCurrentCoinPrices: getCurrentCoinPrices,
+  getCoinTickers: getCoinTickers
 }

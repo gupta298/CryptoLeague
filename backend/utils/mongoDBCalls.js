@@ -597,7 +597,10 @@ module.exports = {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) throw err;
       var dbo = db.db("cryptoleague_database");
-      dbo.collection("Portfolios").findOneAndUpdate({'portfolio_id': portfolio_id}, {$set: {holdings : holding, caption_coin: captain_coin}});
+      console.log("In singleton, updating the portfolio");
+      console.log(holding);
+      dbo.collection("Portfolios").findOneAndUpdate({'_id': ObjectId(portfolio_id)}, {$set: {holdings : holding, caption_coin: captain_coin}});
+      //dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
       db.close();
     });
   }
