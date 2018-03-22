@@ -121,33 +121,6 @@ router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 
 	//Otherwise return an error
 
-
-
-
-	//console.log(req.body.holdings);
-	// var doubleFlag = 0;
-	// uniqueArray = req.body.holdings.length.filter(function(elem, pos) {
-	// 	uniqueArray.indexOf(item) == pos;
-	// 	if(uniqueArray.length != req.body.holdings.length){
-	// 		doubleFlag = 1;
-	// 	}
-	// });
-	// if (req.user.currentLeague_id) {
-	// 	//console.log(req.body.holdings.length);
-	// 	if(req.body.holdings.length < 3 && req.body.holdings.length > 6){
-	// 		res.send({'message' : "Number of coins not correct"});
-	// 	}
-	// // else if(doubleFlag == 1){
-	// // 	res.send({'message' : "You can not have duplicate coins in the portfolio"});
-	// else{
-	// 		mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
-	// 			if (response.status.toString() === "Waiting" || response.status.toString() === "Waiting_Locked" || response.status.toString() === "Locked") {
-	// 					//res.send(response);
-	// 					var counter = 0;
-	// 					var minusFlag = 0;
-	// 					var topcapFlag = 0;
-	// 					var capcoinFlag = 0;
-	// 					var validcoinFlag = 0;
 	if (req.user.currentLeague_id) {
 		//console.log(req.body.holdings.length);
 		if(req.body.holdings.length < 3 && req.body.holdings.length > 6){
@@ -167,29 +140,6 @@ router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 						var capcoinFlag = 1;
 						var validcoinFlag = 0;
 
-	// 					asyncLoop(req.body.holdings, function (item, next) {
-	// 	          counter += item.percentage;
-	// 						if(item.percentage <= 0){minusFlag = 1;}
-	// 						if(item.percentage > 35){topcapFlag = 1;}
-	// 						if(item.coin_symbol.toString() != req.body.captain_coin){capcoinFlag = 1;}
-	// 						if(!market.getCoinTickers().includes(item.coin_symbol.toString())){validcoinFlag = 1;}
-	// 	          next();
-	// 	        }, function () {
-	// 						//console.log(req.body);
-	// 							if(counter != 100){
-	// 								res.send({'message' : "Total percentage is not equal to 100"});
-	// 							} else if(minusFlag != 0){
-	// 								res.send({'message' : "Coins can not have percentage less than or equal to 0"});
-	// 							} else if(topcapFlag != 0){
-	// 								res.send({'message' : "Coins can not make up more than 35% of your portfolio"});
-	// 							} else if(capcoinFlag != 0){
-	// 								res.send({'message' : "Captain Coin must be a coin that you've chosen in your portfolio. It can not be a new coin"});
-	// 							 } else if(validcoinFlag != 0){
-	// 							 	res.send({'message' : "Please select a valid coin"});
-	// 							} else{
-	// 								console.log("Portfolio is Correct");
-	// 							}
-	// 	        });
 						asyncLoop(req.body.holdings, function (item, next) {
 		          counter += item.percentage;
 							if(item.percentage <= 0){minusFlag = 1;}
@@ -224,16 +174,6 @@ router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 								}
 		        });
 
-	// 				} else {
-	// 					res.send({'message' : "League Locked"});
-	// 				}
-	// 		});
-	// 	}
-	// } else {
-	// 	res.send({'message' : "Not in any league"})
-	// }
-
-		// 4. update the portfolio and return the final updated portfolio
 });
 
 module.exports = router;
