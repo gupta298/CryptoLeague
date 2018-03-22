@@ -9,6 +9,9 @@ const portfolio_schema = require('../models/portfolio');
 var token = require('../utils/token');
 var market = require('../routes/market');
 var asyncLoop = require('node-async-loop');
+var schedule = require('node-schedule');
+
+var leagueStartedJob = require('../jobs/leagueStarted');
 
 const league_schema = require('../models/league');
 
@@ -73,7 +76,7 @@ function getRankOfUser(id, callback) {
         var resultIndex = 0;
         var counter = 1;
         asyncLoop(result, function (item, next) {
-          if (item._id.equals(id)) {
+          if (item._id.toString() === id.toString()) {
             resultIndex = counter;
           }
           counter++;
@@ -179,7 +182,17 @@ function getPortfolioWithID(portfolio_id, callback) {
   });
 }
 
+function startLeague(league_id){
+  MongoClient.connect(mongodbUrl, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("cryptoleague_database");
+    dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : 'Started', current_market_coin: market.getCurrentCoinPrices()}});
+    db.close();
+  });
+}
+
 module.exports = {
+  startLeague: startLeague,
   connectToMongo:
   function connectToMongo(callback) {
     MongoClient.connect(mongodbUrl, function(err, db) {
@@ -468,10 +481,10 @@ module.exports = {
               
                 date2.setMinutes(date.getMinutes() + (24 * 60));
                 league_result.status = "Waiting_Locked";
-
                 league_result.start_time = date2;
 
-                // TODO Call the function that will execute when this league starts, so after 24 hours
+                console.log('scheduling job at '+date2);
+                schedule.scheduleJob(date2, startLeague.bind(null,league_result.league_id));                
               }
 
               dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});

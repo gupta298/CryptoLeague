@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 declare var $: any;
 
 import { User } from '../user';
-
+import { League } from '../league';
 import { AuthenticationService } from '../services/index'; 
 
 @Component({
@@ -14,7 +14,8 @@ import { AuthenticationService } from '../services/index';
 })
 export class SidebarComponent implements OnInit {
   	@Input() page: string;
-	user: User;
+    @Input() league: League;
+	  user: User;
 
   	constructor(
   		private router: Router,
