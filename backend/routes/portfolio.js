@@ -70,6 +70,54 @@ router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
  * @apiSuccess {JSON} Portfolio_Object Returns the final updated portfolio object.
 */
 router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
+
+	// Follow this literally and do not delete the comments
+
+	// Check if the current user is in a league
+
+		// check if the holding array is between >=3 and <=6
+
+			// check if all of the coin names are unique
+
+				// call the function in the market to get the coin names
+				// make a var for the counter
+				// make a var boolean to check for the captain coin
+
+				// make a for loop
+					// check the percentage is validate (> 0 and <= 35)
+
+						// check is the coin exists in the array
+
+							// check if the captain coin is the current coin if it is not null
+								// change the variable of the captain coin
+
+						// Otherwise return an error message
+
+					// Otherwise return an error message
+
+				// loop ended in the function
+					// check if the captain coin was found if it is not null
+
+						// get the league object from the database
+						
+						// check the status of the league (should be '0', '1', or '2')
+
+							// now update the portfolio in the database
+								// return the final portfolio object
+
+						//Otherwise return an error
+
+					// Otherwise return an error
+
+			// otherwise return an error
+
+		// Otherwise return an error
+
+	//Otherwise return an error
+
+
+
+
 	//console.log(req.body.holdings);
 	// var doubleFlag = 0;
 	// uniqueArray = req.body.holdings.length.filter(function(elem, pos) {
