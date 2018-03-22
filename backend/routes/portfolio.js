@@ -4,6 +4,7 @@ var router = express.Router();
 const passport = require('passport');
 const config = require('../config/config');
 const mongo = require('../utils/mongoDBCalls');
+var asyncLoop = require('node-async-loop');
 
 /**
  * @api {GET} /portfolio/:league_id/:user_id Request to get the portfolio in a specific league of a specific user
@@ -53,7 +54,7 @@ router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 	      res.send(response);
 	    });
 	} else {
-		res.send({'message' : "Not in a league"})
+		res.send({'message' : "Not in any league"})
 	}
 });
 
@@ -68,10 +69,61 @@ router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
  * @apiSuccess {JSON} Portfolio_Object Returns the final updated portfolio object.
 */
 router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
-	// Follow the below logic please:
-		// 1. check if the user is in a league
-		// 2. check the status of the league (it has to be "Waiting" or "Waiting_Locked" or "Locked" to make any changes to the portfolio)
-		// 3. Check to see of the portfolio is valid
+	//console.log(req.body.holdings);
+	// var doubleFlag = 0;
+	// uniqueArray = req.body.holdings.length.filter(function(elem, pos) {
+	// 	uniqueArray.indexOf(item) == pos;
+	// 	if(uniqueArray.length != req.body.holdings.length){
+	// 		doubleFlag = 1;
+	// 	}
+	// });
+	if (req.user.currentLeague_id) {
+		//console.log(req.body.holdings.length);
+		if(req.body.holdings.length < 3 && req.body.holdings.length > 6){
+			res.send({'message' : "Number of coins not correct"});
+		}
+	// else if(doubleFlag == 1){
+	// 	res.send({'message' : "You can not have duplicate coins in the portfolio"});
+	else{
+			mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
+				if (response.status.toString() === "Waiting" || response.status.toString() === "Waiting_Locked" || response.status.toString() === "Locked") {
+						//res.send(response);
+						var counter = 0;
+						var minusFlag = 0;
+						var topcapFlag = 0;
+						var capcoinFlag = 0;
+						asyncLoop(req.body.holdings, function (item, next) {
+		          counter += item.percentage;
+							if(item.percentage <= 0){minusFlag = 1;}
+							if(item.percentage > 35){topcapFlag = 1;}
+							if(item.coin_symbol.toString() != req.body.captain_coin){capcoinFlag = 1;}
+		          next();
+		        }, function () {
+							//capital coin is already in there
+							//have to actual coins
+							//console.log(req.body);
+								if(counter != 100){
+									res.send({'message' : "Total percentage is not equal to 100"});
+								} else if(minusFlag != 0){
+									res.send({'message' : "Coins can not have percentage less than or equal to 0"});
+								} else if(topcapFlag != 0){
+									res.send({'message' : "Coins can not make up more than 35% of your portfolio"});
+								} else if(capcoinFlag != 0){
+									res.send({'message' : "Captain Coin must be a coin that you've chosen in your portfolio. It can not be a new coin"});
+								} else{
+									console.log("Portfolio is Correct");
+								}
+		        });
+
+					} else {
+						res.send({'message' : "League Locked"});
+					}
+			});
+		}
+	} else {
+		res.send({'message' : "Not in any league"})
+	}
+
 		// 4. update the portfolio and return the final updated portfolio
 });
 
