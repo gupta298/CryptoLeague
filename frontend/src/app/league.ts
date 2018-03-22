@@ -3,7 +3,7 @@ import { Serializable } from './serializable';
 export class League implements Serializable<League>{
 	league_id: number;
 	league_type: string;
-	status: string;
+	status: number;
 	start_time: Date;
 	current_market_coin: any[];
 	portfolio_ids: any[];
@@ -11,7 +11,7 @@ export class League implements Serializable<League>{
 	deserialize(input) {
 		this.league_id = input.league_id;
 		this.league_type = input.league_type;
-		this.status = input.status;
+		this.status = parseInt(input.status);
 		this.start_time = new Date(input.start_time);
 		this.current_market_coin = input.current_market_coin;
 		this.portfolio_ids = input.portfolio_ids;

@@ -2,7 +2,7 @@
 	<app-sidebar page="league" [league]="league">
 	</app-sidebar>
 	<div class="page-content">
-	<div *ngIf="league && league.status === 'Waiting';else leagueDetail" style="height: 100%;">
+	<div *ngIf="league && league.status == 0;else leagueDetail" style="height: 100%;">
 			<app-league-waiting-overlay [league]="league"></app-league-waiting-overlay>
 		</div>
 		<ng-template #leagueDetail>
@@ -69,8 +69,8 @@
 				</div>
 			</div>
 
-			<div class="progress-bar" [class.starting]="league.status === 'Waiting_Locked'" [class.started]="league.status !== 'Waiting_Locked'" >
-				<div class="progress" [style.width]="timeRemainingPercent + '%'" [class.starting]="league.status === 'Waiting_Locked'" [class.started]="league.status !== 'Waiting_Locked'"></div>
+			<div class="progress-bar" [class.starting]="league.status == 1" [class.started]="league.status == 2" >
+				<div class="progress" [style.width]="timeRemainingPercent + '%'" [class.starting]="league.status == 1" [class.started]="league.status == 2"></div>
 				<p>{{timeRemaining}}</p>
 			</div>
 		</ng-template>
