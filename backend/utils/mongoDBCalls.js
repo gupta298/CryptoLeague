@@ -484,7 +484,7 @@ module.exports = {
                 league_result.start_time = date2;
 
                 console.log('scheduling job at ' + date2);
-                schedule.scheduleJob(date2, startLeague.bind(null, league_result.league_id));                
+                schedule.scheduleJob(date2, startLeague.bind(null, league_result.league_id));
               }
 
               dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
@@ -590,6 +590,17 @@ module.exports = {
         db.close();
       });
     });
+  },
+
+  updatePortfolio:
+  function updatePortfolio(portfolio_id, holding, captain_coin, callback){
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("cryptoleague_database");
+      dbo.collection("Portfolios").findOneAndUpdate({'portfolio_id': portfolio_id}, {$set: {holdings : holding, caption_coin: captain_coin}});
+      db.close();
+    });
   }
+
 
 };
