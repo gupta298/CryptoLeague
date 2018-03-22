@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+//var market = require('market');
 
 const passport = require('passport');
 const config = require('../config/config');
@@ -92,15 +93,17 @@ router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 						var minusFlag = 0;
 						var topcapFlag = 0;
 						var capcoinFlag = 0;
+						var validcoinFlag = 0;
+
 						asyncLoop(req.body.holdings, function (item, next) {
 		          counter += item.percentage;
 							if(item.percentage <= 0){minusFlag = 1;}
 							if(item.percentage > 35){topcapFlag = 1;}
 							if(item.coin_symbol.toString() != req.body.captain_coin){capcoinFlag = 1;}
+							//if(!market.getCoinTickers.includes(item.coin_symbol.toString())){validcoinFlag = 1;}
 		          next();
 		        }, function () {
-							//capital coin is already in there
-							//have to actual coins
+							//have to have actual coins
 							//console.log(req.body);
 								if(counter != 100){
 									res.send({'message' : "Total percentage is not equal to 100"});
@@ -110,6 +113,8 @@ router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 									res.send({'message' : "Coins can not make up more than 35% of your portfolio"});
 								} else if(capcoinFlag != 0){
 									res.send({'message' : "Captain Coin must be a coin that you've chosen in your portfolio. It can not be a new coin"});
+								// } else if(validcoinFlag != 0){
+								// 	res.send({'message' : "Please select a valid coin"});
 								} else{
 									console.log("Portfolio is Correct");
 								}
