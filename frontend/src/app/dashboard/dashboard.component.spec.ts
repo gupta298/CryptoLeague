@@ -5,8 +5,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DashboardComponent } from './dashboard.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
-import { AuthenticationService, NewsService } from '../services';
-// import { AuthenticationServiceStub } from '../services/authentication.service.stub';
+import { AuthenticationService, NewsService, UserService, LeagueService } from '../services';
+import { AuthenticationServiceStub } from '../stubs/authentication.service.stub';
 
 import { User } from '../user';
 
@@ -14,29 +14,11 @@ describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
-  let userServiceStub = {
-    loadUserFromLocalStorage() {
-      let currentUser = new User();
-      currentUser.firstname = "Nisarg";
-      return currentUser;
-    },
-
-    generateJwt() {
-      let jwtToken = localStorage.getItem('jwtToken');
-        if (jwtToken) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + jwtToken });
-            return new RequestOptions({ headers: headers });
-        } else {
-            return null;
-        }
-    }
-};
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, RouterTestingModule ],
       declarations: [ DashboardComponent, SidebarComponent ],
-      providers: [ {provide: AuthenticationService, useValue: userServiceStub }, NewsService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, NewsService, UserService, LeagueService ]
     })
     .compileComponents();
   }));
@@ -48,8 +30,6 @@ describe('DashboardComponent', () => {
   });
 
   it('should create', () => {
-    component.user = new User();
-    component.user.firstname = "Nisarg";
     expect(component).toBeTruthy();
   });
 });

@@ -1,0 +1,42 @@
+=== Weekly Team Report (Team 8: CryptoLeague) ===
+
+Week 1 (Summary) (Scrum master: Varun Gupta)
+02/11 0.5 hr b0f7048 Added mongodb dependency (Added mongoDB dependency and saved them)
+02/11 0.25 hr 5f2c7d5 Updated branding
+02/11 1.5 hr a23b8a6 Code to connect the backend the database (Add the code to backend to connect to the mongoDB database)
+02/11 4 hr b9cef3e Trying to fix MongoDB (MongoDB server was not running in windows)
+02/09 0.5 hr 2910d7d Updated modules (updated dependency and modules)
+02/08 0.5 hr ecc955e Fixed mongo (Fixed errors that pertained in the first commit)
+02/08 4.5 hr 2a8b6be Added mongo (Learned MongoDB and, Implemented MongoDB, )
+02/08 N/A 6baf331 Merge branch 'master' of github.com:gupta298/CryptoLeague
+02/08 2 hr 1bdccbf Implemented basic sidebar component
+02/07 2 hr a0cc127 Started work on basic sidebar
+02/07 5 mins 26acf27 updated npm (npm was not up-to-date)
+02/06 0.25 hr 2a68a84 Updated branding
+02/06 N/A ef771c4 Implemented homepage (duplicate)
+02/06 1.5 hr 01f330d Implemented homepage
+02/06 0.25 hr 6664f9e README edited
+02/06 1 hr 00f3ae4 backend setup complete
+02/06 N/A 4a6e2bb Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/06 6 hr e2cffa9 backend created
+02/06 0.25 hr 8fc14c2 Added example UIKit code
+02/06 1 hr b81b751 Routing works
+02/06 N/A 9b8c223 Merge branch 'master' of github.com:gupta298/CryptoLeague
+02/06 1 hr 438cdef Added routing module
+02/06 0.5 hr a1fe665 Added UIKit dependencies
+02/06 0.5 hr 0c484fb Added landing component
+02/05 5 mins 8c7d68d .gitignore fix
+02/05 2 hr 6eb4ed4 Initialized ng repo (ng stands for Angular CLI)
+02/04 N/A c5370f5 Merge branch 'master' of github.com:gupta298/CryptoLeague
+02/04 N/A bec189b Added Sprint 1 Planning Document
+
+Week 2 (Plan) (Scrum master: Varun Gupta)
+[Meetings]
+02/12 Discuss JWT Authentication
+02/14 Discuss API routes
+
+[Individual Goals]
+Varun: Implement JWT authentication and API routes for user data
+Ritwik: Implement landing page
+Utkarsh: Implement API route for getting news data
+Nisarg: Design and implement dashboard UI

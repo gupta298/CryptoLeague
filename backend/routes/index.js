@@ -1,13 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
-
-/* GET home page. */
+/**
+ * @api {GET} / Get the index file
+ * @apiName Index
+ * @apiGroup Index
+ *
+ * @apiSuccess {Redirect} Index_File Redirects the user to the Index file.
+*/
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
-  res.render('news');
 });
-
-
 
 module.exports = router;

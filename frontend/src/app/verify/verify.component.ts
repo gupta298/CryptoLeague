@@ -35,7 +35,7 @@ export class VerifyComponent implements OnInit {
   	 		if(user){
           this.authenticationService.saveJwt(this.jwtToken);
           //TODO: Uncomment 
-          if(user.username){
+          if(user.username != null){
   	 			    this.router.navigate(['/dashboard']);
           } else {
               this.router.navigate(['/landing']);

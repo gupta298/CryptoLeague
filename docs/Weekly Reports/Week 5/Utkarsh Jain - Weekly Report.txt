@@ -1,0 +1,18 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Utkarsh Jain
+
+Week 5 (Summary)
+03/13 0.5 hr 1b0b927 Modal works
+03/12 1 hr ba80403 Added code to call API to join league
+03/12 2 hr 4a40988 Adding modal
+03/10 N/A 7d6c183 Merged from master
+03/10 N/A d2ef69d Merged from master
+03/07 3 hr 262b0dd Added color component
+03/07 4 hr 5a46358 Added cards for league types
+03/06 N/A ec23649 Merged from master
+03/06 N/A 6e91894 Pulling
+
+Week 6 (Plan) 
+03/19 3 hr Implement the POST portfolio route
+03/20 3 hr Implement the league statistics on the frontend
+03/21 2 hr Implement the league ending logic

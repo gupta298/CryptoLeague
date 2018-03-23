@@ -1,0 +1,18 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Varun Gupta
+
+Week 1 (Summary)
+02/11 0.5 hr b0f7048 Added mongodb dependency (Added mongoDB dependency and saved them)
+02/11 0.25 hr 5f2c7d5 Updated branding
+02/11 1.5 hr a23b8a6 Code to connect the backend the database (Add the code to backend to connect to the mongoDB database)
+02/11 4 hr b9cef3e Trying to fix MongoDB (MongoDB server was not running in windows)
+02/09 0.5 hr 2910d7d Updated modules (updated dependency and modules)
+02/07 5 mins 26acf27 updated npm (npm was not up-to-date)
+
+Week 2 (Plan) 
+02/12 Learn and Implement JWT authentication on the back-end
+02/13 Learn and Implement saving the data in MongoDB
+02/13 Implement the routes for /api/user and /api/all_users
+02/16 Implement the communicate with coinmarketcap API and store data locally
+
+Note: I was not able to do 10 hours of work this week due to having an extremely busy week. I am planning to make-up for this in the upcoming weeks.

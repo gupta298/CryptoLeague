@@ -2,25 +2,29 @@ var express = require('express');
 var router = express.Router();
 require('../config/passport');
 
-var config = require('../config/config');
+const config = require('../config/config');
 var token = require('../utils/token');
 const passport = require('passport');
-var mongo = require('../utils/mongoDBCalls');
+const mongo = require('../utils/mongoDBCalls');
 
-router.post('/',
-  // This request must be authenticated using a JWT, or else we will fail
-  passport.authenticate(['jwt'], { session: false }),
-  (req, res) => {
-    console.log(req.user.id);
-    // console.log(req.body);
-    if (!req.body.username) {
-    	res.send({'exists': null});
-    } else {
-	    mongo.getUserViaUsername(req.body.username, function(error, response) {
-	    	res.send({ 'exists' : response });
-	    });
-	}
+/**
+ * @api {POST} /validate_user Request to validate that the username does not already exists
+ * @apiName Check_User_Information
+ * @apiGroup User
+ *
+ * @apiParam {User_Object} User User object with updated information.
+ * @apiHeader {String} JWT JWT token of the user.
+ *
+ * @apiSuccess {JSON} Exists Returns a boolean value based on if the username already exists.
+*/
+router.post('/', (req, res) => {
+  if (!req.body.username) {
+  	res.send({'exists': null});
+  } else {
+    mongo.getUserViaUsername(req.body.username, function(error, response) {
+    	res.send({ 'exists' : response });
+    });
   }
-);
+});
 
 module.exports = router;

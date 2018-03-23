@@ -1,5 +1,5 @@
 <div class="page-container">
-	<app-sidebar page="dashboard">
+	<app-sidebar page="dashboard" [league]="league">
 	</app-sidebar>
 	<div class="page-content">
 		<div class="uk-container uk-margin-top" *ngIf="user">
@@ -17,12 +17,22 @@
 					</div>
 				</div>
 				<div>
-					<div class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body ">
-						<h3 class="uk-card-title">Join a League</h3>
-						<a class="uk-flex uk-flex-center" href="/join">
-					    	<span class=" join-button" uk-icon="icon: plus; ratio: 5"></span>
-						</a>
+					<div *ngIf="league;else joinLeague" style="height: 100%;">
+						<div class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body ">
+							<h3 class="uk-card-title">League #{{league.league_id}}</h3>
+							<a class="uk-flex uk-flex-center" href="/league/{{league.league_id}}">
+						    	<span class="join-button" uk-icon="icon: users; ratio: 5"></span>
+							</a>
+						</div>
 					</div>
+					<ng-template #joinLeague>
+						<div class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body ">
+							<h3 class="uk-card-title">Join a League</h3>
+							<a class="uk-flex uk-flex-center" href="/join">
+						    	<span class=" join-button" uk-icon="icon: plus; ratio: 5"></span>
+							</a>
+						</div>
+					</ng-template>
 				</div>
 			</div>
 			<div class="uk-container uk-card-small uk-margin-top">

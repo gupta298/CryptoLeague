@@ -1,0 +1,16 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Utkarsh Jain
+
+Week 3 (Summary)
+02/21 1 hr ebc6861 testing
+02/21 15 min 7e790d8 fixed UI
+02/21 0.5 hr 045b2a7 added email features
+02/21 2 hr 82372b0 Added Fname Lname text boxes
+02/21 5 hr 942dbed Added card container  
+02/21 4 hr 07db709 Added name change and card feature  
+02/21 3 hr 2ac33d9 Added profile pic 
+02/20 3 hr e46c59f Files for Settings Page
+
+
+Week 4 (Plan)
+03/04 4 hr Connect the backend and frontend and setup the API calls.

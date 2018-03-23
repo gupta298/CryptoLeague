@@ -1,0 +1,63 @@
+@import 'variables';
+
+* {
+	transition: all ease 0.5s;
+}
+
+.flex-full {
+    flex: 1;
+}
+
+.progress-bar{
+	position: absolute;
+	bottom: 0;
+	width: calc(100% - 72px);
+	height: 2em;
+	display: inline-block;
+}
+
+.progress-bar .progress{
+	position: absolute;
+	z-index: 2;
+	height: 2em;
+	left: 0;
+}
+
+.progress-bar.starting{
+	background-color: transparentize($green, 0.5);
+}
+
+.progress-bar.started{
+	background-color: transparentize($red, 0.5);
+}
+
+.progress.starting{
+	background-color: $green;
+}
+
+.progress.started{
+	background-color: $red;
+}
+
+.progress-bar p {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	margin: 0;
+    z-index: 2;
+    color: $white;
+    vertical-align: middle;
+    line-height: 2em;
+}
+
+.stats-card {
+	margin-top: 20px;
+	//margin-left: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+	.stats-card {
+		margin-top: 0;
+		//margin-left: 20px;
+	}
+}
