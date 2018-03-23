@@ -14,7 +14,7 @@ declare var DraggablePiechart: any;
 })
 export class PortfolioComponent implements OnInit {
 
-	@Input() onClickCallback: Function;
+	@Input() clickCallback: Function;
 	@Input() hideCards: boolean;
 	proportions: any[] = [];
 	constructor(
@@ -200,7 +200,7 @@ export class PortfolioComponent implements OnInit {
   		
   		this.draggablePieChart = new DraggablePiechart(setup);
   	}
-  	this.onClickCallback();
+  	this.clickCallback();
   }
 
   checkPortfolioValidity() {

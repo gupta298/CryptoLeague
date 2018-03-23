@@ -10,7 +10,7 @@
 				<div class="uk-text-lead">League #{{league.league_id}}</div>
 				<div class="uk-margin-top card-container uk-grid-small uk-grid-match" uk-grid>
 					<app-portfolio
-						[onClickCallback]="onPortfolioClicked"
+						[clickCallback]="portfolioClicked"
 						[hideCards]="portfolioOpened"
 						[class.uk-width-1-2@m]="!portfolioOpened" 
 						[class.uk-width-1-1@m]="portfolioOpened"

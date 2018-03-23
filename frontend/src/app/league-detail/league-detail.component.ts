@@ -33,7 +33,7 @@ export class LeagueDetailComponent implements OnInit {
 
   	ngOnInit() {
       this.loadLeague();
-  		this.onPortfolioClicked = this.onPortfolioClicked.bind(this);
+  		this.portfolioClicked = this.portfolioClicked.bind(this);
   	}
 
     loadLeague(){
@@ -59,7 +59,7 @@ export class LeagueDetailComponent implements OnInit {
       });
     }
 
-  	onPortfolioClicked(){
+  	portfolioClicked(){
   		console.log("onPortfolioclicked");
   		this.portfolioOpened = !this.portfolioOpened;
   		setTimeout(()=>{ 
