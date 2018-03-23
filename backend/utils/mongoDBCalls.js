@@ -441,7 +441,8 @@ module.exports = {
               "tokens": user.tokens,
               "profilePicture": user.profilePicture,
               "user_id": user._id,
-              "portfolio_id" : portfolio._id
+              "portfolio_id" : portfolio._id,
+              "portfolio_value": null
             });
             league.start_time = null;
 
@@ -468,7 +469,8 @@ module.exports = {
               "tokens": user.tokens,
               "profilePicture": user.profilePicture,
               "user_id": user._id,
-              "portfolio_id" : portfolio._id
+              "portfolio_id" : portfolio._id,
+              "portfolio_value": null
             });
 
             dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id},
@@ -477,7 +479,8 @@ module.exports = {
                   "tokens": user.tokens,
                   "profilePicture": user.profilePicture,
                   "user_id": user._id,
-                  "portfolio_id" : portfolio._id
+                  "portfolio_id" : portfolio._id,
+                  "portfolio_value": null
                 }
               }});
 
@@ -608,19 +611,6 @@ module.exports = {
     });
   },
 
-  updatePortfolio:
-  function updatePortfolio(portfolio_id, holding, captain_coin, callback){
-    MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("cryptoleague_database");
-      console.log("In singleton, updating the portfolio");
-      //console.log(holding);
-      dbo.collection("Portfolios").findOneAndUpdate({'_id': ObjectId(portfolio_id)}, {$set: {holdings : holding, captain_coin: captain_coin}});
-      //dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
-      db.close();
-    });
-  },
-
   updatePortfolioWithID:
   function updatePortfolioWithID(portfolio_id, holding, captain_coin, callback){
     MongoClient.connect(mongodbUrl, function (err, db) {
@@ -632,6 +622,4 @@ module.exports = {
       db.close();
     });
   }
-
-
 };

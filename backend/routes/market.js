@@ -8,7 +8,7 @@ const config = require('../config/config');
 const coinMarketAPI = config.coinMarketAPI;
 const chasing_coins = config.chasing_coins;
 
-var coinData = [];
+var coinData = require('../utils/sample_coin_data');
 var coinNames = [];
 
 /**
