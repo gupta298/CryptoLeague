@@ -49,6 +49,32 @@ function top3Coins(callback) {
   callback(null, object);
 }
 
+// Get just coin prices
+function getCurrentCoinPrices() {
+  var coinPrices = [];
+
+  for(coin of coinData){
+    coinPrices.push({
+      symbol: coin.symbol,
+      price: coin.price
+    });
+  }
+
+  return coinPrices;
+}
+
+//Make array of just the coin tickers
+function getCoinTickers(){
+  var coinTickers = [];
+
+  for(coin of coinData){
+    coinTickers.push(coin.symbol);
+  }
+
+  return coinTickers;
+}
+
+
 // Helps build the coin data object
 function buildCoinData(callback) {
   getJsonFromUrl(chasing_coins.Top100Coins, function(coinsResult) {
@@ -71,7 +97,7 @@ function buildCoinData(callback) {
           } else {
             coins[item.key].name = coinNames[item.value.symbol];
           }
-          
+
           result.push(coins[item.key]);
           next();
         });
@@ -116,5 +142,7 @@ function getJsonFromUrl(url, callback) {
 
 module.exports = {
   router : router,
-  top3Coins : top3Coins
+  top3Coins : top3Coins,
+  getCurrentCoinPrices: getCurrentCoinPrices,
+  getCoinTickers: getCoinTickers
 }

@@ -64,7 +64,7 @@ router.put('/',
                 res.send({ 'jwt' : token });
               }
             });
-            
+
           });
         } else {
           mongo.updateUser(result, function(error, token) {
@@ -77,6 +77,40 @@ router.put('/',
         }
       }
     });
+  }
+);
+
+/**
+ * @api {GET} /user/null_out Request the null out the current league
+ * @apiName Get_And_Update_User_Information
+ * @apiGroup User
+ *
+ * @apiHeader {String} JWT JWT token of the user.
+ *
+ * @apiSuccess {JSON} JWT Returns the updated JWT token of the current user.
+*/
+router.get('/null_out',
+  passport.authenticate(['jwt'], { session: false }),
+  (req, res) => {
+    // Follow the below logic please:
+      // 1. check if the user is in a league and the league has ended
+      
+      // if (req.user.currentLeague_id) {
+    	// 	mongo.getPortfolio(req.user.currentLeague_id, req.user._id, req.user._id, function(error, response) {
+    	//       res.send(response);
+      //       if(req.user.currentLeague_id){
+      //
+      //       }
+    	//     });
+    	// } else {
+    	// 	res.send({'message' : "Not in a league"})
+    	// }
+
+
+      // 2. Add the current league in the past leagues array
+      // 3. Null out the current league
+      // 4. update the user object in the database
+      // 5. return the updated jwt token
   }
 );
 
