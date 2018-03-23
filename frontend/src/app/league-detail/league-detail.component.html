@@ -8,33 +8,37 @@
 		<ng-template #leagueDetail>
 			<div class="uk-container uk-margin-top">
 				<div class="uk-text-lead">League #{{league.league_id}}</div>
-				<div class="uk-margin-top card-container uk-flex uk-flex-stretch uk-flex-wrap uk-flex-wrap-stretch">
+				<div class="uk-margin-top card-container uk-grid-small uk-grid-match" uk-grid>
 					<app-portfolio
 						[onClickCallback]="onPortfolioClicked"
-						[hideCards]="hideCards"
-						[class.flex-full]="hideCards">	
+						[hideCards]="portfolioOpened"
+						[class.uk-width-1-2@m]="!portfolioOpened" 
+						[class.uk-width-1-1@m]="portfolioOpened"
+						class="uk-animation-slide-left">	
 					</app-portfolio>
-					<div *ngIf="!hideCards" class="uk-card uk-card-secondary uk-card-small uk-flex-1 uk-card-body uk-animation-reverse stats-card" [class.uk-animation-slide-right]="portfolioOpened">
-						<h3 class="uk-card-title">Stats & Distribution</h3>
-						<div class="uk-flex uk-flex-bottom uk-card-body">
-							<div uk-grid *ngIf="!hideCards">
-								<ul class="uk-list uk-list-large">
-								    <li>Your Rank: #5</li>
-								    <li>No. of players: 100</li>
-								    <li>Prize Pool: 2500</li>
-								    <li>Most Gains (24h): asturtony</li>
-								</ul>
-								<ul class="uk-list uk-list-large">
-									<li><b>Prize Distribution:</b></li>
-								    <li>#1-10: 50</li>
-								    <li>#11-25: 37.5</li>
-								    <li>#26-50: 25</li>
-								</ul>
+					<div class="uk-width-1-2@m">
+						<div *ngIf="!hideCards" class="uk-card uk-card-secondary uk-card-small uk-card-body uk-animation-slide-right" [class.uk-animation-reverse]="portfolioOpened">
+							<h3 class="uk-card-title">Stats & Distribution</h3>
+							<div class="uk-flex uk-flex-bottom uk-card-body">
+								<div uk-grid *ngIf="!hideCards">
+									<ul class="uk-list uk-list-large">
+									    <li>Your Rank: #5</li>
+									    <li>No. of players: 100</li>
+									    <li>Prize Pool: 2500</li>
+									    <li>Most Gains (24h): asturtony</li>
+									</ul>
+									<ul class="uk-list uk-list-large">
+										<li><b>Prize Distribution:</b></li>
+									    <li>#1-10: 50</li>
+									    <li>#11-25: 37.5</li>
+									    <li>#26-50: 25</li>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="uk-container uk-card-small uk-margin-top uk-margin-large-bottom uk-animation-reverse" [class.uk-animation-slide-bottom]="portfolioOpened" *ngIf="!hideCards">
+				<div class="uk-container uk-card-small uk-margin-top uk-margin-large-bottom uk-animation-slide-bottom" [class.uk-animation-reverse]="portfolioOpened" *ngIf="!hideCards">
 					<div class="uk-card uk-card-default uk-card-body">
 						<div class="uk-flex uk-flex-between">
 							<div>

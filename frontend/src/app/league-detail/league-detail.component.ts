@@ -63,7 +63,7 @@ export class LeagueDetailComponent implements OnInit {
   		this.portfolioOpened = !this.portfolioOpened;
   		setTimeout(()=>{ 
   			this.hideCards = !this.hideCards;
-  		}, 1000);
+  		}, 500);
   	}
 
     getTimeRemaining() {
