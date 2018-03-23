@@ -251,12 +251,14 @@ export class PortfolioComponent implements OnInit {
 	}
 
 	onPieChartChange(piechart, that) {
-		var table = $('#proportions-table');
-		var percentages = piechart.getAllSliceSizePercentages();
-		console.log("percentages", percentages);
-		for(var i=0; i < that.portfolioFieldArray.length; i++) {
-			console.log("inside loop")
-			that.portfolioFieldArray[i].percentage = percentages[i];
+		if(that.isPortfolioValid)	{
+			var table = $('#proportions-table');
+			var percentages = piechart.getAllSliceSizePercentages();
+			console.log("percentages", percentages);
+			for(var i=0; i < that.portfolioFieldArray.length; i++) {
+				console.log("inside loop")
+				that.portfolioFieldArray[i].percentage = percentages[i];
+			}
 		}
 	}
 

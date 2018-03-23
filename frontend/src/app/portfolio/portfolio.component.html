@@ -66,14 +66,14 @@
 		<div uk-grid class="uk-flex uk-flex-between uk-flex-middle uk-margin uk-padding uk-padding-remove-vertical" >
 			<div uk-grid *ngIf="!hideCards">
 				<ul class="uk-list uk-list-large">
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
+				    <li *ngFor="let field of portfolioFieldArray | slice:0:3; let i = index" class="">
+				    	● {{field.ticker}}: {{field.percentage}}%
+				    </li>
 				</ul>
 				<ul class="uk-list uk-list-large">
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
+				    <li *ngFor="let field of portfolioFieldArray | slice:3:6; let i = index" class="">
+				    	● {{field.ticker}}: {{field.percentage}}%
+				    </li>
 				</ul>
 			</div>
 			<div class="uk-first-column uk-width-2-3 uk-flex uk-flex-center uk-margin-large-top uk-animation-fade-in" *ngIf="hideCards" style="display: block">
