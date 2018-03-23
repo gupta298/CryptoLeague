@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LeagueDetailComponent } from './league-detail.component';
+import { LeagueWaitingOverlayComponent } from '../league-waiting-overlay/league-waiting-overlay.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 describe('LeagueDetailComponent', () => {
   let component: LeagueDetailComponent;
@@ -8,7 +10,7 @@ describe('LeagueDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LeagueDetailComponent ]
+      declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, SidebarComponent ]
     })
     .compileComponents();
   }));
