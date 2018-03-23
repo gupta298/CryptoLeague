@@ -39,6 +39,7 @@ export class PortfolioComponent implements OnInit {
   isPortfolioValid: boolean = false;
   percentage: number = 100;
   isPieSetup: boolean = false;
+  chartCount: number = 0;
 
   //temporary- remove all this hard-coded stuff
   coins: Array<any> = [];
@@ -205,6 +206,7 @@ export class PortfolioComponent implements OnInit {
 
 
 	setupPieChart() {
+		this.chartCount++;
 		var setup = {
 			canvas: (<HTMLElement>this.piechart.nativeElement),
 			radius: 0.9,
@@ -213,11 +215,15 @@ export class PortfolioComponent implements OnInit {
 			drawNode: this.drawNode,
 			onchange: this.onPieChartChange,
 			dragDisabled: false,
-			scope: this
+			scope: this,
+			count: this.chartCount
 		};
-
+		if(this.chartCount > 1) {
+			this.draggablePieChart.context.clearRect(0, 0, this.draggablePieChart.canvas.width, this.draggablePieChart.canvas.height);
+			delete this.draggablePieChart;
+		}
 		this.draggablePieChart = new DraggablePiechart(setup);
-		this.isPieSetup = true;
+		//this.isPieSetup = true;
 	}
 
 	hideNode(context, piechart, x, y, centerX, centerY, hover) {
@@ -254,8 +260,10 @@ export class PortfolioComponent implements OnInit {
 				console.log("inside loop")
 				that.portfolioFieldArray[i].percentage = percentages[i];
 			}
+			//generateDataFromProportions(that.proportions);
 		}
 	}
+
 
 	precisionRound(number, precision) {
   	var factor = Math.pow(10, precision);
