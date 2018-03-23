@@ -192,6 +192,17 @@ function startLeague(league_id){
   });
 }
 
+function endLeague(league_id){
+  MongoClient.connect(mongodbUrl, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("cryptoleague_database");
+
+    //@utkyboy Add code here
+
+    db.close();
+  });
+}
+
 module.exports = {
   connectToMongo:
   function connectToMongo(callback) {
@@ -477,14 +488,19 @@ module.exports = {
                 league_result.status = "2";
               } else {
                 var date = new Date();
-                var date2 = new Date(date);
+                var lockingDate = new Date(date);
+                lockingDate.setDate(date.getDate() + 1);
+                var endingDate = new Date(date);
+                endingDate.setDate(date.getDate() + 7);
 
-                date2.setMinutes(date.getMinutes() + (24 * 60));
                 league_result.status = "1";
-                league_result.start_time = date2;
+                league_result.start_time = lockingDate;
 
-                console.log('scheduling job at ' + date2);
-                schedule.scheduleJob(date2, startLeague.bind(null, league_result.league_id));                
+                console.log('scheduling job at ' + lockingDate);
+                schedule.scheduleJob(lockingDate, startLeague.bind(null, league_result.league_id));    
+
+                console.log('scheduling job at ' + endingDate);
+                schedule.scheduleJob(endingDate, endLeague.bind(null, league_result.league_id));            
               }
 
               dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
@@ -590,6 +606,32 @@ module.exports = {
         db.close();
       });
     });
+  },
+
+  updatePortfolio:
+  function updatePortfolio(portfolio_id, holding, captain_coin, callback){
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("cryptoleague_database");
+      console.log("In singleton, updating the portfolio");
+      //console.log(holding);
+      dbo.collection("Portfolios").findOneAndUpdate({'_id': ObjectId(portfolio_id)}, {$set: {holdings : holding, captain_coin: captain_coin}});
+      //dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
+      db.close();
+    });
+  },
+
+  updatePortfolioWithID:
+  function updatePortfolioWithID(portfolio_id, holding, captain_coin, callback){
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("cryptoleague_database");
+      dbo.collection("Portfolios").findOneAndUpdate({'_id': ObjectId(portfolio_id)}, {$set: {holdings : holding, captain_coin: captain_coin}}, function(err, result) {
+        callback(err, result);
+      });
+      db.close();
+    });
   }
+
 
 };

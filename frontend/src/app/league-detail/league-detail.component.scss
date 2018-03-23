@@ -49,3 +49,15 @@
     vertical-align: middle;
     line-height: 2em;
 }
+
+.stats-card {
+	margin-top: 20px;
+	//margin-left: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+	.stats-card {
+		margin-top: 0;
+		//margin-left: 20px;
+	}
+}
