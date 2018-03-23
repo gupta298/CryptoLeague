@@ -16,4 +16,8 @@ export class PortfolioService {
    	return this.http.get(environment.apiUrl+'/portfolio/',  this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
+  putPortfolio(portfolio) {
+   	return this.http.put(environment.apiUrl+'/portfolio/', portfolio, this.authService.generateJwt()).map((response: Response) => response.json());
+  }
+
 }

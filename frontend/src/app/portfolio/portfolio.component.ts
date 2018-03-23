@@ -40,6 +40,7 @@ export class PortfolioComponent implements OnInit {
   percentage: number = 100;
   isPieSetup: boolean = false;
   chartCount: number = 0;
+  portfolioObject: any = {};
 
   //temporary- remove all this hard-coded stuff
   coins: Array<any> = [];
@@ -54,6 +55,7 @@ export class PortfolioComponent implements OnInit {
 							.subscribe(
 								result => {
 									this.portfolioNewAttribute = {};
+									this.portfolioObject = result;
 									console.log(result);
 									for(var i=0; i<result.holdings.length; i++) {
 										for(var j=0;j<this.coinsArray.length;j++) {
@@ -180,6 +182,41 @@ export class PortfolioComponent implements OnInit {
   		this.isPortfolioValid = false;
   	} else {
   		this.isPortfolioValid = true;
+  	}
+  }
+
+  submitPortfolio(form) {
+  	var percent = 0;
+  	for(var i=0;i<this.portfolioFieldArray.length; i++) {
+  		percent += this.portfolioFieldArray[i].percentage;
+  	}
+  	if(percent == 100) {
+  		var holdings = [];
+  		for(var i=0;i<this.portfolioFieldArray.length; i++) {
+	  		var obj = {
+	  			percentage: this.portfolioFieldArray[i].percentage,
+	  			coin_symbol: this.portfolioFieldArray[i].ticker
+	  		}
+	  		holdings.push(obj);
+	  	}
+	  	var body = {
+	  		_id: this.portfolioObject._id,
+	  		holdings: holdings,
+	  		captain_coin: this.captainCoin
+	  	}
+
+	  	this.portfolioService.putPortfolio(body)
+				.subscribe(
+					result => {
+						console.log(result);
+						if(result.message == "success") {
+							
+						}
+
+					}, error => {
+						console.log(error);
+					}
+				)
   	}
   }
 

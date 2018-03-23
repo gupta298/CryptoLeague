@@ -101,11 +101,12 @@ var express = require('express');
                } else{
                 console.log("Portfolio is Correct");
 
-                mongo.updatePortfolioWithID(req.body._id.$oid, req.body.holdings, req.body.captain_coin, function(error, result) {
+                mongo.updatePortfolioWithID(req.body._id, req.body.holdings, req.body.captain_coin, function(error, result) {
                   if(error)
                     console.log(error);
                   console.log(result);
-                  res.send("Worked");
+                  res.send({'message' : "success"});
+                  return;
                 });
               }
           });

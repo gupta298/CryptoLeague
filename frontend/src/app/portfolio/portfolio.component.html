@@ -175,16 +175,16 @@
 
 
 	    	<div id="captain" class="uk-align-center">
-		    	<form *ngIf="hideCards">
+		    	<form *ngIf="hideCards" #f="ngForm" (ngSubmit)="submitPortfolio(f.value)">
 					    <fieldset class="uk-fieldset">
 					        <div class="uk-margin">
 					            <select [(ngModel)]="captainCoin" class="uk-select" placeholder="select a captain coin" name="captainCoin">
 					            		<option class="option uk-margin-right item" selected="selected">Select Captain Coin</option>
-					                <option *ngFor="let opt of portfolioFieldArray" class="option uk-margin-right item"><div class="option">{{opt.name}}</div></option>
+					                <option *ngFor="let opt of portfolioFieldArray" class="option uk-margin-right item"><div class="option">{{opt.ticker}}</div></option>
 					                <!--option class="option">Option 02</option-->
 					            </select>
 					        </div>
-					        <div class="uk-margin-small-left"><button class="uk-button uk-button-default">Submit</button></div>
+					        <div class="uk-margin-small-left"><button type="submit" class="uk-button uk-button-default">Submit</button></div>
 					    </fieldset>
 					</form>
 				</div>
