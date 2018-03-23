@@ -1,11 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var config = require('../config/config');
-var mongo = require('../utils/mongoDBCalls');
 
+const config = require('../config/config');
+const mongo = require('../utils/mongoDBCalls');
+
+/**
+ * @api {GET} /total_users Request to get the total number of users
+ * @apiName Get_Total_Number_Of_Users
+ * @apiGroup User
+ *
+ * @apiHeader {String} JWT JWT token of the user.
+ *
+ * @apiSuccess {JSON} Number Returns the total number of users in the database.
+*/
 router.get('/', (req, res) => {
-    console.log("userid: " + req.user.id);
-
     mongo.getTotalUsers(function(error, response) {
       res.send(response);
     });

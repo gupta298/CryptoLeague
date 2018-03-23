@@ -14,11 +14,17 @@ import { MarketComponent } from './market/market.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 import { AuthGuard } from './auth.guard';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
-import { AuthenticationService, NewsService, MarketService, UserService } from './services/index';
+
+import { AuthenticationService, NewsService, MarketService, UserService, LeagueService, PortfolioService } from './services/index';
 import { SettingsComponent } from './settings/settings.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { LeagueDetailComponent } from './league-detail/league-detail.component';
+import { LeagueWaitingOverlayComponent } from './league-waiting-overlay/league-waiting-overlay.component';
+import { LeagueSelectComponent } from './league-select/league-select.component';
 
 @NgModule({
     declarations: [
@@ -30,14 +36,19 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     VerifyComponent,
     LeaderboardComponent,
     MarketComponent,
-    SettingsComponent
+    SettingsComponent,
+    PortfolioComponent,
+    LeagueDetailComponent,
+    LeagueWaitingOverlayComponent,
+    LeagueSelectComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+   // Ng2SearchPipeModule
   ],
   providers: [
     HttpClientModule,
@@ -45,6 +56,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     NewsService,
     UserService,
     MarketService,
+    LeagueService,
+    PortfolioService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

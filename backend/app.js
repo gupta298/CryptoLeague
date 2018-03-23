@@ -18,12 +18,14 @@ var newsapi = require('./routes/newsapi');
 var validateUser = require('./routes/validateUser');
 var userRank = require('./routes/userRank');
 var totalUsers = require('./routes/totalUsers');
+var league = require('./routes/league');
+var league_types = require('./routes/leagueTypes');
+var portfolio = require('./routes/portfolio')
 
-var config = require('./config/config')
+const config = require('./config/config')
 const passport = require('passport');
 
 require('./config/passport');
-var config = require('./config/config')
 
 var app = express();
 
@@ -43,14 +45,31 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Defining Routes
 app.use('/', index);
-app.use('/user', user);
-app.use('/all_users', passport.authenticate(['jwt'], { session: false }), all_users);
+
+// User
 app.use('/auth', auth);
-app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
-app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
+app.use('/user', user);
 app.use('/validate_user', passport.authenticate(['jwt'], { session: false }), validateUser);
 app.use('/user_rank', passport.authenticate(['jwt'], { session: false }), userRank);
-app.use('/total_users', passport.authenticate(['jwt'], { session: false }), totalUsers);
+app.use('/total_users', passport.authenticate(['jwt'], { session: false }), totalUsers); 
+app.use('/all_users', passport.authenticate(['jwt'], { session: false }), all_users);
+
+// News
+app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
+
+// Market
+app.use(market.router);
+// app.use('/market', passport.authenticate(['jwt'], { session: false }), market);
+
+// League
+app.use('/league_types', passport.authenticate(['jwt'], { session: false }), league_types);
+app.use('/league', passport.authenticate(['jwt'], { session: false }), league);
+// app.use('/league/:league_id', passport.authenticate(['jwt'], { session: false }), league);
+
+// Portfolio
+app.use('/portfolio', passport.authenticate(['jwt'], { session : false }), portfolio);
+// app.use('/portfolio/:league_id', passport.authenticate(['jwt'], { session : false }), portfolio);
+// app.use('/portfolio/:league_id/:user_id', passport.authenticate(['jwt'], { session : false }), portfolio);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -59,7 +78,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlera
+// error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

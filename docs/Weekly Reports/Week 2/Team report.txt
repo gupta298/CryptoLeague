@@ -1,0 +1,107 @@
+=== Weekly Team Report (Team 8: CryptoLeague) ===
+
+Week 2 (Summary) (Scrum master: Varun Gupta)
+02/18 N/A 522b817 Merge remote-tracking branch 'origin/master'
+02/18 N/A bab3099 Merge pull request #6 from gupta298/backend/newsapi Fixed Merging on Master
+02/18 5 min 9cde248 Fixed news api route 
+02/18 0.5 hr 4dbe7f1 Added timer to news 
+02/18 3 hr 134ad90 NEWS API Works
+02/18 0.5 hr e0dd8cf Merged in master
+02/18 0.5 hr 0732763 Had conflicts 
+02/18 1 hr 7ffb88c Resolved issues of news API
+02/17 0.5 hr e284a5a Added authService to dashboard
+02/17 5 hr 60bd959 Added files for Settings page
+02/16 N/A 659dc72 Merge remote-tracking branch 'origin/backend/newsapi' into backend/newsapi Pulling code from master
+02/16 0.5 hr 160de62 Calling newsorg API 
+02/16 3 hr 986f4d2 Calling newsorg API 
+02/16 0.25 hr a23ab4a Updated the routes 
+02/16 1.5 hr 09ed597 Coin market api is fully functional and the routes are also implemented
+02/16 N/A 4a77e34 Merge remote-tracking branch 'origin/master'
+02/16 0.5 hr 872c153 Added username to user class on frontend 
+02/16 N/A a7c9cf7 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+02/16 1 hr 46d0556 Adding the coin market api calls and added username to the user object
+02/16 1.5 hr 62d01f0 User details saves and renders in the frontend now
+02/16 1 hr 57c17bf Fixed the api call to the facebook api for login 
+02/16 3 hr 5ccd31f Added files for backend news API
+02/16 0.75 hr b4de1de Added the /app/user and /app/users routes
+02/16 N/A 616676a Updating all packages
+02/16 3 hr 1114864 User's data now gets stored in the DB
+02/15 1.25 hr 2420c24 Adding the code to connect to mongodb and store the data 
+02/15 5 mins 480395f Fixed the issue with npm preventing update or install 
+02/15 N/A ed5269e Adding the user object for the schema of DB 
+02/15 2 hr b8ace0b Adding the user object for the schema of DB 
+02/15 1 hr 02e928f Added google auth 
+02/15 5 mins 3053525 Updating dependencies 
+02/14 0.5 hr 4dc67fe Fixed auth routes
+02/13 0.5 hr 47780ce Improved sidebar design
+02/13 1 hr 03748de Added auth link and set up prod and dev env variables
+02/13 1 hr 643e528 Merge pull request #3 from gupta298/frontend/jwt Implemented JWT Auth on frontend
+02/13 2 hr 6cf1f81 Saving JWT token and user object works
+02/13 1 hr 8d0e135 Merge branch 'backend/login' of github.com:gupta298/CryptoLeague into frontend/jwt
+02/13 1 hr b2ad464 Added verify component to verify and save JWT token
+02/13 0.5 hr 6568d1d Added code to support jwt authentication
+02/13 5 mins 069b4e8 Added User class
+02/13 N/A 0e25a04 Merge branch 'backend/login' of https://github.com/gupta298/CryptoLeague into backend/login 
+02/13 N/A 91bcc34 Merge remote-tracking branch 'origin/master' into backend/login 
+02/13 1 hr 64b12d2 made landing page more responsive 
+02/13 N/A 3fc4f1b Merge remote-tracking branch 'origin/backend/login' into backend/login
+02/13 3 hr d803f45 Implemented social login with passport.js
+02/13 N/A 7c2c7f3 Merge branch 'master' of https://github.com/gupta298/CryptoLeague 
+02/13 9.5 64f9c98 basic landing page ui implemented 
+02/12 N/A b514c09 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into backend/login Conflicts:
+	package-lock.json 
+02/12 1 hr 61d1373 removed stray Databases
+02/12 5 mins c65a45e Uploading the index file 
+02/12 N/A 9012ebd Merge remote-tracking branch 'origin/master' into backend/login 
+02/12 1 hr 007b770 Adding facebook auth to the app.js 
+02/12 0.5 hr 2352514 Made sidebar component modular
+02/12 N/A 34b80fc Updated readme 
+02/12 N/A 1aa748c Merge remote-tracking branch 'origin/master' into backend/login
+02/12 N/A df325ad Removing views in the backend
+02/12 N/A 8bbea42 Removing all of the passport js code
+02/12 N/A 7493669 Merge branch 'master' of https://github.com/gupta298/CryptoLeague 
+02/12 1.5 hr 1e9d706 minor changes 
+02/12 5 mins 8069612 Initialized bower (run "npm i -g bower") 
+02/12 N/A 748a21a Merge branch 'master' of https://github.com/gupta298/CryptoLeague 
+02/12 0.5 hr f78826a Updated sidebar and navbar
+02/12 N/A e1fc372 Merge branch 'master' of https://github.com/gupta298/CryptoLeague 
+02/12 1 hr fb0ca07 Merge pull request #2 from gupta298/frontend/dashboard Implemented basic dashboard UI 
+02/12 N/A 4a8f815 Merge branch 'master' of github.com:gupta298/CryptoLeague into frontend/dashboard
+02/12 2 hr b400e8f Dashboard UI pretty much done 
+02/12 N/A ea56675 Merge branch 'master' of https://github.com/gupta298/CryptoLeague 
+02/12 0.5 hr acdb22e minor changes 
+02/12 0.5 hr ae88739 Fixed page formatting with flex
+02/12 1 hr b23a0b9 Merge pull request #1 from gupta298/frontend/dashboard Updated sidebar code and added styles to support basic views
+02/12 1 hr 78a4539 Fixed sidebar and added supporting styles 
+02/12 N/A 9cafd3d Merge remote-tracking branch 'origin/master'
+02/12 N/A aecd1a9 Merge branch 'master' of github.com:gupta298/CryptoLeague into frontend/dashboard 
+02/12 0.25 hrs 23d6c59 Added demo cards
+02/12 5 mins 316d13a Adding more required packages 
+02/12 N/A b39af06 Merge remote-tracking branch 'origin/master' into backend/login
+02/12 10 mins 4443ba6 Testing branching 
+02/12 5 mins ad27831 Fixed logo in firefox
+02/12 1 hr c5f0242 Merge branch 'master' of github.com:gupta298/CryptoLeague
+02/12 1.5 hr d0b75ec Fixed sidebar and made it responsive
+02/12 1 hr fbaa41e Fixed an error in app.js 
+02/12 5 mins f538a2d Fixed an error in app.js 
+02/12 5 mins 199c6e4 Adding more required packages to the app.js and commenting out the mongoDB code for testing 
+02/12 5 mins 330623c Merge branch 'master' of https://github.com/gupta298/CryptoLeague 
+02/12 N/A 38643f1 Adding all of the required packages for passport js 
+02/12 N/A 0673a13 Merge remote-tracking branch 'origin/master' into dashboard
+02/12 5 mins 2e23d93 Fixed font again
+02/12 0.25 hr bd1de24 Added dashboard component and added it to its route
+02/12 5 mins c538010 Fixed fonts
+02/12 N/A 383a19c Merge branch 'master' of github.com:gupta298/CryptoLeague
+02/12 N/A 414b0c8 Added the require statement to app.js 
+02/12 0.5 hr 342142c Added the config folder in the backend and added it to git ignore 
+
+Week 3 (Plan) (Scrum master: Varun Gupta)
+[Meetings]
+02/19 Discuss User APIs and Unit Tests
+02/21 Discuss Market and Leaderboard design and APIs
+
+[Individual Goals]
+Varun: Finish working on User APIs and start working on Leagues
+Ritwik: Design and implement leaderboard UI
+Utkarsh: Design and implement User settings UI
+Nisarg: Design and implement news and markets UI
