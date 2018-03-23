@@ -15,11 +15,7 @@ export class PortfolioComponent implements OnInit {
 
 	@Input() onClickCallback: Function;
 	@Input() hideCards: boolean;
-	proportions: any[] = [
-			{ proportion: 50, format: { color: this.getRandomColor(), label: 'Cats' } },
-			{ proportion: 25, format: { color: this.getRandomColor(), label: 'Dogs' } },
-			{ proportion: 25, format: { color: this.getRandomColor(), label: 'Billu' } }];
-
+	proportions: any[] = [];
 	constructor(
 		private marketService: MarketService,
 		private portfolioService: PortfolioService,
@@ -130,6 +126,7 @@ export class PortfolioComponent implements OnInit {
 		this.portfolioNewAttribute = {};
 		this.addWithSearch = false;
 		this.checkPortfolioValidity();
+		this.populatePieChart();
 	}
 
 	rowInsert() {
@@ -142,6 +139,7 @@ export class PortfolioComponent implements OnInit {
 	rowDelete(index) {
 		this.portfolioFieldArray.splice(index, 1);
 		this.checkPortfolioValidity();
+		this.populatePieChart();
 	}
 
 	deleteNewRowWithSearch() {
@@ -202,6 +200,28 @@ export class PortfolioComponent implements OnInit {
   		this.isPortfolioValid = true;
   	}
   }
+
+  populatePieChart() {
+  	this.proportions = [];
+  	this.checkPortfolioValidity();
+  	if(this.isPortfolioValid) {
+  		for(var i=0;i<this.portfolioFieldArray.length;i++) {
+	  		var obj = {
+	  			proportion: this.portfolioFieldArray[i].percentage,
+	  			format: {
+	  				color: this.getRandomColor(),
+	  				label: this.portfolioFieldArray[i].ticker,
+	  			}
+	  		}
+	  		this.proportions.push(obj);
+	  	}
+  	} else {
+  		this.proportions = [];
+  	}
+  	console.log(this.proportions); 		
+  	this.setupPieChart();
+  }
+
 
 	setupPieChart() {
 		var setup = {
