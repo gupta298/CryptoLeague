@@ -170,7 +170,7 @@
 			</div>
 
 				<div align="center" id="canvas" class="">
-	    		<canvas id="piechart" width="200" height="200">Your browser is too old!</canvas>
+	    		<canvas *ngIf="isPortfolioValid" #piechart id="piechart" width="200" height="200">Your browser is too old!</canvas>
 	    	</div>
 
 

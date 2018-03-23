@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { MarketService } from '../services/index';
 import { PortfolioService, AuthenticationService } from '../services/index';
 import { User } from '../user';
 
 declare var $: any;
+declare var browser: any;
 declare var DraggablePiechart: any;
 
 @Component({
@@ -22,6 +23,9 @@ export class PortfolioComponent implements OnInit {
     private authService: AuthenticationService,
 	) { }
 
+	 @ViewChild("piechart") piechart: ElementRef; 
+
+
 	private portfolioFieldArray: Array<any> = [];
   private portfolioNewAttribute: any = {};
   private user: User;
@@ -33,13 +37,16 @@ export class PortfolioComponent implements OnInit {
   captainCoin: String;
   draggablePieChart: any;
   isPortfolioValid: boolean = false;
+  percentage: number = 100;
+  isPieSetup: boolean = false;
 
   //temporary- remove all this hard-coded stuff
   coins: Array<any> = [];
 
 	ngOnInit() {
 		this.user = this.authService.loadUserFromLocalStorage();
-		this.setupPieChart();
+		if(this.isPortfolioValid && !this.isPieSetup)
+			this.setupPieChart();
 
 		this.portfolioNewAttribute.name = "bitcoin";
 		this.portfolioNewAttribute.ticker = "btc";
@@ -126,7 +133,11 @@ export class PortfolioComponent implements OnInit {
 		this.portfolioNewAttribute = {};
 		this.addWithSearch = false;
 		this.checkPortfolioValidity();
-		this.populatePieChart();
+		setTimeout(()=>{ 
+  			if(!this.isPieSetup)
+  				this.populatePieChart();
+  		}, 1000);
+		
 	}
 
 	rowInsert() {
@@ -139,7 +150,8 @@ export class PortfolioComponent implements OnInit {
 	rowDelete(index) {
 		this.portfolioFieldArray.splice(index, 1);
 		this.checkPortfolioValidity();
-		this.populatePieChart();
+		if(this.isPieSetup)
+			this.populatePieChart();
 	}
 
 	deleteNewRowWithSearch() {
@@ -161,29 +173,31 @@ export class PortfolioComponent implements OnInit {
 	}
 
 	portfolioExpand() {
-		if(!this.hideCards){
-			var setup = {
-				canvas: document.getElementById('piechart'),
-				radius: 0.9,
-				collapsing: true,
-				proportions: this.proportions,
-				drawNode: this.drawNode,
-				onchange: this.onPieChartChange,
-				dragDisabled: false
-			};
+		if(this.isPortfolioValid) {
+			if(!this.hideCards){
+				var setup = {
+					canvas: (<HTMLElement>this.piechart.nativeElement),
+					radius: 0.9,
+					collapsing: true,
+					proportions: this.proportions,
+					drawNode: this.drawNode,
+					onchange: this.onPieChartChange,
+					dragDisabled: false
+				};
 
-			this.draggablePieChart = new DraggablePiechart(setup);
-		} else {
-			var setup = {
-				canvas: document.getElementById('piechart'),
-				radius: 0.9,
-				collapsing: true,
-				proportions: this.proportions,
-				drawNode: this.hideNode,
-				onchange: this.onPieChartChange,
-				dragDisabled: true
-			};
-
+				this.draggablePieChart = new DraggablePiechart(setup);
+			} else {
+				var setup = {
+					canvas: (<HTMLElement>this.piechart.nativeElement),
+					radius: 0.9,
+					collapsing: true,
+					proportions: this.proportions,
+					drawNode: this.hideNode,
+					onchange: this.onPieChartChange,
+					dragDisabled: true
+				};
+			}	
+			
 			this.draggablePieChart = new DraggablePiechart(setup);
 		}
     this.onClickCallback();
@@ -225,17 +239,18 @@ export class PortfolioComponent implements OnInit {
 
 	setupPieChart() {
 		var setup = {
-			canvas: document.getElementById('piechart'),
+			canvas: (<HTMLElement>this.piechart.nativeElement),
 			radius: 0.9,
 			collapsing: true,
 			proportions: this.proportions,
-			drawNode: this.hideNode,
+			drawNode: this.drawNode,
 			onchange: this.onPieChartChange,
-			dragDisabled: false
+			dragDisabled: false,
+			scope: this
 		};
 
 		this.draggablePieChart = new DraggablePiechart(setup);
-
+		this.isPieSetup = true;
 	}
 
 	hideNode(context, piechart, x, y, centerX, centerY, hover) {
@@ -262,10 +277,14 @@ export class PortfolioComponent implements OnInit {
 		context.restore();
 	}
 
-	onPieChartChange(piechart) {
+	onPieChartChange(piechart, that) {
 		var table = $('#proportions-table');
 		var percentages = piechart.getAllSliceSizePercentages();
-		//console.log("percentages", percentages);
+		console.log("percentages", percentages);
+		for(var i=0; i < that.portfolioFieldArray.length; i++) {
+			console.log("inside loop")
+			that.portfolioFieldArray[i].percentage = percentages[i];
+		}
 
 	}
 
@@ -275,8 +294,10 @@ export class PortfolioComponent implements OnInit {
 	}
 
 	getRandomColor() {
+		var colors = ['#81d3f9','#b5ffff','#4ba2c6','#e5ffff','#01579b','#002f6c','#64ffda','#14cba8','#00e676','#00b248','#eeff41','#558b2f','#ff6d00','#ff9e40','#ff6434'];
 		var hue = '#'+Math.floor(Math.random()*16777215).toString(16);
 		console.log(hue);
-		return hue;
+		return colors[Math.floor(Math.random() * colors.length)];
 	}
+
 }
