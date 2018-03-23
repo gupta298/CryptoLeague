@@ -44,10 +44,7 @@ export class PortfolioComponent implements OnInit {
   coins: Array<any> = [];
 
 	ngOnInit() {
-		this.user = this.authService.loadUserFromLocalStorage();
-		if(this.isPortfolioValid && !this.isPieSetup)
-			this.setupPieChart();
-
+											
 		this.marketService.getMarketData()
 	      .subscribe(
 	        result => {
@@ -73,6 +70,13 @@ export class PortfolioComponent implements OnInit {
 									}
 									console.log(this.portfolioFieldArray);
 									this.checkPortfolioValidity();
+									this.user = this.authService.loadUserFromLocalStorage();
+									if(this.isPortfolioValid && !this.isPieSetup)
+										setTimeout(()=>{ 
+						  			if(!this.isPieSetup)
+						  				this.populatePieChart();
+						  		}, 1000);
+
 								}, error => {
 									console.log(error);
 								}
@@ -103,7 +107,7 @@ export class PortfolioComponent implements OnInit {
 		this.portfolioNewAttribute = {};
 		for(var i=0;i<this.coinsArray.length;i++) {
 			if(this.coinsArray[i].name == name) {
-				console.log("here");
+				//console.log("here");
 				this.portfolioNewAttribute.name = name;
 				this.portfolioNewAttribute.ticker = this.coinsArray[i].symbol;
 				this.portfolioNewAttribute.color = "green";
@@ -243,6 +247,7 @@ export class PortfolioComponent implements OnInit {
 
 	onPieChartChange(piechart, that) {
 		if(that.isPortfolioValid)	{
+			this.proportions = that.proportions;
 			var table = $('#proportions-table');
 			var percentages = piechart.getAllSliceSizePercentages();
 			console.log("percentages", percentages);
