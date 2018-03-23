@@ -33,6 +33,7 @@ export class LeagueDetailComponent implements OnInit {
 
   	ngOnInit() {
       this.loadLeague();
+      this.getTimeRemaining();
   		this.portfolioClicked = this.portfolioClicked.bind(this);
   	}
 
