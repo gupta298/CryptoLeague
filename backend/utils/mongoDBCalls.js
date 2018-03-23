@@ -187,7 +187,7 @@ function startLeague(league_id){
   MongoClient.connect(mongodbUrl, function (err, db) {
     if (err) throw err;
     var dbo = db.db("cryptoleague_database");
-    dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', current_market_coin: market.getCurrentCoinPrices()}});
+    dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', current_market_coin: market.getCurrentCoinPrices(), locked_prices: market.getCurrentCoinPricesMap() }});
     db.close();
   });
 }
@@ -529,6 +529,7 @@ module.exports = {
                 var date = new Date();
                 var lockingDate = new Date(date);
                 lockingDate.setDate(date.getDate() + 1);
+                //lockingDate.setMinutes(date.getMinutes() + 1);
                 var endingDate = new Date(date);
                 endingDate.setDate(date.getDate() + 7);
 
@@ -542,7 +543,7 @@ module.exports = {
                 schedule.scheduleJob(endingDate, endLeague.bind(null, league_result.league_id));            
               }
 
-              dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
+              dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: lockingDate}});
 
               callback(null, JSON.parse(JSON.stringify(league_result)));
             } else {
