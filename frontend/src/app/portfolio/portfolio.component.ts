@@ -48,59 +48,35 @@ export class PortfolioComponent implements OnInit {
 		if(this.isPortfolioValid && !this.isPieSetup)
 			this.setupPieChart();
 
-		this.portfolioNewAttribute.name = "bitcoin";
-		this.portfolioNewAttribute.ticker = "btc";
-		this.portfolioNewAttribute.color = "blue";
-		this.portfolioNewAttribute.exp_coins = 123;
-		this.portfolioNewAttribute.percentage = 12;
-		this.portfolioFieldArray.push(this.portfolioNewAttribute);
-		this.portfolioNewAttribute = {};
-
-		this.portfolioNewAttribute.name = "ether";
-		this.portfolioNewAttribute.ticker = "eth";
-		this.portfolioNewAttribute.color = "red";
-		this.portfolioNewAttribute.exp_coins = 1234;
-		this.portfolioNewAttribute.percentage = 42;
-		this.portfolioFieldArray.push(this.portfolioNewAttribute);
-		this.portfolioNewAttribute = {};
-
-		this.portfolioNewAttribute.name = "litecoin";
-		this.portfolioNewAttribute.ticker = "ltc";
-		this.portfolioNewAttribute.color = "pink";
-		this.portfolioNewAttribute.exp_coins = 321;
-		this.portfolioNewAttribute.percentage = 21;
-		this.portfolioFieldArray.push(this.portfolioNewAttribute);
-		this.portfolioNewAttribute = {};
-
-		this.portfolioService.getPortfolio()
-			.subscribe(
-				result => {
-					this.portfolioNewAttribute = {};
-					console.log(result);
-					for(var i=0; i<result.holdings.length; i++) {
-						for(var j=0;j<this.coinsArray.length;j++) {
-							if(this.coinsArray[j].symbol == result.holdings[i].coin_symbol) {
-								this.portfolioNewAttribute.percentage = parseFloat(result.holdings[i].percentage);
-								this.portfolioNewAttribute.name = this.coinsArray[j].name;
-								this.portfolioNewAttribute.ticker = result.holdings[i].coin_symbol;
-								this.portfolioNewAttribute.price = this.coinsArray[j].price;
-								this.portfolioNewAttribute.exp_coins = this.precisionRound(this.portfolioNewAttribute.percentage*1000/this.portfolioNewAttribute.price, 4);
-								this.portfolioFieldArray.push(this.portfolioNewAttribute);
-								this.portfolioNewAttribute = {};
-								break;
-							}
-						}
-					}
-					console.log(this.portfolioFieldArray);
-				}, error => {
-					console.log(error);
-				}
-			)
-
 		this.marketService.getMarketData()
 	      .subscribe(
 	        result => {
 	          this.coinsArray = result;
+	          this.portfolioService.getPortfolio()
+							.subscribe(
+								result => {
+									this.portfolioNewAttribute = {};
+									console.log(result);
+									for(var i=0; i<result.holdings.length; i++) {
+										for(var j=0;j<this.coinsArray.length;j++) {
+											if(this.coinsArray[j].symbol == result.holdings[i].coin_symbol) {
+												this.portfolioNewAttribute.percentage = parseFloat(result.holdings[i].percentage);
+												this.portfolioNewAttribute.name = this.coinsArray[j].name;
+												this.portfolioNewAttribute.ticker = result.holdings[i].coin_symbol;
+												this.portfolioNewAttribute.price = this.coinsArray[j].price;
+												this.portfolioNewAttribute.exp_coins = this.precisionRound(this.portfolioNewAttribute.percentage*1000/this.portfolioNewAttribute.price, 4);
+												this.portfolioFieldArray.push(this.portfolioNewAttribute);
+												this.portfolioNewAttribute = {};
+												break;
+											}
+										}
+									}
+									console.log(this.portfolioFieldArray);
+									this.checkPortfolioValidity();
+								}, error => {
+									console.log(error);
+								}
+							)
 	          console.log(result);
 	        }, error => {
 	          console.log(error);
