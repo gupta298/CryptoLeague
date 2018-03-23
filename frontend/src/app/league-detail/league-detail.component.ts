@@ -16,6 +16,7 @@ import * as moment from 'moment';
 })
 export class LeagueDetailComponent implements OnInit {
 
+  loadingLeague: boolean = true;
 	portfolioOpened: boolean = false;
 	hideCards: boolean = false;
 	waiting: boolean = true;
@@ -24,19 +25,23 @@ export class LeagueDetailComponent implements OnInit {
   timeRemaining: string;
   timeRemainingPercent: number;
 
-
   	constructor(
       private leagueService: LeagueService,
       private route: ActivatedRoute,
       private router: Router) { }
 
   	ngOnInit() {
+      this.loadLeague();
+  		this.onPortfolioClicked = this.onPortfolioClicked.bind(this);
+  	}
+
+    loadLeague(){
       this.route.params.subscribe(params => {
         if(!params['id'])
           this.router.navigate(['/']);
 
         this.leagueID = params['id'];
-
+        this.loadingLeague = true;
         this.leagueService.getLeague().subscribe(
           result => {
             this.league.deserialize(result);
@@ -44,15 +49,14 @@ export class LeagueDetailComponent implements OnInit {
 
             let timer = Observable.timer(0,1000);
             timer.subscribe(() => this.getTimeRemaining());
-
+            this.loadingLeague = false;
           }, error => {
             console.log(error);
             this.router.navigate(['/']);
           } 
         );
       });
-  		this.onPortfolioClicked = this.onPortfolioClicked.bind(this);
-  	}
+    }
 
   	onPortfolioClicked(){
   		console.log("onPortfolioclicked");
@@ -63,44 +67,42 @@ export class LeagueDetailComponent implements OnInit {
   	}
 
     getTimeRemaining() {
-      if(this.league){
-        let startDate: moment.Moment = moment(this.league.start_time);
-        let endDate: moment.Moment = moment(this.league.start_time);
-        let status = "starts.";
-        let totaltime = 86400;
-        let currDate: moment.Moment = moment();
+      let startDate: moment.Moment = moment(this.league.start_time);
+      let endDate: moment.Moment = moment(this.league.start_time);
+      let status = "starts.";
+      let totaltime = 86400;
+      let currDate: moment.Moment = moment();
 
-        if(startDate.isBefore(currDate)){
-          endDate.add(6, 'd');
-          status = "ends.";
-          totaltime = 518400;
-          this.timeRemainingPercent = 100 - Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
-        } else {
-          this.timeRemainingPercent = Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
-        }
+      if(startDate.isBefore(currDate)){
+        endDate.add(6, 'd');
+        status = "ends.";
+        totaltime = 518400;
+        this.timeRemainingPercent = 100 - Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
+      } else {
+        this.timeRemainingPercent = Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
+      }
 
-        var delta = endDate.diff(currDate, 'seconds');
+      var delta = endDate.diff(currDate, 'seconds');
 
-        // calculate (and subtract) whole days
-        var days = Math.floor(delta / 86400);
-        delta -= days * 86400;
+      // calculate (and subtract) whole days
+      var days = Math.floor(delta / 86400);
+      delta -= days * 86400;
 
-        // calculate (and subtract) whole hours
-        var hours = Math.floor(delta / 3600) % 24;
-        delta -= hours * 3600;
+      // calculate (and subtract) whole hours
+      var hours = Math.floor(delta / 3600) % 24;
+      delta -= hours * 3600;
 
-        // calculate (and subtract) whole minutes
-        var minutes = Math.floor(delta / 60) % 60;
-        delta -= minutes * 60;
+      // calculate (and subtract) whole minutes
+      var minutes = Math.floor(delta / 60) % 60;
+      delta -= minutes * 60;
 
-        // what's left is seconds
-        var seconds = delta % 60; 
+      // what's left is seconds
+      var seconds = delta % 60; 
 
-        if(days > 0){
-          this.timeRemaining = days + "d " + hours + "h " + minutes + "m " + seconds + "s until the league " + status;
-        } else {
-          this.timeRemaining = hours + "h " + minutes + "m " + seconds + "s until the league " + status;
-        }
+      if(days > 0){
+        this.timeRemaining = days + "d " + hours + "h " + minutes + "m " + seconds + "s until the league " + status;
+      } else {
+        this.timeRemaining = hours + "h " + minutes + "m " + seconds + "s until the league " + status;
       }
     }
 }

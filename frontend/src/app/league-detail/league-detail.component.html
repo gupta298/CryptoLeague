@@ -40,10 +40,10 @@
 							<div>
 								<h3 class="uk-card-title">League Leaderboard</h3>
 							</div>
-							<div *ngIf="loadingNews;else other_content">
+							<div *ngIf="loadingLeague;else other_content">
 								<div uk-spinner></div>
 							</div>
-							<ng-template #other_content><span uk-icon="refresh" class="uk-button" (click)="getNews()"></span></ng-template>
+							<ng-template #other_content><span uk-icon="refresh" class="uk-button" (click)="loadLeague()"></span></ng-template>
 						</div>
 						<div class="uk-container uk-table-striped uk-margin-top uk-overflow-auto">
 							<table class="uk-table uk-margin-top uk-table-divider uk-table-middle">
