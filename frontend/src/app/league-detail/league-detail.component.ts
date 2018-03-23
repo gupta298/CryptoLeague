@@ -24,6 +24,7 @@ export class LeagueDetailComponent implements OnInit {
   league: League = new League();
   timeRemaining: string;
   timeRemainingPercent: number;
+  leagueStarted: boolean: false;
 
   	constructor(
       private leagueService: LeagueService,
@@ -74,6 +75,11 @@ export class LeagueDetailComponent implements OnInit {
       let currDate: moment.Moment = moment();
 
       if(startDate.isBefore(currDate)){
+        if(!this.leagueStarted){ //reload league if initial countdown is over
+          this.leagueStarted = true;
+          this.loadLeague(); 
+        }
+
         endDate.add(6, 'd');
         status = "ends.";
         totaltime = 518400;
