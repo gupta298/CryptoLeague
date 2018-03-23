@@ -20,25 +20,25 @@ export class PortfolioComponent implements OnInit {
 	constructor(
 		private marketService: MarketService,
 		private portfolioService: PortfolioService,
-		private authService: AuthenticationService,
-		) { }
+    private authService: AuthenticationService,
+	) { }
 
-	@ViewChild("piechart") piechart: ElementRef; 
+	 @ViewChild("piechart") piechart: ElementRef; 
 
 
 	private portfolioFieldArray: Array<any> = [];
-	private portfolioNewAttribute: any = {};
-	private user: User;
-	isNewRow: boolean = false;
-	coinsArray: Array<any> = [];
-	autoComplete: Array<any> = [];
-	inSearchBar: boolean = false;
-	addWithSearch: boolean = false;
-	captainCoin: String;
-	draggablePieChart: any;
-	isPortfolioValid: boolean = false;
-	percentage: number = 100;
-	isPieSetup: boolean = false;
+  private portfolioNewAttribute: any = {};
+  private user: User;
+  isNewRow: boolean = false;
+  coinsArray: Array<any> = [];
+  autoComplete: Array<any> = [];
+  inSearchBar: boolean = false;
+  addWithSearch: boolean = false;
+  captainCoin: String;
+  draggablePieChart: any;
+  isPortfolioValid: boolean = false;
+  percentage: number = 100;
+  isPieSetup: boolean = false;
 
   //temporary- remove all this hard-coded stuff
   coins: Array<any> = [];
@@ -97,7 +97,7 @@ export class PortfolioComponent implements OnInit {
 				this.autoComplete.push(this.coinsArray[i].name);
 			}
 		}
-  }
+	}
 
 	addRowFromSearch(name) {
 		console.log(name);
@@ -116,56 +116,55 @@ export class PortfolioComponent implements OnInit {
 		}
 	}
 
+	clickRowInsert() {
+		this.addWithSearch = false;
+		this.isNewRow = true;
+	}
 
-  clickRowInsert() {
-  	this.addWithSearch = false;
-  	this.isNewRow = true;
-  }
+	rowWithSearchInsert() {
+		this.portfolioNewAttribute.exp_coins = this.precisionRound(this.portfolioNewAttribute.percentage*1000/this.portfolioNewAttribute.price, 4);
+		this.portfolioFieldArray.push(this.portfolioNewAttribute);
+		this.portfolioNewAttribute = {};
+		this.addWithSearch = false;
+		this.checkPortfolioValidity();
+		setTimeout(()=>{ 
+  			if(!this.isPieSetup)
+  				this.populatePieChart();
+  		}, 1000);
+		
+	}
 
-  rowWithSearchInsert() {
-  	this.portfolioNewAttribute.exp_coins = this.precisionRound(this.portfolioNewAttribute.percentage*1000/this.portfolioNewAttribute.price, 4);
-  	this.portfolioFieldArray.push(this.portfolioNewAttribute);
-  	this.portfolioNewAttribute = {};
-  	this.addWithSearch = false;
-  	this.checkPortfolioValidity();
-  	setTimeout(()=>{ 
-  		if(!this.isPieSetup)
-  			this.populatePieChart();
-  	}, 1000);
-  	
-  }
+	rowInsert() {
+		this.portfolioFieldArray.push(this.portfolioNewAttribute);
+		this.portfolioNewAttribute = {};
+		this.isNewRow = false;
+		this.checkPortfolioValidity();
+	}
 
-  rowInsert() {
-  	this.portfolioFieldArray.push(this.portfolioNewAttribute);
-  	this.portfolioNewAttribute = {};
-  	this.isNewRow = false;
-  	this.checkPortfolioValidity();
-  }
+	rowDelete(index) {
+		this.portfolioFieldArray.splice(index, 1);
+		this.checkPortfolioValidity();
+		if(!this.isPieSetup)
+			this.populatePieChart();
+	}
 
-  rowDelete(index) {
-  	this.portfolioFieldArray.splice(index, 1);
-  	this.checkPortfolioValidity();
-  	if(this.isPieSetup)
-  		this.populatePieChart();
-  }
+	deleteNewRowWithSearch() {
+		this.addWithSearch = false;
+		this.portfolioNewAttribute = {};
+	}
 
-  deleteNewRowWithSearch() {
-  	this.addWithSearch = false;
-  	this.portfolioNewAttribute = {};
-  }
+	deleteNewRow() {
+		this.isNewRow = !this.isNewRow;
+		this.portfolioNewAttribute = {};
+	}
 
-  deleteNewRow() {
-  	this.isNewRow = !this.isNewRow;
-  	this.portfolioNewAttribute = {};
-  }
+	focusFunction() {
+		this.inSearchBar = true;
+	}
 
-  focusFunction() {
-  	this.inSearchBar = true;
-  }
-
-  focusOutFunction() {
-  	this.inSearchBar = false;
-  }
+	focusOutFunction() {
+		this.inSearchBar = false;
+	}
 
 	portfolioExpand() {
     this.clickCallback();
@@ -188,15 +187,15 @@ export class PortfolioComponent implements OnInit {
   	this.checkPortfolioValidity();
   	if(this.isPortfolioValid) {
   		for(var i=0;i<this.portfolioFieldArray.length;i++) {
-  			var obj = {
-  				proportion: this.portfolioFieldArray[i].percentage,
-  				format: {
-  					color: this.getRandomColor(),
-  					label: this.portfolioFieldArray[i].ticker,
-  				}
-  			}
-  			this.proportions.push(obj);
-  		}
+	  		var obj = {
+	  			proportion: this.portfolioFieldArray[i].percentage,
+	  			format: {
+	  				color: this.getRandomColor(),
+	  				label: this.portfolioFieldArray[i].ticker,
+	  			}
+	  		}
+	  		this.proportions.push(obj);
+	  	}
   	} else {
   		this.proportions = [];
   	}
@@ -205,29 +204,29 @@ export class PortfolioComponent implements OnInit {
   }
 
 
-  setupPieChart() {
-  	var setup = {
-  		canvas: (<HTMLElement>this.piechart.nativeElement),
-  		radius: 0.9,
-  		collapsing: true,
-  		proportions: this.proportions,
-  		drawNode: this.drawNode,
-  		onchange: this.onPieChartChange,
-  		dragDisabled: false,
-  		scope: this
-  	};
+	setupPieChart() {
+		var setup = {
+			canvas: (<HTMLElement>this.piechart.nativeElement),
+			radius: 0.9,
+			collapsing: true,
+			proportions: this.proportions,
+			drawNode: this.drawNode,
+			onchange: this.onPieChartChange,
+			dragDisabled: false,
+			scope: this
+		};
 
-  	this.draggablePieChart = new DraggablePiechart(setup);
-  	this.isPieSetup = true;
-  }
+		this.draggablePieChart = new DraggablePiechart(setup);
+		this.isPieSetup = true;
+	}
 
-  hideNode(context, piechart, x, y, centerX, centerY, hover) {
-  	context.save();
-  	context.translate(centerX, centerY);
-  	context.fillStyle = '#fefefe';
-  	context.beginPath();
-  	context.arc(x, y, 0, 0, Math.PI * 2, true);
-  	context.fill();
+	hideNode(context, piechart, x, y, centerX, centerY, hover) {
+		context.save();
+		context.translate(centerX, centerY);
+		context.fillStyle = '#fefefe';
+		context.beginPath();
+		context.arc(x, y, 0, 0, Math.PI * 2, true);
+		context.fill();
 		//context.stroke();
 		context.restore();
 	}
@@ -259,8 +258,8 @@ export class PortfolioComponent implements OnInit {
 	}
 
 	precisionRound(number, precision) {
-		var factor = Math.pow(10, precision);
-		return Math.round(number * factor) / factor;
+  	var factor = Math.pow(10, precision);
+  	return Math.round(number * factor) / factor;
 	}
 
 	getRandomColor() {
