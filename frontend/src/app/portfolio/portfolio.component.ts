@@ -72,11 +72,26 @@ export class PortfolioComponent implements OnInit {
 		this.portfolioFieldArray.push(this.portfolioNewAttribute);
 		this.portfolioNewAttribute = {};
 
-		this.portfolioService.getPortfolio(this.user.currentLeague_id,this.user.id)
+		this.portfolioService.getPortfolio()
 			.subscribe(
 				result => {
-					//this.portfolioFieldArray = result;
+					this.portfolioNewAttribute = {};
 					console.log(result);
+					for(var i=0; i<result.holdings.length; i++) {
+						for(var j=0;j<this.coinsArray.length;j++) {
+							if(this.coinsArray[j].symbol == result.holdings[i].coin_symbol) {
+								this.portfolioNewAttribute.percentage = parseFloat(result.holdings[i].percentage);
+								this.portfolioNewAttribute.name = this.coinsArray[j].name;
+								this.portfolioNewAttribute.ticker = result.holdings[i].coin_symbol;
+								this.portfolioNewAttribute.price = this.coinsArray[j].price;
+								this.portfolioNewAttribute.exp_coins = this.precisionRound(this.portfolioNewAttribute.percentage*1000/this.portfolioNewAttribute.price, 4);
+								this.portfolioFieldArray.push(this.portfolioNewAttribute);
+								this.portfolioNewAttribute = {};
+								break;
+							}
+						}
+					}
+					console.log(this.portfolioFieldArray);
 				}, error => {
 					console.log(error);
 				}

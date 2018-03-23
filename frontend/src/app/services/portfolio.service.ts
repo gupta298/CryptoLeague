@@ -12,8 +12,8 @@ export class PortfolioService {
 		private authService: AuthenticationService
 	) { }
 
-  getPortfolio(leagueID: String, userID: number) {
-   	return this.http.get(environment.apiUrl+'/portfolio/'+leagueID+'/'+userID,  this.authService.generateJwt()).map((response: Response) => response.json());
+  getPortfolio() {
+   	return this.http.get(environment.apiUrl+'/portfolio/',  this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
 }
