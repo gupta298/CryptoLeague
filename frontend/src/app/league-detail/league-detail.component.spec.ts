@@ -65,8 +65,12 @@ describe('LeagueDetailComponent with waiting room', () => {
     fixture.detectChanges();
   });
 
-  it('should create show leagueWaitingOverlay', () => {
+  it('should show leagueWaitingOverlay', () => {
     expect(fixture.nativeElement.querySelector('app-league-waiting-overlay')).not.toBe(null);  
+  });
+
+  it('should not show leagueDetail', () => {
+    expect(fixture.nativeElement.querySelector('ng-template #leagueDetail')).toBe(null);  
   });
 });
 
@@ -106,6 +110,10 @@ describe('LeagueDetailComponent with league locked but not started', () => {
 
   it('should show accurate time remaining when the league hasn\'t started yet', () => {
     expect(fixture.nativeElement.querySelector('.progress-bar').innerText).toContain("23h 39m 23s until the league starts.");
+  });
+
+  it('should not show leagueWaitingOverlay', () => {
+    expect(fixture.nativeElement.querySelector('app-league-waiting-overlay')).toBe(null);  
   });
 
   afterEach(function () {
