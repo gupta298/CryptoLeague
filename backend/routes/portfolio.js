@@ -78,42 +78,49 @@ var express = require('express');
  		//console.log(req.body.holdings.length);
  		if(req.body.holdings.length < 3 && req.body.holdings.length > 6){
  			res.send({'message' : "Number of coins is not correct"});
+      return;
  		} else {
-			var counter = 0;
-			var capcoinFlag = 1;
-			asyncLoop(req.body.holdings, function (item, next) {
-				counter += item.percentage;
-				if(item.percentage <= 0){res.send({'message' : "Coins can not have percentage less than or equal to 0"});}
-				if(item.percentage > 35){res.send({'message' : "Coins can not make up more than 35% of your portfolio"});}
-				if(!market.getCoinTickers().includes(item.coin_symbol.toString())){res.send({'message' : "Please select a valid coin"}); }
-				if(item.coin_symbol.toString() == req.body.captain_coin){capcoinFlag = 0;}
-				next();
-			}, function () {
-					if(counter != 100){
-						res.send({'message' : "Total percentage is not equal to 100"});
-					}else if(capcoinFlag != 0){
-						res.send({'message' : "Captain Coin must be a coin that you've chosen in your portfolio. It can not be a new coin"});
-					 } else{
-						console.log("Portfolio is Correct");
-
-						mongo.updatePortfolioWithID(req.body._id.$oid, req.body.holdings, req.body.captain_coin, function(error, result) {
-							if(error)
-								console.log(error);
-							console.log(result);
-							res.send("Worked");
-						});
-					}
-			});
-
- 			mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
+      mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
  				if (response.status.toString() == "0" || response.status.toString() == "1" || response.status.toString() == "2") {
+          var counter = 0;
+          var capcoinFlag = 1;
+          asyncLoop(req.body.holdings, function (item, next) {
+            counter += item.percentage;
+            if(item.percentage <= 0){res.send({'message' : "Coins can not have percentage less than or equal to 0"});return;}
+            if(item.percentage > 35){res.send({'message' : "Coins can not make up more than 35% of your portfolio"});return;}
+            if(!market.getCoinTickers().includes(item.coin_symbol.toString())){res.send({'message' : "Please select a valid coin"});return;}
+            if(item.coin_symbol.toString() == req.body.captain_coin){capcoinFlag = 0;}
+            next();
+          }, function () {
+              if(counter != 100){
+                res.send({'message' : "Total percentage is not equal to 100"});
+                return;
+              }else if(capcoinFlag != 0){
+                res.send({'message' : "Captain Coin must be a coin that you've chosen in your portfolio. It can not be a new coin"});
+                return;
+               } else{
+                console.log("Portfolio is Correct");
+
+                mongo.updatePortfolioWithID(req.body._id.$oid, req.body.holdings, req.body.captain_coin, function(error, result) {
+                  if(error)
+                    console.log(error);
+                  console.log(result);
+                  res.send("Worked");
+                });
+              }
+          });
 				} else {
 						res.send({'message' : "League Locked"});
+            return;
 				}
 			});
+
+
+
 		}
 	} else {
-		res.send({'message' : "Not in any league"})
+		res.send({'message' : "Not in any league"});
+    return;
 	}
  });
 
