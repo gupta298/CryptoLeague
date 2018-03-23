@@ -9,7 +9,8 @@ var leagueSchema = new mongoose.Schema({
         "tokens": Number,
         "profilePicture": String,
         "user_id": String,
-        "portfolio_id" : String
+        "portfolio_id" : String,
+        "portfolio_value" : Number
     }],
     start_time: Date,
     current_market_coin: [String]

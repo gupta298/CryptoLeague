@@ -1,0 +1,4903 @@
+[
+    {
+        "symbol": "BTC",
+        "cap": "142712973034",
+        "change": {
+            "hour": "-0.62",
+            "day": "-6.82"
+        },
+        "price": "8427.32",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/BTC",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 66020,
+                "coin": "BTC",
+                "created_at": "2017-12-17 08:01:38",
+                "updated_at": "2017-12-17 08:01:38",
+                "price_usd": "19524.320000000000000000000000000000",
+                "price_btc": "1.000000000000000000000000000000",
+                "price_date": "2017-12-17 00:00:00"
+            },
+            "month_high": {
+                "id": 150487,
+                "coin": "BTC",
+                "created_at": "2018-03-06 05:03:02",
+                "updated_at": "2018-03-06 05:03:02",
+                "price_usd": "11606.610000000000000000000000000000",
+                "price_btc": "1.000000000000000000000000000000",
+                "price_date": "2018-03-06 00:00:00"
+            },
+            "month_low": {
+                "id": 162280,
+                "coin": "BTC",
+                "created_at": "2018-03-18 04:10:05",
+                "updated_at": "2018-03-18 04:10:05",
+                "price_usd": "7896.940000000000000000000000000000",
+                "price_btc": "1.000000000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "BTC"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 9053.69,
+            "high_time": "Thu, 22 Mar 2018 06:05:00 +0000",
+            "low": 8361.49,
+            "low_time": "Fri, 23 Mar 2018 03:20:00 +0000",
+            "symbol": "BTC"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/BTC",
+        "name": "Bitcoin"
+    },
+    {
+        "symbol": "ETH",
+        "cap": "50817902964.0",
+        "change": {
+            "hour": "-0.91",
+            "day": "-9.4"
+        },
+        "price": "516.656",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/ETH",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73462,
+                "coin": "ETH",
+                "created_at": "2018-01-14 08:07:29",
+                "updated_at": "2018-01-14 08:07:29",
+                "price_usd": "1376.740000000000000000000000000000",
+                "price_btc": "0.096710000000000000000000000000",
+                "price_date": "2018-01-14 00:00:00"
+            },
+            "month_high": {
+                "id": 146871,
+                "coin": "ETH",
+                "created_at": "2018-03-02 05:03:57",
+                "updated_at": "2018-03-02 05:03:57",
+                "price_usd": "872.780000000000000000000000000000",
+                "price_btc": "0.078560000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162423,
+                "coin": "ETH",
+                "created_at": "2018-03-19 04:01:55",
+                "updated_at": "2018-03-19 04:01:55",
+                "price_usd": "537.630000000000000000000000000000",
+                "price_btc": "0.065950000000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "ETH"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 569.91,
+            "high_time": "Thu, 22 Mar 2018 05:35:00 +0000",
+            "low": 509.85,
+            "low_time": "Fri, 23 Mar 2018 03:25:00 +0000",
+            "symbol": "ETH"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ETH",
+        "name": "Ethereum"
+    },
+    {
+        "symbol": "XRP",
+        "cap": "24812519653.0",
+        "change": {
+            "hour": "-0.89",
+            "day": "-8.46"
+        },
+        "price": "0.634685",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/XRP",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 70180,
+                "coin": "XRP",
+                "created_at": "2018-01-04 08:06:14",
+                "updated_at": "2018-01-04 08:06:14",
+                "price_usd": "2.980000000000000000000000000000",
+                "price_btc": "0.000194400000000000000000000000",
+                "price_date": "2018-01-04 00:00:00"
+            },
+            "month_high": {
+                "id": 149417,
+                "coin": "XRP",
+                "created_at": "2018-03-05 05:01:38",
+                "updated_at": "2018-03-05 05:01:38",
+                "price_usd": "1.000000000000000000000000000000",
+                "price_btc": "0.000087610000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 161771,
+                "coin": "XRP",
+                "created_at": "2018-03-18 04:04:51",
+                "updated_at": "2018-03-18 04:04:51",
+                "price_usd": "0.631000000000000000000000000000",
+                "price_btc": "0.000080060000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "XRP"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.6837,
+            "high_time": "Thu, 22 Mar 2018 05:40:00 +0000",
+            "low": 0.6188,
+            "low_time": "Fri, 23 Mar 2018 03:20:00 +0000",
+            "symbol": "XRP"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/XRP",
+        "name": "Ripple"
+    },
+    {
+        "symbol": "BCH",
+        "cap": "16525458702.0",
+        "change": {
+            "hour": "-0.54",
+            "day": "-7.54"
+        },
+        "price": "970.216",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/BCH",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 67242,
+                "coin": "BCH",
+                "created_at": "2017-12-22 08:07:51",
+                "updated_at": "2017-12-22 08:07:51",
+                "price_usd": "3140.740000000000000000000000000000",
+                "price_btc": "0.200900000000000000000000000000",
+                "price_date": "2017-12-22 00:00:00"
+            },
+            "month_high": {
+                "id": 146792,
+                "coin": "BCH",
+                "created_at": "2018-03-02 05:03:12",
+                "updated_at": "2018-03-02 05:03:12",
+                "price_usd": "1297.230000000000000000000000000000",
+                "price_btc": "0.116500000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162783,
+                "coin": "BCH",
+                "created_at": "2018-03-19 04:05:37",
+                "updated_at": "2018-03-19 04:05:37",
+                "price_usd": "933.660000000000000000000000000000",
+                "price_btc": "0.113900000000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "BCH"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 1056.83,
+            "high_time": "Thu, 22 Mar 2018 09:00:00 +0000",
+            "low": 963.72,
+            "low_time": "Fri, 23 Mar 2018 03:20:00 +0000",
+            "symbol": "BCH"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/BCH",
+        "name": "Bitcoin Cash"
+    },
+    {
+        "symbol": "LTC",
+        "cap": "8826891197.0",
+        "change": {
+            "hour": "-0.78",
+            "day": "-7.11"
+        },
+        "price": "158.328",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/LTC",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 66426,
+                "coin": "LTC",
+                "created_at": "2017-12-19 08:02:00",
+                "updated_at": "2017-12-19 08:02:00",
+                "price_usd": "359.450000000000000000000000000000",
+                "price_btc": "0.018890000000000000000000000000",
+                "price_date": "2017-12-19 00:00:00"
+            },
+            "month_high": {
+                "id": 147729,
+                "coin": "LTC",
+                "created_at": "2018-03-03 05:03:16",
+                "updated_at": "2018-03-03 05:03:16",
+                "price_usd": "216.070000000000000000000000000000",
+                "price_btc": "0.019140000000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 162683,
+                "coin": "LTC",
+                "created_at": "2018-03-19 04:04:36",
+                "updated_at": "2018-03-19 04:04:36",
+                "price_usd": "153.130000000000000000000000000000",
+                "price_btc": "0.018760000000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "LTC"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 170.66,
+            "high_time": "Thu, 22 Mar 2018 05:35:00 +0000",
+            "low": 157.66,
+            "low_time": "Fri, 23 Mar 2018 05:25:00 +0000",
+            "symbol": "LTC"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/LTC",
+        "name": "Litecoin"
+    },
+    {
+        "symbol": "ADA",
+        "cap": "4930473223.0",
+        "change": {
+            "hour": "-0.96",
+            "day": "-12.0"
+        },
+        "price": "0.190167",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/ADA",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 70323,
+                "coin": "ADA",
+                "created_at": "2018-01-04 08:07:47",
+                "updated_at": "2018-01-04 08:07:47",
+                "price_usd": "1.330000000000000000000000000000",
+                "price_btc": "0.000085570000000000000000000000",
+                "price_date": "2018-01-04 00:00:00"
+            },
+            "month_high": {
+                "id": 149847,
+                "coin": "ADA",
+                "created_at": "2018-03-05 05:06:01",
+                "updated_at": "2018-03-05 05:06:01",
+                "price_usd": "0.302000000000000000000000000000",
+                "price_btc": "0.000026260000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 161629,
+                "coin": "ADA",
+                "created_at": "2018-03-18 04:03:23",
+                "updated_at": "2018-03-18 04:03:23",
+                "price_usd": "0.150000000000000000000000000000",
+                "price_btc": "0.000019220000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "ADA"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.212,
+            "high_time": "Thu, 22 Mar 2018 05:40:00 +0000",
+            "low": 0.18,
+            "low_time": "Fri, 23 Mar 2018 02:45:00 +0000",
+            "symbol": "ADA"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ADA",
+        "name": "Cardano"
+    },
+    {
+        "symbol": "EOS",
+        "cap": "4922774567.0",
+        "change": {
+            "hour": "-0.71",
+            "day": "-7.88"
+        },
+        "price": "6.59572",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/EOS",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73464,
+                "coin": "EOS",
+                "created_at": "2018-01-14 08:07:30",
+                "updated_at": "2018-01-14 08:07:30",
+                "price_usd": "16.190000000000000000000000000000",
+                "price_btc": "0.001133000000000000000000000000",
+                "price_date": "2018-01-14 00:00:00"
+            },
+            "month_high": {
+                "id": 147153,
+                "coin": "EOS",
+                "created_at": "2018-03-02 05:06:45",
+                "updated_at": "2018-03-02 05:06:45",
+                "price_usd": "8.540000000000000000000000000000",
+                "price_btc": "0.000767500000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162485,
+                "coin": "EOS",
+                "created_at": "2018-03-19 04:02:34",
+                "updated_at": "2018-03-19 04:02:34",
+                "price_usd": "4.540000000000000000000000000000",
+                "price_btc": "0.000558600000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "EOS"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 7.11,
+            "high_time": "Thu, 22 Mar 2018 06:40:00 +0000",
+            "low": 6.14,
+            "low_time": "Thu, 22 Mar 2018 14:55:00 +0000",
+            "symbol": "EOS"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/EOS",
+        "name": "EOS"
+    },
+    {
+        "symbol": "NEO",
+        "cap": "4232481500.0",
+        "change": {
+            "hour": "-1.41",
+            "day": "-12.42"
+        },
+        "price": "65.1151",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/NEO",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73866,
+                "coin": "NEO",
+                "created_at": "2018-01-16 08:07:52",
+                "updated_at": "2018-01-16 08:07:52",
+                "price_usd": "192.000000000000000000000000000000",
+                "price_btc": "0.014050000000000000000000000000",
+                "price_date": "2018-01-16 00:00:00"
+            },
+            "month_high": {
+                "id": 146768,
+                "coin": "NEO",
+                "created_at": "2018-03-02 05:02:58",
+                "updated_at": "2018-03-02 05:02:58",
+                "price_usd": "128.300000000000000000000000000000",
+                "price_btc": "0.011530000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 161852,
+                "coin": "NEO",
+                "created_at": "2018-03-18 04:05:42",
+                "updated_at": "2018-03-18 04:05:42",
+                "price_usd": "60.830000000000000000000000000000",
+                "price_btc": "0.007737000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "NEO"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 74.36,
+            "high_time": "Thu, 22 Mar 2018 05:55:00 +0000",
+            "low": 64.21,
+            "low_time": "Fri, 23 Mar 2018 03:20:00 +0000",
+            "symbol": "NEO"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/NEO",
+        "name": "NEO"
+    },
+    {
+        "symbol": "XLM",
+        "cap": "4200760057.0",
+        "change": {
+            "hour": "-1.37",
+            "day": "-11.08"
+        },
+        "price": "0.226469",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/XLM",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 70193,
+                "coin": "XLM",
+                "created_at": "2018-01-04 08:06:22",
+                "updated_at": "2018-01-04 08:06:22",
+                "price_usd": "0.897000000000000000000000000000",
+                "price_btc": "0.000059670000000000000000000000",
+                "price_date": "2018-01-04 00:00:00"
+            },
+            "month_high": {
+                "id": 149679,
+                "coin": "XLM",
+                "created_at": "2018-03-05 05:04:17",
+                "updated_at": "2018-03-05 05:04:17",
+                "price_usd": "0.369300000000000000000000000000",
+                "price_btc": "0.000032060000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 162067,
+                "coin": "XLM",
+                "created_at": "2018-03-18 04:07:56",
+                "updated_at": "2018-03-18 04:07:56",
+                "price_usd": "0.206400000000000000000000000000",
+                "price_btc": "0.000026180000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "XLM"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.2536,
+            "high_time": "Thu, 22 Mar 2018 05:35:00 +0000",
+            "low": 0.2228,
+            "low_time": "Fri, 23 Mar 2018 03:20:00 +0000",
+            "symbol": "XLM"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/XLM",
+        "name": "Stellar"
+    },
+    {
+        "symbol": "MIOTA",
+        "cap": "3548570722.0",
+        "change": {
+            "hour": "-0.49",
+            "day": "-7.85"
+        },
+        "price": "1.27668",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/MIOTA",
+        "HighLowOfCoin": "No query results for model [feenikz\\CryptoCoins\\Models\\Price].",
+        "HighLowOfLast24Hours": "Undefined variable: high_time",
+        "image": "https://chasing-coins.com/api/v1/std/logo/MIOTA",
+        "name": "IOTA"
+    },
+    {
+        "symbol": "XMR",
+        "cap": "3199899546.0",
+        "change": {
+            "hour": "-1.04",
+            "day": "-9.05"
+        },
+        "price": "201.831",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/XMR",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 67106,
+                "coin": "XMR",
+                "created_at": "2017-12-22 08:06:04",
+                "updated_at": "2017-12-22 08:06:04",
+                "price_usd": "417.110000000000000000000000000000",
+                "price_btc": "0.027030000000000000000000000000",
+                "price_date": "2017-12-22 00:00:00"
+            },
+            "month_high": {
+                "id": 150474,
+                "coin": "XMR",
+                "created_at": "2018-03-06 05:02:54",
+                "updated_at": "2018-03-06 05:02:54",
+                "price_usd": "375.270000000000000000000000000000",
+                "price_btc": "0.032310000000000000000000000000",
+                "price_date": "2018-03-06 00:00:00"
+            },
+            "month_low": {
+                "id": 162175,
+                "coin": "XMR",
+                "created_at": "2018-03-18 04:09:04",
+                "updated_at": "2018-03-18 04:09:04",
+                "price_usd": "197.420000000000000000000000000000",
+                "price_btc": "0.024980000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "XMR"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 222.47,
+            "high_time": "Thu, 22 Mar 2018 09:05:00 +0000",
+            "low": 200.74,
+            "low_time": "Fri, 23 Mar 2018 05:25:00 +0000",
+            "symbol": "XMR"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/XMR",
+        "name": "Monero"
+    },
+    {
+        "symbol": "DASH",
+        "cap": "3181355505.0",
+        "change": {
+            "hour": "-1.16",
+            "day": "-8.22"
+        },
+        "price": "399.544",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/DASH",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 67105,
+                "coin": "DASH",
+                "created_at": "2017-12-22 08:06:03",
+                "updated_at": "2017-12-22 08:06:03",
+                "price_usd": "1351.440000000000000000000000000000",
+                "price_btc": "0.087660000000000000000000000000",
+                "price_date": "2017-12-22 00:00:00"
+            },
+            "month_high": {
+                "id": 150006,
+                "coin": "DASH",
+                "created_at": "2018-03-05 05:07:38",
+                "updated_at": "2018-03-05 05:07:38",
+                "price_usd": "623.270000000000000000000000000000",
+                "price_btc": "0.054030000000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 161650,
+                "coin": "DASH",
+                "created_at": "2018-03-18 04:03:36",
+                "updated_at": "2018-03-18 04:03:36",
+                "price_usd": "388.440000000000000000000000000000",
+                "price_btc": "0.048640000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "DASH"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 441.59,
+            "high_time": "Thu, 22 Mar 2018 06:40:00 +0000",
+            "low": 397.75,
+            "low_time": "Fri, 23 Mar 2018 02:45:00 +0000",
+            "symbol": "DASH"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/DASH",
+        "name": "Dash"
+    },
+    {
+        "symbol": "XEM",
+        "cap": "2486223000.0",
+        "change": {
+            "hour": "-1.39",
+            "day": "-6.4"
+        },
+        "price": "0.276247",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/XEM",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 70199,
+                "coin": "XEM",
+                "created_at": "2018-01-04 08:06:26",
+                "updated_at": "2018-01-04 08:06:26",
+                "price_usd": "1.870000000000000000000000000000",
+                "price_btc": "0.000122500000000000000000000000",
+                "price_date": "2018-01-04 00:00:00"
+            },
+            "month_high": {
+                "id": 157888,
+                "coin": "XEM",
+                "created_at": "2018-03-14 04:02:57",
+                "updated_at": "2018-03-14 04:02:57",
+                "price_usd": "0.478600000000000000000000000000",
+                "price_btc": "0.000050860000000000000000000000",
+                "price_date": "2018-03-14 00:00:00"
+            },
+            "month_low": {
+                "id": 164189,
+                "coin": "XEM",
+                "created_at": "2018-03-20 04:10:25",
+                "updated_at": "2018-03-20 04:10:25",
+                "price_usd": "0.288300000000000000000000000000",
+                "price_btc": "0.000033890000000000000000000000",
+                "price_date": "2018-03-20 00:00:00"
+            },
+            "symbol": "XEM"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.3198,
+            "high_time": "Thu, 22 Mar 2018 09:10:00 +0000",
+            "low": 0.2833,
+            "low_time": "Thu, 22 Mar 2018 15:00:00 +0000",
+            "symbol": "XEM"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/XEM",
+        "name": "NEM"
+    },
+    {
+        "symbol": "TRX",
+        "cap": "2335809735.0",
+        "change": {
+            "hour": "-1.44",
+            "day": "-7.18"
+        },
+        "price": "0.0355266",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/TRX",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71004,
+                "coin": "TRX",
+                "created_at": "2018-01-06 08:10:26",
+                "updated_at": "2018-01-06 08:10:26",
+                "price_usd": "0.291700000000000000000000000000",
+                "price_btc": "0.000011860000000000000000000000",
+                "price_date": "2018-01-06 00:00:00"
+            },
+            "month_high": {
+                "id": 147054,
+                "coin": "TRX",
+                "created_at": "2018-03-02 05:05:45",
+                "updated_at": "2018-03-02 05:05:45",
+                "price_usd": "0.054010000000000000000000000000",
+                "price_btc": "0.000004890000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162138,
+                "coin": "TRX",
+                "created_at": "2018-03-18 04:08:42",
+                "updated_at": "2018-03-18 04:08:42",
+                "price_usd": "0.028760000000000000000000000000",
+                "price_btc": "0.000003580000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "TRX"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.0391,
+            "high_time": "Thu, 22 Mar 2018 07:40:00 +0000",
+            "low": 0.03423,
+            "low_time": "Thu, 22 Mar 2018 14:55:00 +0000",
+            "symbol": "TRX"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/TRX",
+        "name": "TRON"
+    },
+    {
+        "symbol": "USDT",
+        "cap": "2282557383.0",
+        "change": {
+            "hour": "-0.13",
+            "day": "-0.21"
+        },
+        "price": "0.997996",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/USDT",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 52798,
+                "coin": "USDT",
+                "created_at": "2017-12-10 20:55:58",
+                "updated_at": "2017-12-10 20:55:58",
+                "price_usd": "1.800000000000000000000000000000",
+                "price_btc": "0.000000000000000000000000000000",
+                "price_date": "2017-02-27 00:00:00"
+            },
+            "month_high": {
+                "id": 149005,
+                "coin": "USDT",
+                "created_at": "2018-03-04 05:06:35",
+                "updated_at": "2018-03-04 05:06:35",
+                "price_usd": "1.020000000000000000000000000000",
+                "price_btc": "0.000089440000000000000000000000",
+                "price_date": "2018-03-04 00:00:00"
+            },
+            "month_low": {
+                "id": 162841,
+                "coin": "USDT",
+                "created_at": "2018-03-19 04:06:11",
+                "updated_at": "2018-03-19 04:06:11",
+                "price_usd": "0.998400000000000000000000000000",
+                "price_btc": "0.000122300000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "USDT"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 1.02,
+            "high_time": "Thu, 22 Mar 2018 18:20:00 +0000",
+            "low": 0.9998,
+            "low_time": "Fri, 23 Mar 2018 00:25:00 +0000",
+            "symbol": "USDT"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/USDT",
+        "name": "Tether"
+    },
+    {
+        "symbol": "ETC",
+        "cap": "1864005107.0",
+        "change": {
+            "hour": "-1.13",
+            "day": "-8.77"
+        },
+        "price": "18.5116",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/ETC",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73583,
+                "coin": "ETC",
+                "created_at": "2018-01-15 08:07:29",
+                "updated_at": "2018-01-15 08:07:29",
+                "price_usd": "43.320000000000000000000000000000",
+                "price_btc": "0.003158000000000000000000000000",
+                "price_date": "2018-01-15 00:00:00"
+            },
+            "month_high": {
+                "id": 147136,
+                "coin": "ETC",
+                "created_at": "2018-03-02 05:06:35",
+                "updated_at": "2018-03-02 05:06:35",
+                "price_usd": "32.500000000000000000000000000000",
+                "price_btc": "0.002925000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162266,
+                "coin": "ETC",
+                "created_at": "2018-03-18 04:09:57",
+                "updated_at": "2018-03-18 04:09:57",
+                "price_usd": "16.210000000000000000000000000000",
+                "price_btc": "0.002066000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "ETC"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 20.27,
+            "high_time": "Thu, 22 Mar 2018 06:10:00 +0000",
+            "low": 18.15,
+            "low_time": "Fri, 23 Mar 2018 03:20:00 +0000",
+            "symbol": "ETC"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ETC",
+        "name": "Ethereum Classic"
+    },
+    {
+        "symbol": "VEN",
+        "cap": "1659190462.0",
+        "change": {
+            "hour": "-2.24",
+            "day": "-14.0"
+        },
+        "price": "3.21519",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/VEN",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 75712,
+                "coin": "VEN",
+                "created_at": "2018-01-23 08:04:43",
+                "updated_at": "2018-01-23 08:04:43",
+                "price_usd": "8.120000000000000000000000000000",
+                "price_btc": "0.000763200000000000000000000000",
+                "price_date": "2018-01-23 00:00:00"
+            },
+            "month_high": {
+                "id": 147325,
+                "coin": "VEN",
+                "created_at": "2018-03-02 05:08:30",
+                "updated_at": "2018-03-02 05:08:30",
+                "price_usd": "4.900000000000000000000000000000",
+                "price_btc": "0.000440500000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 155061,
+                "coin": "VEN",
+                "created_at": "2018-03-11 05:02:27",
+                "updated_at": "2018-03-11 05:02:27",
+                "price_usd": "3.530000000000000000000000000000",
+                "price_btc": "0.000402000000000000000000000000",
+                "price_date": "2018-03-11 00:00:00"
+            },
+            "symbol": "VEN"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 3.84,
+            "high_time": "Thu, 22 Mar 2018 05:35:00 +0000",
+            "low": 3.3,
+            "low_time": "Thu, 22 Mar 2018 11:20:00 +0000",
+            "symbol": "VEN"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/VEN",
+        "name": "VeChain"
+    },
+    {
+        "symbol": "QTUM",
+        "cap": "1629152142.0",
+        "change": {
+            "hour": "-0.8",
+            "day": "-6.62"
+        },
+        "price": "18.415",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/QTUM",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71266,
+                "coin": "QTUM",
+                "created_at": "2018-01-07 08:08:22",
+                "updated_at": "2018-01-07 08:08:22",
+                "price_usd": "72.260000000000000000000000000000",
+                "price_btc": "0.004335000000000000000000000000",
+                "price_date": "2018-01-07 00:00:00"
+            },
+            "month_high": {
+                "id": 149843,
+                "coin": "QTUM",
+                "created_at": "2018-03-05 05:05:58",
+                "updated_at": "2018-03-05 05:05:58",
+                "price_usd": "26.540000000000000000000000000000",
+                "price_btc": "0.002294000000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 161797,
+                "coin": "QTUM",
+                "created_at": "2018-03-18 04:05:09",
+                "updated_at": "2018-03-18 04:05:09",
+                "price_usd": "12.760000000000000000000000000000",
+                "price_btc": "0.001642000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "QTUM"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 19.96,
+            "high_time": "Thu, 22 Mar 2018 18:55:00 +0000",
+            "low": 17.6,
+            "low_time": "Thu, 22 Mar 2018 14:45:00 +0000",
+            "symbol": "QTUM"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/QTUM",
+        "name": "Qtum"
+    },
+    {
+        "symbol": "ICX",
+        "cap": "1239422366.0",
+        "change": {
+            "hour": "-2.43",
+            "day": "-17.13"
+        },
+        "price": "3.20229",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/ICX",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 72276,
+                "coin": "ICX",
+                "created_at": "2018-01-10 08:07:38",
+                "updated_at": "2018-01-10 08:07:38",
+                "price_usd": "11.800000000000000000000000000000",
+                "price_btc": "0.000832000000000000000000000000",
+                "price_date": "2018-01-10 00:00:00"
+            },
+            "month_high": {
+                "id": 148268,
+                "coin": "ICX",
+                "created_at": "2018-03-03 05:09:13",
+                "updated_at": "2018-03-03 05:09:13",
+                "price_usd": "3.820000000000000000000000000000",
+                "price_btc": "0.000337400000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 162235,
+                "coin": "ICX",
+                "created_at": "2018-03-18 04:09:38",
+                "updated_at": "2018-03-18 04:09:38",
+                "price_usd": "1.950000000000000000000000000000",
+                "price_btc": "0.000247300000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "ICX"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 3.98,
+            "high_time": "Thu, 22 Mar 2018 06:05:00 +0000",
+            "low": 3.2,
+            "low_time": "Fri, 23 Mar 2018 03:20:00 +0000",
+            "symbol": "ICX"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ICX",
+        "name": "ICON"
+    },
+    {
+        "symbol": "LSK",
+        "cap": "1203367321.0",
+        "change": {
+            "hour": "-1.45",
+            "day": "-13.71"
+        },
+        "price": "11.6711",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/LSK",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71645,
+                "coin": "LSK",
+                "created_at": "2018-01-08 08:09:00",
+                "updated_at": "2018-01-08 08:09:00",
+                "price_usd": "40.120000000000000000000000000000",
+                "price_btc": "0.002049000000000000000000000000",
+                "price_date": "2018-01-08 00:00:00"
+            },
+            "month_high": {
+                "id": 147242,
+                "coin": "LSK",
+                "created_at": "2018-03-02 05:07:40",
+                "updated_at": "2018-03-02 05:07:40",
+                "price_usd": "19.680000000000000000000000000000",
+                "price_btc": "0.001769000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 158803,
+                "coin": "LSK",
+                "created_at": "2018-03-15 04:03:00",
+                "updated_at": "2018-03-15 04:03:00",
+                "price_usd": "12.240000000000000000000000000000",
+                "price_btc": "0.001404000000000000000000000000",
+                "price_date": "2018-03-15 00:00:00"
+            },
+            "symbol": "LSK"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 13.79,
+            "high_time": "Thu, 22 Mar 2018 05:35:00 +0000",
+            "low": 12,
+            "low_time": "Fri, 23 Mar 2018 05:35:00 +0000",
+            "symbol": "LSK"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/LSK",
+        "name": "Lisk"
+    },
+    {
+        "symbol": "OMG",
+        "cap": "1092324700.0",
+        "change": {
+            "hour": "-1.92",
+            "day": "-12.99"
+        },
+        "price": "10.7046",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/OMG",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73395,
+                "coin": "OMG",
+                "created_at": "2018-01-14 08:06:49",
+                "updated_at": "2018-01-14 08:06:49",
+                "price_usd": "25.660000000000000000000000000000",
+                "price_btc": "0.001814000000000000000000000000",
+                "price_date": "2018-01-14 00:00:00"
+            },
+            "month_high": {
+                "id": 147276,
+                "coin": "OMG",
+                "created_at": "2018-03-02 05:08:00",
+                "updated_at": "2018-03-02 05:08:00",
+                "price_usd": "18.960000000000000000000000000000",
+                "price_btc": "0.001693000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 161903,
+                "coin": "OMG",
+                "created_at": "2018-03-18 04:06:14",
+                "updated_at": "2018-03-18 04:06:14",
+                "price_usd": "9.710000000000000000000000000000",
+                "price_btc": "0.001240000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "OMG"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 12.47,
+            "high_time": "Thu, 22 Mar 2018 06:50:00 +0000",
+            "low": 10.57,
+            "low_time": "Fri, 23 Mar 2018 05:30:00 +0000",
+            "symbol": "OMG"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/OMG",
+        "name": "OmiseGO"
+    },
+    {
+        "symbol": "BTG",
+        "cap": "1004330081.0",
+        "change": {
+            "hour": "-0.66",
+            "day": "-9.52"
+        },
+        "price": "59.4378",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/BTG",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 9661,
+                "coin": "BTG",
+                "created_at": "2017-12-10 11:34:23",
+                "updated_at": "2017-12-10 11:34:23",
+                "price_usd": "406.540000000000000000000000000000",
+                "price_btc": "0.073140000000000000000000000000",
+                "price_date": "2017-11-11 00:00:00"
+            },
+            "month_high": {
+                "id": 146935,
+                "coin": "BTG",
+                "created_at": "2018-03-02 05:04:33",
+                "updated_at": "2018-03-02 05:04:33",
+                "price_usd": "112.640000000000000000000000000000",
+                "price_btc": "0.010050000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162512,
+                "coin": "BTG",
+                "created_at": "2018-03-19 04:02:50",
+                "updated_at": "2018-03-19 04:02:50",
+                "price_usd": "57.000000000000000000000000000000",
+                "price_btc": "0.006892000000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "BTG"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 64.54,
+            "high_time": "Thu, 22 Mar 2018 05:40:00 +0000",
+            "low": 56.49,
+            "low_time": "Fri, 23 Mar 2018 05:00:00 +0000",
+            "symbol": "BTG"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/BTG",
+        "name": "Bitgem"
+    },
+    {
+        "symbol": "NANO",
+        "cap": "995976330.0",
+        "change": {
+            "hour": "-1.94",
+            "day": "-14.53"
+        },
+        "price": "7.47459",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/NANO",
+        "HighLowOfCoin": "No query results for model [feenikz\\CryptoCoins\\Models\\Price].",
+        "HighLowOfLast24Hours": "Undefined variable: high_time",
+        "image": "https://chasing-coins.com/api/v1/std/logo/NANO",
+        "name": "Nano"
+    },
+    {
+        "symbol": "BNB",
+        "cap": "963140862.0",
+        "change": {
+            "hour": "-0.22",
+            "day": "-7.27"
+        },
+        "price": "9.72732",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/BNB",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71304,
+                "coin": "BNB",
+                "created_at": "2018-01-07 08:08:50",
+                "updated_at": "2018-01-07 08:08:50",
+                "price_usd": "22.460000000000000000000000000000",
+                "price_btc": "0.001301000000000000000000000000",
+                "price_date": "2018-01-07 00:00:00"
+            },
+            "month_high": {
+                "id": 147256,
+                "coin": "BNB",
+                "created_at": "2018-03-02 05:07:48",
+                "updated_at": "2018-03-02 05:07:48",
+                "price_usd": "10.530000000000000000000000000000",
+                "price_btc": "0.000946300000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 155113,
+                "coin": "BNB",
+                "created_at": "2018-03-11 05:03:00",
+                "updated_at": "2018-03-11 05:03:00",
+                "price_usd": "7.560000000000000000000000000000",
+                "price_btc": "0.000859600000000000000000000000",
+                "price_date": "2018-03-11 00:00:00"
+            },
+            "symbol": "BNB"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 10.95,
+            "high_time": "Thu, 22 Mar 2018 09:20:00 +0000",
+            "low": 9.52,
+            "low_time": "Thu, 22 Mar 2018 15:00:00 +0000",
+            "symbol": "BNB"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/BNB",
+        "name": "Binance Coin"
+    },
+    {
+        "symbol": "ZEC",
+        "cap": "826804325.0",
+        "change": {
+            "hour": "-0.92",
+            "day": "-11.23"
+        },
+        "price": "233.589",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/ZEC",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71607,
+                "coin": "ZEC",
+                "created_at": "2018-01-08 08:08:32",
+                "updated_at": "2018-01-08 08:08:32",
+                "price_usd": "754.380000000000000000000000000000",
+                "price_btc": "0.046060000000000000000000000000",
+                "price_date": "2018-01-08 00:00:00"
+            },
+            "month_high": {
+                "id": 150159,
+                "coin": "ZEC",
+                "created_at": "2018-03-05 05:09:14",
+                "updated_at": "2018-03-05 05:09:14",
+                "price_usd": "408.330000000000000000000000000000",
+                "price_btc": "0.035470000000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 162256,
+                "coin": "ZEC",
+                "created_at": "2018-03-18 04:09:52",
+                "updated_at": "2018-03-18 04:09:52",
+                "price_usd": "222.740000000000000000000000000000",
+                "price_btc": "0.027820000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "ZEC"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 264.78,
+            "high_time": "Thu, 22 Mar 2018 05:45:00 +0000",
+            "low": 234.33,
+            "low_time": "Fri, 23 Mar 2018 05:30:00 +0000",
+            "symbol": "ZEC"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ZEC",
+        "name": "Zcash"
+    },
+    {
+        "symbol": "DGD",
+        "cap": "701840000.0",
+        "change": {
+            "hour": "-0.81",
+            "day": "-5.73"
+        },
+        "price": "350.92",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/DGD",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 145750,
+                "coin": "DGD",
+                "created_at": "2018-03-01 05:01:59",
+                "updated_at": "2018-03-01 05:01:59",
+                "price_usd": "576.280000000000000000000000000000",
+                "price_btc": "0.055210000000000000000000000000",
+                "price_date": "2018-03-01 00:00:00"
+            },
+            "month_high": {
+                "id": 148893,
+                "coin": "DGD",
+                "created_at": "2018-03-04 05:05:27",
+                "updated_at": "2018-03-04 05:05:27",
+                "price_usd": "537.500000000000000000000000000000",
+                "price_btc": "0.047390000000000000000000000000",
+                "price_date": "2018-03-04 00:00:00"
+            },
+            "month_low": {
+                "id": 153613,
+                "coin": "DGD",
+                "created_at": "2018-03-09 05:06:33",
+                "updated_at": "2018-03-09 05:06:33",
+                "price_usd": "329.680000000000000000000000000000",
+                "price_btc": "0.035320000000000000000000000000",
+                "price_date": "2018-03-09 00:00:00"
+            },
+            "symbol": "DGD"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 374.4,
+            "high_time": "Thu, 22 Mar 2018 05:45:00 +0000",
+            "low": 348.67,
+            "low_time": "Fri, 23 Mar 2018 04:05:00 +0000",
+            "symbol": "DGD"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/DGD",
+        "name": "DigixDAO"
+    },
+    {
+        "symbol": "XVG",
+        "cap": "523352780.0",
+        "change": {
+            "hour": "-1.87",
+            "day": "2.52"
+        },
+        "price": "0.0354975",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/XVG",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 67767,
+                "coin": "XVG",
+                "created_at": "2017-12-25 08:03:34",
+                "updated_at": "2017-12-25 08:03:34",
+                "price_usd": "0.249000000000000000000000000000",
+                "price_btc": "0.000018000000000000000000000000",
+                "price_date": "2017-12-25 00:00:00"
+            },
+            "month_high": {
+                "id": 147384,
+                "coin": "XVG",
+                "created_at": "2018-03-02 05:09:05",
+                "updated_at": "2018-03-02 05:09:05",
+                "price_usd": "0.060540000000000000000000000000",
+                "price_btc": "0.000005390000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 161889,
+                "coin": "XVG",
+                "created_at": "2018-03-18 04:06:06",
+                "updated_at": "2018-03-18 04:06:06",
+                "price_usd": "0.028290000000000000000000000000",
+                "price_btc": "0.000003630000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "XVG"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.04127,
+            "high_time": "Thu, 22 Mar 2018 22:15:00 +0000",
+            "low": 0.03037,
+            "low_time": "Thu, 22 Mar 2018 15:00:00 +0000",
+            "symbol": "XVG"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/XVG",
+        "name": "Verge"
+    },
+    {
+        "symbol": "PPT",
+        "cap": "512716695.0",
+        "change": {
+            "hour": "-1.18",
+            "day": "-12.56"
+        },
+        "price": "13.8557",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/PPT",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 116570,
+                "coin": "PPT",
+                "created_at": "2018-01-29 08:44:41",
+                "updated_at": "2018-01-29 08:44:41",
+                "price_usd": "75.840000000000000000000000000000",
+                "price_btc": "0.006456000000000000000000000000",
+                "price_date": "2018-01-29 00:00:00"
+            },
+            "month_high": {
+                "id": 146994,
+                "coin": "PPT",
+                "created_at": "2018-03-02 05:05:08",
+                "updated_at": "2018-03-02 05:05:08",
+                "price_usd": "23.010000000000000000000000000000",
+                "price_btc": "0.002069000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 161989,
+                "coin": "PPT",
+                "created_at": "2018-03-18 04:07:09",
+                "updated_at": "2018-03-18 04:07:09",
+                "price_usd": "14.060000000000000000000000000000",
+                "price_btc": "0.001781000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "PPT"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 16.24,
+            "high_time": "Thu, 22 Mar 2018 06:00:00 +0000",
+            "low": 13.65,
+            "low_time": "Fri, 23 Mar 2018 02:45:00 +0000",
+            "symbol": "PPT"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/PPT",
+        "name": "Populous"
+    },
+    {
+        "symbol": "STEEM",
+        "cap": "499417702.0",
+        "change": {
+            "hour": "-1.66",
+            "day": "-12.03"
+        },
+        "price": "1.96611",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/STEEM",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 70220,
+                "coin": "STEEM",
+                "created_at": "2018-01-04 08:06:39",
+                "updated_at": "2018-01-04 08:06:39",
+                "price_usd": "7.850000000000000000000000000000",
+                "price_btc": "0.000511500000000000000000000000",
+                "price_date": "2018-01-04 00:00:00"
+            },
+            "month_high": {
+                "id": 148558,
+                "coin": "STEEM",
+                "created_at": "2018-03-04 05:02:06",
+                "updated_at": "2018-03-04 05:02:06",
+                "price_usd": "3.560000000000000000000000000000",
+                "price_btc": "0.000310800000000000000000000000",
+                "price_date": "2018-03-04 00:00:00"
+            },
+            "month_low": {
+                "id": 162232,
+                "coin": "STEEM",
+                "created_at": "2018-03-18 04:09:36",
+                "updated_at": "2018-03-18 04:09:36",
+                "price_usd": "1.790000000000000000000000000000",
+                "price_btc": "0.000226100000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "STEEM"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 2.23,
+            "high_time": "Thu, 22 Mar 2018 07:10:00 +0000",
+            "low": 1.93,
+            "low_time": "Fri, 23 Mar 2018 05:15:00 +0000",
+            "symbol": "STEEM"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/STEEM",
+        "name": "Steem"
+    },
+    {
+        "symbol": "STRAT",
+        "cap": "476216349.0",
+        "change": {
+            "hour": "-0.68",
+            "day": "-11.8"
+        },
+        "price": "4.82061",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/STRAT",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71920,
+                "coin": "STRAT",
+                "created_at": "2018-01-09 08:06:31",
+                "updated_at": "2018-01-09 08:06:31",
+                "price_usd": "21.380000000000000000000000000000",
+                "price_btc": "0.001434000000000000000000000000",
+                "price_date": "2018-01-09 00:00:00"
+            },
+            "month_high": {
+                "id": 147607,
+                "coin": "STRAT",
+                "created_at": "2018-03-03 05:01:56",
+                "updated_at": "2018-03-03 05:01:56",
+                "price_usd": "8.760000000000000000000000000000",
+                "price_btc": "0.000762500000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 162286,
+                "coin": "STRAT",
+                "created_at": "2018-03-18 04:10:08",
+                "updated_at": "2018-03-18 04:10:08",
+                "price_usd": "4.070000000000000000000000000000",
+                "price_btc": "0.000504800000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "STRAT"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 5.47,
+            "high_time": "Thu, 22 Mar 2018 05:45:00 +0000",
+            "low": 4.75,
+            "low_time": "Fri, 23 Mar 2018 03:50:00 +0000",
+            "symbol": "STRAT"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/STRAT",
+        "name": "Stratis"
+    },
+    {
+        "symbol": "BCN",
+        "cap": "476181806.0",
+        "change": {
+            "hour": "1.11",
+            "day": "-6.12"
+        },
+        "price": "0.0025908",
+        "coinheat": 90,
+        "url": "https://chasing-coins.com/coin/BCN",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71204,
+                "coin": "BCN",
+                "created_at": "2018-01-07 08:07:38",
+                "updated_at": "2018-01-07 08:07:38",
+                "price_usd": "0.016290000000000000000000000000",
+                "price_btc": "0.000000980000000000000000000000",
+                "price_date": "2018-01-07 00:00:00"
+            },
+            "month_high": {
+                "id": 150672,
+                "coin": "BCN",
+                "created_at": "2018-03-06 05:04:54",
+                "updated_at": "2018-03-06 05:04:54",
+                "price_usd": "0.004643000000000000000000000000",
+                "price_btc": "0.000000400000000000000000000000",
+                "price_date": "2018-03-06 00:00:00"
+            },
+            "month_low": {
+                "id": 161788,
+                "coin": "BCN",
+                "created_at": "2018-03-18 04:05:02",
+                "updated_at": "2018-03-18 04:05:02",
+                "price_usd": "0.002369000000000000000000000000",
+                "price_btc": "0.000000300000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "BCN"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.002825,
+            "high_time": "Thu, 22 Mar 2018 06:25:00 +0000",
+            "low": 0.002621,
+            "low_time": "Thu, 22 Mar 2018 14:45:00 +0000",
+            "symbol": "BCN"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/BCN",
+        "name": "Bytecoin"
+    },
+    {
+        "symbol": "WAVES",
+        "cap": "458418000.0",
+        "change": {
+            "hour": "-0.61",
+            "day": "-8.85"
+        },
+        "price": "4.58418",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/WAVES",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 66965,
+                "coin": "WAVES",
+                "created_at": "2017-12-22 08:04:17",
+                "updated_at": "2017-12-22 08:04:17",
+                "price_usd": "16.640000000000000000000000000000",
+                "price_btc": "0.001010000000000000000000000000",
+                "price_date": "2017-12-21 00:00:00"
+            },
+            "month_high": {
+                "id": 150842,
+                "coin": "WAVES",
+                "created_at": "2018-03-06 05:06:44",
+                "updated_at": "2018-03-06 05:06:44",
+                "price_usd": "7.350000000000000000000000000000",
+                "price_btc": "0.000584000000000000000000000000",
+                "price_date": "2018-03-06 00:00:00"
+            },
+            "month_low": {
+                "id": 162685,
+                "coin": "WAVES",
+                "created_at": "2018-03-19 04:04:37",
+                "updated_at": "2018-03-19 04:04:37",
+                "price_usd": "4.800000000000000000000000000000",
+                "price_btc": "0.000533200000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "WAVES"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 5.33,
+            "high_time": "Thu, 22 Mar 2018 06:55:00 +0000",
+            "low": 4.89,
+            "low_time": "Fri, 23 Mar 2018 04:20:00 +0000",
+            "symbol": "WAVES"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/WAVES",
+        "name": "Waves"
+    },
+    {
+        "symbol": "MKR",
+        "cap": "418161845.0",
+        "change": {
+            "hour": "-0.41",
+            "day": "-6.76"
+        },
+        "price": "676.388",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/MKR",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 75199,
+                "coin": "MKR",
+                "created_at": "2018-01-21 08:03:59",
+                "updated_at": "2018-01-21 08:03:59",
+                "price_usd": "1742.010000000000000000000000000000",
+                "price_btc": "0.135900000000000000000000000000",
+                "price_date": "2018-01-21 00:00:00"
+            },
+            "month_high": {
+                "id": 147462,
+                "coin": "MKR",
+                "created_at": "2018-03-02 05:09:51",
+                "updated_at": "2018-03-02 05:09:51",
+                "price_usd": "1038.610000000000000000000000000000",
+                "price_btc": "0.093490000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162052,
+                "coin": "MKR",
+                "created_at": "2018-03-18 04:07:46",
+                "updated_at": "2018-03-18 04:07:46",
+                "price_usd": "661.540000000000000000000000000000",
+                "price_btc": "0.085410000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "MKR"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 740.31,
+            "high_time": "Thu, 22 Mar 2018 06:05:00 +0000",
+            "low": 652.63,
+            "low_time": "Fri, 23 Mar 2018 03:25:00 +0000",
+            "symbol": "MKR"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/MKR",
+        "name": "Maker"
+    },
+    {
+        "symbol": "SC",
+        "cap": "413384008.0",
+        "change": {
+            "hour": "0.21",
+            "day": "-8.47"
+        },
+        "price": "0.0124149",
+        "coinheat": 90,
+        "url": "https://chasing-coins.com/coin/SC",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 70894,
+                "coin": "SC",
+                "created_at": "2018-01-06 08:09:12",
+                "updated_at": "2018-01-06 08:09:12",
+                "price_usd": "0.106600000000000000000000000000",
+                "price_btc": "0.000005130000000000000000000000",
+                "price_date": "2018-01-06 00:00:00"
+            },
+            "month_high": {
+                "id": 147836,
+                "coin": "SC",
+                "created_at": "2018-03-03 05:04:27",
+                "updated_at": "2018-03-03 05:04:27",
+                "price_usd": "0.021160000000000000000000000000",
+                "price_btc": "0.000001870000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 161919,
+                "coin": "SC",
+                "created_at": "2018-03-18 04:06:23",
+                "updated_at": "2018-03-18 04:06:23",
+                "price_usd": "0.009634000000000000000000000000",
+                "price_btc": "0.000001220000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "SC"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.01374,
+            "high_time": "Thu, 22 Mar 2018 06:40:00 +0000",
+            "low": 0.01216,
+            "low_time": "Thu, 22 Mar 2018 14:55:00 +0000",
+            "symbol": "SC"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/SC",
+        "name": "Siacoin"
+    },
+    {
+        "symbol": "BTS",
+        "cap": "411916187.0",
+        "change": {
+            "hour": "-0.54",
+            "day": "-5.71"
+        },
+        "price": "0.157725",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/BTS",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71186,
+                "coin": "BTS",
+                "created_at": "2018-01-07 08:07:24",
+                "updated_at": "2018-01-07 08:07:24",
+                "price_usd": "0.832700000000000000000000000000",
+                "price_btc": "0.000048450000000000000000000000",
+                "price_date": "2018-01-07 00:00:00"
+            },
+            "month_high": {
+                "id": 147166,
+                "coin": "BTS",
+                "created_at": "2018-03-02 05:06:54",
+                "updated_at": "2018-03-02 05:06:54",
+                "price_usd": "0.235900000000000000000000000000",
+                "price_btc": "0.000021210000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 161585,
+                "coin": "BTS",
+                "created_at": "2018-03-18 04:02:56",
+                "updated_at": "2018-03-18 04:02:56",
+                "price_usd": "0.126500000000000000000000000000",
+                "price_btc": "0.000016020000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "BTS"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.1609,
+            "high_time": "Thu, 22 Mar 2018 06:45:00 +0000",
+            "low": 0.1448,
+            "low_time": "Fri, 23 Mar 2018 03:25:00 +0000",
+            "symbol": "BTS"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/BTS",
+        "name": "BitShares"
+    },
+    {
+        "symbol": "RHOC",
+        "cap": "394739771.0",
+        "change": {
+            "hour": "0.44",
+            "day": "-11.69"
+        },
+        "price": "1.09809",
+        "coinheat": 90,
+        "url": "https://chasing-coins.com/coin/RHOC",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 9115,
+                "coin": "RHOC",
+                "created_at": "2017-12-10 11:29:04",
+                "updated_at": "2017-12-10 11:29:04",
+                "price_usd": "30735.000000000000000000000000000000",
+                "price_btc": "4.140000000000000000000000000000",
+                "price_date": "2017-11-08 00:00:00"
+            },
+            "month_high": {
+                "id": 149475,
+                "coin": "RHOC",
+                "created_at": "2018-03-05 05:02:16",
+                "updated_at": "2018-03-05 05:02:16",
+                "price_usd": "1.860000000000000000000000000000",
+                "price_btc": "0.000162600000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 162059,
+                "coin": "RHOC",
+                "created_at": "2018-03-18 04:07:51",
+                "updated_at": "2018-03-18 04:07:51",
+                "price_usd": "1.020000000000000000000000000000",
+                "price_btc": "0.000129400000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "RHOC"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 1.25,
+            "high_time": "Thu, 22 Mar 2018 05:35:00 +0000",
+            "low": 1.06,
+            "low_time": "Thu, 22 Mar 2018 14:55:00 +0000",
+            "symbol": "RHOC"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/RHOC",
+        "name": "RChain"
+    },
+    {
+        "symbol": "DOGE",
+        "cap": "387595397.0",
+        "change": {
+            "hour": "-0.38",
+            "day": "-7.68"
+        },
+        "price": "0.00340858",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/DOGE",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71606,
+                "coin": "DOGE",
+                "created_at": "2018-01-08 08:08:32",
+                "updated_at": "2018-01-08 08:08:32",
+                "price_usd": "0.016970000000000000000000000000",
+                "price_btc": "0.000001030000000000000000000000",
+                "price_date": "2018-01-08 00:00:00"
+            },
+            "month_high": {
+                "id": 147406,
+                "coin": "DOGE",
+                "created_at": "2018-03-02 05:09:18",
+                "updated_at": "2018-03-02 05:09:18",
+                "price_usd": "0.006207000000000000000000000000",
+                "price_btc": "0.000000550000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 161579,
+                "coin": "DOGE",
+                "created_at": "2018-03-18 04:02:52",
+                "updated_at": "2018-03-18 04:02:52",
+                "price_usd": "0.003226000000000000000000000000",
+                "price_btc": "0.000000410000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "DOGE"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.003771,
+            "high_time": "Thu, 22 Mar 2018 06:30:00 +0000",
+            "low": 0.003453,
+            "low_time": "Fri, 23 Mar 2018 05:45:00 +0000",
+            "symbol": "DOGE"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/DOGE",
+        "name": "Dogecoin"
+    },
+    {
+        "symbol": "REP",
+        "cap": "370102700.0",
+        "change": {
+            "hour": "-1.1",
+            "day": "-7.56"
+        },
+        "price": "33.6457",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/REP",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 72742,
+                "coin": "REP",
+                "created_at": "2018-01-12 08:07:23",
+                "updated_at": "2018-01-12 08:07:23",
+                "price_usd": "106.040000000000000000000000000000",
+                "price_btc": "0.008190000000000000000000000000",
+                "price_date": "2018-01-12 00:00:00"
+            },
+            "month_high": {
+                "id": 146824,
+                "coin": "REP",
+                "created_at": "2018-03-02 05:03:30",
+                "updated_at": "2018-03-02 05:03:30",
+                "price_usd": "47.860000000000000000000000000000",
+                "price_btc": "0.004303000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162554,
+                "coin": "REP",
+                "created_at": "2018-03-19 04:03:16",
+                "updated_at": "2018-03-19 04:03:16",
+                "price_usd": "29.650000000000000000000000000000",
+                "price_btc": "0.003615000000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "REP"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 36.54,
+            "high_time": "Thu, 22 Mar 2018 06:45:00 +0000",
+            "low": 31.72,
+            "low_time": "Fri, 23 Mar 2018 04:50:00 +0000",
+            "symbol": "REP"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/REP",
+        "name": "Augur"
+    },
+    {
+        "symbol": "AE",
+        "cap": "363765929.0",
+        "change": {
+            "hour": "-1.66",
+            "day": "-12.35"
+        },
+        "price": "1.56109",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/AE",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 16689,
+                "coin": "AE",
+                "created_at": "2017-12-10 13:46:01",
+                "updated_at": "2017-12-10 13:46:01",
+                "price_usd": "3.800000000000000000000000000000",
+                "price_btc": "0.001495000000000000000000000000",
+                "price_date": "2017-06-18 00:00:00"
+            },
+            "month_high": {
+                "id": 146698,
+                "coin": "AE",
+                "created_at": "2018-03-02 05:02:17",
+                "updated_at": "2018-03-02 05:02:17",
+                "price_usd": "2.430000000000000000000000000000",
+                "price_btc": "0.000218400000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162455,
+                "coin": "AE",
+                "created_at": "2018-03-19 04:02:15",
+                "updated_at": "2018-03-19 04:02:15",
+                "price_usd": "1.380000000000000000000000000000",
+                "price_btc": "0.000168700000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "AE"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 1.81,
+            "high_time": "Thu, 22 Mar 2018 06:20:00 +0000",
+            "low": 1.52,
+            "low_time": "Fri, 23 Mar 2018 05:25:00 +0000",
+            "symbol": "AE"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/AE",
+        "name": "Aeternity"
+    },
+    {
+        "symbol": "SNT",
+        "cap": "360572854.0",
+        "change": {
+            "hour": "-1.38",
+            "day": "-10.65"
+        },
+        "price": "0.103897",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/SNT",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 70271,
+                "coin": "SNT",
+                "created_at": "2018-01-04 08:07:12",
+                "updated_at": "2018-01-04 08:07:12",
+                "price_usd": "0.635900000000000000000000000000",
+                "price_btc": "0.000044300000000000000000000000",
+                "price_date": "2018-01-04 00:00:00"
+            },
+            "month_high": {
+                "id": 150428,
+                "coin": "SNT",
+                "created_at": "2018-03-06 05:02:26",
+                "updated_at": "2018-03-06 05:02:26",
+                "price_usd": "0.176700000000000000000000000000",
+                "price_btc": "0.000015840000000000000000000000",
+                "price_date": "2018-03-06 00:00:00"
+            },
+            "month_low": {
+                "id": 161679,
+                "coin": "SNT",
+                "created_at": "2018-03-18 04:03:53",
+                "updated_at": "2018-03-18 04:03:53",
+                "price_usd": "0.082700000000000000000000000000",
+                "price_btc": "0.000010850000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "SNT"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.1188,
+            "high_time": "Thu, 22 Mar 2018 06:30:00 +0000",
+            "low": 0.1011,
+            "low_time": "Fri, 23 Mar 2018 03:05:00 +0000",
+            "symbol": "SNT"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/SNT",
+        "name": "Status"
+    },
+    {
+        "symbol": "DCR",
+        "cap": "346953077.0",
+        "change": {
+            "hour": "-0.75",
+            "day": "-6.46"
+        },
+        "price": "49.6572",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/DCR",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73322,
+                "coin": "DCR",
+                "created_at": "2018-01-14 08:06:05",
+                "updated_at": "2018-01-14 08:06:05",
+                "price_usd": "121.570000000000000000000000000000",
+                "price_btc": "0.008513000000000000000000000000",
+                "price_date": "2018-01-14 00:00:00"
+            },
+            "month_high": {
+                "id": 151085,
+                "coin": "DCR",
+                "created_at": "2018-03-06 05:09:19",
+                "updated_at": "2018-03-06 05:09:19",
+                "price_usd": "81.800000000000000000000000000000",
+                "price_btc": "0.007048000000000000000000000000",
+                "price_date": "2018-03-06 00:00:00"
+            },
+            "month_low": {
+                "id": 162180,
+                "coin": "DCR",
+                "created_at": "2018-03-18 04:09:06",
+                "updated_at": "2018-03-18 04:09:06",
+                "price_usd": "47.830000000000000000000000000000",
+                "price_btc": "0.006057000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "DCR"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 53.65,
+            "high_time": "Thu, 22 Mar 2018 07:10:00 +0000",
+            "low": 49.08,
+            "low_time": "Fri, 23 Mar 2018 02:20:00 +0000",
+            "symbol": "DCR"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/DCR",
+        "name": "Decred"
+    },
+    {
+        "symbol": "BTM",
+        "cap": "332102799.0",
+        "change": {
+            "hour": "-0.77",
+            "day": "-7.66"
+        },
+        "price": "0.336477",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/BTM",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71192,
+                "coin": "BTM",
+                "created_at": "2018-01-07 08:07:28",
+                "updated_at": "2018-01-07 08:07:28",
+                "price_usd": "3.440000000000000000000000000000",
+                "price_btc": "0.000200000000000000000000000000",
+                "price_date": "2018-01-07 00:00:00"
+            },
+            "month_high": {
+                "id": 149329,
+                "coin": "BTM",
+                "created_at": "2018-03-04 05:09:55",
+                "updated_at": "2018-03-04 05:09:55",
+                "price_usd": "1.010000000000000000000000000000",
+                "price_btc": "0.000088220000000000000000000000",
+                "price_date": "2018-03-04 00:00:00"
+            },
+            "month_low": {
+                "id": 162760,
+                "coin": "BTM",
+                "created_at": "2018-03-19 04:05:23",
+                "updated_at": "2018-03-19 04:05:23",
+                "price_usd": "0.628300000000000000000000000000",
+                "price_btc": "0.000076710000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "BTM"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.7975,
+            "high_time": "Thu, 22 Mar 2018 09:00:00 +0000",
+            "low": 0.7136,
+            "low_time": "Thu, 22 Mar 2018 20:15:00 +0000",
+            "symbol": "BTM"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/BTM",
+        "name": "Bitmark"
+    },
+    {
+        "symbol": "AION",
+        "cap": "313482078.0",
+        "change": {
+            "hour": "-1.46",
+            "day": "-16.15"
+        },
+        "price": "2.71837",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/AION",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71782,
+                "coin": "AION",
+                "created_at": "2018-01-08 08:10:42",
+                "updated_at": "2018-01-08 08:10:42",
+                "price_usd": "10.520000000000000000000000000000",
+                "price_btc": "0.000642400000000000000000000000",
+                "price_date": "2018-01-08 00:00:00"
+            },
+            "month_high": {
+                "id": 147509,
+                "coin": "AION",
+                "created_at": "2018-03-02 05:10:19",
+                "updated_at": "2018-03-02 05:10:19",
+                "price_usd": "3.270000000000000000000000000000",
+                "price_btc": "0.000294300000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 155459,
+                "coin": "AION",
+                "created_at": "2018-03-11 05:06:29",
+                "updated_at": "2018-03-11 05:06:29",
+                "price_usd": "2.250000000000000000000000000000",
+                "price_btc": "0.000255700000000000000000000000",
+                "price_date": "2018-03-11 00:00:00"
+            },
+            "symbol": "AION"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 3.28,
+            "high_time": "Thu, 22 Mar 2018 05:45:00 +0000",
+            "low": 2.7,
+            "low_time": "Fri, 23 Mar 2018 05:45:00 +0000",
+            "symbol": "AION"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/AION",
+        "name": "Aion"
+    },
+    {
+        "symbol": "WTC",
+        "cap": "304753699.0",
+        "change": {
+            "hour": "2.81",
+            "day": "-11.63"
+        },
+        "price": "12.24",
+        "coinheat": 90,
+        "url": "https://chasing-coins.com/coin/WTC",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 114499,
+                "coin": "WTC",
+                "created_at": "2018-01-28 08:37:38",
+                "updated_at": "2018-01-28 08:37:38",
+                "price_usd": "41.450000000000000000000000000000",
+                "price_btc": "0.003663000000000000000000000000",
+                "price_date": "2018-01-28 00:00:00"
+            },
+            "month_high": {
+                "id": 151866,
+                "coin": "WTC",
+                "created_at": "2018-03-07 05:07:44",
+                "updated_at": "2018-03-07 05:07:44",
+                "price_usd": "23.650000000000000000000000000000",
+                "price_btc": "0.002206000000000000000000000000",
+                "price_date": "2018-03-07 00:00:00"
+            },
+            "month_low": {
+                "id": 161660,
+                "coin": "WTC",
+                "created_at": "2018-03-18 04:03:42",
+                "updated_at": "2018-03-18 04:03:42",
+                "price_usd": "11.370000000000000000000000000000",
+                "price_btc": "0.001440000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "WTC"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 14.17,
+            "high_time": "Thu, 22 Mar 2018 05:55:00 +0000",
+            "low": 11.96,
+            "low_time": "Fri, 23 Mar 2018 05:00:00 +0000",
+            "symbol": "WTC"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/WTC",
+        "name": "Waltonchain"
+    },
+    {
+        "symbol": "ONT",
+        "cap": "298732747.0",
+        "change": {
+            "hour": "-2.38",
+            "day": "-9.39"
+        },
+        "price": "1.23834",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/ONT",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 160542,
+                "coin": "ONT",
+                "created_at": "2018-03-17 04:01:15",
+                "updated_at": "2018-03-17 04:01:15",
+                "price_usd": "1.590000000000000000000000000000",
+                "price_btc": "0.000191500000000000000000000000",
+                "price_date": "2018-03-16 00:00:00"
+            },
+            "month_high": {
+                "id": 160542,
+                "coin": "ONT",
+                "created_at": "2018-03-17 04:01:15",
+                "updated_at": "2018-03-17 04:01:15",
+                "price_usd": "1.590000000000000000000000000000",
+                "price_btc": "0.000191500000000000000000000000",
+                "price_date": "2018-03-16 00:00:00"
+            },
+            "month_low": {
+                "id": 160530,
+                "coin": "ONT",
+                "created_at": "2018-03-17 04:00:35",
+                "updated_at": "2018-03-17 04:00:35",
+                "price_usd": "0.000000000000000000000000000000",
+                "price_btc": "0.000000000000000000000000000000",
+                "price_date": "2018-03-15 00:00:00"
+            },
+            "symbol": "ONT"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 1.39,
+            "high_time": "Thu, 22 Mar 2018 09:00:00 +0000",
+            "low": 1.23,
+            "low_time": "Thu, 22 Mar 2018 14:55:00 +0000",
+            "symbol": "ONT"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ONT",
+        "name": "Ontology"
+    },
+    {
+        "symbol": "KMD",
+        "cap": "296192616.0",
+        "change": {
+            "hour": "-0.13",
+            "day": "-9.35"
+        },
+        "price": "2.84717",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/KMD",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 67173,
+                "coin": "KMD",
+                "created_at": "2017-12-22 08:06:54",
+                "updated_at": "2017-12-22 08:06:54",
+                "price_usd": "12.890000000000000000000000000000",
+                "price_btc": "0.000829400000000000000000000000",
+                "price_date": "2017-12-22 00:00:00"
+            },
+            "month_high": {
+                "id": 149132,
+                "coin": "KMD",
+                "created_at": "2018-03-04 05:07:54",
+                "updated_at": "2018-03-04 05:07:54",
+                "price_usd": "4.590000000000000000000000000000",
+                "price_btc": "0.000400600000000000000000000000",
+                "price_date": "2018-03-04 00:00:00"
+            },
+            "month_low": {
+                "id": 161641,
+                "coin": "KMD",
+                "created_at": "2018-03-18 04:03:30",
+                "updated_at": "2018-03-18 04:03:30",
+                "price_usd": "2.480000000000000000000000000000",
+                "price_btc": "0.000313800000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "KMD"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 3.14,
+            "high_time": "Thu, 22 Mar 2018 09:05:00 +0000",
+            "low": 2.81,
+            "low_time": "Fri, 23 Mar 2018 04:45:00 +0000",
+            "symbol": "KMD"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/KMD",
+        "name": "Komodo"
+    },
+    {
+        "symbol": "ZIL",
+        "cap": "293898739.0",
+        "change": {
+            "hour": "-1.3",
+            "day": "-9.94"
+        },
+        "price": "0.0444942",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/ZIL",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 120605,
+                "coin": "ZIL",
+                "created_at": "2018-02-01 03:47:44",
+                "updated_at": "2018-02-01 03:47:44",
+                "price_usd": "0.079310000000000000000000000000",
+                "price_btc": "0.000007880000000000000000000000",
+                "price_date": "2018-02-01 00:00:00"
+            },
+            "month_high": {
+                "id": 149587,
+                "coin": "ZIL",
+                "created_at": "2018-03-05 05:03:22",
+                "updated_at": "2018-03-05 05:03:22",
+                "price_usd": "0.054100000000000000000000000000",
+                "price_btc": "0.000004710000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 153777,
+                "coin": "ZIL",
+                "created_at": "2018-03-09 05:08:15",
+                "updated_at": "2018-03-09 05:08:15",
+                "price_usd": "0.036220000000000000000000000000",
+                "price_btc": "0.000003880000000000000000000000",
+                "price_date": "2018-03-09 00:00:00"
+            },
+            "symbol": "ZIL"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.04958,
+            "high_time": "Thu, 22 Mar 2018 06:05:00 +0000",
+            "low": 0.0444,
+            "low_time": "Thu, 22 Mar 2018 14:55:00 +0000",
+            "symbol": "ZIL"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ZIL",
+        "name": "Zilliqa"
+    },
+    {
+        "symbol": "ARDR",
+        "cap": "281749826.0",
+        "change": {
+            "hour": "-0.73",
+            "day": "-10.96"
+        },
+        "price": "0.282032",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/ARDR",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 70057,
+                "coin": "ARDR",
+                "created_at": "2018-01-03 08:08:14",
+                "updated_at": "2018-01-03 08:08:14",
+                "price_usd": "2.620000000000000000000000000000",
+                "price_btc": "0.000177600000000000000000000000",
+                "price_date": "2018-01-03 00:00:00"
+            },
+            "month_high": {
+                "id": 148825,
+                "coin": "ARDR",
+                "created_at": "2018-03-04 05:04:45",
+                "updated_at": "2018-03-04 05:04:45",
+                "price_usd": "0.426000000000000000000000000000",
+                "price_btc": "0.000037150000000000000000000000",
+                "price_date": "2018-03-04 00:00:00"
+            },
+            "month_low": {
+                "id": 162275,
+                "coin": "ARDR",
+                "created_at": "2018-03-18 04:10:02",
+                "updated_at": "2018-03-18 04:10:02",
+                "price_usd": "0.261800000000000000000000000000",
+                "price_btc": "0.000033150000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "ARDR"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.3149,
+            "high_time": "Thu, 22 Mar 2018 06:00:00 +0000",
+            "low": 0.2743,
+            "low_time": "Fri, 23 Mar 2018 03:20:00 +0000",
+            "symbol": "ARDR"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ARDR",
+        "name": "Ardor"
+    },
+    {
+        "symbol": "HSR",
+        "cap": "273571771.0",
+        "change": {
+            "hour": "-1.82",
+            "day": "-11.23"
+        },
+        "price": "6.39612",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/HSR",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 67074,
+                "coin": "HSR",
+                "created_at": "2017-12-22 08:05:37",
+                "updated_at": "2017-12-22 08:05:37",
+                "price_usd": "37.330000000000000000000000000000",
+                "price_btc": "0.002282000000000000000000000000",
+                "price_date": "2017-12-21 00:00:00"
+            },
+            "month_high": {
+                "id": 148542,
+                "coin": "HSR",
+                "created_at": "2018-03-04 05:01:56",
+                "updated_at": "2018-03-04 05:01:56",
+                "price_usd": "9.640000000000000000000000000000",
+                "price_btc": "0.000840400000000000000000000000",
+                "price_date": "2018-03-04 00:00:00"
+            },
+            "month_low": {
+                "id": 162116,
+                "coin": "HSR",
+                "created_at": "2018-03-18 04:08:27",
+                "updated_at": "2018-03-18 04:08:27",
+                "price_usd": "4.900000000000000000000000000000",
+                "price_btc": "0.000620300000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "HSR"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 7.36,
+            "high_time": "Thu, 22 Mar 2018 06:20:00 +0000",
+            "low": 6.36,
+            "low_time": "Thu, 22 Mar 2018 14:55:00 +0000",
+            "symbol": "HSR"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/HSR",
+        "name": "Hshare"
+    },
+    {
+        "symbol": "ZRX",
+        "cap": "271198807.0",
+        "change": {
+            "hour": "-1.24",
+            "day": "-15.68"
+        },
+        "price": "0.521978",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/ZRX",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73390,
+                "coin": "ZRX",
+                "created_at": "2018-01-14 08:06:46",
+                "updated_at": "2018-01-14 08:06:46",
+                "price_usd": "2.340000000000000000000000000000",
+                "price_btc": "0.000163500000000000000000000000",
+                "price_date": "2018-01-14 00:00:00"
+            },
+            "month_high": {
+                "id": 146755,
+                "coin": "ZRX",
+                "created_at": "2018-03-02 05:02:49",
+                "updated_at": "2018-03-02 05:02:49",
+                "price_usd": "0.986900000000000000000000000000",
+                "price_btc": "0.000088890000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162254,
+                "coin": "ZRX",
+                "created_at": "2018-03-18 04:09:51",
+                "updated_at": "2018-03-18 04:09:51",
+                "price_usd": "0.395000000000000000000000000000",
+                "price_btc": "0.000051500000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "ZRX"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.6376,
+            "high_time": "Thu, 22 Mar 2018 11:15:00 +0000",
+            "low": 0.5231,
+            "low_time": "Fri, 23 Mar 2018 05:15:00 +0000",
+            "symbol": "ZRX"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ZRX",
+        "name": "0x"
+    },
+    {
+        "symbol": "ARK",
+        "cap": "269783716.0",
+        "change": {
+            "hour": "-1.42",
+            "day": "-5.54"
+        },
+        "price": "2.66022",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/ARK",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 72439,
+                "coin": "ARK",
+                "created_at": "2018-01-11 08:06:38",
+                "updated_at": "2018-01-11 08:06:38",
+                "price_usd": "10.430000000000000000000000000000",
+                "price_btc": "0.000715200000000000000000000000",
+                "price_date": "2018-01-11 00:00:00"
+            },
+            "month_high": {
+                "id": 148203,
+                "coin": "ARK",
+                "created_at": "2018-03-03 05:08:30",
+                "updated_at": "2018-03-03 05:08:30",
+                "price_usd": "4.350000000000000000000000000000",
+                "price_btc": "0.000384200000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 162800,
+                "coin": "ARK",
+                "created_at": "2018-03-19 04:05:47",
+                "updated_at": "2018-03-19 04:05:47",
+                "price_usd": "2.420000000000000000000000000000",
+                "price_btc": "0.000295300000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "ARK"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 2.95,
+            "high_time": "Thu, 22 Mar 2018 23:05:00 +0000",
+            "low": 2.59,
+            "low_time": "Thu, 22 Mar 2018 15:10:00 +0000",
+            "symbol": "ARK"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ARK",
+        "name": "Ark"
+    },
+    {
+        "symbol": "VERI",
+        "cap": "262236430.0",
+        "change": {
+            "hour": "0.36",
+            "day": "11.39"
+        },
+        "price": "128.759",
+        "coinheat": 60,
+        "url": "https://chasing-coins.com/coin/VERI",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 24846,
+                "coin": "VERI",
+                "created_at": "2017-12-10 15:09:12",
+                "updated_at": "2017-12-10 15:09:12",
+                "price_usd": "7454.700000000000000000000000000000",
+                "price_btc": "2.730000000000000000000000000000",
+                "price_date": "2017-08-01 00:00:00"
+            },
+            "month_high": {
+                "id": 148120,
+                "coin": "VERI",
+                "created_at": "2018-03-03 05:07:36",
+                "updated_at": "2018-03-03 05:07:36",
+                "price_usd": "224.680000000000000000000000000000",
+                "price_btc": "0.019860000000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 161810,
+                "coin": "VERI",
+                "created_at": "2018-03-18 04:05:16",
+                "updated_at": "2018-03-18 04:05:16",
+                "price_usd": "103.810000000000000000000000000000",
+                "price_btc": "0.013200000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "VERI"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 144.07,
+            "high_time": "Fri, 23 Mar 2018 05:45:00 +0000",
+            "low": 102.04,
+            "low_time": "Thu, 22 Mar 2018 14:55:00 +0000",
+            "symbol": "VERI"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/VERI",
+        "name": "Veritaseum"
+    },
+    {
+        "symbol": "CNX",
+        "cap": "257583991.0",
+        "change": {
+            "hour": "-0.46",
+            "day": "-6.35"
+        },
+        "price": "5.70165",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/CNX",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 114472,
+                "coin": "CNX",
+                "created_at": "2018-01-28 08:37:22",
+                "updated_at": "2018-01-28 08:37:22",
+                "price_usd": "10.040000000000000000000000000000",
+                "price_btc": "0.000009720000000000000000000000",
+                "price_date": "2018-01-28 00:00:00"
+            },
+            "month_high": {
+                "id": 148027,
+                "coin": "CNX",
+                "created_at": "2018-03-03 05:06:35",
+                "updated_at": "2018-03-03 05:06:35",
+                "price_usd": "8.030000000000000000000000000000",
+                "price_btc": "0.000005340000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 161966,
+                "coin": "CNX",
+                "created_at": "2018-03-18 04:06:53",
+                "updated_at": "2018-03-18 04:06:53",
+                "price_usd": "5.290000000000000000000000000000",
+                "price_btc": "0.000670000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "CNX"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 6.15,
+            "high_time": "Thu, 22 Mar 2018 06:05:00 +0000",
+            "low": 5.53,
+            "low_time": "Fri, 23 Mar 2018 03:20:00 +0000",
+            "symbol": "CNX"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/CNX",
+        "name": "Cryptonex"
+    },
+    {
+        "symbol": "LRC",
+        "cap": "244776181.0",
+        "change": {
+            "hour": "0.62",
+            "day": "-1.24"
+        },
+        "price": "0.427875",
+        "coinheat": 70,
+        "url": "https://chasing-coins.com/coin/LRC",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73064,
+                "coin": "LRC",
+                "created_at": "2018-01-13 08:06:55",
+                "updated_at": "2018-01-13 08:06:55",
+                "price_usd": "2.220000000000000000000000000000",
+                "price_btc": "0.000153200000000000000000000000",
+                "price_date": "2018-01-09 00:00:00"
+            },
+            "month_high": {
+                "id": 149635,
+                "coin": "LRC",
+                "created_at": "2018-03-05 05:03:51",
+                "updated_at": "2018-03-05 05:03:51",
+                "price_usd": "0.541300000000000000000000000000",
+                "price_btc": "0.000047120000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 161553,
+                "coin": "LRC",
+                "created_at": "2018-03-18 04:02:37",
+                "updated_at": "2018-03-18 04:02:37",
+                "price_usd": "0.278300000000000000000000000000",
+                "price_btc": "0.000035240000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "LRC"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.4695,
+            "high_time": "Fri, 23 Mar 2018 00:25:00 +0000",
+            "low": 0.3912,
+            "low_time": "Thu, 22 Mar 2018 14:55:00 +0000",
+            "symbol": "LRC"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/LRC",
+        "name": "Loopring"
+    },
+    {
+        "symbol": "KCS",
+        "cap": "237381164.0",
+        "change": {
+            "hour": "-1.18",
+            "day": "-15.34"
+        },
+        "price": "2.60735",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/KCS",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 72534,
+                "coin": "KCS",
+                "created_at": "2018-01-11 08:07:43",
+                "updated_at": "2018-01-11 08:07:43",
+                "price_usd": "20.010000000000000000000000000000",
+                "price_btc": "0.001372000000000000000000000000",
+                "price_date": "2018-01-11 00:00:00"
+            },
+            "month_high": {
+                "id": 146949,
+                "coin": "KCS",
+                "created_at": "2018-03-02 05:04:41",
+                "updated_at": "2018-03-02 05:04:41",
+                "price_usd": "4.320000000000000000000000000000",
+                "price_btc": "0.000388600000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162054,
+                "coin": "KCS",
+                "created_at": "2018-03-18 04:07:47",
+                "updated_at": "2018-03-18 04:07:47",
+                "price_usd": "2.060000000000000000000000000000",
+                "price_btc": "0.000260300000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "KCS"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 3.1,
+            "high_time": "Thu, 22 Mar 2018 06:00:00 +0000",
+            "low": 2.61,
+            "low_time": "Fri, 23 Mar 2018 05:05:00 +0000",
+            "symbol": "KCS"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/KCS",
+        "name": "KuCoin Shares"
+    },
+    {
+        "symbol": "DGB",
+        "cap": "222926047.0",
+        "change": {
+            "hour": "-2.6",
+            "day": "-9.89"
+        },
+        "price": "0.0222674",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/DGB",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71187,
+                "coin": "DGB",
+                "created_at": "2018-01-07 08:07:25",
+                "updated_at": "2018-01-07 08:07:25",
+                "price_usd": "0.140000000000000000000000000000",
+                "price_btc": "0.000007290000000000000000000000",
+                "price_date": "2018-01-07 00:00:00"
+            },
+            "month_high": {
+                "id": 147497,
+                "coin": "DGB",
+                "created_at": "2018-03-02 05:10:12",
+                "updated_at": "2018-03-02 05:10:12",
+                "price_usd": "0.038380000000000000000000000000",
+                "price_btc": "0.000003450000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162301,
+                "coin": "DGB",
+                "created_at": "2018-03-18 04:10:17",
+                "updated_at": "2018-03-18 04:10:17",
+                "price_usd": "0.019270000000000000000000000000",
+                "price_btc": "0.000002440000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "DGB"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.02495,
+            "high_time": "Thu, 22 Mar 2018 05:35:00 +0000",
+            "low": 0.02218,
+            "low_time": "Fri, 23 Mar 2018 05:30:00 +0000",
+            "symbol": "DGB"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/DGB",
+        "name": "DigiByte"
+    },
+    {
+        "symbol": "QASH",
+        "cap": "221036900.0",
+        "change": {
+            "hour": "-0.08",
+            "day": "-9.22"
+        },
+        "price": "0.631534",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/QASH",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73751,
+                "coin": "QASH",
+                "created_at": "2018-01-15 08:09:15",
+                "updated_at": "2018-01-15 08:09:15",
+                "price_usd": "2.410000000000000000000000000000",
+                "price_btc": "0.000171900000000000000000000000",
+                "price_date": "2018-01-15 00:00:00"
+            },
+            "month_high": {
+                "id": 146951,
+                "coin": "QASH",
+                "created_at": "2018-03-02 05:04:43",
+                "updated_at": "2018-03-02 05:04:43",
+                "price_usd": "0.842000000000000000000000000000",
+                "price_btc": "0.000075720000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 161514,
+                "coin": "QASH",
+                "created_at": "2018-03-18 04:02:15",
+                "updated_at": "2018-03-18 04:02:15",
+                "price_usd": "0.464300000000000000000000000000",
+                "price_btc": "0.000060240000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "QASH"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.7,
+            "high_time": "Thu, 22 Mar 2018 05:45:00 +0000",
+            "low": 0.5893,
+            "low_time": "Thu, 22 Mar 2018 11:20:00 +0000",
+            "symbol": "QASH"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/QASH",
+        "name": "QASH"
+    },
+    {
+        "symbol": "MONA",
+        "cap": "213335028.0",
+        "change": {
+            "hour": "-1.32",
+            "day": "-7.75"
+        },
+        "price": "3.662",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/MONA",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 66460,
+                "coin": "MONA",
+                "created_at": "2017-12-19 08:02:20",
+                "updated_at": "2017-12-19 08:02:20",
+                "price_usd": "15.000000000000000000000000000000",
+                "price_btc": "0.000793200000000000000000000000",
+                "price_date": "2017-12-19 00:00:00"
+            },
+            "month_high": {
+                "id": 149148,
+                "coin": "MONA",
+                "created_at": "2018-03-04 05:08:05",
+                "updated_at": "2018-03-04 05:08:05",
+                "price_usd": "5.910000000000000000000000000000",
+                "price_btc": "0.000515200000000000000000000000",
+                "price_date": "2018-03-04 00:00:00"
+            },
+            "month_low": {
+                "id": 161675,
+                "coin": "MONA",
+                "created_at": "2018-03-18 04:03:51",
+                "updated_at": "2018-03-18 04:03:51",
+                "price_usd": "3.260000000000000000000000000000",
+                "price_btc": "0.000412500000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "MONA"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 3.93,
+            "high_time": "Thu, 22 Mar 2018 06:05:00 +0000",
+            "low": 3.58,
+            "low_time": "Fri, 23 Mar 2018 05:30:00 +0000",
+            "symbol": "MONA"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/MONA",
+        "name": "MonaCoin"
+    },
+    {
+        "symbol": "GAS",
+        "cap": "208326685.0",
+        "change": {
+            "hour": "-1.31",
+            "day": "-14.19"
+        },
+        "price": "20.9298",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/GAS",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73928,
+                "coin": "GAS",
+                "created_at": "2018-01-16 08:08:33",
+                "updated_at": "2018-01-16 08:08:33",
+                "price_usd": "85.860000000000000000000000000000",
+                "price_btc": "0.006291000000000000000000000000",
+                "price_date": "2018-01-16 00:00:00"
+            },
+            "month_high": {
+                "id": 146856,
+                "coin": "GAS",
+                "created_at": "2018-03-02 05:03:48",
+                "updated_at": "2018-03-02 05:03:48",
+                "price_usd": "40.170000000000000000000000000000",
+                "price_btc": "0.003611000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 161521,
+                "coin": "GAS",
+                "created_at": "2018-03-18 04:02:19",
+                "updated_at": "2018-03-18 04:02:19",
+                "price_usd": "17.040000000000000000000000000000",
+                "price_btc": "0.002158000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "GAS"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 24.55,
+            "high_time": "Thu, 22 Mar 2018 05:35:00 +0000",
+            "low": 20.9,
+            "low_time": "Fri, 23 Mar 2018 05:25:00 +0000",
+            "symbol": "GAS"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/GAS",
+        "name": "Gas"
+    },
+    {
+        "symbol": "SYS",
+        "cap": "208256034.0",
+        "change": {
+            "hour": "-0.38",
+            "day": "-9.68"
+        },
+        "price": "0.39162",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/SYS",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73304,
+                "coin": "SYS",
+                "created_at": "2018-01-14 08:05:54",
+                "updated_at": "2018-01-14 08:05:54",
+                "price_usd": "0.970100000000000000000000000000",
+                "price_btc": "0.000067930000000000000000000000",
+                "price_date": "2018-01-14 00:00:00"
+            },
+            "month_high": {
+                "id": 148241,
+                "coin": "SYS",
+                "created_at": "2018-03-03 05:08:55",
+                "updated_at": "2018-03-03 05:08:55",
+                "price_usd": "0.709800000000000000000000000000",
+                "price_btc": "0.000062730000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 161642,
+                "coin": "SYS",
+                "created_at": "2018-03-18 04:03:30",
+                "updated_at": "2018-03-18 04:03:30",
+                "price_usd": "0.337400000000000000000000000000",
+                "price_btc": "0.000042720000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "SYS"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.4372,
+            "high_time": "Thu, 22 Mar 2018 09:20:00 +0000",
+            "low": 0.3877,
+            "low_time": "Fri, 23 Mar 2018 05:15:00 +0000",
+            "symbol": "SYS"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/SYS",
+        "name": "Syscoin"
+    },
+    {
+        "symbol": "PIVX",
+        "cap": "207560901.0",
+        "change": {
+            "hour": "-0.9",
+            "day": "-10.39"
+        },
+        "price": "3.71776",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/PIVX",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 72442,
+                "coin": "PIVX",
+                "created_at": "2018-01-11 08:06:41",
+                "updated_at": "2018-01-11 08:06:41",
+                "price_usd": "13.630000000000000000000000000000",
+                "price_btc": "0.000934600000000000000000000000",
+                "price_date": "2018-01-11 00:00:00"
+            },
+            "month_high": {
+                "id": 148806,
+                "coin": "PIVX",
+                "created_at": "2018-03-04 05:04:34",
+                "updated_at": "2018-03-04 05:04:34",
+                "price_usd": "6.410000000000000000000000000000",
+                "price_btc": "0.000559100000000000000000000000",
+                "price_date": "2018-03-04 00:00:00"
+            },
+            "month_low": {
+                "id": 162186,
+                "coin": "PIVX",
+                "created_at": "2018-03-18 04:09:10",
+                "updated_at": "2018-03-18 04:09:10",
+                "price_usd": "3.430000000000000000000000000000",
+                "price_btc": "0.000434900000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "PIVX"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 5.27,
+            "high_time": "Thu, 22 Mar 2018 11:05:00 +0000",
+            "low": 2.89,
+            "low_time": "Fri, 23 Mar 2018 02:10:00 +0000",
+            "symbol": "PIVX"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/PIVX",
+        "name": "PIVX"
+    },
+    {
+        "symbol": "NAS",
+        "cap": "203891055.0",
+        "change": {
+            "hour": "-1.13",
+            "day": "-8.59"
+        },
+        "price": "5.74341",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/NAS",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73550,
+                "coin": "NAS",
+                "created_at": "2018-01-15 08:06:23",
+                "updated_at": "2018-01-15 08:06:23",
+                "price_usd": "17.350000000000000000000000000000",
+                "price_btc": "0.001199000000000000000000000000",
+                "price_date": "2018-01-09 00:00:00"
+            },
+            "month_high": {
+                "id": 146752,
+                "coin": "NAS",
+                "created_at": "2018-03-02 05:02:48",
+                "updated_at": "2018-03-02 05:02:48",
+                "price_usd": "8.400000000000000000000000000000",
+                "price_btc": "0.000755300000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162914,
+                "coin": "NAS",
+                "created_at": "2018-03-19 04:06:55",
+                "updated_at": "2018-03-19 04:06:55",
+                "price_usd": "4.490000000000000000000000000000",
+                "price_btc": "0.000547600000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "NAS"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 6.3,
+            "high_time": "Thu, 22 Mar 2018 05:40:00 +0000",
+            "low": 5.34,
+            "low_time": "Thu, 22 Mar 2018 15:00:00 +0000",
+            "symbol": "NAS"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/NAS",
+        "name": "Nebulas"
+    },
+    {
+        "symbol": "BAT",
+        "cap": "198434000.0",
+        "change": {
+            "hour": "-1.73",
+            "day": "-7.94"
+        },
+        "price": "0.198434",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/BAT",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71947,
+                "coin": "BAT",
+                "created_at": "2018-01-09 08:06:49",
+                "updated_at": "2018-01-09 08:06:49",
+                "price_usd": "0.871500000000000000000000000000",
+                "price_btc": "0.000058580000000000000000000000",
+                "price_date": "2018-01-09 00:00:00"
+            },
+            "month_high": {
+                "id": 148101,
+                "coin": "BAT",
+                "created_at": "2018-03-03 05:07:23",
+                "updated_at": "2018-03-03 05:07:23",
+                "price_usd": "0.394000000000000000000000000000",
+                "price_btc": "0.000034870000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 161780,
+                "coin": "BAT",
+                "created_at": "2018-03-18 04:04:57",
+                "updated_at": "2018-03-18 04:04:57",
+                "price_usd": "0.175800000000000000000000000000",
+                "price_btc": "0.000023280000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "BAT"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.2168,
+            "high_time": "Thu, 22 Mar 2018 05:40:00 +0000",
+            "low": 0.192,
+            "low_time": "Thu, 22 Mar 2018 14:55:00 +0000",
+            "symbol": "BAT"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/BAT",
+        "name": "BatCoin"
+    },
+    {
+        "symbol": "GNT",
+        "cap": "196565475.0",
+        "change": {
+            "hour": "-0.53",
+            "day": "-8.47"
+        },
+        "price": "0.235616",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/GNT",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71936,
+                "coin": "GNT",
+                "created_at": "2018-01-09 08:06:41",
+                "updated_at": "2018-01-09 08:06:41",
+                "price_usd": "1.200000000000000000000000000000",
+                "price_btc": "0.000072430000000000000000000000",
+                "price_date": "2018-01-09 00:00:00"
+            },
+            "month_high": {
+                "id": 150674,
+                "coin": "GNT",
+                "created_at": "2018-03-06 05:04:55",
+                "updated_at": "2018-03-06 05:04:55",
+                "price_usd": "0.467400000000000000000000000000",
+                "price_btc": "0.000040550000000000000000000000",
+                "price_date": "2018-03-06 00:00:00"
+            },
+            "month_low": {
+                "id": 161992,
+                "coin": "GNT",
+                "created_at": "2018-03-18 04:07:11",
+                "updated_at": "2018-03-18 04:07:11",
+                "price_usd": "0.205000000000000000000000000000",
+                "price_btc": "0.000026950000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "GNT"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.2599,
+            "high_time": "Thu, 22 Mar 2018 05:55:00 +0000",
+            "low": 0.2306,
+            "low_time": "Fri, 23 Mar 2018 05:25:00 +0000",
+            "symbol": "GNT"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/GNT",
+        "name": "Golem"
+    },
+    {
+        "symbol": "FCT",
+        "cap": "195583332.0",
+        "change": {
+            "hour": "-0.88",
+            "day": "-13.54"
+        },
+        "price": "22.3649",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/FCT",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71905,
+                "coin": "FCT",
+                "created_at": "2018-01-09 08:06:20",
+                "updated_at": "2018-01-09 08:06:20",
+                "price_usd": "73.880000000000000000000000000000",
+                "price_btc": "0.004966000000000000000000000000",
+                "price_date": "2018-01-09 00:00:00"
+            },
+            "month_high": {
+                "id": 147698,
+                "coin": "FCT",
+                "created_at": "2018-03-03 05:02:55",
+                "updated_at": "2018-03-03 05:02:55",
+                "price_usd": "35.970000000000000000000000000000",
+                "price_btc": "0.003179000000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 161657,
+                "coin": "FCT",
+                "created_at": "2018-03-18 04:03:40",
+                "updated_at": "2018-03-18 04:03:40",
+                "price_usd": "20.460000000000000000000000000000",
+                "price_btc": "0.002591000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "FCT"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 26.31,
+            "high_time": "Thu, 22 Mar 2018 23:10:00 +0000",
+            "low": 22.26,
+            "low_time": "Fri, 23 Mar 2018 03:20:00 +0000",
+            "symbol": "FCT"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/FCT",
+        "name": "Factom"
+    },
+    {
+        "symbol": "DRGN",
+        "cap": "191742024.0",
+        "change": {
+            "hour": "-1.82",
+            "day": "-13.29"
+        },
+        "price": "0.804213",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/DRGN",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 72292,
+                "coin": "DRGN",
+                "created_at": "2018-01-10 08:07:49",
+                "updated_at": "2018-01-10 08:07:49",
+                "price_usd": "4.990000000000000000000000000000",
+                "price_btc": "0.000348000000000000000000000000",
+                "price_date": "2018-01-10 00:00:00"
+            },
+            "month_high": {
+                "id": 149897,
+                "coin": "DRGN",
+                "created_at": "2018-03-05 05:06:32",
+                "updated_at": "2018-03-05 05:06:32",
+                "price_usd": "1.710000000000000000000000000000",
+                "price_btc": "0.000149000000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 161943,
+                "coin": "DRGN",
+                "created_at": "2018-03-18 04:06:39",
+                "updated_at": "2018-03-18 04:06:39",
+                "price_usd": "0.657700000000000000000000000000",
+                "price_btc": "0.000083280000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "DRGN"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.9308,
+            "high_time": "Thu, 22 Mar 2018 06:00:00 +0000",
+            "low": 0.8164,
+            "low_time": "Fri, 23 Mar 2018 05:25:00 +0000",
+            "symbol": "DRGN"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/DRGN",
+        "name": "Dragonchain"
+    },
+    {
+        "symbol": "R",
+        "cap": "181315641.0",
+        "change": {
+            "hour": "-2.28",
+            "day": "-10.59"
+        },
+        "price": "0.983007",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/R",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 135631,
+                "coin": "R",
+                "created_at": "2018-02-18 05:02:28",
+                "updated_at": "2018-02-18 05:02:28",
+                "price_usd": "3.860000000000000000000000000000",
+                "price_btc": "0.000348100000000000000000000000",
+                "price_date": "2018-02-18 00:00:00"
+            },
+            "month_high": {
+                "id": 147249,
+                "coin": "R",
+                "created_at": "2018-03-02 05:07:44",
+                "updated_at": "2018-03-02 05:07:44",
+                "price_usd": "2.040000000000000000000000000000",
+                "price_btc": "0.000183100000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162061,
+                "coin": "R",
+                "created_at": "2018-03-18 04:07:53",
+                "updated_at": "2018-03-18 04:07:53",
+                "price_usd": "0.968200000000000000000000000000",
+                "price_btc": "0.000122600000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "R"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 1.1,
+            "high_time": "Thu, 22 Mar 2018 05:45:00 +0000",
+            "low": 0.969,
+            "low_time": "Fri, 23 Mar 2018 05:25:00 +0000",
+            "symbol": "R"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/R",
+        "name": "Revain"
+    },
+    {
+        "symbol": "ETHOS",
+        "cap": "180429614.0",
+        "change": {
+            "hour": "-3.08",
+            "day": "-18.78"
+        },
+        "price": "2.37485",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/ETHOS",
+        "HighLowOfCoin": "No query results for model [feenikz\\CryptoCoins\\Models\\Price].",
+        "HighLowOfLast24Hours": {
+            "high": 3.2,
+            "high_time": "Thu, 22 Mar 2018 12:35:00 +0000",
+            "low": 2.43,
+            "low_time": "Fri, 23 Mar 2018 05:35:00 +0000",
+            "symbol": "ETHOS"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ETHOS",
+        "name": "Ethos"
+    },
+    {
+        "symbol": "ETN",
+        "cap": "180367786.0",
+        "change": {
+            "hour": "-1.04",
+            "day": "-11.55"
+        },
+        "price": "0.0277388",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/ETN",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71345,
+                "coin": "ETN",
+                "created_at": "2018-01-07 08:09:20",
+                "updated_at": "2018-01-07 08:09:20",
+                "price_usd": "0.195800000000000000000000000000",
+                "price_btc": "0.000011390000000000000000000000",
+                "price_date": "2018-01-07 00:00:00"
+            },
+            "month_high": {
+                "id": 149904,
+                "coin": "ETN",
+                "created_at": "2018-03-05 05:06:36",
+                "updated_at": "2018-03-05 05:06:36",
+                "price_usd": "0.076620000000000000000000000000",
+                "price_btc": "0.000006670000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 166512,
+                "coin": "ETN",
+                "created_at": "2018-03-23 04:06:16",
+                "updated_at": "2018-03-23 04:06:16",
+                "price_usd": "0.029180000000000000000000000000",
+                "price_btc": "0.000003340000000000000000000000",
+                "price_date": "2018-03-23 00:00:00"
+            },
+            "symbol": "ETN"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.03208,
+            "high_time": "Thu, 22 Mar 2018 05:40:00 +0000",
+            "low": 0.02768,
+            "low_time": "Fri, 23 Mar 2018 05:05:00 +0000",
+            "symbol": "ETN"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ETN",
+        "name": "Electroneum"
+    },
+    {
+        "symbol": "GXS",
+        "cap": "172602600.0",
+        "change": {
+            "hour": "-0.19",
+            "day": "-0.49"
+        },
+        "price": "2.87671",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/GXS",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73476,
+                "coin": "GXS",
+                "created_at": "2018-01-14 08:07:37",
+                "updated_at": "2018-01-14 08:07:37",
+                "price_usd": "9.990000000000000000000000000000",
+                "price_btc": "0.000699500000000000000000000000",
+                "price_date": "2018-01-14 00:00:00"
+            },
+            "month_high": {
+                "id": 147310,
+                "coin": "GXS",
+                "created_at": "2018-03-02 05:08:21",
+                "updated_at": "2018-03-02 05:08:21",
+                "price_usd": "4.120000000000000000000000000000",
+                "price_btc": "0.000370100000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162090,
+                "coin": "GXS",
+                "created_at": "2018-03-18 04:08:10",
+                "updated_at": "2018-03-18 04:08:10",
+                "price_usd": "2.410000000000000000000000000000",
+                "price_btc": "0.000305300000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "GXS"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 2.84,
+            "high_time": "Thu, 22 Mar 2018 05:35:00 +0000",
+            "low": 2.52,
+            "low_time": "Fri, 23 Mar 2018 05:05:00 +0000",
+            "symbol": "GXS"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/GXS",
+        "name": "GXChain"
+    },
+    {
+        "symbol": "FUN",
+        "cap": "171651856.0",
+        "change": {
+            "hour": "-1.33",
+            "day": "-11.94"
+        },
+        "price": "0.0372745",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/FUN",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71968,
+                "coin": "FUN",
+                "created_at": "2018-01-09 08:07:03",
+                "updated_at": "2018-01-09 08:07:03",
+                "price_usd": "0.199100000000000000000000000000",
+                "price_btc": "0.000012680000000000000000000000",
+                "price_date": "2018-01-09 00:00:00"
+            },
+            "month_high": {
+                "id": 147672,
+                "coin": "FUN",
+                "created_at": "2018-03-03 05:02:38",
+                "updated_at": "2018-03-03 05:02:38",
+                "price_usd": "0.067020000000000000000000000000",
+                "price_btc": "0.000005950000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 163232,
+                "coin": "FUN",
+                "created_at": "2018-03-19 04:10:06",
+                "updated_at": "2018-03-19 04:10:06",
+                "price_usd": "0.035800000000000000000000000000",
+                "price_btc": "0.000004370000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "FUN"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.04208,
+            "high_time": "Thu, 22 Mar 2018 06:35:00 +0000",
+            "low": 0.0369,
+            "low_time": "Fri, 23 Mar 2018 03:50:00 +0000",
+            "symbol": "FUN"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/FUN",
+        "name": "FunFair"
+    },
+    {
+        "symbol": "XZC",
+        "cap": "162977166.0",
+        "change": {
+            "hour": "-1.06",
+            "day": "-11.76"
+        },
+        "price": "37.3215",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/XZC",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 68078,
+                "coin": "XZC",
+                "created_at": "2017-12-26 08:04:14",
+                "updated_at": "2017-12-26 08:04:14",
+                "price_usd": "145.510000000000000000000000000000",
+                "price_btc": "0.010510000000000000000000000000",
+                "price_date": "2017-12-26 00:00:00"
+            },
+            "month_high": {
+                "id": 148265,
+                "coin": "XZC",
+                "created_at": "2018-03-03 05:09:11",
+                "updated_at": "2018-03-03 05:09:11",
+                "price_usd": "57.560000000000000000000000000000",
+                "price_btc": "0.005087000000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 161501,
+                "coin": "XZC",
+                "created_at": "2018-03-18 04:02:07",
+                "updated_at": "2018-03-18 04:02:07",
+                "price_usd": "33.900000000000000000000000000000",
+                "price_btc": "0.004293000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "XZC"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 51.09,
+            "high_time": "Thu, 22 Mar 2018 06:50:00 +0000",
+            "low": 31.13,
+            "low_time": "Thu, 22 Mar 2018 19:35:00 +0000",
+            "symbol": "XZC"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/XZC",
+        "name": "ZCoin"
+    },
+    {
+        "symbol": "KNC",
+        "cap": "160027014.0",
+        "change": {
+            "hour": "-1.0",
+            "day": "-14.79"
+        },
+        "price": "1.19305",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/KNC",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 18016,
+                "coin": "KNC",
+                "created_at": "2017-12-10 13:59:02",
+                "updated_at": "2017-12-10 13:59:02",
+                "price_usd": "82.600000000000000000000000000000",
+                "price_btc": "0.032500000000000000000000000000",
+                "price_date": "2017-06-25 00:00:00"
+            },
+            "month_high": {
+                "id": 150618,
+                "coin": "KNC",
+                "created_at": "2018-03-06 05:04:21",
+                "updated_at": "2018-03-06 05:04:21",
+                "price_usd": "2.050000000000000000000000000000",
+                "price_btc": "0.000176300000000000000000000000",
+                "price_date": "2018-03-06 00:00:00"
+            },
+            "month_low": {
+                "id": 161700,
+                "coin": "KNC",
+                "created_at": "2018-03-18 04:04:05",
+                "updated_at": "2018-03-18 04:04:05",
+                "price_usd": "0.984700000000000000000000000000",
+                "price_btc": "0.000124700000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "KNC"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 1.44,
+            "high_time": "Thu, 22 Mar 2018 06:05:00 +0000",
+            "low": 1.18,
+            "low_time": "Fri, 23 Mar 2018 03:40:00 +0000",
+            "symbol": "KNC"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/KNC",
+        "name": "KingN Coin"
+    },
+    {
+        "symbol": "IOST",
+        "cap": "159985560.0",
+        "change": {
+            "hour": "-2.45",
+            "day": "-14.61"
+        },
+        "price": "0.0190459",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/IOST",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 111591,
+                "coin": "IOST",
+                "created_at": "2018-01-26 08:40:33",
+                "updated_at": "2018-01-26 08:40:33",
+                "price_usd": "0.125300000000000000000000000000",
+                "price_btc": "0.000011010000000000000000000000",
+                "price_date": "2018-01-24 00:00:00"
+            },
+            "month_high": {
+                "id": 147521,
+                "coin": "IOST",
+                "created_at": "2018-03-02 05:10:27",
+                "updated_at": "2018-03-02 05:10:27",
+                "price_usd": "0.035860000000000000000000000000",
+                "price_btc": "0.000003220000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 161792,
+                "coin": "IOST",
+                "created_at": "2018-03-18 04:05:06",
+                "updated_at": "2018-03-18 04:05:06",
+                "price_usd": "0.016190000000000000000000000000",
+                "price_btc": "0.000002050000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "IOST"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.0226,
+            "high_time": "Thu, 22 Mar 2018 05:35:00 +0000",
+            "low": 0.01889,
+            "low_time": "Fri, 23 Mar 2018 05:30:00 +0000",
+            "symbol": "IOST"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/IOST",
+        "name": "IOStoken"
+    },
+    {
+        "symbol": "SALT",
+        "cap": "155767200.0",
+        "change": {
+            "hour": "-3.99",
+            "day": "-7.58"
+        },
+        "price": "2.7916",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/SALT",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 68914,
+                "coin": "SALT",
+                "created_at": "2017-12-29 08:08:04",
+                "updated_at": "2017-12-29 08:08:04",
+                "price_usd": "16.540000000000000000000000000000",
+                "price_btc": "0.001126000000000000000000000000",
+                "price_date": "2017-12-29 00:00:00"
+            },
+            "month_high": {
+                "id": 148115,
+                "coin": "SALT",
+                "created_at": "2018-03-03 05:07:32",
+                "updated_at": "2018-03-03 05:07:32",
+                "price_usd": "4.600000000000000000000000000000",
+                "price_btc": "0.000406300000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 161990,
+                "coin": "SALT",
+                "created_at": "2018-03-18 04:07:09",
+                "updated_at": "2018-03-18 04:07:09",
+                "price_usd": "2.170000000000000000000000000000",
+                "price_btc": "0.000275100000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "SALT"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 3.11,
+            "high_time": "Thu, 22 Mar 2018 06:35:00 +0000",
+            "low": 2.62,
+            "low_time": "Thu, 22 Mar 2018 15:15:00 +0000",
+            "symbol": "SALT"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/SALT",
+        "name": "SALT"
+    },
+    {
+        "symbol": "ELF",
+        "cap": "150165250.0",
+        "change": {
+            "hour": "-1.17",
+            "day": "-10.0"
+        },
+        "price": "0.600661",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/ELF",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71786,
+                "coin": "ELF",
+                "created_at": "2018-01-08 08:10:44",
+                "updated_at": "2018-01-08 08:10:44",
+                "price_usd": "2.470000000000000000000000000000",
+                "price_btc": "0.000151800000000000000000000000",
+                "price_date": "2018-01-08 00:00:00"
+            },
+            "month_high": {
+                "id": 148933,
+                "coin": "ELF",
+                "created_at": "2018-03-04 05:05:50",
+                "updated_at": "2018-03-04 05:05:50",
+                "price_usd": "1.250000000000000000000000000000",
+                "price_btc": "0.000111000000000000000000000000",
+                "price_date": "2018-03-04 00:00:00"
+            },
+            "month_low": {
+                "id": 162192,
+                "coin": "ELF",
+                "created_at": "2018-03-18 04:09:14",
+                "updated_at": "2018-03-18 04:09:14",
+                "price_usd": "0.527100000000000000000000000000",
+                "price_btc": "0.000066750000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "ELF"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.7191,
+            "high_time": "Thu, 22 Mar 2018 09:15:00 +0000",
+            "low": 0.58,
+            "low_time": "Thu, 22 Mar 2018 20:25:00 +0000",
+            "symbol": "ELF"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ELF",
+        "name": "aelf"
+    },
+    {
+        "symbol": "RDD",
+        "cap": "144925793.0",
+        "change": {
+            "hour": "-2.09",
+            "day": "-10.47"
+        },
+        "price": "0.00503259",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/RDD",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71199,
+                "coin": "RDD",
+                "created_at": "2018-01-07 08:07:33",
+                "updated_at": "2018-01-07 08:07:33",
+                "price_usd": "0.030000000000000000000000000000",
+                "price_btc": "0.000001650000000000000000000000",
+                "price_date": "2018-01-07 00:00:00"
+            },
+            "month_high": {
+                "id": 147080,
+                "coin": "RDD",
+                "created_at": "2018-03-02 05:06:00",
+                "updated_at": "2018-03-02 05:06:00",
+                "price_usd": "0.009121000000000000000000000000",
+                "price_btc": "0.000000820000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 161997,
+                "coin": "RDD",
+                "created_at": "2018-03-18 04:07:14",
+                "updated_at": "2018-03-18 04:07:14",
+                "price_usd": "0.004422000000000000000000000000",
+                "price_btc": "0.000000560000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "RDD"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.005701,
+            "high_time": "Thu, 22 Mar 2018 06:05:00 +0000",
+            "low": 0.00502,
+            "low_time": "Fri, 23 Mar 2018 03:20:00 +0000",
+            "symbol": "RDD"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/RDD",
+        "name": "ReddCoin"
+    },
+    {
+        "symbol": "NXT",
+        "cap": "135689167.0",
+        "change": {
+            "hour": "-1.39",
+            "day": "-7.34"
+        },
+        "price": "0.135825",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/NXT",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 68005,
+                "coin": "NXT",
+                "created_at": "2017-12-26 08:03:31",
+                "updated_at": "2017-12-26 08:03:31",
+                "price_usd": "1.700000000000000000000000000000",
+                "price_btc": "0.000122000000000000000000000000",
+                "price_date": "2017-12-26 00:00:00"
+            },
+            "month_high": {
+                "id": 147195,
+                "coin": "NXT",
+                "created_at": "2018-03-02 05:07:10",
+                "updated_at": "2018-03-02 05:07:10",
+                "price_usd": "0.202900000000000000000000000000",
+                "price_btc": "0.000018040000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 163220,
+                "coin": "NXT",
+                "created_at": "2018-03-19 04:09:58",
+                "updated_at": "2018-03-19 04:09:58",
+                "price_usd": "0.126400000000000000000000000000",
+                "price_btc": "0.000015350000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "NXT"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.1494,
+            "high_time": "Thu, 22 Mar 2018 06:00:00 +0000",
+            "low": 0.1317,
+            "low_time": "Fri, 23 Mar 2018 02:30:00 +0000",
+            "symbol": "NXT"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/NXT",
+        "name": "Nxt"
+    },
+    {
+        "symbol": "LINK",
+        "cap": "135328200.0",
+        "change": {
+            "hour": "-1.74",
+            "day": "-14.22"
+        },
+        "price": "0.386652",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/LINK",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 72006,
+                "coin": "LINK",
+                "created_at": "2018-01-09 08:07:29",
+                "updated_at": "2018-01-09 08:07:29",
+                "price_usd": "1.370000000000000000000000000000",
+                "price_btc": "0.000091880000000000000000000000",
+                "price_date": "2018-01-09 00:00:00"
+            },
+            "month_high": {
+                "id": 147351,
+                "coin": "LINK",
+                "created_at": "2018-03-02 05:08:45",
+                "updated_at": "2018-03-02 05:08:45",
+                "price_usd": "0.669900000000000000000000000000",
+                "price_btc": "0.000060220000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162925,
+                "coin": "LINK",
+                "created_at": "2018-03-19 04:07:01",
+                "updated_at": "2018-03-19 04:07:01",
+                "price_usd": "0.361400000000000000000000000000",
+                "price_btc": "0.000044120000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "LINK"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.4606,
+            "high_time": "Thu, 22 Mar 2018 06:10:00 +0000",
+            "low": 0.3823,
+            "low_time": "Fri, 23 Mar 2018 05:25:00 +0000",
+            "symbol": "LINK"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/LINK",
+        "name": "ChainLink"
+    },
+    {
+        "symbol": "GBYTE",
+        "cap": "135235961.0",
+        "change": {
+            "hour": "0.13",
+            "day": "-6.83"
+        },
+        "price": "209.596",
+        "coinheat": 90,
+        "url": "https://chasing-coins.com/coin/GBYTE",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73348,
+                "coin": "GBYTE",
+                "created_at": "2018-01-14 08:06:20",
+                "updated_at": "2018-01-14 08:06:20",
+                "price_usd": "1149.580000000000000000000000000000",
+                "price_btc": "0.080500000000000000000000000000",
+                "price_date": "2018-01-14 00:00:00"
+            },
+            "month_high": {
+                "id": 150535,
+                "coin": "GBYTE",
+                "created_at": "2018-03-06 05:03:31",
+                "updated_at": "2018-03-06 05:03:31",
+                "price_usd": "449.410000000000000000000000000000",
+                "price_btc": "0.038720000000000000000000000000",
+                "price_date": "2018-03-06 00:00:00"
+            },
+            "month_low": {
+                "id": 161767,
+                "coin": "GBYTE",
+                "created_at": "2018-03-18 04:04:49",
+                "updated_at": "2018-03-18 04:04:49",
+                "price_usd": "185.970000000000000000000000000000",
+                "price_btc": "0.023550000000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "GBYTE"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 229.55,
+            "high_time": "Thu, 22 Mar 2018 09:15:00 +0000",
+            "low": 208.06,
+            "low_time": "Fri, 23 Mar 2018 03:50:00 +0000",
+            "symbol": "GBYTE"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/GBYTE",
+        "name": "Byteball Bytes"
+    },
+    {
+        "symbol": "EMC",
+        "cap": "133514072.0",
+        "change": {
+            "hour": "-1.98",
+            "day": "-10.75"
+        },
+        "price": "3.21646",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/EMC",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73321,
+                "coin": "EMC",
+                "created_at": "2018-01-14 08:06:05",
+                "updated_at": "2018-01-14 08:06:05",
+                "price_usd": "9.820000000000000000000000000000",
+                "price_btc": "0.000654400000000000000000000000",
+                "price_date": "2018-01-14 00:00:00"
+            },
+            "month_high": {
+                "id": 150542,
+                "coin": "EMC",
+                "created_at": "2018-03-06 05:03:35",
+                "updated_at": "2018-03-06 05:03:35",
+                "price_usd": "4.530000000000000000000000000000",
+                "price_btc": "0.000390000000000000000000000000",
+                "price_date": "2018-03-06 00:00:00"
+            },
+            "month_low": {
+                "id": 158768,
+                "coin": "EMC",
+                "created_at": "2018-03-15 04:02:39",
+                "updated_at": "2018-03-15 04:02:39",
+                "price_usd": "3.130000000000000000000000000000",
+                "price_btc": "0.000377600000000000000000000000",
+                "price_date": "2018-03-15 00:00:00"
+            },
+            "symbol": "EMC"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 3.65,
+            "high_time": "Thu, 22 Mar 2018 05:40:00 +0000",
+            "low": 3.42,
+            "low_time": "Fri, 23 Mar 2018 05:20:00 +0000",
+            "symbol": "EMC"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/EMC",
+        "name": "Emercoin"
+    },
+    {
+        "symbol": "MAID",
+        "cap": "133435079.0",
+        "change": {
+            "hour": "-1.36",
+            "day": "-7.05"
+        },
+        "price": "0.29485",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/MAID",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 70202,
+                "coin": "MAID",
+                "created_at": "2018-01-04 08:06:28",
+                "updated_at": "2018-01-04 08:06:28",
+                "price_usd": "1.140000000000000000000000000000",
+                "price_btc": "0.000074490000000000000000000000",
+                "price_date": "2018-01-04 00:00:00"
+            },
+            "month_high": {
+                "id": 150237,
+                "coin": "MAID",
+                "created_at": "2018-03-05 05:10:00",
+                "updated_at": "2018-03-05 05:10:00",
+                "price_usd": "0.416500000000000000000000000000",
+                "price_btc": "0.000036260000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 162157,
+                "coin": "MAID",
+                "created_at": "2018-03-18 04:08:53",
+                "updated_at": "2018-03-18 04:08:53",
+                "price_usd": "0.260100000000000000000000000000",
+                "price_btc": "0.000032940000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "MAID"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.3198,
+            "high_time": "Thu, 22 Mar 2018 23:15:00 +0000",
+            "low": 0.2958,
+            "low_time": "Fri, 23 Mar 2018 05:20:00 +0000",
+            "symbol": "MAID"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/MAID",
+        "name": "MaidSafeCoin"
+    },
+    {
+        "symbol": "REQ",
+        "cap": "131239843.0",
+        "change": {
+            "hour": "-1.92",
+            "day": "-18.91"
+        },
+        "price": "0.198036",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/REQ",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71333,
+                "coin": "REQ",
+                "created_at": "2018-01-07 08:09:11",
+                "updated_at": "2018-01-07 08:09:11",
+                "price_usd": "0.986500000000000000000000000000",
+                "price_btc": "0.000057390000000000000000000000",
+                "price_date": "2018-01-07 00:00:00"
+            },
+            "month_high": {
+                "id": 146799,
+                "coin": "REQ",
+                "created_at": "2018-03-02 05:03:16",
+                "updated_at": "2018-03-02 05:03:16",
+                "price_usd": "0.304200000000000000000000000000",
+                "price_btc": "0.000027350000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162167,
+                "coin": "REQ",
+                "created_at": "2018-03-18 04:08:59",
+                "updated_at": "2018-03-18 04:08:59",
+                "price_usd": "0.156400000000000000000000000000",
+                "price_btc": "0.000019800000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "REQ"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.2582,
+            "high_time": "Thu, 22 Mar 2018 09:20:00 +0000",
+            "low": 0.1971,
+            "low_time": "Fri, 23 Mar 2018 05:25:00 +0000",
+            "symbol": "REQ"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/REQ",
+        "name": "Request Network"
+    },
+    {
+        "symbol": "ENG",
+        "cap": "125588566.0",
+        "change": {
+            "hour": "-2.4",
+            "day": "-1.15"
+        },
+        "price": "1.67818",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/ENG",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 72526,
+                "coin": "ENG",
+                "created_at": "2018-01-11 08:07:37",
+                "updated_at": "2018-01-11 08:07:37",
+                "price_usd": "7.980000000000000000000000000000",
+                "price_btc": "0.000547300000000000000000000000",
+                "price_date": "2018-01-11 00:00:00"
+            },
+            "month_high": {
+                "id": 147764,
+                "coin": "ENG",
+                "created_at": "2018-03-03 05:03:41",
+                "updated_at": "2018-03-03 05:03:41",
+                "price_usd": "2.710000000000000000000000000000",
+                "price_btc": "0.000239600000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 162743,
+                "coin": "ENG",
+                "created_at": "2018-03-19 04:05:12",
+                "updated_at": "2018-03-19 04:05:12",
+                "price_usd": "1.250000000000000000000000000000",
+                "price_btc": "0.000152300000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "ENG"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 1.98,
+            "high_time": "Thu, 22 Mar 2018 20:00:00 +0000",
+            "low": 1.57,
+            "low_time": "Thu, 22 Mar 2018 13:50:00 +0000",
+            "symbol": "ENG"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/ENG",
+        "name": "Enigma"
+    },
+    {
+        "symbol": "KIN",
+        "cap": "124981415.0",
+        "change": {
+            "hour": "-0.51",
+            "day": "-15.38"
+        },
+        "price": "0.000165298",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/KIN",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 1422,
+                "coin": "KIN",
+                "created_at": "2017-12-10 10:08:52",
+                "updated_at": "2017-12-10 10:08:52",
+                "price_usd": "0.081760000000000000000000000000",
+                "price_btc": "0.000005030000000000000000000000",
+                "price_date": "2017-12-08 00:00:00"
+            },
+            "month_high": {
+                "id": 148436,
+                "coin": "KIN",
+                "created_at": "2018-03-03 05:11:05",
+                "updated_at": "2018-03-03 05:11:05",
+                "price_usd": "0.000294000000000000000000000000",
+                "price_btc": "0.000000030000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 163236,
+                "coin": "KIN",
+                "created_at": "2018-03-19 04:10:09",
+                "updated_at": "2018-03-19 04:10:09",
+                "price_usd": "0.000161300000000000000000000000",
+                "price_btc": "0.000000020000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "KIN"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.0001992,
+            "high_time": "Thu, 22 Mar 2018 05:40:00 +0000",
+            "low": 0.000088,
+            "low_time": "Fri, 23 Mar 2018 05:40:00 +0000",
+            "symbol": "KIN"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/KIN",
+        "name": "Kin"
+    },
+    {
+        "symbol": "POWR",
+        "cap": "124842466.0",
+        "change": {
+            "hour": "-1.27",
+            "day": "-12.39"
+        },
+        "price": "0.343037",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/POWR",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 70331,
+                "coin": "POWR",
+                "created_at": "2018-01-04 08:07:53",
+                "updated_at": "2018-01-04 08:07:53",
+                "price_usd": "1.840000000000000000000000000000",
+                "price_btc": "0.000120100000000000000000000000",
+                "price_date": "2018-01-04 00:00:00"
+            },
+            "month_high": {
+                "id": 149282,
+                "coin": "POWR",
+                "created_at": "2018-03-04 05:09:26",
+                "updated_at": "2018-03-04 05:09:26",
+                "price_usd": "0.605100000000000000000000000000",
+                "price_btc": "0.000052770000000000000000000000",
+                "price_date": "2018-03-04 00:00:00"
+            },
+            "month_low": {
+                "id": 161814,
+                "coin": "POWR",
+                "created_at": "2018-03-18 04:05:19",
+                "updated_at": "2018-03-18 04:05:19",
+                "price_usd": "0.315600000000000000000000000000",
+                "price_btc": "0.000039960000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "POWR"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.394,
+            "high_time": "Thu, 22 Mar 2018 06:00:00 +0000",
+            "low": 0.3405,
+            "low_time": "Fri, 23 Mar 2018 05:20:00 +0000",
+            "symbol": "POWR"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/POWR",
+        "name": "Power Ledger"
+    },
+    {
+        "symbol": "DCN",
+        "cap": "124024193.0",
+        "change": {
+            "hour": "0.88",
+            "day": "-10.3"
+        },
+        "price": "0.000381347",
+        "coinheat": 90,
+        "url": "https://chasing-coins.com/coin/DCN",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71725,
+                "coin": "DCN",
+                "created_at": "2018-01-08 08:09:59",
+                "updated_at": "2018-01-08 08:09:59",
+                "price_usd": "0.005723000000000000000000000000",
+                "price_btc": "0.000000350000000000000000000000",
+                "price_date": "2018-01-08 00:00:00"
+            },
+            "month_high": {
+                "id": 147343,
+                "coin": "DCN",
+                "created_at": "2018-03-02 05:08:40",
+                "updated_at": "2018-03-02 05:08:40",
+                "price_usd": "0.000707000000000000000000000000",
+                "price_btc": "0.000000070000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 166391,
+                "coin": "DCN",
+                "created_at": "2018-03-23 04:05:02",
+                "updated_at": "2018-03-23 04:05:02",
+                "price_usd": "0.000383000000000000000000000000",
+                "price_btc": "0.000000040000000000000000000000",
+                "price_date": "2018-03-23 00:00:00"
+            },
+            "symbol": "DCN"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.000437,
+            "high_time": "Thu, 22 Mar 2018 07:15:00 +0000",
+            "low": 0.000375,
+            "low_time": "Thu, 22 Mar 2018 12:05:00 +0000",
+            "symbol": "DCN"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/DCN",
+        "name": "Dentacoin"
+    },
+    {
+        "symbol": "NCASH",
+        "cap": "122067834.0",
+        "change": {
+            "hour": "-1.46",
+            "day": "-13.44"
+        },
+        "price": "0.0307171",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/NCASH",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 164318,
+                "coin": "NCASH",
+                "created_at": "2018-03-21 04:02:26",
+                "updated_at": "2018-03-21 04:02:26",
+                "price_usd": "0.036190000000000000000000000000",
+                "price_btc": "0.000004060000000000000000000000",
+                "price_date": "2018-03-21 00:00:00"
+            },
+            "month_high": {
+                "id": 164318,
+                "coin": "NCASH",
+                "created_at": "2018-03-21 04:02:26",
+                "updated_at": "2018-03-21 04:02:26",
+                "price_usd": "0.036190000000000000000000000000",
+                "price_btc": "0.000004060000000000000000000000",
+                "price_date": "2018-03-21 00:00:00"
+            },
+            "month_low": {
+                "id": 162101,
+                "coin": "NCASH",
+                "created_at": "2018-03-18 04:08:17",
+                "updated_at": "2018-03-18 04:08:17",
+                "price_usd": "0.026380000000000000000000000000",
+                "price_btc": "0.000003340000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "NCASH"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.03596,
+            "high_time": "Thu, 22 Mar 2018 05:40:00 +0000",
+            "low": 0.03033,
+            "low_time": "Fri, 23 Mar 2018 05:20:00 +0000",
+            "symbol": "NCASH"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/NCASH",
+        "name": "Nucleus Vision"
+    },
+    {
+        "symbol": "POLY",
+        "cap": "120720834.0",
+        "change": {
+            "hour": "-1.57",
+            "day": "-17.5"
+        },
+        "price": "0.503004",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/POLY",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 162528,
+                "coin": "POLY",
+                "created_at": "2018-03-19 04:03:00",
+                "updated_at": "2018-03-19 04:03:00",
+                "price_usd": "1.190000000000000000000000000000",
+                "price_btc": "0.000146400000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "month_high": {
+                "id": 162528,
+                "coin": "POLY",
+                "created_at": "2018-03-19 04:03:00",
+                "updated_at": "2018-03-19 04:03:00",
+                "price_usd": "1.190000000000000000000000000000",
+                "price_btc": "0.000146400000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "month_low": {
+                "id": 163511,
+                "coin": "POLY",
+                "created_at": "2018-03-20 04:03:34",
+                "updated_at": "2018-03-20 04:03:34",
+                "price_usd": "0.442000000000000000000000000000",
+                "price_btc": "0.000051730000000000000000000000",
+                "price_date": "2018-03-20 00:00:00"
+            },
+            "symbol": "POLY"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.5847,
+            "high_time": "Thu, 22 Mar 2018 05:35:00 +0000",
+            "low": 0.5306,
+            "low_time": "Fri, 23 Mar 2018 05:25:00 +0000",
+            "symbol": "POLY"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/POLY",
+        "name": "Polymath"
+    },
+    {
+        "symbol": "PART",
+        "cap": "117894100.0",
+        "change": {
+            "hour": "-0.73",
+            "day": "-9.45"
+        },
+        "price": "13.2297",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/PART",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 73695,
+                "coin": "PART",
+                "created_at": "2018-01-15 08:08:41",
+                "updated_at": "2018-01-15 08:08:41",
+                "price_usd": "48.070000000000000000000000000000",
+                "price_btc": "0.003500000000000000000000000000",
+                "price_date": "2018-01-15 00:00:00"
+            },
+            "month_high": {
+                "id": 150499,
+                "coin": "PART",
+                "created_at": "2018-03-06 05:03:09",
+                "updated_at": "2018-03-06 05:03:09",
+                "price_usd": "31.040000000000000000000000000000",
+                "price_btc": "0.002674000000000000000000000000",
+                "price_date": "2018-03-06 00:00:00"
+            },
+            "month_low": {
+                "id": 163207,
+                "coin": "PART",
+                "created_at": "2018-03-19 04:09:51",
+                "updated_at": "2018-03-19 04:09:51",
+                "price_usd": "12.930000000000000000000000000000",
+                "price_btc": "0.001579000000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "PART"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 14.78,
+            "high_time": "Thu, 22 Mar 2018 09:05:00 +0000",
+            "low": 13.23,
+            "low_time": "Fri, 23 Mar 2018 05:20:00 +0000",
+            "symbol": "PART"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/PART",
+        "name": "Particl"
+    },
+    {
+        "symbol": "BNT",
+        "cap": "115962986.0",
+        "change": {
+            "hour": "-1.08",
+            "day": "-10.01"
+        },
+        "price": "2.85323",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/BNT",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 15691,
+                "coin": "BNT",
+                "created_at": "2017-12-10 13:36:13",
+                "updated_at": "2017-12-10 13:36:13",
+                "price_usd": "81.390000000000000000000000000000",
+                "price_btc": "0.030000000000000000000000000000",
+                "price_date": "2017-06-13 00:00:00"
+            },
+            "month_high": {
+                "id": 147093,
+                "coin": "BNT",
+                "created_at": "2018-03-02 05:06:08",
+                "updated_at": "2018-03-02 05:06:08",
+                "price_usd": "5.100000000000000000000000000000",
+                "price_btc": "0.000454700000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 161632,
+                "coin": "BNT",
+                "created_at": "2018-03-18 04:03:25",
+                "updated_at": "2018-03-18 04:03:25",
+                "price_usd": "2.900000000000000000000000000000",
+                "price_btc": "0.000359900000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "BNT"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 3.28,
+            "high_time": "Thu, 22 Mar 2018 09:05:00 +0000",
+            "low": 2.91,
+            "low_time": "Fri, 23 Mar 2018 05:15:00 +0000",
+            "symbol": "BNT"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/BNT",
+        "name": "Bancor"
+    },
+    {
+        "symbol": "PAY",
+        "cap": "113732306.0",
+        "change": {
+            "hour": "-1.21",
+            "day": "-9.83"
+        },
+        "price": "1.08667",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/PAY",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 27064,
+                "coin": "PAY",
+                "created_at": "2017-12-10 15:31:02",
+                "updated_at": "2017-12-10 15:31:02",
+                "price_usd": "5.100000000000000000000000000000",
+                "price_btc": "0.001255000000000000000000000000",
+                "price_date": "2017-08-13 00:00:00"
+            },
+            "month_high": {
+                "id": 150215,
+                "coin": "PAY",
+                "created_at": "2018-03-05 05:09:47",
+                "updated_at": "2018-03-05 05:09:47",
+                "price_usd": "2.010000000000000000000000000000",
+                "price_btc": "0.000175300000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 162977,
+                "coin": "PAY",
+                "created_at": "2018-03-19 04:07:32",
+                "updated_at": "2018-03-19 04:07:32",
+                "price_usd": "1.130000000000000000000000000000",
+                "price_btc": "0.000138500000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "PAY"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 1.23,
+            "high_time": "Thu, 22 Mar 2018 06:05:00 +0000",
+            "low": 1.08,
+            "low_time": "Fri, 23 Mar 2018 03:15:00 +0000",
+            "symbol": "PAY"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/PAY",
+        "name": "TenX"
+    },
+    {
+        "symbol": "NEBL",
+        "cap": "112658962.0",
+        "change": {
+            "hour": "-1.17",
+            "day": "-7.94"
+        },
+        "price": "8.71299",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/NEBL",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71993,
+                "coin": "NEBL",
+                "created_at": "2018-01-09 08:07:20",
+                "updated_at": "2018-01-09 08:07:20",
+                "price_usd": "43.640000000000000000000000000000",
+                "price_btc": "0.002951000000000000000000000000",
+                "price_date": "2018-01-09 00:00:00"
+            },
+            "month_high": {
+                "id": 150430,
+                "coin": "NEBL",
+                "created_at": "2018-03-06 05:02:27",
+                "updated_at": "2018-03-06 05:02:27",
+                "price_usd": "17.280000000000000000000000000000",
+                "price_btc": "0.001489000000000000000000000000",
+                "price_date": "2018-03-06 00:00:00"
+            },
+            "month_low": {
+                "id": 162976,
+                "coin": "NEBL",
+                "created_at": "2018-03-19 04:07:32",
+                "updated_at": "2018-03-19 04:07:32",
+                "price_usd": "8.370000000000000000000000000000",
+                "price_btc": "0.001022000000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "NEBL"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 9.92,
+            "high_time": "Thu, 22 Mar 2018 09:20:00 +0000",
+            "low": 8.56,
+            "low_time": "Thu, 22 Mar 2018 15:15:00 +0000",
+            "symbol": "NEBL"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/NEBL",
+        "name": "Neblio"
+    },
+    {
+        "symbol": "CND",
+        "cap": "110576866.0",
+        "change": {
+            "hour": "-2.0",
+            "day": "-14.21"
+        },
+        "price": "0.0764721",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/CND",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 75978,
+                "coin": "CND",
+                "created_at": "2018-01-24 08:05:07",
+                "updated_at": "2018-01-24 08:05:07",
+                "price_usd": "0.311900000000000000000000000000",
+                "price_btc": "0.000028520000000000000000000000",
+                "price_date": "2018-01-24 00:00:00"
+            },
+            "month_high": {
+                "id": 149816,
+                "coin": "CND",
+                "created_at": "2018-03-05 05:05:42",
+                "updated_at": "2018-03-05 05:05:42",
+                "price_usd": "0.139600000000000000000000000000",
+                "price_btc": "0.000012150000000000000000000000",
+                "price_date": "2018-03-05 00:00:00"
+            },
+            "month_low": {
+                "id": 158801,
+                "coin": "CND",
+                "created_at": "2018-03-15 04:02:59",
+                "updated_at": "2018-03-15 04:02:59",
+                "price_usd": "0.068750000000000000000000000000",
+                "price_btc": "0.000008300000000000000000000000",
+                "price_date": "2018-03-15 00:00:00"
+            },
+            "symbol": "CND"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.09049,
+            "high_time": "Thu, 22 Mar 2018 05:35:00 +0000",
+            "low": 0.07638,
+            "low_time": "Fri, 23 Mar 2018 03:50:00 +0000",
+            "symbol": "CND"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/CND",
+        "name": "Cindicator"
+    },
+    {
+        "symbol": "STORJ",
+        "cap": "109194089.0",
+        "change": {
+            "hour": "-0.41",
+            "day": "-3.73"
+        },
+        "price": "0.81839",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/STORJ",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 72240,
+                "coin": "STORJ",
+                "created_at": "2018-01-10 08:07:15",
+                "updated_at": "2018-01-10 08:07:15",
+                "price_usd": "2.620000000000000000000000000000",
+                "price_btc": "0.000182500000000000000000000000",
+                "price_date": "2018-01-10 00:00:00"
+            },
+            "month_high": {
+                "id": 156023,
+                "coin": "STORJ",
+                "created_at": "2018-03-12 04:02:49",
+                "updated_at": "2018-03-12 04:02:49",
+                "price_usd": "1.130000000000000000000000000000",
+                "price_btc": "0.000118800000000000000000000000",
+                "price_date": "2018-03-12 00:00:00"
+            },
+            "month_low": {
+                "id": 162203,
+                "coin": "STORJ",
+                "created_at": "2018-03-18 04:09:20",
+                "updated_at": "2018-03-18 04:09:20",
+                "price_usd": "0.681200000000000000000000000000",
+                "price_btc": "0.000086260000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "STORJ"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.9095,
+            "high_time": "Fri, 23 Mar 2018 00:35:00 +0000",
+            "low": 0.8119,
+            "low_time": "Thu, 22 Mar 2018 11:55:00 +0000",
+            "symbol": "STORJ"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/STORJ",
+        "name": "Storj"
+    },
+    {
+        "symbol": "NXS",
+        "cap": "108253034.0",
+        "change": {
+            "hour": "-0.02",
+            "day": "-11.59"
+        },
+        "price": "1.92759",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/NXS",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71215,
+                "coin": "NXS",
+                "created_at": "2018-01-07 08:07:45",
+                "updated_at": "2018-01-07 08:07:45",
+                "price_usd": "13.240000000000000000000000000000",
+                "price_btc": "0.000770200000000000000000000000",
+                "price_date": "2018-01-07 00:00:00"
+            },
+            "month_high": {
+                "id": 147476,
+                "coin": "NXS",
+                "created_at": "2018-03-02 05:09:59",
+                "updated_at": "2018-03-02 05:09:59",
+                "price_usd": "4.760000000000000000000000000000",
+                "price_btc": "0.000428000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162046,
+                "coin": "NXS",
+                "created_at": "2018-03-18 04:07:43",
+                "updated_at": "2018-03-18 04:07:43",
+                "price_usd": "1.800000000000000000000000000000",
+                "price_btc": "0.000228500000000000000000000000",
+                "price_date": "2018-03-18 00:00:00"
+            },
+            "symbol": "NXS"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 2.2,
+            "high_time": "Thu, 22 Mar 2018 06:00:00 +0000",
+            "low": 1.88,
+            "low_time": "Fri, 23 Mar 2018 05:20:00 +0000",
+            "symbol": "NXS"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/NXS",
+        "name": "Nexus"
+    },
+    {
+        "symbol": "BTCD",
+        "cap": "107574753.0",
+        "change": {
+            "hour": "-0.4",
+            "day": "1.66"
+        },
+        "price": "83.4649",
+        "coinheat": 40,
+        "url": "https://chasing-coins.com/coin/BTCD",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 71189,
+                "coin": "BTCD",
+                "created_at": "2018-01-07 08:07:26",
+                "updated_at": "2018-01-07 08:07:26",
+                "price_usd": "379.650000000000000000000000000000",
+                "price_btc": "0.022090000000000000000000000000",
+                "price_date": "2018-01-07 00:00:00"
+            },
+            "month_high": {
+                "id": 148962,
+                "coin": "BTCD",
+                "created_at": "2018-03-04 05:06:08",
+                "updated_at": "2018-03-04 05:06:08",
+                "price_usd": "110.140000000000000000000000000000",
+                "price_btc": "0.009605000000000000000000000000",
+                "price_date": "2018-03-04 00:00:00"
+            },
+            "month_low": {
+                "id": 163049,
+                "coin": "BTCD",
+                "created_at": "2018-03-19 04:08:17",
+                "updated_at": "2018-03-19 04:08:17",
+                "price_usd": "67.240000000000000000000000000000",
+                "price_btc": "0.008209000000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "BTCD"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 77.61,
+            "high_time": "Thu, 22 Mar 2018 23:55:00 +0000",
+            "low": 68.35,
+            "low_time": "Fri, 23 Mar 2018 03:20:00 +0000",
+            "symbol": "BTCD"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/BTCD",
+        "name": "BitcoinDark"
+    },
+    {
+        "symbol": "VTC",
+        "cap": "104362895.0",
+        "change": {
+            "hour": "-1.17",
+            "day": "-3.77"
+        },
+        "price": "2.40159",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/VTC",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 66453,
+                "coin": "VTC",
+                "created_at": "2017-12-19 08:02:15",
+                "updated_at": "2017-12-19 08:02:15",
+                "price_usd": "9.810000000000000000000000000000",
+                "price_btc": "0.000518900000000000000000000000",
+                "price_date": "2017-12-19 00:00:00"
+            },
+            "month_high": {
+                "id": 146828,
+                "coin": "VTC",
+                "created_at": "2018-03-02 05:03:32",
+                "updated_at": "2018-03-02 05:03:32",
+                "price_usd": "4.010000000000000000000000000000",
+                "price_btc": "0.000360900000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "month_low": {
+                "id": 162750,
+                "coin": "VTC",
+                "created_at": "2018-03-19 04:05:17",
+                "updated_at": "2018-03-19 04:05:17",
+                "price_usd": "1.860000000000000000000000000000",
+                "price_btc": "0.000227400000000000000000000000",
+                "price_date": "2018-03-19 00:00:00"
+            },
+            "symbol": "VTC"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 2.74,
+            "high_time": "Fri, 23 Mar 2018 00:45:00 +0000",
+            "low": 2.36,
+            "low_time": "Fri, 23 Mar 2018 05:00:00 +0000",
+            "symbol": "VTC"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/VTC",
+        "name": "Vertcoin"
+    },
+    {
+        "symbol": "SMART",
+        "cap": "103068214.0",
+        "change": {
+            "hour": "-0.67",
+            "day": "-15.08"
+        },
+        "price": "0.126052",
+        "coinheat": 20,
+        "url": "https://chasing-coins.com/coin/SMART",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 74468,
+                "coin": "SMART",
+                "created_at": "2018-01-18 08:13:08",
+                "updated_at": "2018-01-18 08:13:08",
+                "price_usd": "2.400000000000000000000000000000",
+                "price_btc": "0.000199800000000000000000000000",
+                "price_date": "2018-01-18 00:00:00"
+            },
+            "month_high": {
+                "id": 147951,
+                "coin": "SMART",
+                "created_at": "2018-03-03 05:05:43",
+                "updated_at": "2018-03-03 05:05:43",
+                "price_usd": "0.377100000000000000000000000000",
+                "price_btc": "0.000033330000000000000000000000",
+                "price_date": "2018-03-03 00:00:00"
+            },
+            "month_low": {
+                "id": 166835,
+                "coin": "SMART",
+                "created_at": "2018-03-23 04:09:33",
+                "updated_at": "2018-03-23 04:09:33",
+                "price_usd": "0.132700000000000000000000000000",
+                "price_btc": "0.000015220000000000000000000000",
+                "price_date": "2018-03-23 00:00:00"
+            },
+            "symbol": "SMART"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 0.1488,
+            "high_time": "Thu, 22 Mar 2018 05:45:00 +0000",
+            "low": 0.1257,
+            "low_time": "Fri, 23 Mar 2018 05:20:00 +0000",
+            "symbol": "SMART"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/SMART",
+        "name": "SmartCash"
+    },
+    {
+        "symbol": "MNX",
+        "cap": "101628049.0",
+        "change": {
+            "hour": "-2.48",
+            "day": "-12.51"
+        },
+        "price": "28.9823",
+        "coinheat": 30,
+        "url": "https://chasing-coins.com/coin/MNX",
+        "HighLowOfCoin": {
+            "ath": {
+                "id": 552,
+                "coin": "MNX",
+                "created_at": "2017-12-10 10:00:34",
+                "updated_at": "2017-12-10 10:00:34",
+                "price_usd": "49.940000000000000000000000000000",
+                "price_btc": "0.004201000000000000000000000000",
+                "price_date": "2017-12-03 00:00:00"
+            },
+            "month_high": {
+                "id": 154864,
+                "coin": "MNX",
+                "created_at": "2018-03-10 05:11:02",
+                "updated_at": "2018-03-10 05:11:02",
+                "price_usd": "34.410000000000000000000000000000",
+                "price_btc": "0.003700000000000000000000000000",
+                "price_date": "2018-03-10 00:00:00"
+            },
+            "month_low": {
+                "id": 147037,
+                "coin": "MNX",
+                "created_at": "2018-03-02 05:05:36",
+                "updated_at": "2018-03-02 05:05:36",
+                "price_usd": "24.140000000000000000000000000000",
+                "price_btc": "0.002173000000000000000000000000",
+                "price_date": "2018-03-02 00:00:00"
+            },
+            "symbol": "MNX"
+        },
+        "HighLowOfLast24Hours": {
+            "high": 33.09,
+            "high_time": "Thu, 22 Mar 2018 06:05:00 +0000",
+            "low": 28.89,
+            "low_time": "Fri, 23 Mar 2018 01:00:00 +0000",
+            "symbol": "MNX"
+        },
+        "image": "https://chasing-coins.com/api/v1/std/logo/MNX",
+        "name": "MinexCoin"
+    }
+]
