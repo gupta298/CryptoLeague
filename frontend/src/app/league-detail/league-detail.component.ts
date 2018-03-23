@@ -23,6 +23,7 @@ export class LeagueDetailComponent implements OnInit {
   leagueID: string;
   league: League = new League();
   timeRemaining: string;
+  status: string;
   timeRemainingPercent: number;
   leagueStarted: boolean = false;
 
@@ -54,7 +55,7 @@ export class LeagueDetailComponent implements OnInit {
           }, error => {
             console.log(error);
             this.router.navigate(['/']);
-          } 
+          }
         );
       });
     }
@@ -62,7 +63,7 @@ export class LeagueDetailComponent implements OnInit {
   	onPortfolioClicked(){
   		console.log("onPortfolioclicked");
   		this.portfolioOpened = !this.portfolioOpened;
-  		setTimeout(()=>{ 
+  		setTimeout(()=>{
   			this.hideCards = !this.hideCards;
   		}, 500);
   	}
@@ -77,11 +78,11 @@ export class LeagueDetailComponent implements OnInit {
       if(startDate.isBefore(currDate)){
         if(!this.leagueStarted){ //reload league if initial countdown is over
           this.leagueStarted = true;
-          this.loadLeague(); 
+          this.loadLeague();
         }
 
         endDate.add(6, 'd');
-        status = "ends.";
+        this.status = "ends.";
         totaltime = 518400;
         this.timeRemainingPercent = 100 - Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
       } else {
@@ -103,12 +104,12 @@ export class LeagueDetailComponent implements OnInit {
       delta -= minutes * 60;
 
       // what's left is seconds
-      var seconds = delta % 60; 
+      var seconds = delta % 60;
 
       if(days > 0){
-        this.timeRemaining = days + "d " + hours + "h " + minutes + "m " + seconds + "s until the league " + status;
+        this.timeRemaining = days + "d " + hours + "h " + minutes + "m " + seconds + "s";//  + "s until the league " + status;
       } else {
-        this.timeRemaining = hours + "h " + minutes + "m " + seconds + "s until the league " + status;
+        this.timeRemaining = hours + "h " + minutes + "m " + seconds + "s"; //+ "s until the league " + status;
       }
     }
 }

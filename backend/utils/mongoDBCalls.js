@@ -1,3 +1,13 @@
+/*
+League statuses/stati number to string
+
+0 - Waiting
+1 - Waiting_Locked
+2 - Locked
+3 - Started
+4 - Finished
+*/
+
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert')
   , ObjectId = require('mongodb').ObjectID;
@@ -500,10 +510,10 @@ module.exports = {
                 league_result.start_time = lockingDate;
 
                 console.log('scheduling job at ' + lockingDate);
-                schedule.scheduleJob(lockingDate, startLeague.bind(null, league_result.league_id));    
+                schedule.scheduleJob(lockingDate, startLeague.bind(null, league_result.league_id));
 
                 console.log('scheduling job at ' + endingDate);
-                schedule.scheduleJob(endingDate, endLeague.bind(null, league_result.league_id));            
+                schedule.scheduleJob(endingDate, endLeague.bind(null, league_result.league_id));
               }
 
               dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
