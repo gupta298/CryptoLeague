@@ -150,7 +150,7 @@ export class PortfolioComponent implements OnInit {
 	rowDelete(index) {
 		this.portfolioFieldArray.splice(index, 1);
 		this.checkPortfolioValidity();
-		if(this.isPieSetup)
+		if(!this.isPieSetup)
 			this.populatePieChart();
 	}
 
@@ -173,33 +173,6 @@ export class PortfolioComponent implements OnInit {
 	}
 
 	portfolioExpand() {
-		if(this.isPortfolioValid) {
-			if(!this.hideCards){
-				var setup = {
-					canvas: (<HTMLElement>this.piechart.nativeElement),
-					radius: 0.9,
-					collapsing: true,
-					proportions: this.proportions,
-					drawNode: this.drawNode,
-					onchange: this.onPieChartChange,
-					dragDisabled: false
-				};
-
-				this.draggablePieChart = new DraggablePiechart(setup);
-			} else {
-				var setup = {
-					canvas: (<HTMLElement>this.piechart.nativeElement),
-					radius: 0.9,
-					collapsing: true,
-					proportions: this.proportions,
-					drawNode: this.hideNode,
-					onchange: this.onPieChartChange,
-					dragDisabled: true
-				};
-			}	
-			
-			this.draggablePieChart = new DraggablePiechart(setup);
-		}
     this.onClickCallback();
   }
 
@@ -285,7 +258,6 @@ export class PortfolioComponent implements OnInit {
 			console.log("inside loop")
 			that.portfolioFieldArray[i].percentage = percentages[i];
 		}
-
 	}
 
 	precisionRound(number, precision) {
