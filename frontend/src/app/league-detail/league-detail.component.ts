@@ -24,7 +24,7 @@ export class LeagueDetailComponent implements OnInit {
   league: League = new League();
   timeRemaining: string;
   timeRemainingPercent: number;
-  leagueStarted: boolean: false;
+  leagueStarted: boolean = false;
 
   	constructor(
       private leagueService: LeagueService,
