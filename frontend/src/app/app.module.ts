@@ -17,7 +17,7 @@ import { AuthGuard } from './auth.guard';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
-import { AuthenticationService, NewsService, MarketService, UserService, LeagueService } from './services/index';
+import { AuthenticationService, NewsService, MarketService, UserService, LeagueService, PortfolioService } from './services/index';
 import { SettingsComponent } from './settings/settings.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -57,6 +57,7 @@ import { LeagueSelectComponent } from './league-select/league-select.component';
     UserService,
     MarketService,
     LeagueService,
+    PortfolioService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

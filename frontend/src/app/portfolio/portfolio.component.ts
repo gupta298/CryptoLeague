@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MarketService } from '../services/index'; 
-
+import { MarketService } from '../services/index';
+import { PortfolioService, AuthenticationService } from '../services/index';
+import { User } from '../user';
 
 declare var $: any;
 declare var DraggablePiechart: any;
@@ -15,23 +16,32 @@ export class PortfolioComponent implements OnInit {
 	@Input() onClickCallback: Function;
 	@Input() hideCards: boolean;
 	proportions: any[] = [
-			{ proportion: 50, format: { color: "#2665da", label: 'Cats' } },
-			{ proportion: 50, format: { color: "#6dd020", label: 'Dogs' } }];
+			{ proportion: 50, format: { color: this.getRandomColor(), label: 'Cats' } },
+			{ proportion: 25, format: { color: this.getRandomColor(), label: 'Dogs' } },
+			{ proportion: 25, format: { color: this.getRandomColor(), label: 'Billu' } }];
 
-	constructor(private marketService: MarketService) { }
+	constructor(
+		private marketService: MarketService,
+		private portfolioService: PortfolioService,
+    private authService: AuthenticationService,
+	) { }
+
 	private portfolioFieldArray: Array<any> = [];
   private portfolioNewAttribute: any = {};
+  private user: User;
   isNewRow: boolean = false;
   coinsArray: Array<any> = [];
   autoComplete: Array<any> = [];
   inSearchBar: boolean = false;
   addWithSearch: boolean = false;
   captainCoin: String;
+  draggablePieChart: any;
 
   //temporary- remove all this hard-coded stuff
   coins: Array<any> = [];
 
 	ngOnInit() {
+		this.user = this.authService.loadUserFromLocalStorage();
 		this.setupPieChart();
 
 		this.portfolioNewAttribute.name = "bitcoin";
@@ -58,6 +68,16 @@ export class PortfolioComponent implements OnInit {
 		this.portfolioFieldArray.push(this.portfolioNewAttribute);
 		this.portfolioNewAttribute = {};
 
+		this.portfolioService.getPortfolio(this.user.currentLeague_id,this.user.id)
+			.subscribe(
+				result => {
+					//this.portfolioFieldArray = result;
+					console.log(result);
+				}, error => {
+					console.log(error);
+				}
+			)
+
 		this.marketService.getMarketData()
 	      .subscribe(
 	        result => {
@@ -66,10 +86,9 @@ export class PortfolioComponent implements OnInit {
 	        }, error => {
 	          console.log(error);
 	        }
-	    );
+	  		);
 
-		
-
+	      
 	}	
 
 	onSearchChange(searchValue : string ) {  
@@ -151,7 +170,7 @@ export class PortfolioComponent implements OnInit {
 				dragDisabled: false
 			};
 
-			var newPie = new DraggablePiechart(setup);
+			this.draggablePieChart = new DraggablePiechart(setup);
 		} else {
 			var setup = {
 				canvas: document.getElementById('piechart'),
@@ -163,7 +182,7 @@ export class PortfolioComponent implements OnInit {
 				dragDisabled: true
 			};
 
-			var newPie = new DraggablePiechart(setup);
+			this.draggablePieChart = new DraggablePiechart(setup);
 		}
     this.onClickCallback();
   }
@@ -179,7 +198,7 @@ export class PortfolioComponent implements OnInit {
 			dragDisabled: false
 		};
 
-		var newPie = new DraggablePiechart(setup);
+		this.draggablePieChart = new DraggablePiechart(setup);
 
 	}
 
@@ -217,5 +236,11 @@ export class PortfolioComponent implements OnInit {
 	precisionRound(number, precision) {
   	var factor = Math.pow(10, precision);
   	return Math.round(number * factor) / factor;
+	}
+
+	getRandomColor() {
+		var hue = '#'+Math.floor(Math.random()*16777215).toString(16);
+		console.log(hue);
+		return hue;
 	}
 }
