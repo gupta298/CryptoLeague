@@ -66,14 +66,14 @@
 		<div uk-grid class="uk-flex uk-flex-between uk-flex-middle uk-margin uk-padding uk-padding-remove-vertical" >
 			<div uk-grid *ngIf="!hideCards">
 				<ul class="uk-list uk-list-large">
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
+				    <li *ngFor="let field of portfolioFieldArray | slice:0:3; let i = index" class="">
+				    	● {{field.ticker}}: {{field.percentage}}%
+				    </li>
 				</ul>
 				<ul class="uk-list uk-list-large">
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
-				    <li>● BTC: 43%</li>
+				    <li *ngFor="let field of portfolioFieldArray | slice:3:6; let i = index" class="">
+				    	● {{field.ticker}}: {{field.percentage}}%
+				    </li>
 				</ul>
 			</div>
 			<div class="uk-first-column uk-width-2-3 uk-flex uk-flex-center uk-margin-large-top uk-animation-fade-in" *ngIf="hideCards" style="display: block">
@@ -161,7 +161,7 @@
 			          </td>
 			        </tr>
 			        <tr *ngIf="!isNewRow">
-				    		<td (click)="clickRowInsert()" colspan="7" align="center">+ Add a coin</td>
+				    		<td (click)="clickRowInsert()" class="click" colspan="7" align="center">+ Add a coin</td>
 				    	</tr>
 				    </tbody>
 					</table>
@@ -170,21 +170,21 @@
 			</div>
 
 				<div align="center" id="canvas" class="">
-	    		<canvas *ngIf="isPortfolioValid" #piechart id="piechart" width="200" height="200">Your browser is too old!</canvas>
+	    		<canvas [hidden]="!isPortfolioValid" #piechart id="piechart" width="200" height="200">Your browser is too old!</canvas>
 	    	</div>
 
 
 	    	<div id="captain" class="uk-align-center">
-		    	<form *ngIf="hideCards">
+		    	<form *ngIf="hideCards" #f="ngForm" (ngSubmit)="submitPortfolio(f.value)">
 					    <fieldset class="uk-fieldset">
 					        <div class="uk-margin">
 					            <select [(ngModel)]="captainCoin" class="uk-select" placeholder="select a captain coin" name="captainCoin">
 					            		<option class="option uk-margin-right item" selected="selected">Select Captain Coin</option>
-					                <option *ngFor="let opt of portfolioFieldArray" class="option uk-margin-right item"><div class="option">{{opt.name}}</div></option>
+					                <option *ngFor="let opt of portfolioFieldArray" class="option uk-margin-right item"><div class="option">{{opt.ticker}}</div></option>
 					                <!--option class="option">Option 02</option-->
 					            </select>
 					        </div>
-					        <div class="uk-margin-small-left"><button class="uk-button uk-button-default">Submit</button></div>
+					        <div class="uk-margin-small-left"><button type="submit" class="uk-button uk-button-default">Submit</button></div>
 					    </fieldset>
 					</form>
 				</div>
