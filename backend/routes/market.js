@@ -49,6 +49,7 @@ function top3Coins(callback) {
   callback(null, object);
 }
 
+//TODO: Deprecate
 // Get just coin prices
 function getCurrentCoinPrices() {
   var coinPrices = [];
@@ -58,6 +59,17 @@ function getCurrentCoinPrices() {
       symbol: coin.symbol,
       price: coin.price
     });
+  }
+
+  return coinPrices;
+}
+
+// Get just coin prices
+function getCurrentCoinPricesMap() {
+  var coinPrices = {};
+
+  for(coin of coinData){
+    coinPrices[coin.symbol] = coin.price;
   }
 
   return coinPrices;
@@ -144,5 +156,6 @@ module.exports = {
   router : router,
   top3Coins : top3Coins,
   getCurrentCoinPrices: getCurrentCoinPrices,
+  getCurrentCoinPricesMap: getCurrentCoinPricesMap,
   getCoinTickers: getCoinTickers
 }
