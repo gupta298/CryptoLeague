@@ -36,6 +36,7 @@ export class PortfolioComponent implements OnInit {
   addWithSearch: boolean = false;
   captainCoin: String;
   draggablePieChart: any;
+  isPortfolioValid: boolean = false;
 
   //temporary- remove all this hard-coded stuff
   coins: Array<any> = [];
@@ -128,16 +129,19 @@ export class PortfolioComponent implements OnInit {
 		this.portfolioFieldArray.push(this.portfolioNewAttribute);
 		this.portfolioNewAttribute = {};
 		this.addWithSearch = false;
+		this.checkPortfolioValidity();
 	}
 
 	rowInsert() {
 		this.portfolioFieldArray.push(this.portfolioNewAttribute);
 		this.portfolioNewAttribute = {};
 		this.isNewRow = false;
+		this.checkPortfolioValidity();
 	}
 
 	rowDelete(index) {
 		this.portfolioFieldArray.splice(index, 1);
+		this.checkPortfolioValidity();
 	}
 
 	deleteNewRowWithSearch() {
@@ -152,7 +156,7 @@ export class PortfolioComponent implements OnInit {
 
 	focusFunction() {
 		this.inSearchBar = true;
-	} 
+	}
 
 	focusOutFunction() {
 		this.inSearchBar = false;
@@ -185,6 +189,18 @@ export class PortfolioComponent implements OnInit {
 			this.draggablePieChart = new DraggablePiechart(setup);
 		}
     this.onClickCallback();
+  }
+
+  checkPortfolioValidity() {
+  	var percent = 0;
+  	for(var i=0;i<this.portfolioFieldArray.length;i++) {
+  		percent += this.portfolioFieldArray[i].percentage;
+  	}
+  	if(percent != 100) {
+  		this.isPortfolioValid = false;
+  	} else {
+  		this.isPortfolioValid = true;
+  	}
   }
 
 	setupPieChart() {
