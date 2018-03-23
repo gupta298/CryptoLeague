@@ -1,5 +1,5 @@
 <div class="clickable" [class.flex-full]="hideCards">
-	<div class="uk-card uk-card-primary uk-card-small uk-card-hover uk-card-body">
+	<div class="full-height uk-card uk-card-primary uk-card-small uk-card-hover uk-card-body">
 		<div class="uk-flex uk-flex-between">
 			<div>
 				<h3 class="uk-card-title">Your Portfolio</h3>
@@ -128,7 +128,7 @@
 			            {{portfolioNewAttribute.ticker}}
 			          </td>
 			          <td style="width: 15%">
-	                <input class="uk-input" type="text" id="newAttributePercentage" [(ngModel)]="portfolioNewAttribute.percentage" name="newAttributePercentage" />
+	                <input class="uk-input" type="number" id="newAttributePercentage" [(ngModel)]="portfolioNewAttribute.percentage" name="newAttributePercentage" />
 		            </td>
 		            <td>
 			            {{portfolioNewAttribute.exp_coins}}
@@ -151,7 +151,7 @@
 			            {{portfolioNewAttribute.ticker}}
 			          </td>
 			          <td style="width: 15%">
-	                <input class="uk-input" type="text" id="newAttributePercentage" [(ngModel)]="portfolioNewAttribute.percentage" name="newAttributePercentage" />
+	                <input class="uk-input" type="number" id="newAttributePercentage" [(ngModel)]="portfolioNewAttribute.percentage" name="newAttributePercentage" />
 		            </td>
 		            <td>
 			            {{portfolioNewAttribute.exp_coins}}
@@ -170,7 +170,7 @@
 			</div>
 
 				<div align="center" id="canvas" class="">
-	    		<canvas id="piechart" width="200" height="200">Your browser is too old!</canvas>
+	    		<canvas *ngIf="isPortfolioValid" #piechart id="piechart" width="200" height="200">Your browser is too old!</canvas>
 	    	</div>
 
 

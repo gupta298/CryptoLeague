@@ -7,6 +7,8 @@
     var DraggablePiechart = function(setup) {
 
         var piechart = this;
+        this.data = null;
+        this.proportions = null;
 
         setup = $.extend(true, {}, this.defaults, setup);
 
@@ -35,6 +37,7 @@
         this.drawNode = setup.drawNode;
         this.onchange = setup.onchange;
         this.dragDisabled = setup.dragDisabled;
+        this.scope = setup.scope;
 
         if(!this.dragDisabled){
             // Bind appropriate events
@@ -418,10 +421,10 @@
         // Finally draw drag nodes on top (order not important)
         for (i = 0; i < visibleSegments.length; i += 1) {
             var location = polarToCartesian(visibleSegments[i].angle, geometry.radius);
-            piechart.drawNode(context, piechart, location.x, location.y, geometry.centerX, geometry.centerY, i == piechart.hoveredIndex);
+            piechart.drawNode(context, piechart, location.x, location.y, geometry.centerX, geometry.centerY, true || i == piechart.hoveredIndex);
         }
 
-        piechart.onchange(piechart);
+        piechart.onchange(piechart, this.scope);
 
     };
 
@@ -539,7 +542,7 @@
 
     DraggablePiechart.prototype.defaults = {
 
-        onchange: function(piechart) {},
+        onchange: function(piechart, waste) {},
         radius: 0.9,
             data: [
         { angle: -2, format: { color: "#2665da", label: 'Walking'}, collapsed: false },

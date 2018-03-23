@@ -187,7 +187,7 @@ function startLeague(league_id){
   MongoClient.connect(mongodbUrl, function (err, db) {
     if (err) throw err;
     var dbo = db.db("cryptoleague_database");
-    dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', current_market_coin: market.getCurrentCoinPrices()}});
+    dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', current_market_coin: market.getCurrentCoinPrices(), locked_prices: market.getCurrentCoinPricesMap() }});
     db.close();
   });
 }
@@ -200,6 +200,42 @@ function endLeague(league_id){
     //@utkyboy Add code here
 
     db.close();
+  });
+}
+
+function calculatePortfoliosValues(league) {
+  // All of the validations should be done before calling this function and you have to pass the entire league object to it
+
+  var current_coin_data = market.getCurrentCoinPrices();
+  var league_coins = league.current_market_coin;
+
+  asyncLoop(league.portfolio_ids, function (item, next) {
+    getPortfolioWithID(item.portfolio_id, function(err, portfolio) {
+      var overall_percentage_value = 0;
+      for (index in portfolio.holdings) {
+        var found_current_market = current_coin_data.find( coin => coin.symbol.toString() === portfolio.holdings[index].coin_symbol.toString() );
+        var found_league_market = league_coins.find( coin => coin.symbol.toString() === portfolio.holdings[index].coin_symbol.toString() );
+
+        var return_over_period = ((found_current_market.price - found_league_market.price) / found_league_market.price);
+        var value = portfolio.holdings[index].percentage * return_over_period;
+
+        if (portfolio.captain_coin && portfolio.captain_coin.toString() === portfolio.holdings[index].coin_symbol.toString()) {
+          value *= 2;
+        }
+
+        overall_percentage_value += value;
+      }
+
+      item.portfolio_value = overall_percentage_value;
+      next();
+    });
+  }, function () {
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("cryptoleague_database");
+      dbo.collection("Leagues").findOneAndUpdate({'league_id': league.league_id}, {$set: {'portfolio_ids' : league.portfolio_ids}});
+      db.close();
+    });
   });
 }
 
@@ -441,7 +477,8 @@ module.exports = {
               "tokens": user.tokens,
               "profilePicture": user.profilePicture,
               "user_id": user._id,
-              "portfolio_id" : portfolio._id
+              "portfolio_id" : portfolio._id,
+              "portfolio_value": null
             });
             league.start_time = null;
 
@@ -468,7 +505,8 @@ module.exports = {
               "tokens": user.tokens,
               "profilePicture": user.profilePicture,
               "user_id": user._id,
-              "portfolio_id" : portfolio._id
+              "portfolio_id" : portfolio._id,
+              "portfolio_value": null
             });
 
             dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id},
@@ -477,7 +515,8 @@ module.exports = {
                   "tokens": user.tokens,
                   "profilePicture": user.profilePicture,
                   "user_id": user._id,
-                  "portfolio_id" : portfolio._id
+                  "portfolio_id" : portfolio._id,
+                  "portfolio_value": null
                 }
               }});
 
@@ -490,6 +529,7 @@ module.exports = {
                 var date = new Date();
                 var lockingDate = new Date(date);
                 lockingDate.setDate(date.getDate() + 1);
+                //lockingDate.setMinutes(date.getMinutes() + 1);
                 var endingDate = new Date(date);
                 endingDate.setDate(date.getDate() + 7);
 
@@ -503,7 +543,7 @@ module.exports = {
                 schedule.scheduleJob(endingDate, endLeague.bind(null, league_result.league_id));            
               }
 
-              dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
+              dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: lockingDate}});
 
               callback(null, JSON.parse(JSON.stringify(league_result)));
             } else {
@@ -608,19 +648,6 @@ module.exports = {
     });
   },
 
-  updatePortfolio:
-  function updatePortfolio(portfolio_id, holding, captain_coin, callback){
-    MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("cryptoleague_database");
-      console.log("In singleton, updating the portfolio");
-      //console.log(holding);
-      dbo.collection("Portfolios").findOneAndUpdate({'_id': ObjectId(portfolio_id)}, {$set: {holdings : holding, captain_coin: captain_coin}});
-      //dbo.collection("Leagues").findOneAndUpdate({'league_id': league_result.league_id}, {$set: {status : league_result.status, start_time: date2}});
-      db.close();
-    });
-  },
-
   updatePortfolioWithID:
   function updatePortfolioWithID(portfolio_id, holding, captain_coin, callback){
     MongoClient.connect(mongodbUrl, function (err, db) {
@@ -632,6 +659,4 @@ module.exports = {
       db.close();
     });
   }
-
-
 };

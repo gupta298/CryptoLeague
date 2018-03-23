@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MarketService } from '../services/index'; 
-
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { MarketService } from '../services/index';
+import { PortfolioService, AuthenticationService } from '../services/index';
+import { User } from '../user';
 
 declare var $: any;
+declare var browser: any;
 declare var DraggablePiechart: any;
 
 @Component({
@@ -12,184 +14,252 @@ declare var DraggablePiechart: any;
 })
 export class PortfolioComponent implements OnInit {
 
-	@Input() onClickCallback: Function;
+	@Input() clickCallback: Function;
 	@Input() hideCards: boolean;
-	proportions: any[] = [
-			{ proportion: 50, format: { color: "#2665da", label: 'Cats' } },
-			{ proportion: 50, format: { color: "#6dd020", label: 'Dogs' } }];
+	proportions: any[] = [];
+	constructor(
+		private marketService: MarketService,
+		private portfolioService: PortfolioService,
+		private authService: AuthenticationService,
+		) { }
 
-	constructor(private marketService: MarketService) { }
+	@ViewChild("piechart") piechart: ElementRef; 
+
+
 	private portfolioFieldArray: Array<any> = [];
-  private portfolioNewAttribute: any = {};
-  isNewRow: boolean = false;
-  coinsArray: Array<any> = [];
-  autoComplete: Array<any> = [];
-  inSearchBar: boolean = false;
-  addWithSearch: boolean = false;
-  captainCoin: String;
+	private portfolioNewAttribute: any = {};
+	private user: User;
+	isNewRow: boolean = false;
+	coinsArray: Array<any> = [];
+	autoComplete: Array<any> = [];
+	inSearchBar: boolean = false;
+	addWithSearch: boolean = false;
+	captainCoin: String;
+	draggablePieChart: any;
+	isPortfolioValid: boolean = false;
+	percentage: number = 100;
+	isPieSetup: boolean = false;
 
   //temporary- remove all this hard-coded stuff
   coins: Array<any> = [];
 
-	ngOnInit() {
-		this.setupPieChart();
+  ngOnInit() {
+  	this.user = this.authService.loadUserFromLocalStorage();
+  	if(this.isPortfolioValid && !this.isPieSetup)
+  		this.setupPieChart();
 
-		this.portfolioNewAttribute.name = "bitcoin";
-		this.portfolioNewAttribute.ticker = "btc";
-		this.portfolioNewAttribute.color = "blue";
-		this.portfolioNewAttribute.exp_coins = 123;
-		this.portfolioNewAttribute.percentage = 12;
-		this.portfolioFieldArray.push(this.portfolioNewAttribute);
-		this.portfolioNewAttribute = {};
+  	this.portfolioNewAttribute.name = "bitcoin";
+  	this.portfolioNewAttribute.ticker = "btc";
+  	this.portfolioNewAttribute.color = "blue";
+  	this.portfolioNewAttribute.exp_coins = 123;
+  	this.portfolioNewAttribute.percentage = 12;
+  	this.portfolioFieldArray.push(this.portfolioNewAttribute);
+  	this.portfolioNewAttribute = {};
 
-		this.portfolioNewAttribute.name = "ether";
-		this.portfolioNewAttribute.ticker = "eth";
-		this.portfolioNewAttribute.color = "red";
-		this.portfolioNewAttribute.exp_coins = 1234;
-		this.portfolioNewAttribute.percentage = 42;
-		this.portfolioFieldArray.push(this.portfolioNewAttribute);
-		this.portfolioNewAttribute = {};
+  	this.portfolioNewAttribute.name = "ether";
+  	this.portfolioNewAttribute.ticker = "eth";
+  	this.portfolioNewAttribute.color = "red";
+  	this.portfolioNewAttribute.exp_coins = 1234;
+  	this.portfolioNewAttribute.percentage = 42;
+  	this.portfolioFieldArray.push(this.portfolioNewAttribute);
+  	this.portfolioNewAttribute = {};
 
-		this.portfolioNewAttribute.name = "litecoin";
-		this.portfolioNewAttribute.ticker = "ltc";
-		this.portfolioNewAttribute.color = "pink";
-		this.portfolioNewAttribute.exp_coins = 321;
-		this.portfolioNewAttribute.percentage = 21;
-		this.portfolioFieldArray.push(this.portfolioNewAttribute);
-		this.portfolioNewAttribute = {};
+  	this.portfolioNewAttribute.name = "litecoin";
+  	this.portfolioNewAttribute.ticker = "ltc";
+  	this.portfolioNewAttribute.color = "pink";
+  	this.portfolioNewAttribute.exp_coins = 321;
+  	this.portfolioNewAttribute.percentage = 21;
+  	this.portfolioFieldArray.push(this.portfolioNewAttribute);
+  	this.portfolioNewAttribute = {};
 
-		this.marketService.getMarketData()
-	      .subscribe(
-	        result => {
-	          this.coinsArray = result;
-	          console.log(result);
-	        }, error => {
-	          console.log(error);
-	        }
-	    );
+  	this.portfolioService.getPortfolio(this.user.currentLeague_id,this.user.id)
+  	.subscribe(
+  		result => {
+					//this.portfolioFieldArray = result;
+					console.log(result);
+				}, error => {
+					console.log(error);
+				}
+				)
 
-		
+  	this.marketService.getMarketData()
+  	.subscribe(
+  		result => {
+  			this.coinsArray = result;
+  			console.log(result);
+  		}, error => {
+  			console.log(error);
+  		}
+  		);
 
-	}	
+  	
+  }	
 
-	onSearchChange(searchValue : string ) {  
-		this.autoComplete = [];
-		for(let i=0;i<this.coinsArray.length;i++) {
-			if(this.coinsArray[i].name.toLowerCase().startsWith(searchValue.toLowerCase())) {
-				this.autoComplete.push(this.coinsArray[i].name);
-			}
-		}
+  onSearchChange(searchValue : string ) {  
+  	this.autoComplete = [];
+  	for(let i=0;i<this.coinsArray.length;i++) {
+  		if(this.coinsArray[i].name.toLowerCase().startsWith(searchValue.toLowerCase())) {
+  			this.autoComplete.push(this.coinsArray[i].name);
+  		}
+  	}
 
-	}
-
-	addRowFromSearch(name) {
-		console.log(name);
-		this.isNewRow = false;
-		this.addWithSearch = true;
-		this.portfolioNewAttribute = {};
-		for(var i=0;i<this.coinsArray.length;i++) {
-			if(this.coinsArray[i].name == name) {
-				console.log("here");
-				this.portfolioNewAttribute.name = name;
-				this.portfolioNewAttribute.ticker = this.coinsArray[i].symbol;
-				this.portfolioNewAttribute.color = "green";
-				this.portfolioNewAttribute.price = this.coinsArray[i].price;
-				break;
-			}
-		}
-	}
-
-	clickRowInsert() {
-		this.addWithSearch = false;
-		this.isNewRow = true;
-	}
-
-	rowWithSearchInsert() {
-		this.portfolioNewAttribute.exp_coins = this.precisionRound(this.portfolioNewAttribute.percentage*1000/this.portfolioNewAttribute.price, 4);
-		this.portfolioFieldArray.push(this.portfolioNewAttribute);
-		this.portfolioNewAttribute = {};
-		this.addWithSearch = false;
-	}
-
-	rowInsert() {
-		this.portfolioFieldArray.push(this.portfolioNewAttribute);
-		this.portfolioNewAttribute = {};
-		this.isNewRow = false;
-	}
-
-	rowDelete(index) {
-		this.portfolioFieldArray.splice(index, 1);
-	}
-
-	deleteNewRowWithSearch() {
-		this.addWithSearch = false;
-		this.portfolioNewAttribute = {};
-	}
-
-	deleteNewRow() {
-		this.isNewRow = !this.isNewRow;
-		this.portfolioNewAttribute = {};
-	}
-
-	focusFunction() {
-		this.inSearchBar = true;
-	} 
-
-	focusOutFunction() {
-		this.inSearchBar = false;
-	}
-
-	portfolioExpand() {
-		if(!this.hideCards){
-			var setup = {
-				canvas: document.getElementById('piechart'),
-				radius: 0.9,
-				collapsing: true,
-				proportions: this.proportions,
-				drawNode: this.drawNode,
-				onchange: this.onPieChartChange,
-				dragDisabled: false
-			};
-
-			var newPie = new DraggablePiechart(setup);
-		} else {
-			var setup = {
-				canvas: document.getElementById('piechart'),
-				radius: 0.9,
-				collapsing: true,
-				proportions: this.proportions,
-				drawNode: this.hideNode,
-				onchange: this.onPieChartChange,
-				dragDisabled: true
-			};
-
-			var newPie = new DraggablePiechart(setup);
-		}
-    this.onClickCallback();
   }
 
-	setupPieChart() {
-		var setup = {
-			canvas: document.getElementById('piechart'),
-			radius: 0.9,
-			collapsing: true,
-			proportions: this.proportions,
-			drawNode: this.hideNode,
-			onchange: this.onPieChartChange,
-			dragDisabled: false
-		};
+  addRowFromSearch(name) {
+  	console.log(name);
+  	this.isNewRow = false;
+  	this.addWithSearch = true;
+  	this.portfolioNewAttribute = {};
+  	for(var i=0;i<this.coinsArray.length;i++) {
+  		if(this.coinsArray[i].name == name) {
+  			console.log("here");
+  			this.portfolioNewAttribute.name = name;
+  			this.portfolioNewAttribute.ticker = this.coinsArray[i].symbol;
+  			this.portfolioNewAttribute.color = "green";
+  			this.portfolioNewAttribute.price = this.coinsArray[i].price;
+  			break;
+  		}
+  	}
+  }
 
-		var newPie = new DraggablePiechart(setup);
+  clickRowInsert() {
+  	this.addWithSearch = false;
+  	this.isNewRow = true;
+  }
 
-	}
+  rowWithSearchInsert() {
+  	this.portfolioNewAttribute.exp_coins = this.precisionRound(this.portfolioNewAttribute.percentage*1000/this.portfolioNewAttribute.price, 4);
+  	this.portfolioFieldArray.push(this.portfolioNewAttribute);
+  	this.portfolioNewAttribute = {};
+  	this.addWithSearch = false;
+  	this.checkPortfolioValidity();
+  	setTimeout(()=>{ 
+  		if(!this.isPieSetup)
+  			this.populatePieChart();
+  	}, 1000);
+  	
+  }
 
-	hideNode(context, piechart, x, y, centerX, centerY, hover) {
-		context.save();
-		context.translate(centerX, centerY);
-		context.fillStyle = '#fefefe';
-		context.beginPath();
-		context.arc(x, y, 0, 0, Math.PI * 2, true);
-		context.fill();
+  rowInsert() {
+  	this.portfolioFieldArray.push(this.portfolioNewAttribute);
+  	this.portfolioNewAttribute = {};
+  	this.isNewRow = false;
+  	this.checkPortfolioValidity();
+  }
+
+  rowDelete(index) {
+  	this.portfolioFieldArray.splice(index, 1);
+  	this.checkPortfolioValidity();
+  	if(this.isPieSetup)
+  		this.populatePieChart();
+  }
+
+  deleteNewRowWithSearch() {
+  	this.addWithSearch = false;
+  	this.portfolioNewAttribute = {};
+  }
+
+  deleteNewRow() {
+  	this.isNewRow = !this.isNewRow;
+  	this.portfolioNewAttribute = {};
+  }
+
+  focusFunction() {
+  	this.inSearchBar = true;
+  }
+
+  focusOutFunction() {
+  	this.inSearchBar = false;
+  }
+
+  portfolioExpand() {
+  	if(this.isPortfolioValid) {
+  		if(!this.hideCards){
+  			var setup = {
+  				canvas: (<HTMLElement>this.piechart.nativeElement),
+  				radius: 0.9,
+  				collapsing: true,
+  				proportions: this.proportions,
+  				drawNode: this.drawNode,
+  				onchange: this.onPieChartChange,
+  				dragDisabled: false
+  			};
+
+  			this.draggablePieChart = new DraggablePiechart(setup);
+  		} else {
+  			var setup = {
+  				canvas: (<HTMLElement>this.piechart.nativeElement),
+  				radius: 0.9,
+  				collapsing: true,
+  				proportions: this.proportions,
+  				drawNode: this.hideNode,
+  				onchange: this.onPieChartChange,
+  				dragDisabled: true
+  			};
+  		}	
+  		
+  		this.draggablePieChart = new DraggablePiechart(setup);
+  	}
+  	this.clickCallback();
+  }
+
+  checkPortfolioValidity() {
+  	var percent = 0;
+  	for(var i=0;i<this.portfolioFieldArray.length;i++) {
+  		percent += this.portfolioFieldArray[i].percentage;
+  	}
+  	if(percent != 100) {
+  		this.isPortfolioValid = false;
+  	} else {
+  		this.isPortfolioValid = true;
+  	}
+  }
+
+  populatePieChart() {
+  	this.proportions = [];
+  	this.checkPortfolioValidity();
+  	if(this.isPortfolioValid) {
+  		for(var i=0;i<this.portfolioFieldArray.length;i++) {
+  			var obj = {
+  				proportion: this.portfolioFieldArray[i].percentage,
+  				format: {
+  					color: this.getRandomColor(),
+  					label: this.portfolioFieldArray[i].ticker,
+  				}
+  			}
+  			this.proportions.push(obj);
+  		}
+  	} else {
+  		this.proportions = [];
+  	}
+  	console.log(this.proportions); 		
+  	this.setupPieChart();
+  }
+
+
+  setupPieChart() {
+  	var setup = {
+  		canvas: (<HTMLElement>this.piechart.nativeElement),
+  		radius: 0.9,
+  		collapsing: true,
+  		proportions: this.proportions,
+  		drawNode: this.drawNode,
+  		onchange: this.onPieChartChange,
+  		dragDisabled: false,
+  		scope: this
+  	};
+
+  	this.draggablePieChart = new DraggablePiechart(setup);
+  	this.isPieSetup = true;
+  }
+
+  hideNode(context, piechart, x, y, centerX, centerY, hover) {
+  	context.save();
+  	context.translate(centerX, centerY);
+  	context.fillStyle = '#fefefe';
+  	context.beginPath();
+  	context.arc(x, y, 0, 0, Math.PI * 2, true);
+  	context.fill();
 		//context.stroke();
 		context.restore();
 	}
@@ -207,15 +277,27 @@ export class PortfolioComponent implements OnInit {
 		context.restore();
 	}
 
-	onPieChartChange(piechart) {
+	onPieChartChange(piechart, that) {
 		var table = $('#proportions-table');
 		var percentages = piechart.getAllSliceSizePercentages();
-		//console.log("percentages", percentages);
+		console.log("percentages", percentages);
+		for(var i=0; i < that.portfolioFieldArray.length; i++) {
+			console.log("inside loop")
+			that.portfolioFieldArray[i].percentage = percentages[i];
+		}
 
 	}
 
 	precisionRound(number, precision) {
-  	var factor = Math.pow(10, precision);
-  	return Math.round(number * factor) / factor;
+		var factor = Math.pow(10, precision);
+		return Math.round(number * factor) / factor;
 	}
+
+	getRandomColor() {
+		var colors = ['#81d3f9','#b5ffff','#4ba2c6','#e5ffff','#01579b','#002f6c','#64ffda','#14cba8','#00e676','#00b248','#eeff41','#558b2f','#ff6d00','#ff9e40','#ff6434'];
+		var hue = '#'+Math.floor(Math.random()*16777215).toString(16);
+		console.log(hue);
+		return colors[Math.floor(Math.random() * colors.length)];
+	}
+
 }

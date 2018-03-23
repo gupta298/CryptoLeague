@@ -24,7 +24,7 @@ export class LeagueDetailComponent implements OnInit {
   league: League = new League();
   timeRemaining: string;
   timeRemainingPercent: number;
-  leagueStarted: boolean: false;
+  leagueStarted: boolean = false;
 
   	constructor(
       private leagueService: LeagueService,
@@ -33,7 +33,8 @@ export class LeagueDetailComponent implements OnInit {
 
   	ngOnInit() {
       this.loadLeague();
-  		this.onPortfolioClicked = this.onPortfolioClicked.bind(this);
+      this.getTimeRemaining();
+  		this.portfolioClicked = this.portfolioClicked.bind(this);
   	}
 
     loadLeague(){
@@ -59,7 +60,7 @@ export class LeagueDetailComponent implements OnInit {
       });
     }
 
-  	onPortfolioClicked(){
+  	portfolioClicked(){
   		console.log("onPortfolioclicked");
   		this.portfolioOpened = !this.portfolioOpened;
   		setTimeout(()=>{ 
