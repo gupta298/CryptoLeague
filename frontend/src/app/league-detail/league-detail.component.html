@@ -25,7 +25,7 @@
 									    <li>Your Rank: #5</li>
 									    <li>Most Gains (24h): asturtony</li>
 											<!-- <li>League status: {{status}}</li> -->
-											<li>{{timeRemaining}} s until the league {{status}}</li>
+											<li>{{timeRemaining}} until the league {{status}}</li>
 									</ul>
 									<ul class="uk-list uk-list-large">
 										<li><b>Prize Distribution:</b></li>
@@ -75,7 +75,7 @@
 
 			<div class="progress-bar" [class.starting]="league.status == 1" [class.started]="league.status == 3" >
 				<div class="progress" [style.width]="timeRemainingPercent + '%'" [class.starting]="league.status == 1" [class.started]="league.status == 3"></div>
-				<p>{{timeRemaining}}</p>
+				<p>{{timeRemaining}} until the league {{status}}</p>
 			</div>
 		</ng-template>
 	</div>
