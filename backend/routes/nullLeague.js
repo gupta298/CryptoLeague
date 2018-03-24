@@ -3,6 +3,7 @@ var request = require('request');
 var router = express.Router();
 const passport = require('passport');
 const mongo = require('../utils/mongoDBCalls');
+var token = require('../utils/token');
 //var league = require('../models/league.js');
 
 const config = require('../config/config');
@@ -18,7 +19,7 @@ router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
           console.log('User is no longer in a league');
           });
         } else {
-          res.send({'message' : "League has not ended yet"});
+          res.send({'message' : "League has not ended yet"}, {'jwt' : token.generateAccessToken(req.user)});
         }
 	    });
 	} else {

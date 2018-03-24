@@ -2,7 +2,7 @@
 	<app-sidebar page="league" [league]="league">
 	</app-sidebar>
 	<div class="page-content">
-	<div *ngIf="league && league.status == 0;else leagueDetail" style="height: 100%;">
+		<div *ngIf="league && league.status == 0;else leagueDetail" style="height: 100%;">
 			<app-league-waiting-overlay [league]="league"></app-league-waiting-overlay>
 		</div>
 		<ng-template #leagueDetail>
@@ -10,7 +10,7 @@
 				<div class="uk-text-lead">League #{{league.league_id}}</div>
 				<div class="uk-margin-top card-container uk-grid-small uk-grid-match" uk-grid>
 					<app-portfolio
-						[onClickCallback]="onPortfolioClicked"
+						[clickCallback]="portfolioClicked"
 						[hideCards]="portfolioOpened"
 						[class.uk-width-1-2@m]="!portfolioOpened"
 						[class.uk-width-1-1@m]="portfolioOpened"
