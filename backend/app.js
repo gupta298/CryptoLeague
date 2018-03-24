@@ -20,9 +20,10 @@ var userRank = require('./routes/userRank');
 var totalUsers = require('./routes/totalUsers');
 var league = require('./routes/league');
 var league_types = require('./routes/leagueTypes');
-var portfolio = require('./routes/portfolio')
+var portfolio = require('./routes/portfolio');
+var nulling = require('./routes/nullLeague');
 
-const config = require('./config/config')
+const config = require('./config/config');
 const passport = require('passport');
 
 require('./config/passport');
@@ -51,9 +52,8 @@ app.use('/auth', auth);
 app.use('/user', user);
 app.use('/validate_user', passport.authenticate(['jwt'], { session: false }), validateUser);
 app.use('/user_rank', passport.authenticate(['jwt'], { session: false }), userRank);
-app.use('/total_users', passport.authenticate(['jwt'], { session: false }), totalUsers); 
+app.use('/total_users', passport.authenticate(['jwt'], { session: false }), totalUsers);
 app.use('/all_users', passport.authenticate(['jwt'], { session: false }), all_users);
-
 // News
 app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
 
@@ -64,6 +64,7 @@ app.use(market.router);
 // League
 app.use('/league_types', passport.authenticate(['jwt'], { session: false }), league_types);
 app.use('/league', passport.authenticate(['jwt'], { session: false }), league);
+app.use('/nullLeague', passport.authenticate(['jwt'], { session: false }), nulling);
 // app.use('/league/:league_id', passport.authenticate(['jwt'], { session: false }), league);
 
 // Portfolio
