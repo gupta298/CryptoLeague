@@ -21,6 +21,9 @@ export class LeagueDetailComponent implements OnInit {
 
   user: User;
   length: number;
+  topTen: number;
+  topTwentyfive: number;
+  topFifty: number;
   loadingLeague: boolean = true;
 	portfolioOpened: boolean = false;
 	hideCards: boolean = false;
@@ -67,7 +70,12 @@ export class LeagueDetailComponent implements OnInit {
                  //console.log(result.portfolio_ids[i].rank);
             }
 
+
+
             this.length = result.portfolio_ids.length;
+            this.topTen = Math.floor(this.length / 10);
+            this.topTwentyfive = Math.floor(this.length / 4);
+            this.topFifty = Math.floor(this.length / 2);
             for (var k = 0; k < result.portfolio_ids.length; k++) {
               for (var h = 1; h < result.portfolio_ids.length + 1; h++) {
                 if (result.portfolio_ids[k+h] !== undefined) {
