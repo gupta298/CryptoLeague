@@ -218,18 +218,20 @@ function endLeague(league_id){
 function calculatePortfoliosValues(league, callback) {
   // All of the validations should be done before calling this function and you have to pass the entire league object to it
 
-  var current_coin_data = market.getCurrentCoinPrices();
-  var league_coins = league.current_market_coin;
+  var current_coin_data = market.getCurrentCoinPricesMap();
+  var league_coins = league.locked_prices;
 
   asyncLoop(league.portfolio_ids, function (item, next) {
     getPortfolioWithID(item.portfolio_id, function(err, portfolio) {
       var overall_percentage_value = 0;
       if(portfolio && portfolio.holdings){
         for (index in portfolio.holdings) {
-          var found_current_market = current_coin_data.find( coin => coin.symbol.toString() === portfolio.holdings[index].coin_symbol.toString() );
-          var found_league_market = league_coins.find( coin => coin.symbol.toString() === portfolio.holdings[index].coin_symbol.toString() );
-
-          var return_over_period = ((found_current_market.price - found_league_market.price) / found_league_market.price);
+          //var found_current_market = current_coin_data.find( coin => coin.symbol.toString() === portfolio.holdings[index].coin_symbol.toString() );
+          //var found_league_market = league_coins.find( coin => coin.symbol.toString() === portfolio.holdings[index].coin_symbol.toString() );
+          var found_current_market = current_coin_data[portfolio.holdings[index].coin_symbol];
+          var found_league_market = league_coins[portfolio.holdings[index].coin_symbol];
+          
+          var return_over_period = ((found_current_market - found_league_market) / found_league_market);
           var value = portfolio.holdings[index].percentage * return_over_period;
 
           if (portfolio.captain_coin && portfolio.captain_coin.toString() === portfolio.holdings[index].coin_symbol.toString()) {
@@ -535,8 +537,8 @@ module.exports = {
               } else {
                 var date = new Date();
                 var lockingDate = new Date(date);
-                lockingDate.setDate(date.getDate() + 1);
-                //lockingDate.setMinutes(date.getMinutes() + 1);
+                //lockingDate.setDate(date.getDate() + 1);
+                lockingDate.setMinutes(date.getMinutes() + 1);
                 var endingDate = new Date(date);
                 endingDate.setDate(date.getDate() + 7);
 
@@ -575,7 +577,7 @@ module.exports = {
 
         if (result) {
 
-          if(result.status === "2"){
+          if(result.status === "3"){
             calculatePortfoliosValues(result, function(){
               var foundUser = false;
               asyncLoop(result.portfolio_ids, function (item, next) {
