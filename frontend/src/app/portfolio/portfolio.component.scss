@@ -1,0 +1,81 @@
+.click:hover {
+    cursor: pointer;
+}
+
+.flex-full {
+    flex: 1;
+}
+
+.upper-half {
+	margin: auto;
+}
+
+#captain {
+  align: center;
+}
+
+#captain div {
+	float: left;
+}
+
+.background {
+	background: #4ea0f3;
+	color: white;
+}
+
+.dropdown {
+	max-height: 140px;
+	overflow-y: scroll;
+	z-index: 3;
+}
+
+.item:hover {
+	font-weight: bold;
+}
+
+
+@media only screen and (min-width: 1200px) {
+  .upper-half { 
+    font-size: 1.2em; 
+  }
+}
+
+.search-suggest {
+    background: #404040;
+    width: 320px;
+    border-top: 1px solid #c91c55;
+    overflow: hidden;
+    display: block;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    border-radius: 3px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+}
+
+.option {
+	opacity: 0.5;
+	background: #4ea0f3;
+	color: white;
+}
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+		margin-left: 5px;
+		padding-left: 5px;
+    width: 7px;
+    background-clip: padding-box;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #fff; 
+}

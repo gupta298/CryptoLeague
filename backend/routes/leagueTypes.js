@@ -1,13 +1,22 @@
 var express = require('express');
 var router = express.Router();
-var config = require('../config/config');
-var mongo = require('../utils/mongoDBCalls');
 
-var leagues = ["Bronze League", "Silver League", "Gold League", "Platinum League"];
+const config = require('../config/config');
+const mongo = require('../utils/mongoDBCalls');
 
-
+/**
+ * @api {GET} /league_types Request to get all league types
+ * @apiName Get_League_Types
+ * @apiGroup League
+ *
+ * @apiHeader {String} JWT JWT token of the user.
+ *
+ * @apiSuccess {JSON} League_Types Returns all available league types.
+*/
 router.get('/', function(req, res, next) {
-    res.send(JSON.parse(JSON.stringify(leagues)));
+    mongo.getLeagueTypes(function(error, response) {
+      res.send(response);
+    });
 });
 
 module.exports = router;

@@ -1,0 +1,35 @@
+<div class="overlay full-height">
+	<div class="uk-container uk-margin-top full-height">
+		<div class="uk-text-lead">League</div>
+		<div class="uk-margin-top card-container full-height">
+			<div class="uk-flex uk-flex-column full-height">
+				<div class="uk-grid uk-child-width-expand@s uk-text-center uk-flex-stretch flex-grow-1 uk-flex-stretch uk-padding uk-padding-remove-right uk-padding-remove-top" uk-grid>
+				        <div class="uk-card uk-card-primary uk-card-body uk-flex-stretch"></div>
+				        <div class="uk-card uk-card-secondary uk-card-body uk-margin-left uk-flex-stretch"></div>
+				</div>
+			    <div class="uk-card uk-card-default uk-card-body flex-grow-1 uk-flex-stretch"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="waiting-users">
+	<div class="waiting-table-content">
+		<h3>Waiting for {{10 - league.portfolio_ids.length}} more users<div uk-spinner class="uk-margin-small-left"></div></h3>
+		<table class="uk-table uk-table-divider">
+		    <thead>
+		        <tr>
+		        	<th></th>
+		            <th>Username</th>
+		            <th>Tokens</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr *ngFor="let user of league.portfolio_ids" _ngcontent-c1="">
+		        	<td><span class="uk-icon uk-icon-image" [ngStyle]="{'background-image': 'url(' + user.profilePicture +')'}"></span></td>
+		            <td _ngcontent-c1="">{{user.username}}</td>
+		            <td _ngcontent-c1="">{{user.tokens}}</td>
+		        </tr>
+		    </tbody>
+		</table>
+	</div>
+</div>

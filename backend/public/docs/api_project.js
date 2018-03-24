@@ -1,4 +1,4 @@
-{
+define({
   "name": "Backend API documentation",
   "version": "1.0.0",
   "description": "API task list manager",
@@ -10,8 +10,8 @@
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2018-03-12T23:42:40.564Z",
+    "time": "2018-03-21T01:15:45.840Z",
     "url": "http://apidocjs.com",
     "version": "0.17.6"
   }
-}
+});

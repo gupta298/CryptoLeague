@@ -1,7 +1,7 @@
 define({ "api": [
   {
     "type": "GET",
-    "url": "/apidoc",
+    "url": "/docs",
     "title": "Request the documentation for the backend",
     "name": "Documentation",
     "group": "Documentation",
@@ -44,6 +44,176 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "routes/index.js",
     "groupTitle": "Index"
+  },
+  {
+    "type": "GET",
+    "url": "/league",
+    "title": "Request to get the league",
+    "name": "Get_League",
+    "group": "League",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "League",
+            "description": "<p>Returns the league object that the current user is in.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/league.js",
+    "groupTitle": "League"
+  },
+  {
+    "type": "GET",
+    "url": "/league_types",
+    "title": "Request to get all league types",
+    "name": "Get_League_Types",
+    "group": "League",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "League_Types",
+            "description": "<p>Returns all available league types.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/leagueTypes.js",
+    "groupTitle": "League"
+  },
+  {
+    "type": "GET",
+    "url": "/league/:league_id",
+    "title": "Request to get the league",
+    "name": "Get_League_With_LeagueId",
+    "group": "League",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "league_id",
+            "description": "<p>ID of the requested league.</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "League",
+            "description": "<p>Returns the league object that is requested.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/league.js",
+    "groupTitle": "League"
+  },
+  {
+    "type": "POST",
+    "url": "/league",
+    "title": "Request to create or join a league",
+    "name": "Join_Or_Create_League",
+    "group": "League",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "League_Type_ID",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>League type Id.</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "League",
+            "description": "<p>Returns the league object that the current user was added to.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/league.js",
+    "groupTitle": "League"
   },
   {
     "type": "GET",
@@ -116,6 +286,196 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "routes/newsapi.js",
     "groupTitle": "News"
+  },
+  {
+    "type": "GET",
+    "url": "/portfolio/",
+    "title": "Request to get the portfolio of the current league",
+    "name": "Get_Portfolio",
+    "group": "Portfolio",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "League",
+            "description": "<p>Returns the portfolio of the current league.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/portfolio.js",
+    "groupTitle": "Portfolio"
+  },
+  {
+    "type": "GET",
+    "url": "/portfolio/:league_id",
+    "title": "Request to get the portfolio in this league",
+    "name": "Get_Portfolio_With_LeagueId",
+    "group": "Portfolio",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "league_id",
+            "description": "<p>ID of the requested league portfolio.</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "League",
+            "description": "<p>Returns the portfolio of the league that is requested.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/portfolio.js",
+    "groupTitle": "Portfolio"
+  },
+  {
+    "type": "GET",
+    "url": "/portfolio/:league_id/:user_id",
+    "title": "Request to get the portfolio in a specific league of a specific user",
+    "name": "Get_Portfolio_With_LeagueId_With_UserId",
+    "group": "Portfolio",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "league_id",
+            "description": "<p>ID of the requested league portfolio.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>ID of the requested user.</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "League",
+            "description": "<p>Returns the portfolio in a specific league of a specific user.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/portfolio.js",
+    "groupTitle": "Portfolio"
+  },
+  {
+    "type": "PUT",
+    "url": "/portfolio",
+    "title": "Request to update the portfolio a league",
+    "name": "Update_portfolio",
+    "group": "Portfolio",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Json",
+            "optional": false,
+            "field": "Portfolio_Object",
+            "description": "<p>Updated portfolio object.</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "Portfolio_Object",
+            "description": "<p>Returns the final updated portfolio object.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/portfolio.js",
+    "groupTitle": "Portfolio"
   },
   {
     "type": "GET",
