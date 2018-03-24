@@ -12,9 +12,9 @@
 					<app-portfolio
 						[clickCallback]="portfolioClicked"
 						[hideCards]="portfolioOpened"
-						[class.uk-width-1-2@m]="!portfolioOpened" 
+						[class.uk-width-1-2@m]="!portfolioOpened"
 						[class.uk-width-1-1@m]="portfolioOpened"
-						class="uk-animation-slide-left">	
+						class="uk-animation-slide-left">
 					</app-portfolio>
 					<div class="uk-width-1-2@m">
 						<div *ngIf="!hideCards" class="uk-card uk-card-secondary uk-card-small uk-card-body uk-animation-slide-right" [class.uk-animation-reverse]="portfolioOpened">
@@ -23,15 +23,15 @@
 								<div uk-grid *ngIf="!hideCards">
 									<ul class="uk-list uk-list-large">
 									    <li>Your Rank: #5</li>
-									    <li>No. of players: 100</li>
-									    <li>Prize Pool: 2500</li>
 									    <li>Most Gains (24h): asturtony</li>
+											<!-- <li>League status: {{status}}</li> -->
+											<li>{{timeRemaining}} s until the league {{status}}</li>
 									</ul>
 									<ul class="uk-list uk-list-large">
 										<li><b>Prize Distribution:</b></li>
-									    <li>#1-10: 50</li>
-									    <li>#11-25: 37.5</li>
-									    <li>#26-50: 25</li>
+									    <li>#1 - #{{league.portfolio_ids.length / 10}}: 50</li>
+									    <li>#{{league.portfolio_ids.length / 10 + 1}} - #{{league.portfolio_ids.length / 4}}: 37.5</li>
+									    <li>#{{league.portfolio_ids.length / 4 + 1}} - #{{league.portfolio_ids.length / 2}}: 25</li>
 									</ul>
 								</div>
 							</div>
