@@ -46,6 +46,33 @@ export class LeagueDetailComponent implements OnInit {
         this.loadingLeague = true;
         this.leagueService.getLeague().subscribe(
           result => {
+
+            result.portfolio_ids.sort(function(a, b) {
+              return b.portfolio_value - a.portfolio_value;
+            });
+
+            for(var i = 0; i < result.portfolio_ids.length; i++) {
+                // original ranking
+                 result.portfolio_ids[i].rank = i + 1; 
+            }
+
+            for (var k = 0; k < result.portfolio_ids.length; k++) {
+              for (var h = 1; h < result.portfolio_ids.length + 1; h++) {
+                if (result.portfolio_ids[k+h] !== undefined) {
+                  if (result.portfolio_ids[k+h].tie !== true) {
+                    if (result.portfolio_ids[k].portfolio_value === result.portfolio_ids[h + k].portfolio_value) {
+                      result.portfolio_ids[k].rank = k + 1;
+                      result.portfolio_ids[h + k].rank = k + 1;
+                      result.portfolio_ids[k].tie = true;
+                      result.portfolio_ids[h + k].tie = true;
+                    }
+                  }
+                }    
+              }
+            }
+            
+            console.log(result);
+
             this.league.deserialize(result);
             console.log(this.league);
 
