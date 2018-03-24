@@ -22,8 +22,8 @@
 							<div class="uk-flex uk-flex-bottom uk-card-body">
 								<div uk-grid *ngIf="!hideCards">
 									<ul class="uk-list uk-list-large">
-									    <li>Your Rank: #5</li>
-									    <li>Most Gains (24h): asturtony</li>
+									    <li>Your Rank: #{{rank}}</li>
+									    <li>Most Gains (24h): {{leader}}</li>
 											<!-- <li>League status: {{status}}</li> -->
 											<li>{{timeRemaining}} until the league {{status}}</li>
 									</ul>
@@ -63,9 +63,9 @@
 							    <tr *ngFor="let user of league.portfolio_ids">
 							     	<td *ngIf="league.status >= 2">{{user.rank}}</td>
 							     	<td><span class="uk-icon uk-icon-image uk-margin-right" [ngStyle]="{'background-image': 'url(' + user.profilePicture +')'}"></span></td>
-							     	<td>{{user.username}}</td>   
+							     	<td>{{user.username}}</td>
 						        <td *ngIf="league.status >= 2" [class.uk-text-success]="user.portfolio_value > 0" [class.uk-text-danger]="user.portfolio_value < 0">
-						        	<span *ngIf="user.portfolio_value > 0;else negChange" uk-icon="triangle-up"></span> 
+						        	<span *ngIf="user.portfolio_value > 0;else negChange" uk-icon="triangle-up"></span>
 											<ng-template #negChange>
 												<span uk-icon="triangle-down"></span>
 											</ng-template>

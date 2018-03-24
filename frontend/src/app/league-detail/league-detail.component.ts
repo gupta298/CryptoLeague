@@ -24,6 +24,8 @@ export class LeagueDetailComponent implements OnInit {
   league: League = new League();
   timeRemaining: string;
   status: string;
+  rank: number;
+  leader: string;
   timeRemainingPercent: number;
   leagueStarted: boolean = false;
 
@@ -54,7 +56,7 @@ export class LeagueDetailComponent implements OnInit {
 
             for(var i = 0; i < result.portfolio_ids.length; i++) {
                 // original ranking
-                 result.portfolio_ids[i].rank = i + 1; 
+                 result.portfolio_ids[i].rank = i + 1;
             }
 
             for (var k = 0; k < result.portfolio_ids.length; k++) {
@@ -64,14 +66,15 @@ export class LeagueDetailComponent implements OnInit {
                     if (result.portfolio_ids[k].portfolio_value === result.portfolio_ids[h + k].portfolio_value) {
                       result.portfolio_ids[k].rank = k + 1;
                       result.portfolio_ids[h + k].rank = k + 1;
+                      this.rank = result.portfolio_ids[k].rank;
                       result.portfolio_ids[k].tie = true;
                       result.portfolio_ids[h + k].tie = true;
                     }
                   }
-                }    
+                }
               }
             }
-            
+
             console.log(result);
 
             this.league.deserialize(result);
@@ -99,7 +102,7 @@ export class LeagueDetailComponent implements OnInit {
     getTimeRemaining() {
       let startDate: moment.Moment = moment(this.league.start_time);
       let endDate: moment.Moment = moment(this.league.start_time);
-      let status = "starts.";
+      this.status = "starts.";
       let totaltime = 86400;
       let currDate: moment.Moment = moment();
 
