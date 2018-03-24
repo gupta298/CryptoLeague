@@ -23,6 +23,7 @@ export class LeagueDetailComponent implements OnInit {
   leagueID: string;
   league: League = new League();
   timeRemaining: string;
+  status: string;
   timeRemainingPercent: number;
   leagueStarted: boolean = false;
 
@@ -46,6 +47,33 @@ export class LeagueDetailComponent implements OnInit {
         this.loadingLeague = true;
         this.leagueService.getLeague().subscribe(
           result => {
+
+            result.portfolio_ids.sort(function(a, b) {
+              return b.portfolio_value - a.portfolio_value;
+            });
+
+            for(var i = 0; i < result.portfolio_ids.length; i++) {
+                // original ranking
+                 result.portfolio_ids[i].rank = i + 1; 
+            }
+
+            for (var k = 0; k < result.portfolio_ids.length; k++) {
+              for (var h = 1; h < result.portfolio_ids.length + 1; h++) {
+                if (result.portfolio_ids[k+h] !== undefined) {
+                  if (result.portfolio_ids[k+h].tie !== true) {
+                    if (result.portfolio_ids[k].portfolio_value === result.portfolio_ids[h + k].portfolio_value) {
+                      result.portfolio_ids[k].rank = k + 1;
+                      result.portfolio_ids[h + k].rank = k + 1;
+                      result.portfolio_ids[k].tie = true;
+                      result.portfolio_ids[h + k].tie = true;
+                    }
+                  }
+                }    
+              }
+            }
+            
+            console.log(result);
+
             this.league.deserialize(result);
             console.log(this.league);
 
@@ -55,7 +83,7 @@ export class LeagueDetailComponent implements OnInit {
           }, error => {
             console.log(error);
             this.router.navigate(['/']);
-          } 
+          }
         );
       });
     }
@@ -63,7 +91,7 @@ export class LeagueDetailComponent implements OnInit {
   	portfolioClicked(){
   		console.log("onPortfolioclicked");
   		this.portfolioOpened = !this.portfolioOpened;
-  		setTimeout(()=>{ 
+  		setTimeout(()=>{
   			this.hideCards = !this.hideCards;
   		}, 500);
   	}
@@ -78,11 +106,11 @@ export class LeagueDetailComponent implements OnInit {
       if(startDate.isBefore(currDate)){
         if(!this.leagueStarted){ //reload league if initial countdown is over
           this.leagueStarted = true;
-          this.loadLeague(); 
+          this.loadLeague();
         }
 
         endDate.add(6, 'd');
-        status = "ends.";
+        this.status = "ends.";
         totaltime = 518400;
         this.timeRemainingPercent = 100 - Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
       } else {
@@ -104,12 +132,12 @@ export class LeagueDetailComponent implements OnInit {
       delta -= minutes * 60;
 
       // what's left is seconds
-      var seconds = delta % 60; 
+      var seconds = delta % 60;
 
       if(days > 0){
-        this.timeRemaining = days + "d " + hours + "h " + minutes + "m " + seconds + "s until the league " + status;
+        this.timeRemaining = days + "d " + hours + "h " + minutes + "m " + seconds + "s";//  + "s until the league " + status;
       } else {
-        this.timeRemaining = hours + "h " + minutes + "m " + seconds + "s until the league " + status;
+        this.timeRemaining = hours + "h " + minutes + "m " + seconds + "s"; //+ "s until the league " + status;
       }
     }
 }
