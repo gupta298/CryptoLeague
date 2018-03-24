@@ -86,8 +86,11 @@ export class LeagueDetailComponent implements OnInit {
             for(var i = 0; i < result.portfolio_ids.length; i++){
               if(result.portfolio_ids[i].username == this.user.username){
                 this.rank = result.portfolio_ids[i].rank;
+                if(result.portfolio_ids[i].rank == 1){
+                  this.leader = result.portfolio_ids[i].username;
+                }
               }
-              if(result.portfolio_ids[i].rank == 1){
+              else if(result.portfolio_ids[i].rank == 1){
                 this.leader = result.portfolio_ids[i].username;
               }
             }
