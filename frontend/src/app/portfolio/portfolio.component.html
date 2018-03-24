@@ -84,7 +84,7 @@
 				      <tr>
 				        <th>#</th>
 				        <th>name</th>
-				        <th>color</th>
+				        <th>price</th>
 				        <th>ticker</th>
 				        <th>%</th>
 				        <th>exp. coins</th>
@@ -96,9 +96,9 @@
 				    		<!--"comment"-->
 				    		<td>{{i+1}}</td>
 				        <td>{{field.name}}</td>
-				        <td>{{field.color}}</td>
+				        <td>{{field.price}}</td>
 				        <td>{{field.ticker}}</td>
-				        <td>{{field.percentage}}</td>
+				        <td><span (click)="percentUp(i)" uk-icon="plus"></span>  {{field.percentage | number: '1.0-0'}}  <span (click)="percentDown(i)" uk-icon="minus"></span></td>
 				        <td>{{field.exp_coins}}</td>
 				        <td>
 				        	<span uk-icon="close" class="uk-button" (click)="rowDelete(i)"></span>
@@ -122,7 +122,7 @@
 									</div>
 		            </td>
 		            <td>
-	                {{portfolioNewAttribute.color}}
+	                {{portfolioNewAttribute.price}}
 			          </td>
 			          <td>
 			            {{portfolioNewAttribute.ticker}}
@@ -145,7 +145,7 @@
 	                {{portfolioNewAttribute.name}}
 		            </td>
 		            <td>
-	                {{portfolioNewAttribute.color}}
+	                {{portfolioNewAttribute.price}}
 			          </td>
 			          <td>
 			            {{portfolioNewAttribute.ticker}}
@@ -181,7 +181,6 @@
 					            <select [(ngModel)]="captainCoin" class="uk-select" placeholder="select a captain coin" name="captainCoin">
 					            		<option class="option uk-margin-right item" selected="selected">Select Captain Coin</option>
 					                <option *ngFor="let opt of portfolioFieldArray" class="option uk-margin-right item"><div class="option">{{opt.ticker}}</div></option>
-					                <!--option class="option">Option 02</option-->
 					            </select>
 					        </div>
 					        <div class="uk-margin-small-left"><button type="submit" class="uk-button uk-button-default">Submit</button></div>

@@ -161,6 +161,58 @@ export class PortfolioComponent implements OnInit {
 		this.portfolioNewAttribute = {};
 	}
 
+	percentUp(i) {
+		//debugger;
+		if(i>0) {
+			if(this.portfolioFieldArray[i].percentage < 100 && this.portfolioFieldArray[i-1].percentage > 0){
+				this.portfolioFieldArray[i].percentage = this.portfolioFieldArray[i].percentage+1;
+				//this.portfolioFieldArray[i].percentage = Number(Number.parseFloat(this.portfolioFieldArray[i].percentage).toFixed(0));
+
+				this.portfolioFieldArray[i-1].percentage = this.portfolioFieldArray[i-1].percentage-1;
+				//this.portfolioFieldArray[i-1].percentage = Number(Number.parseFloat(this.portfolioFieldArray[i-1].percentage).toFixed(0));
+			}
+		} else if(this.portfolioFieldArray[i].percentage < 100 && this.portfolioFieldArray[i+1].percentage > 0){
+			if(this.portfolioFieldArray[i].percentage < 100){
+				this.portfolioFieldArray[i].percentage = this.portfolioFieldArray[i].percentage+1;
+				//this.portfolioFieldArray[i].percentage = Number(Number.parseFloat(this.portfolioFieldArray[i].percentage).toFixed(0));
+
+				this.portfolioFieldArray[i+1].percentage = this.portfolioFieldArray[i+1].percentage-1;
+				//this.portfolioFieldArray[i+1].percentage = Number(Number.parseFloat(this.portfolioFieldArray[i+1].percentage).toFixed(0));
+			}
+		}
+		this.checkPortfolioValidity();
+		setTimeout(()=>{ 
+  			if(!this.isPieSetup)
+  				this.populatePieChart();
+  		}, 1000);
+		console.log(this.portfolioFieldArray);
+	}
+	percentDown(i) {
+		if(i>0) {
+			if(this.portfolioFieldArray[i].percentage < 100 && this.portfolioFieldArray[i-1].percentage > 0){
+				this.portfolioFieldArray[i].percentage = this.portfolioFieldArray[i].percentage-1;
+				//this.portfolioFieldArray[i].percentage = Number(Number.parseFloat(this.portfolioFieldArray[i].percentage).toFixed(0));
+
+				this.portfolioFieldArray[i-1].percentage = this.portfolioFieldArray[i-1].percentage+1;
+				//this.portfolioFieldArray[i-1].percentage = Number(Number.parseFloat(this.portfolioFieldArray[i-1].percentage).toFixed(0));
+			}
+		} else if(this.portfolioFieldArray[i].percentage < 100 && this.portfolioFieldArray[i+1].percentage > 0){
+			if(this.portfolioFieldArray[i].percentage < 100){
+				this.portfolioFieldArray[i].percentage = this.portfolioFieldArray[i].percentage-1;
+				//this.portfolioFieldArray[i].percentage = Number(Number.parseFloat(this.portfolioFieldArray[i].percentage).toFixed(0));
+
+				this.portfolioFieldArray[i+1].percentage = this.portfolioFieldArray[i+1].percentage+1;
+				//this.portfolioFieldArray[i+1].percentage = Number(Number.parseFloat(this.portfolioFieldArray[i+1].percentage).toFixed(0));
+			}
+		}
+		this.checkPortfolioValidity();
+		setTimeout(()=>{ 
+  			if(!this.isPieSetup)
+  				this.populatePieChart();
+  		}, 1000);
+		console.log(this.portfolioFieldArray);
+	}
+
 	focusFunction() {
 		this.inSearchBar = true;
 	}
