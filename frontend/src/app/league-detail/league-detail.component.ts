@@ -3,9 +3,12 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { MomentModule } from 'angular2-moment';
 
+import { AuthenticationService, NewsService, UserService, LeagueService } from '../services/index';
 import { LeagueService } from '../services/index';
 
 import { League } from '../league';
+
+import { User } from '../user';
 
 import * as moment from 'moment';
 
@@ -16,6 +19,8 @@ import * as moment from 'moment';
 })
 export class LeagueDetailComponent implements OnInit {
 
+  user: User;
+  length: number;
   loadingLeague: boolean = true;
 	portfolioOpened: boolean = false;
 	hideCards: boolean = false;
@@ -30,11 +35,13 @@ export class LeagueDetailComponent implements OnInit {
   leagueStarted: boolean = false;
 
   	constructor(
+      private authService: AuthenticationService,
       private leagueService: LeagueService,
       private route: ActivatedRoute,
       private router: Router) { }
 
   	ngOnInit() {
+      this.user = this.authService.loadUserFromLocalStorage();
       this.loadLeague();
       this.getTimeRemaining();
   		this.portfolioClicked = this.portfolioClicked.bind(this);
@@ -57,8 +64,10 @@ export class LeagueDetailComponent implements OnInit {
             for(var i = 0; i < result.portfolio_ids.length; i++) {
                 // original ranking
                  result.portfolio_ids[i].rank = i + 1;
+                 //console.log(result.portfolio_ids[i].rank);
             }
 
+            this.length = result.portfolio_ids.length;
             for (var k = 0; k < result.portfolio_ids.length; k++) {
               for (var h = 1; h < result.portfolio_ids.length + 1; h++) {
                 if (result.portfolio_ids[k+h] !== undefined) {
@@ -66,7 +75,6 @@ export class LeagueDetailComponent implements OnInit {
                     if (result.portfolio_ids[k].portfolio_value === result.portfolio_ids[h + k].portfolio_value) {
                       result.portfolio_ids[k].rank = k + 1;
                       result.portfolio_ids[h + k].rank = k + 1;
-                      this.rank = result.portfolio_ids[k].rank;
                       result.portfolio_ids[k].tie = true;
                       result.portfolio_ids[h + k].tie = true;
                     }
@@ -75,6 +83,16 @@ export class LeagueDetailComponent implements OnInit {
               }
             }
 
+            for(var i = 0; i < result.portfolio_ids.length; i++){
+              if(result.portfolio_ids[i].username == this.user.username){
+                this.rank = result.portfolio_ids[i].rank;
+              }
+              if(result.portfolio_ids[i].rank == 1){
+                this.leader = result.portfolio_ids[i].username;
+              }
+            }
+
+            console.log('Printing here');
             console.log(result);
 
             this.league.deserialize(result);
