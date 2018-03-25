@@ -41,6 +41,8 @@ export class PortfolioComponent implements OnInit {
   isPieSetup: boolean = false;
   chartCount: number = 0;
   portfolioObject: any = {};
+  showSubmitPopup: boolean = false;
+  submitMessage: String = "validating portfolio....";
 
   //temporary- remove all this hard-coded stuff
   coins: Array<any> = [];
@@ -238,11 +240,13 @@ export class PortfolioComponent implements OnInit {
   }
 
   submitPortfolio(form) {
+  	console.log("inside submit portfolio");
+  	//this.showSubmitPopup = false;
   	var percent = 0;
   	for(var i=0;i<this.portfolioFieldArray.length; i++) {
   		percent += this.portfolioFieldArray[i].percentage;
   	}
-  	if(percent == 100) {
+  	
   		var holdings = [];
   		for(var i=0;i<this.portfolioFieldArray.length; i++) {
 	  		var obj = {
@@ -256,11 +260,13 @@ export class PortfolioComponent implements OnInit {
 	  		holdings: holdings,
 	  		captain_coin: this.captainCoin
 	  	}
-
+	  	console.log("before request");
 	  	this.portfolioService.putPortfolio(body)
 				.subscribe(
 					result => {
 						console.log(result);
+						this.showSubmitPopup = true;
+						this.submitMessage = result.message;
 						if(result.message == "success") {
 							
 						}
@@ -269,7 +275,11 @@ export class PortfolioComponent implements OnInit {
 						console.log(error);
 					}
 				)
-  	}
+  	
+  }
+
+  submitPopupClick() {
+  	this.showSubmitPopup = false;
   }
 
   populatePieChart() {

@@ -35,7 +35,15 @@
 			<ng-template #other_content><span uk-icon="pencil" class="uk-button" (click)="portfolioExpand()"></span></ng-template>
 		</div>
 
-		
+		<div *ngIf="showSubmitPopup">
+			<div class="modal-view"></div>
+			<div class="modal">
+				<div class="modal-contents">
+		      <div class="uk-margin-medium"><p class="uk-align-center" >{{submitMessage}}</p></div>
+		      <button (click)="submitPopupClick()" class="uk-button-primary okButton" type="button"> OK </button>
+		    </div>
+		  </div>
+	  </div>
 
 
 		<div *ngIf="hideCards" class="uk-animation-fade-in">
@@ -67,12 +75,12 @@
 			<div uk-grid *ngIf="!hideCards">
 				<ul class="uk-list uk-list-large">
 				    <li *ngFor="let field of portfolioFieldArray | slice:0:3; let i = index" class="">
-				    	● {{field.ticker}}: {{field.percentage}}%
+				    	● {{field.ticker}}: {{field.percentage | number: '1.0-0'}}%
 				    </li>
 				</ul>
 				<ul class="uk-list uk-list-large">
 				    <li *ngFor="let field of portfolioFieldArray | slice:3:6; let i = index" class="">
-				    	● {{field.ticker}}: {{field.percentage}}%
+				    	● {{field.ticker}}: {{field.percentage | number: '1.0-0'}}%
 				    </li>
 				</ul>
 			</div>
@@ -183,7 +191,9 @@
 					                <option *ngFor="let opt of portfolioFieldArray" class="option uk-margin-right item"><div class="option">{{opt.ticker}}</div></option>
 					            </select>
 					        </div>
-					        <div class="uk-margin-small-left"><button type="submit" class="uk-button uk-button-default">Submit</button></div>
+					        <div class="uk-margin-small-left">
+					        	<button type="submit" class="uk-button uk-button-default" >Submit</button>
+					        </div>
 					    </fieldset>
 					</form>
 				</div>
