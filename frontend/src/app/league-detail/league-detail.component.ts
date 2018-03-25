@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Rx';
 import { MomentModule } from 'angular2-moment';
 
 import { AuthenticationService, NewsService, UserService, LeagueService } from '../services/index';
-import { LeagueService } from '../services/index';
 
 import { League } from '../league';
 
