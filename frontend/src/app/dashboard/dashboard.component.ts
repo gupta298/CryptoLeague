@@ -4,7 +4,7 @@
   import { Observable } from "rxjs";
   import { TimerObservable } from "rxjs/observable/TimerObservable";
 
-  import { AuthenticationService, NewsService, UserService, LeagueService } from '../services/index'; 
+  import { AuthenticationService, NewsService, UserService, LeagueService } from '../services/index';
 
   @Component({
     selector: 'app-dashboard',
@@ -24,7 +24,7 @@
     		private newsService: NewsService,
         private userService: UserService,
         private leagueService: LeagueService
-    		) { 
+    		) {
       }
 
     	ngOnInit() {
@@ -56,7 +56,7 @@
               }
             );
         }
-
+        console.log(this.user.id);
     	}
 
       getNews() {
