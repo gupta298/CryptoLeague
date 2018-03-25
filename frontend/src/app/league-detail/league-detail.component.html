@@ -12,9 +12,9 @@
 					<app-portfolio
 						[clickCallback]="portfolioClicked"
 						[hideCards]="portfolioOpened"
-						[class.uk-width-1-2@m]="!portfolioOpened" 
+						[class.uk-width-1-2@m]="!portfolioOpened"
 						[class.uk-width-1-1@m]="portfolioOpened"
-						class="uk-animation-slide-left">	
+						class="uk-animation-slide-left">
 					</app-portfolio>
 					<div class="uk-width-1-2@m">
 						<div *ngIf="!hideCards" class="uk-card uk-card-secondary uk-card-small uk-card-body uk-animation-slide-right" [class.uk-animation-reverse]="portfolioOpened">
@@ -22,16 +22,16 @@
 							<div class="uk-flex uk-flex-bottom uk-card-body">
 								<div uk-grid *ngIf="!hideCards">
 									<ul class="uk-list uk-list-large">
-									    <li>Your Rank: #5</li>
-									    <li>No. of players: 100</li>
-									    <li>Prize Pool: 2500</li>
-									    <li>Most Gains (24h): asturtony</li>
+									    <li>Your Rank: #{{rank}}</li>
+									    <li>User at #1: {{leader}}</li>
+											<!-- <li>League status: {{status}}</li> -->
+											<li>{{timeRemaining}} until the league {{status}}</li>
 									</ul>
 									<ul class="uk-list uk-list-large">
 										<li><b>Prize Distribution:</b></li>
-									    <li>#1-10: 50</li>
-									    <li>#11-25: 37.5</li>
-									    <li>#26-50: 25</li>
+									    <li>#1 - #{{this.topTen}}: 50</li>
+									    <li>#{{this.topTen+ 1}} - #{{this.topTwentyfive}}: 37.5</li>
+									    <li>#{{this.topTwentyfive + 1}} - #{{this.topFifty}}: 25</li>
 									</ul>
 								</div>
 							</div>
@@ -61,10 +61,16 @@
 							        </tr>
 							    </thead>
 							    <tr *ngFor="let user of league.portfolio_ids">
-							     	<td *ngIf="league.status >= 2">-</td>
+							     	<td *ngIf="league.status >= 2">{{user.rank}}</td>
 							     	<td><span class="uk-icon uk-icon-image uk-margin-right" [ngStyle]="{'background-image': 'url(' + user.profilePicture +')'}"></span></td>
 							     	<td>{{user.username}}</td>
-						        <td *ngIf="league.status >= 2">{{user.portfolio_value | number}}</td>
+						        <td *ngIf="league.status >= 2" [class.uk-text-success]="user.portfolio_value > 0" [class.uk-text-danger]="user.portfolio_value < 0">
+						        	<span *ngIf="user.portfolio_value > 0;else negChange" uk-icon="triangle-up"></span>
+											<ng-template #negChange>
+												<span uk-icon="triangle-down"></span>
+											</ng-template>
+											{{user.portfolio_value | number:'1.2-2'}}
+										</td>
 						        <td>{{user.tokens}}</td>
 						        </tr>
 							</table>
@@ -75,7 +81,7 @@
 
 			<div class="progress-bar" [class.starting]="league.status == 1" [class.started]="league.status == 3" >
 				<div class="progress" [style.width]="timeRemainingPercent + '%'" [class.starting]="league.status == 1" [class.started]="league.status == 3"></div>
-				<p>{{timeRemaining}}</p>
+				<p>{{timeRemaining}} until the league {{status}}</p>
 			</div>
 		</ng-template>
 	</div>
