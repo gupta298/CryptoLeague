@@ -72,21 +72,17 @@ export class LeagueDetailComponent implements OnInit {
 
 
             this.length = result.portfolio_ids.length;
-            this.topTen = Math.floor(this.length / 10);
-            this.topTwentyfive = Math.floor(this.length / 4);
-            this.topFifty = Math.floor(this.length / 2);
-            for (var k = 0; k < result.portfolio_ids.length; k++) {
-              for (var h = 1; h < result.portfolio_ids.length + 1; h++) {
-                if (result.portfolio_ids[k+h] !== undefined) {
-                  if (result.portfolio_ids[k+h].tie !== true) {
-                    if (result.portfolio_ids[k].portfolio_value === result.portfolio_ids[h + k].portfolio_value) {
-                      result.portfolio_ids[k].rank = k + 1;
-                      result.portfolio_ids[h + k].rank = k + 1;
-                      result.portfolio_ids[k].tie = true;
-                      result.portfolio_ids[h + k].tie = true;
-                    }
-                  }
-                }
+            this.topTen = Math.ceil(this.length / 10);
+            this.topTwentyfive = Math.ceil(this.length / 4);
+            this.topFifty = Math.ceil(this.length / 2);
+            
+            let currRank = 1;
+            result.portfolio_ids[0].rank = 1;
+            for(let i = 1; i < result.portfolio_ids.length; i++){
+              if(result.portfolio_ids[i].portfolio_value === result.portfolio_ids[i - 1].portfolio_value){
+                result.portfolio_ids[i].rank = currRank;
+              } else {
+                result.portfolio_ids[i].rank = ++currRank;
               }
             }
 
