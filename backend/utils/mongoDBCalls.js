@@ -197,7 +197,7 @@ function startLeague(league_id){
   MongoClient.connect(mongodbUrl, function (err, db) {
     if (err) throw err;
     var dbo = db.db("cryptoleague_database");
-    dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', current_market_coin: market.getCurrentCoinPrices(), locked_prices: market.getCurrentCoinPricesMap() }});
+    dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', locked_prices: market.getCurrentCoinPricesMap() }});
     db.close();
   });
 }
@@ -233,7 +233,10 @@ function endLeague(league_id){
             }
           }
 
-          let totalCoins = result.league_buy_in * result.portfolio_ids.length();
+          console.log("current rankings");
+          console.log(result.portfolio_ids);
+
+          let totalCoins = result.league_buy_in * result.portfolio_ids.length;
 
           //Count number of people
           let numTop25 = 0, numTop50 = 0, numTop75 = 0;
@@ -246,29 +249,28 @@ function endLeague(league_id){
               numTop75++;
           }
 
-          while(totalCoins > 0){
-            for(let i = 0; i < result.portfolio_ids.length; i++){
-              if(result.portfolio_ids[i].rank <= 25) {
-                result.portfolio_ids[i].payout += (0.2 * totalCoins) / numTop25;
-                totalCoins -= (0.2 * totalCoins) / numTop25;
-              }
-              if(result.portfolio_ids[i].rank <= 50) {
-                result.portfolio_ids[i].payout += (0.3 * totalCoins) / numTop50;
-                totalCoins -= (0.3 * totalCoins) / numTop50;
-              }
-              if(result.portfolio_ids[i].rank <= 75) {
-                result.portfolio_ids[i].payout += (0.5 * totalCoins) / numTop75;
-                totalCoins -= (0.5 * totalCoins) / numTop75;
-              }
+          for(let i = 0; i < result.portfolio_ids.length; i++){
+            if(result.portfolio_ids[i].rank <= 25) {
+              result.portfolio_ids[i].payout += (0.2 * totalCoins) / numTop25;
+            }
+            if(result.portfolio_ids[i].rank <= 50) {
+              result.portfolio_ids[i].payout += (0.3 * totalCoins) / numTop50;
+            }
+            if(result.portfolio_ids[i].rank <= 75) {
+              result.portfolio_ids[i].payout += (0.5 * totalCoins) / numTop75;
             }
           }
+
+          console.log("after calculating payouts");
+          console.log(result.portfolio_ids);
+
           MongoClient.connect(mongodbUrl, function (err, db) {
             if (err) throw err;
             var dbo = db.db("cryptoleague_database");
 
             //Update all the users
             for(let i = 0; i < result.portfolio_ids.length; i++){
-              dbo.collection("Users").findOneAndUpdate({'_id': ObjectID(result.portfolio_ids[i].user_id)}, {$inc: {'tokens' : result.portfolio_ids[i].payout}});
+              dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$inc: {'tokens' : result.portfolio_ids[i].payout}});
             }
 
             //Update league
@@ -608,7 +610,8 @@ module.exports = {
                 //lockingDate.setDate(date.getDate() + 1);
                 lockingDate.setMinutes(date.getMinutes() + 1);
                 var endingDate = new Date(date);
-                endingDate.setDate(date.getDate() + 7);
+                //endingDate.setDate(date.getDate() + 7);
+                endingDate.setMinutes(date.getMinutes() + 3);
 
                 league_result.status = "1";
                 league_result.start_time = lockingDate;
