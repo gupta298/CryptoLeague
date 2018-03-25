@@ -1,65 +1,28 @@
 <div class="page-container">
-	<app-sidebar page="leagueSelect">
+	<app-sidebar page="Join a League">
 	</app-sidebar>
 	<div class="page-content">
 		<div class="uk-container uk-margin-top">
 			<div class="uk-text-lead">Select your league</div>
-      <div class="uk-margin-top card-container uk-grid-small uk-grid-match uk-child-width-expand@s" uk-grid>
+			<div class="uk-margin-top card-container uk-grid-small uk-grid-match uk-child-width-expand@s" uk-grid>
 
-        <div class="leagueCard">
-          <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body bronze">
-            <div class="uk-flex uk-flex-bottom uk-card-body">
+				<div class="leagueCard" *ngFor="let league of leagues">
+					<div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body" [ngStyle]="{'background-color': league.color}">
+						<div class="uk-flex uk-flex-bottom uk-card-body">
 							<a class="uk-flex uk-flex-center" (click)="selected(1)">
-	              <ul class="uk-list">
-	                <li><span class="uk-text-bold">Bronze League</span></li>
-	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
-	              </ul>
+								<ul class="uk-list">
+									<li><span class="uk-text-lead">{{league.title}}</span></li>
+									<li><span class="uk-text-bold">Buy in tokens: {{league.buy_in}}</span></li>
+								</ul>
 							</a>
-            </div>
-          </div>
-        </div>
+						</div>
+					</div>
+				</div>
 
-        <div class="leagueCard">
-          <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body silver">
-            <div class="uk-flex uk-flex-bottom uk-card-body ">
-							<a class="uk-flex uk-flex-center" (click)="selected(2)">
-	              <ul class="uk-list">
-	                <li><span class="uk-text-bold">Silver League</span></li>
-	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
-	              </ul>
-							</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="leagueCard">
-          <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body gold ">
-            <div class="uk-flex uk-flex-bottom uk-card-body">
-							<a class="uk-flex uk-flex-center"(click)="selected(3)">
-	              <ul class="uk-list">
-	                <li><span class="uk-text-bold">Gold League</span></li>
-	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
-	              </ul>
-							</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="leagueCard">
-          <div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body platinum">
-            <div class="uk-flex uk-flex-bottom uk-card-body">
-							<a class="uk-flex uk-flex-center" (click)="selected(4)">
-	              <ul class="uk-list">
-	                <li><span class="uk-text-bold">Platinum League</span></li>
-	                <li><span class="uk-text-bold">Number of current players:</span> #{{ranking}}</li>
-	              </ul>
-							</a>
-            </div>
-          </div>
-        </div>
-
-    </div>
-    </div>
-  </div>
+			</div>
+		</div>
+	</div>
 </div>
-<div uk-alert id="joiningAlert" *ngIf="loading">Joining a league...<div uk-spinner class="uk-margin-small-left"></div></div>
+<div uk-alert id="joiningAlert" *ngIf="loading">Joining a league...
+	<div uk-spinner class="uk-margin-small-left"></div>
+</div>

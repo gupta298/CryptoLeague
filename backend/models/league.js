@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var leagueSchema = new mongoose.Schema({
 	league_id: String,
     league_type: String,
+    league_buy_in: Number,
     status: String,
     portfolio_ids: [{ 
     	"username": String,
