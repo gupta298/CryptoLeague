@@ -212,10 +212,67 @@ function endLeague(league_id){
 
       if (result) {
         calculatePortfoliosValues(result, function(){
+          //Sort portfolios by value
+          result.portfolio_ids.sort(function(a, b) {
+            return b.portfolio_value - a.portfolio_value;
+          });
+
+          //Set rankings and payouts
+          for(let i = 0; i < result.portfolio_ids.length; i++) {
+              // original ranking
+              result.portfolio_ids[i].rank = i + 1;
+              result.portfolio_ids[i].payout = 0;
+          }
+          let currRank = 1;
+          result.portfolio_ids[0].rank = 1;
+          for(let i = 1; i < result.portfolio_ids.length; i++){
+            if(result.portfolio_ids[i].portfolio_value === result.portfolio_ids[i - 1].portfolio_value){
+              result.portfolio_ids[i].rank = currRank;
+            } else {
+              result.portfolio_ids[i].rank = ++currRank;
+            }
+          }
+
+          let totalCoins = result.league_buy_in * result.portfolio_ids.length();
+
+          //Count number of people
+          let numTop25 = 0, numTop50 = 0, numTop75 = 0;
+          for(let i = 0; i < result.portfolio_ids.length; i++){
+            if(result.portfolio_ids[i].rank <= 25)
+              numTop25++;
+            if(result.portfolio_ids[i].rank <= 50)
+              numTop50++;
+            if(result.portfolio_ids[i].rank <= 75)
+              numTop75++;
+          }
+
+          while(totalCoins > 0){
+            for(let i = 0; i < result.portfolio_ids.length; i++){
+              if(result.portfolio_ids[i].rank <= 25) {
+                result.portfolio_ids[i].payout += (0.2 * totalCoins) / numTop25;
+                totalCoins -= (0.2 * totalCoins) / numTop25;
+              }
+              if(result.portfolio_ids[i].rank <= 50) {
+                result.portfolio_ids[i].payout += (0.3 * totalCoins) / numTop50;
+                totalCoins -= (0.3 * totalCoins) / numTop50;
+              }
+              if(result.portfolio_ids[i].rank <= 75) {
+                result.portfolio_ids[i].payout += (0.5 * totalCoins) / numTop75;
+                totalCoins -= (0.5 * totalCoins) / numTop75;
+              }
+            }
+          }
           MongoClient.connect(mongodbUrl, function (err, db) {
             if (err) throw err;
             var dbo = db.db("cryptoleague_database");
-            dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids}});
+
+            //Update all the users
+            for(let i = 0; i < result.portfolio_ids.length; i++){
+              dbo.collection("Users").findOneAndUpdate({'_id': ObjectID(result.portfolio_ids[i].user_id)}, {$inc: {'tokens' : result.portfolio_ids[i].payout}});
+            }
+
+            //Update league
+            dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4'}});
             db.close();
           });
         });
@@ -490,6 +547,7 @@ module.exports = {
             var league = new league_schema();
             league.league_id = next_number;
             league.league_type =  league_Type.title;
+            league.league_buy_in = league_Type.buy_in;
             league.status = "0";
             league.portfolio_ids.push({
               "username": user.username,
