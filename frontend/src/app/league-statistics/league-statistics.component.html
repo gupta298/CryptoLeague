@@ -2,13 +2,13 @@
 	<h3 class="uk-card-title">Stats & Distribution</h3>
 	<div class="uk-flex uk-flex-bottom uk-card-body">
 		<div uk-grid *ngIf="!hideCards">
-			<ul class="uk-list uk-list-large">
+			<ul class="uk-list uk-list-large" id="statsText1">
 				<li>Your Rank: #{{rank}}</li>
 				<li>User at #1: {{leader}}</li>
 				<li>League status: {{getStatus(league.status)}}</li>
 				<li *ngIf="league.status < 4; else endMessage">{{timeRemaining}} until the league {{status}}</li>
 			</ul>
-			<ul class="uk-list uk-list-large">
+			<ul class="uk-list uk-list-large" id="statsText2">
 				<li><b>Prize Distribution:</b></li>
 				<li>#1 - #{{this.topTen}}: 50</li>
 				<li>#{{this.topTen+ 1}} - #{{this.topTwentyfive}}: 37.5</li>

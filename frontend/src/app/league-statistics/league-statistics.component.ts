@@ -22,17 +22,15 @@ export class LeagueStatisticsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.length = this.league.portfolio_ids.length;
-    this.topTen = Math.ceil(this.length / 10);
-    this.topTwentyfive = Math.ceil(this.length / 4);
-    this.topFifty = Math.ceil(this.length / 2);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.length = this.league.portfolio_ids.length;
-    this.topTen = Math.ceil(this.length / 10);
-    this.topTwentyfive = Math.ceil(this.length / 4);
-    this.topFifty = Math.ceil(this.length / 2);
+  	if(this.league.portfolio_ids){
+	    this.length = this.league.portfolio_ids.length;
+	    this.topTen = Math.ceil(this.length / 10);
+	    this.topTwentyfive = Math.ceil(this.length / 4);
+	    this.topFifty = Math.ceil(this.length / 2);
+	  }
   }
 
   getStatus(leagueStatus: number){
