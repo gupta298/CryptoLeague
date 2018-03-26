@@ -1,0 +1,54 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Utkarsh Jain
+
+Week 6 (Summary)
+
+03/25 0.5 hr da909bc Improved error message 
+03/25 4 hr 700fddb removed hardcoded code
+03/24 0.20 hr 628382e No more half ranks 
+03/24 0.5 hr 743a242 smol typo and fixed duplicates issue 
+03/24 0.5 hr dba17ef Rank and Most Gains working
+03/24 1 hr c9615b0 shows rank, most gains needs to be worked on
+03/24 N/A 4ba239c Merge branch 'master' into frontend/stats 
+03/24 0.5 hr 009881a time bar fix     
+03/24 1 hr 21dad1c time bar fix     
+03/24 N/A hr d24a011 Merged master     
+03/24 0.5 hr bd73f34 smol bug fix     
+03/24 1 hr 06417e4 Returning JWT token now     
+03/23 0.5 hr 619b0f5 Nulling works     
+03/23 2 hr 8d121d7 GET request nulls out users league
+03/23 1 hr c3cdd54 Added returns  
+03/23 2 hr 380d7b6 Added stats to stats card
+03/22 N/A hr f6363fa Merge remote  tracking branch 'origin/master' 
+03/22 1 hr 88168f0 fixed league status
+03/22 N/A hr f058866 Merge branch 'backend/portfolio'
+03/22 2 hr d9e59ed Post portfolio finally working  
+03/22 N/A hr 2336709 Merge branch 'master' into backend/portfolio 
+03/22 N/A hr 0ae9608 Merge branch 'master' into backend/portfolio 
+03/22 0.25 hr b24e810 merged  
+03/22 N/A hr 9735daa Merge branch 'master' into backend/portfolio  
+03/22 N/A hr 5c91857 Merge remote  tracking branch 'origin/master'
+03/22 2 hr d9743aa Optimized portfolio route
+03/22 N/A 84a86de Singleton updated. Not working cz of Object error 
+03/22 1 hr 29a2fd7 Singleton updated. Not working cz of Object error  
+03/22 N/A 6954e78 Merge branch 'backend/portfolio' of https://github.com/gupta298/CryptoLeague into backend/portfolio  
+03/22 1 hr 35a1c4f Updated Singleton
+03/21 0.75 hr c7be09c Minor Minor Minor Minor requirements added
+03/21 N/A hr e84d4a4 Merge remote  tracking branch 'origin/backend/portfolio' into backend/portfolio  
+03/21 2 hr b748e71 Minor Minor Minor requirements added  
+03/21 N/A hr aa24571 /portfolio: Auto stash before merge of "backend/portfolio" and "origin/backend/portfolio"
+03/21 3 hr 7ed0e95 Minor Minor requirements done  
+03/21 0.5 hr 70d2fa3 Minor requirements done  
+03/21 1 hr 9164df5 Major requirements done  
+03/21 1 hr 3b8cc1c Fixed Bug  
+03/21 N/A dd538e2 Merge remote  tracking branch 'origin/backend/portfolio' into backend/portfolio 
+03/21 1 hr 05ce022 Will not edit if league has started  
+03/21 10 min 866954b portfolio edit  
+03/21 0.5 610d474 Portfolio edit 
+03/21 4 hr 6d682ff portfolio edit  
+
+
+Week 7 (Plan) 
+03/26 4 hr Sprint 2 retrospective
+03/27 4 hr Sprint 3 doc
+04/01 6 hr Try figuring out ETH API for our tokens

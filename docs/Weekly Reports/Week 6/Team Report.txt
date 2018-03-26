@@ -1,0 +1,224 @@
+==== Weekly Team Report (Team 8: CryptoLeague) ===
+
+Week 6 (Summary) (Scrum master: Varun Gupta)
+03/25 N/A fa5226a Merge branch 'master' of https://github.com/gupta298/CryptoLeague  
+03/25 5 min 1ac7b7d6 Updated documentation  
+03/25 N/A a17f087 Merge remote-tracking branch 'origin/master'  
+03/25 0.5 hr da797e6 Updated league detail design  
+03/25 1 hr e4964b2 Fixed some errors and added error codes  
+03/25 5 min 2846a57 Aesthetic changes  
+03/25 0.5 hr 94f2e73 Fixed league select onClick  
+03/25 5 min daf7d08 Fixed league select test cases  
+03/25 N/A e846547 Fixed typo  
+03/25 N/A 0f694ed Merge pull request #34 from gupta298/frontend/portfolio Frontend/portfolio 
+03/25 N/A 1b35dc7 Merge remote-tracking branch 'origin/master'  
+03/25 N/A 48d0dfa Made changes to league detail when league has ended  
+03/25 0.25 hr 8c6749a cleaned code, updated messages 
+03/25 0.5 hr da909bc Improved error message - Utkarsh
+03/25 N/A 5264e52 Merge branch 'frontend/portfolio' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/25 N/A b17248f Merge branch 'master' into frontend/portfolio  
+03/25 0.25 hr ef11b32 cleaned code 
+03/25 1 hr e6767e1 UIkit modal implemented 
+03/25 2 hr c8fe391 Bug I'm not even going to tell you about
+03/25 N/A 6b419a9 Merge branch 'frontend/portfolio'  
+03/25 N/A 18366d5 Merge branch 'master' into frontend/portfolio  
+03/25 N/A a27d2de Merge branch 'master' of github.com:gupta298/CryptoLeague  
+03/25 N/A c069f08 Merge branch 'backend/leagues'  
+03/25 1 hr 2c68806 Fixed league ending logic  
+03/25 2 hr 451f608 round off done, modal added
+03/25 1 hr 3084a54 Adding more validation to the portfolio put request  
+03/25 N/A 35b7b24 Merge pull request #33 from gupta298/frontend/leagueSelection Frontend/league selection 
+03/25 0.5 hr 0144b06 Added league buy in to league object  
+03/25 0.5 hr de5d72a Made league rank calculation more efficient  
+03/25 N/A 818fc65 Auto stash before merge of "master" and "origin/master"
+03/25 4 hr 153f79e Added league end logic  
+03/25 N/A c2cf777 Merge remote-tracking branch 'origin/frontend/leagueSelection' into frontend/leagueSelection
+03/25 4 hr 700fddb removed hardcoded code - Utkarsh
+03/25 5 min e4d711f Updated /nullLeague to /user/null_out  
+03/25 N/A 7931be7 Merge branch 'master' into backend/leagues  
+03/25 N/A 6e0d00e Merge branch 'frontend/stats'  
+03/25 5 min ed285a8 Removed unneeded import  
+03/24 N/A hr baa2de8 Merge remote-tracking branch 'origin/master' into frontend/LeagueSelection
+03/24 0.20 hr 628382e No more half ranks - Utkarsh
+03/24 0.5 hr 743a242 smol typo and fixed duplicates issue - Utkarsh
+03/24 0.5 hr dba17ef Rank and Most Gains working - Utkarsh
+03/24 1 hr c9615b0 shows rank, most gains needs to be worked on - Utkarsh
+03/24 N/A 4ba239c Merge branch 'master' into frontend/stats - Utkarsh
+03/24 N/A 3b6f024 Merge branch 'frontend/leagues'  
+03/24 N/A 1d8b8bb Merge branch 'master' into frontend/leagues  
+03/24 0.5 hr 009881a time bar fix - Utkarsh
+03/24 1 hr 21dad1c time bar fix - Utkarsh
+03/24 N/A 555d84e Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/24 2 hr f1177f1 fixed a lot of bugs with chart, added edit portfolio percentages
+03/24 N/A 8110b98 Merge remote-tracking branch 'origin/master'  
+03/24 N/A 2e55eda Merge branch 'frontend/leagues'  
+03/24 1.5 hr 8a19971 Added rankings to league leaderboard  
+03/24 N/A a4bb709 Merge pull request #31 from gupta298/backend/nulling Implemented nulling out current league 
+03/24 N/A hr d24a011 Merged master - Utkarsh
+03/24 0.5 hr bd73f34 smol bug fix - Utkarsh
+03/24 N/A bd1b7a4 Merge branch 'master' into frontend/leagues  
+03/24 N/A 94ac692 Merge branch 'backend/leagues'  
+03/24 1 hr 162bd1f Made changes on backend and frontend for league leaderboard  
+03/24 1 hr 06417e4 Returning JWT token now - Utkarsh
+03/23 0.5 hr bf6c424 Updated leaderboard in frontend  
+03/23 2.5 hr 8cc8819 Updated calculatePortfolio and endLeaguelogin  
+03/23 N/A 63c1869 On backend/leagues:  
+03/23 N/A 0451cec index on backend/leagues: 3712904 Merge branch 'master' into backend/leagues  
+03/23 N/A 3712904 Merge branch 'master' into backend/leagues  
+03/23 N/A f7da1f1 Merge pull request #30 from gupta298/frontend/portfolio Frontend/portfolio 
+03/23 N/A c89f339 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/23 1 hr 7ed6827 fixed a lot of bugs, implemented PUT portfolio service and functionality in frontend 
+03/23 N/A b68e1ad Merge branch 'master' into frontend/leagues  
+03/23 0.25 hr 02d1550 Added locked_prices to league object on league start  
+03/23 N/A ebd56bb Merge branch 'backend/portfolio' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/23 1 hr 31eb8d4 bug fixes for chart
+03/23 0.5 hr 619b0f5 Nulling works - Utkarsh
+03/23 2 hr 8d121d7 GET request nulls out users league  
+03/23 1 hr 51583ce bug fixes 
+03/23 1 hr b2b6727 fixed conflicts 
+03/23 1 hr 581e23d bug fixes 
+03/23 N/A a8f97e2 Merge branch 'frontend/dev'  
+03/23 0.5 hr f9e1d4b Added test case for checking leagueWaitingOverlay  
+03/23 0.5 hr d2d94d2 Added test cases for leagueSelect  
+03/23 1 hr bdd3a40 fixed bugs, cleared hard-coded code 
+03/23 1 hr da40c58 get portfolio called and functionality added in frontend 
+03/23 5 min 2b6172a Added test cases for leagueDetail  
+03/23 N/A a3c8078 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/23 3 hr 8c8956f coins added to league-details page, bug fixed for percentages vanishing 
+03/23 0.5 hr 997d4d7 Fixed test cases for leagueDetail  
+03/23 0.5 hr acf4a05 Fixed leagueDetail unit tests  
+03/23 1.5 hr 41eb5c4 Added testHostCompnent for leagueWaitingOverlay tests  
+03/23 5 min 1e32560 Fixed and added unit tests to portfolio component  
+03/23 5 min 54ccd49 Added authService stub to unit tests  
+03/23 2 hr 15122f3 Created authService stub for unit testing  
+03/23 0.5 hr 619b2ff Fixed test cases for auth guard  
+03/23 N/A becedc7 Merge branch 'master' into frontend/dev  
+03/23 N/A 2c1e671 Merge branch 'master' into frontend/dev  
+03/23 1 hr c3cdd54 Added returns  
+03/23 3 hr 47e71ac Adding portfolio value calculations  
+03/23 2 hr 380d7b6 Added stats to stats card  
+03/23 2 hr 261e025 Added sample coin data and the portfolio value field in the league  
+03/23 N/A 6f8dd54 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio
+03/23 1 hr 4c329ed added portfolio object implementation
+03/23 5 min f2704a8 Fixed typo  
+03/23 N/A 3041944 Merge branch 'frontend/portfolio'  
+03/23 1 hr b806a51 made cards on league page responsive 
+03/23 N/A a6d75a2 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/23 N/A ccb57cb Merge branch 'frontend/portfolio' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/23 1 hr 7e29f37 made pie chart and list view synchronous 
+03/23 N/A ba9852b Merge branch 'frontend/leagues'  
+03/23 0.5 hr f24e73f Added check to reload league once it has started  
+03/23 2 hr 0d090db Made card expand animations smoother  
+03/22 1 hr a6f36a8 Made stats card responsive  
+03/22 0.5 hr 8459178 Binded refresh button to loadLeague  
+03/22 N/A 627fd21 Merge branch 'master' into frontend/leagues  
+03/22 N/A 73266d3 Merge branch 'master' into frontend/leagues  
+03/22 2 hr 878aa47 chart functionality added and working 
+03/22 1 hr e952998 portfolio validity function added to frontend
+03/22 0.5 hr 72b9da2 random color generation added 
+03/22 N/A hr f6363fa Merge remote-tracking branch 'origin/master'  
+03/22 1 hr 88168f0 fixed league status  
+03/22 N/A e229b4a Merge pull request #28 from gupta298/backend/portfolio Backend/portfolio 
+03/22 N/A 21a6546 Merge branch 'master' into backend/portfolio  
+03/22 5 min 0804625 Added empty endLeague function  
+03/22 N/A hr f058866 Merge branch 'backend/portfolio'  
+03/22 2 hr d9e59ed Post portfolio finally working  
+03/22 N/A hr 2336709 Merge branch 'master' into backend/portfolio  
+03/22 0.25 hr e3a52ac Updated league status to number  
+03/22 N/A hr 0ae9608 Merge branch 'master' into backend/portfolio  
+03/22 0.25 hr b24e810 merged  
+03/22 N/A de9c257 Merge branch 'frontend/portfolio'  
+03/22 N/A 95c2947 Merge branch 'master' into frontend/portfolio  
+03/22 N/A hr 9735daa Merge branch 'master' into backend/portfolio  
+03/22 N/A hr 5c91857 Merge remote-tracking branch 'origin/master'  
+03/22 2 hr d9743aa Optimized portfolio route  
+03/22 N/A b801c73 Merge remote-tracking branch 'origin/master'  
+03/22 N/A a6b8189 Merge branch 'frontend/portfolio'  
+03/22 0.25 hr b4f897d Updated league status to number  
+03/22 N/A b55d880 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio
+03/22 N/A b334359 Merge branch 'master' into frontend/portfolio  
+03/22 N/A 84a86de Singleton updated. Not working cz of Object error  
+03/22 1 hr 29a2fd7 Singleton updated. Not working cz of Object error  
+03/22 0.25 hr c187479 Added the update holdings part  
+03/22 0.5 hr d8242fc Updated the portfolio sample  
+03/22 N/A 6954e78 Merge branch 'backend/portfolio' of https://github.com/gupta298/CryptoLeague into backend/portfolio  
+03/22 1 hr 35a1c4f Updated Singleton  
+03/22 0.5 hr afdf34b Adding comments  
+03/21 0.75 hr c7be09c Minor Minor Minor Minor requirements added  
+03/21 N/A hr e84d4a4 Merge remote-tracking branch 'origin/backend/portfolio' into backend/portfolio  
+03/21 2 hr b748e71 Minor Minor Minor requirements added  
+03/21 0.25 hr 076b8e1 Removed some unused code  
+03/21 N/A 24bf693 Merge branch 'backend/portfolio' of https://github.com/gupta298/CryptoLeague into backend/portfolio  
+03/21 1 hr 1566815 Added enum for the league status  
+03/21 N/A hr aa24571 /portfolio: Auto stash before merge of "backend/portfolio" and "origin/backend/portfolio"  
+03/21 3 hr 7ed0e95 Minor Minor requirements done  
+03/21 N/A baf52c8 Merge branch 'backend/portfolio' of https://github.com/gupta298/CryptoLeague into backend/portfolio  
+03/21 N/A ae0382e Merge branch 'master' of https://github.com/gupta298/CryptoLeague into backend/portfolio  
+03/21 N/A 1d72ce9 Fixed some spelling errors  
+03/21 N/A b40b3c7 Merge branch 'backend/cronjobs'  
+03/21 5 min 03d86cf Removed TODOs  
+03/21 5 min 15cf0c4 Removed unnessary files  
+03/21 1.5 hr 8751c12 League start scheduling works  
+03/21 0.5 hr 70d2fa3 Minor requirements done  
+03/21 1 hr 9164df5 Major requirements done  
+03/21 1 hr f5a3e35 Scheduling job works  
+03/21 3 hr 0198b02 Created cron jobs  
+03/21 N/A 6b5cdbd Merge remote-tracking branch 'origin/master'  
+03/21 1 hr 3b8cc1c Fixed Bug  
+03/21 4 hr 8df9705 Implemented league countdown  
+03/21 N/A dd538e2 Merge remote-tracking branch 'origin/backend/portfolio' into backend/portfolio  
+03/21 1 hr 05ce022 Will not edit if league has started  
+03/21 N/A 52fa3c4 Merge branch 'backend/portfolio' of https://github.com/gupta298/CryptoLeague into backend/portfolio  
+03/21 0.5 hr 502a40a Fixed an error on the backend  
+03/21 10 min 866954b portfolio edit  
+03/21 0.5 610d474 Portfolio edit  
+03/21 4 hr 6d682ff portfolio edit  
+03/20 5 min 2f31bcc Updating some spaces  
+03/20 N/A 31800f0 Merge branch 'master' of https://github.com/gupta298/CryptoLeague  
+03/20 0.75 hr e3852b6 Adding more routes and documentation  
+03/20 N/A 1722faf Merge branch 'frontend/leagues'  
+03/20 0.25 hr 4b701c4 Fixed styling  
+03/20 N/A 7f30cb6 Merge branch 'frontend/portfolio' into frontend/leagues  
+03/20 N/A 635d98f Merge branch 'master' into frontend/portfolio  
+03/20 5 min 17c2ca5 Updated apidoc  
+03/20 N/A 1b3db5e Merge branch 'frontend/portfolio-Ritwik' into frontend/leagues  
+03/20 N/A b85ae5b Merge branch 'master' into frontend/portfolio-Ritwik  
+03/20 N/A d9a90c9 Merge branch 'master' into frontend/leagues  
+03/20 N/A 79493bc Merge remote-tracking branch 'origin/master'  
+03/20 0.5 hr 2fedd5b Waiting overlay shows real data now  
+03/20 0.5 hr 5deb2b2 Updated the string compare with the npm update  
+03/20 N/A 837dd68 Merge branch 'master' into frontend/leagues  
+03/20 N/A be55331 Merge remote-tracking branch 'origin/master'  
+03/20 0.25 hr 2b29c29 Dashboard and sidebar now reflects currentLeague  
+03/20 N/A 0602903 Merge branch 'frontend/leagues'  
+03/20 N/A f57d162 Merge branch 'master' into frontend/leagues  
+03/20 N/A ee99007 Merge branch 'frontend/leagues'  
+03/20 5 min 6e549d2 Fixed league undefined issue  
+03/20 N/A 3f3265e Merge branch 'master' into frontend/leagues  
+03/20 N/A ef24169 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/20 2 hr b56b3a5 cleaned code and made the page more responsive 
+03/20 1 hr ed0ce7e made portfolio page responsive 
+03/20 2 hr 6f5aa06 added more css, submit portfolio added 
+03/20 1.25 hr 56fb567 Get route for the portfolio is implemented and tested  
+03/20 1 hr 5a43662 captain coin added  
+03/20 1.25 hr f579d90 A sample portfolio is automatically created for the user when joining a league  
+03/20 1 hr 35af998 search functionality working  
+03/20 1 hr d2da045 Decreased the amount of time it takes to join a league by 2 and made some other functions more efficient  
+03/19 3.5 hr 915abe6 Changed the update user route to update all of the past and current league username and profile pic and fix some minor bugs  
+03/19 5 min 775d83e Updated the documentation and the npm packages  
+03/19 2.5 hr daec036 Both post and get routes are implemented robustly in the backend and tested via manual testing (Postman)  
+03/19 4 hr b6c1311 Get league implemented and it returns the user object instead of the user id  
+03/19 N/A e165ce5 Adding all of the weekly reports for week 5  
+03/19 4 hr dfeebde Finished the post league route - it checks for the tokens and subtracts the tokens accordingly  
+03/19 4 hr 49f1d3e implemented frontend for search bar, adding a new row, UI for these components, deleting the row  
+
+Week 7 (Plan) (Scrum master: Varun Gupta)
+[Meetings]
+03/26 Discuss sprint 3 and sprint 2 retrospective
+02/29 Discuss user profiles and viability of integrating Ethereum SDK
+
+[Individual Goals]
+Varun: Finish up user APIs including user profiles and statistics
+Ritwik: Work on creating our own pie-chart module
+Utkarsh: Figure out Ethereum SDK
+Nisarg: Design and implement user profile UIs
