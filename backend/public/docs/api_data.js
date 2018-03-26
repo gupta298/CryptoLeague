@@ -695,6 +695,42 @@ define({ "api": [
   },
   {
     "type": "GET",
+    "url": "/user/null_out",
+    "title": "Request the null out the current league",
+    "name": "Get_And_Update_User_Information",
+    "group": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>Returns the updated JWT token of the current user.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/user.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "GET",
     "url": "/total_users",
     "title": "Request to get the total number of users",
     "name": "Get_Total_Number_Of_Users",
