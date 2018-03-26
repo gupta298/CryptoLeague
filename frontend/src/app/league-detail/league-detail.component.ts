@@ -126,7 +126,7 @@ export class LeagueDetailComponent implements OnInit {
         }
 
         //endDate.add(6, 'd');
-        endDate.add(6, 'm')
+        endDate.add(1, 'm')
         this.status = "ends.";
         //totaltime = 518400;
         totaltime = 360;
