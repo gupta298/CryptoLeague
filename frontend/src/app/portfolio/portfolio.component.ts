@@ -35,7 +35,7 @@ export class PortfolioComponent implements OnInit {
   autoComplete: Array<any> = [];
   inSearchBar: boolean = false;
   addWithSearch: boolean = false;
-  captainCoin: String;
+  captainCoin: String = null;
   draggablePieChart: any;
   isPortfolioValid: boolean = false;
   percentage: number = 100;
@@ -266,7 +266,7 @@ export class PortfolioComponent implements OnInit {
 	  	this.portfolioService.putPortfolio(body)
 				.subscribe(
 					result => {
-						console.log(result);
+						console.log("result", result);
 						this.showSubmitPopup = true;
 						UIkit.modal('#modal-center').show();
 						this.submitMessage = result.message;

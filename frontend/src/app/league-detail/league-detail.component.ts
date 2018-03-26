@@ -41,7 +41,6 @@ export class LeagueDetailComponent implements OnInit {
   	ngOnInit() {
       this.user = this.authService.loadUserFromLocalStorage();
       this.loadLeague();
-      this.getTimeRemaining();
   		this.portfolioClicked = this.portfolioClicked.bind(this);
   	}
 
@@ -116,7 +115,8 @@ export class LeagueDetailComponent implements OnInit {
       let startDate: moment.Moment = moment(this.league.start_time);
       let endDate: moment.Moment = moment(this.league.start_time);
       this.status = "starts.";
-      let totaltime = 86400;
+      //let totaltime = 86400;
+      let totaltime = 300;
       let currDate: moment.Moment = moment();
 
       if(startDate.isBefore(currDate)){
@@ -125,9 +125,11 @@ export class LeagueDetailComponent implements OnInit {
           this.loadLeague();
         }
 
-        endDate.add(6, 'd');
+        //endDate.add(6, 'd');
+        endDate.add(6, 'm')
         this.status = "ends.";
-        totaltime = 518400;
+        //totaltime = 518400;
+        totaltime = 360;
         this.timeRemainingPercent = 100 - Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
       } else {
         this.timeRemainingPercent = Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
