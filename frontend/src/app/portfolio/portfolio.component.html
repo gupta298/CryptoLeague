@@ -35,15 +35,15 @@
 			<ng-template #other_content><span uk-icon="pencil" class="uk-button" (click)="portfolioExpand()"></span></ng-template>
 		</div>
 
-		<div *ngIf="showSubmitPopup">
-			<div class="modal-view"></div>
-			<div class="modal">
-				<div class="modal-contents">
-		      <div class="uk-margin-medium"><p class="uk-align-center" >{{submitMessage}}</p></div>
-		      <button (click)="submitPopupClick()" class="uk-button-primary okButton" type="button"> OK </button>
-		    </div>
-		  </div>
-	  </div>
+	  <div id="modal-center" class="uk-flex-top" uk-modal>
+    	<div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+        <button class="uk-modal-close-default" (click)="submitPopupClick()" type="button" uk-close></button>
+
+        <p class="uk-align-center">{{submitMessage}}</p>
+
+    	</div>
+		</div>
 
 
 		<div *ngIf="hideCards" class="uk-animation-fade-in">
