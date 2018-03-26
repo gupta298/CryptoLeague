@@ -89,7 +89,7 @@
 				      </tr>
 				    </thead>
 				    <tbody>
-				    	<tr *ngFor = "let field of portfolioFieldArray; let i = index">
+				    	<tr id="portfolio-list-content" *ngFor = "let field of portfolioFieldArray; let i = index">
 				    		<!--"comment"-->
 				    		<td>{{i+1}}</td>
 				        <td>{{field.name}}</td>
