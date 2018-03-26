@@ -35,11 +35,11 @@ describe('PortfolioComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('check if modal is populating correctly, and with the right message', () => {
+  it('should populate modal and with the right message', () => {
     expect(fixture.nativeElement.querySelector('.ng-test-portfolio').innerText).toContain("validating");
   });
 
-  it('check if portfolio list view appears on card click', () => {
+  it('should populate portfolio list view and chart portfolio card click', () => {
     let portfolio = [{"name":"bit","ticker":"BTC", "percentage":30, "exp_coins": 20, "price":"123"}, {"name":"bit","ticker":"BTC", "percentage":30, "exp_coins": 20, "price":"123"}];
     component.portfolioFieldArray = portfolio;
     component.hideCards = true;
@@ -47,7 +47,7 @@ describe('PortfolioComponent', () => {
     expect(fixture.nativeElement.querySelector('#portfolio-list')).not.toBeNull();
   });
 
-  it('check if portfolio list view appears does not appear on non-expanded view', () => {
+  it('should not populate portfolio list view and chart on non-expanded view', () => {
     let portfolio = [{"name":"bit","ticker":"BTC", "percentage":30, "exp_coins": 20, "price":"123"}, {"name":"bit","ticker":"BTC", "percentage":30, "exp_coins": 20, "price":"123"}];
     component.portfolioFieldArray = portfolio;
     component.hideCards = false;
@@ -55,7 +55,7 @@ describe('PortfolioComponent', () => {
     expect(fixture.nativeElement.querySelector('#portfolio-list')).toBeNull();
   });
 
-  it('check if portfolio list view populates', () => {
+  it('should populate portfolio list view', () => {
     let portfolio = [{"name":"bit","ticker":"BTC", "percentage":30, "exp_coins": 20, "price":"123"}, {"name":"bit","ticker":"BTC", "percentage":30, "exp_coins": 20, "price":"123"}];
     component.portfolioFieldArray = portfolio;
     component.hideCards = true;
