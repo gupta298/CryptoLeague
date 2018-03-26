@@ -70,7 +70,7 @@ var express = require('express');
   * @apiSuccess {JSON} Portfolio_Object Returns the final updated portfolio object.
  */
  router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
- 	if (req.user.currentLeague_id && req.body && req.body.holdings) {
+ 	if (req.user.currentLeague_id && req.body && req.body.holdings && req.body.captain_coin !== undefined) {
  		if(req.body.holdings.length < 3 || req.body.holdings.length > 6){
  			res.send(400, {'message' : "You should have a minimum of 3 coins and a maximum of 6 (both inclusive)"});
       return;
