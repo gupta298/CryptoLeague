@@ -9,7 +9,7 @@
 				<div class="leagueCard" *ngFor="let league of leagues">
 					<div class="uk-card uk-card-hover uk-card-primary uk-card-small uk-card-body" [ngStyle]="{'background-color': league.color}">
 						<div class="uk-flex uk-flex-bottom uk-card-body">
-							<a class="uk-flex uk-flex-center" (click)="selected(1)">
+							<a class="uk-flex uk-flex-center" (click)="selected(league.league_type_id)">
 								<ul class="uk-list">
 									<li><span class="uk-text-lead">{{league.title}}</span></li>
 									<li><span class="uk-text-bold">Buy in tokens: {{league.buy_in}}</span></li>
