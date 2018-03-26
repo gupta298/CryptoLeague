@@ -16,13 +16,17 @@ export class LeagueWaitingOverlayComponent implements OnInit {
   	constructor(private leagueService: LeagueService) { }
 
   	ngOnInit() {
-  		this.leagueService.getLeague().subscribe(
-  			result => {
-  				console.log(result);
-  			}, error => {
-  				console.log(error);
-  			}
-  		);
+      setTimeout(()=>{
+    		this.leagueService.getLeague().subscribe(
+    			result => {
+    				console.log(result);
+    			}, error => {
+    				console.log(error);
+    			}
+    		);
+      }, 5000);
   	}
+
+
 
 }
