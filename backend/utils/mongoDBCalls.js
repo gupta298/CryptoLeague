@@ -670,7 +670,8 @@ module.exports = {
                   league_id: result.league_id,
                   league_type: result.league_type,
                   status: result.status,
-                  start_time: result.start_time
+                  start_time: result.start_time,
+                  league_buy_in: result: league_buy_in
                 };
                 if (foundUser == false) {
                   if (response.status.toString() === '4') {
