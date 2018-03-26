@@ -27,8 +27,8 @@ export class PortfolioComponent implements OnInit {
 	 @ViewChild("piechart") piechart: ElementRef; 
 
 
-	private portfolioFieldArray: Array<any> = [];
-  private portfolioNewAttribute: any = {};
+	portfolioFieldArray: Array<any> = [];
+  portfolioNewAttribute: any = {};
   private user: User;
   isNewRow: boolean = false;
   coinsArray: Array<any> = [];
