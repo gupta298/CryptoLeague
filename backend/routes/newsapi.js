@@ -46,7 +46,7 @@ function callNewsOrgAPI(res) {
       } else {
         console.log("Error updating the news data");
         if(res)
-          res.send("Error updating the news data");
+          res.send(400, { "message" : "Error updating the news data" });
       }
 
   });

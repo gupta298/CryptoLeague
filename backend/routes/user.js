@@ -46,7 +46,7 @@ router.put('/',
   (req, res) => {
     mongo.getUserViaID(req.user._id, function(error, result) {
       if (error) {
-        res.send("User does not exists");
+        res.send(400, { "message" : "User does not exists" });
       } else {
         if (req.body.email) result.email = req.body.email;
         if (req.body.profilePicture) result.profilePicture = req.body.profilePicture;
@@ -59,7 +59,7 @@ router.put('/',
 
             mongo.updateUser(result, function(error, token) {
               if (error) {
-                res.send("Could not update user");
+                res.send(400, { "message" : "Could not update user" });
               } else {
                 res.send({ 'jwt' : token });
               }
@@ -69,7 +69,7 @@ router.put('/',
         } else {
           mongo.updateUser(result, function(error, token) {
             if (error) {
-              res.send("Could not update user");
+              res.send(400, { "message" : "Could not update user" });
             } else {
               res.send({ 'jwt' : token });
             }
@@ -90,51 +90,23 @@ router.put('/',
  * @apiSuccess {JSON} JWT Returns the updated JWT token of the current user.
 */
 router.get('/null_out', passport.authenticate(['jwt'], { session: false }), (req, res) => {
-  //console.log(req.user.currentLeague_id);
   if (req.user.currentLeague_id) {
     mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
-      console.log('chala');
       console.log(req.user.currentLeague_id);
-        if(response.status == 4) {
-          req.user.past_league.push(req.user.currentLeague_id);
-          req.user.currentLeague_id = null;
-          mongo.updateUserLeague(req.user, function(error, result) {
+      if(response.status == 4) {
+        req.user.currentLeague_id = null;
+        mongo.updateUserLeague(req.user, function(error, result) {
           if(error) console.log(error);
-          console.log('User is no longer in a league');
           res.send({'jwt' : token.generateAccessToken(req.user)});
-          });
-        } else {
-          res.send({'message' : "League has not ended yet"});
-        }
-      });
+        });
+      } else {
+        res.send(400, {'message' : "League has not ended yet"});
+      }
+    });
   } else {
-    res.send({'message' : "Not a league"});
+    res.send(400, {'message' : "Not a league"});
     return;
   }
 });
-// router.get('/null_out',
-//   passport.authenticate(['jwt'], { session: false }),
-//   (req, res) => {
-//     // Follow the below logic please:
-//       // 1. check if the user is in a league and the league has ended
-      
-//       // if (req.user.currentLeague_id) {
-//     	// 	mongo.getPortfolio(req.user.currentLeague_id, req.user._id, req.user._id, function(error, response) {
-//     	//       res.send(response);
-//       //       if(req.user.currentLeague_id){
-//       //
-//       //       }
-//     	//     });
-//     	// } else {
-//     	// 	res.send({'message' : "Not in a league"})
-//     	// }
-
-
-//       // 2. Add the current league in the past leagues array
-//       // 3. Null out the current league
-//       // 4. update the user object in the database
-//       // 5. return the updated jwt token
-//   }
-// );
 
 module.exports = router;
