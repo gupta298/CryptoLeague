@@ -96,7 +96,7 @@ router.get('/null_out', passport.authenticate(['jwt'], { session: false }), (req
       console.log('chala');
       console.log(req.user.currentLeague_id);
         if(response.status == 4) {
-          req.user.past_league.push(req.user.currentLeague_id);
+          req.user.past_leagues.push(req.user.currentLeague_id);
           req.user.currentLeague_id = null;
           mongo.updateUserLeague(req.user, function(error, result) {
           if(error) console.log(error);
