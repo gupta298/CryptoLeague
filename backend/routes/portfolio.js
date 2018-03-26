@@ -76,7 +76,7 @@ var express = require('express');
 
  	if (req.user.currentLeague_id && req.body && req.body.holdings) {
  		//console.log(req.body.holdings.length);
- 		if(req.body.holdings.length < 3 && req.body.holdings.length > 6){
+ 		if(req.body.holdings.length < 3 || req.body.holdings.length > 6){
  			res.send({'message' : "Number of coins is not correct"});
       return;
  		} else {
@@ -115,9 +115,6 @@ var express = require('express');
             return;
 				}
 			});
-
-
-
 		}
 	} else {
 		res.send({'message' : "Not in any league or invalid body"});
