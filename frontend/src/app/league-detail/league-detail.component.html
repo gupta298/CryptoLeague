@@ -56,32 +56,37 @@
 							            <th *ngIf="league.status >= 2">Rank</th>
 							            <th></th>
 							            <th>Username</th>
-							            <th *ngIf="league.status >= 2">Total Gains</th>
 							            <th>Tokens</th>
+							            <th *ngIf="league.status >= 2">Total Gains</th>
+							            <th *ngIf="league.status == 4">Payout</th>
 							        </tr>
 							    </thead>
-							    <tr *ngFor="let user of league.portfolio_ids">
-							     	<td *ngIf="league.status >= 2">{{user.rank}}</td>
-							     	<td><span class="uk-icon uk-icon-image uk-margin-right" [ngStyle]="{'background-image': 'url(' + user.profilePicture +')'}"></span></td>
+							    <tr *ngFor="let portfolio of league.portfolio_ids">
+							     	<td *ngIf="league.status >= 2">{{portfolio.rank}}</td>
+							     	<td><span class="uk-icon uk-icon-image uk-margin-right" [ngStyle]="{'background-image': 'url(' + portfolio.profilePicture +')'}"></span></td>
 							     	<td>{{user.username}}</td>
-						        <td *ngIf="league.status >= 2" [class.uk-text-success]="user.portfolio_value > 0" [class.uk-text-danger]="user.portfolio_value < 0">
-						        	<span *ngIf="user.portfolio_value > 0;else negChange" uk-icon="triangle-up"></span>
+						        <td>{{portfolio.tokens}}</td>
+						        <td *ngIf="league.status >= 2" [class.uk-text-success]="portfolio.portfolio_value > 0" [class.uk-text-danger]="portfolio.portfolio_value < 0">
+						        	<span *ngIf="portfolio.portfolio_value > 0;else negChange" uk-icon="triangle-up"></span>
 											<ng-template #negChange>
 												<span uk-icon="triangle-down"></span>
 											</ng-template>
-											{{user.portfolio_value | number:'1.2-2'}}
+											{{portfolio.portfolio_value | number:'1.2-2'}}%
 										</td>
-						        <td>{{user.tokens}}</td>
-						        </tr>
+										<td *ngIf="league.status == 4">{{portfolio.payout}}</td>
+						      </tr>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="progress-bar" [class.starting]="league.status == 1" [class.started]="league.status == 3" >
+			<div class="progress-bar" [class.starting]="league.status == 1" [class.started]="league.status >= 3" >
 				<div class="progress" [style.width]="timeRemainingPercent + '%'" [class.starting]="league.status == 1" [class.started]="league.status == 3"></div>
-				<p>{{timeRemaining}} until the league {{status}}</p>
+				<p *ngIf="league.status < 4; else endMessage">{{timeRemaining}} until the league {{status}}</p>
+				<ng-template #endMessage>
+					<p>The league has ended.</p>
+				</ng-template>
 			</div>
 		</ng-template>
 	</div>
