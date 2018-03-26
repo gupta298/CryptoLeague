@@ -659,6 +659,7 @@ module.exports = {
                     if (result.status.toString() !== '4') {
                       item.portfolio_id = null;
                     }
+                    item.user_id = null;
                   }
                 }
                 next();
