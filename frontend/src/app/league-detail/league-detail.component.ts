@@ -64,12 +64,10 @@ export class LeagueDetailComponent implements OnInit {
             });
 
             for(var i = 0; i < result.portfolio_ids.length; i++) {
-                // original ranking
-                 result.portfolio_ids[i].rank = i + 1;
-                 //console.log(result.portfolio_ids[i].rank);
+              // original ranking
+              result.portfolio_ids[i].rank = i + 1;
+              //console.log(result.portfolio_ids[i].rank);
             }
-
-
 
             this.length = result.portfolio_ids.length;
             this.topTen = Math.ceil(this.length / 10);
@@ -165,6 +163,21 @@ export class LeagueDetailComponent implements OnInit {
         this.timeRemaining = days + "d " + hours + "h " + minutes + "m " + seconds + "s";//  + "s until the league " + status;
       } else {
         this.timeRemaining = hours + "h " + minutes + "m " + seconds + "s"; //+ "s until the league " + status;
+      }
+    }
+
+    getStatus(leagueStatus: number){
+      switch (leagueStatus) {
+        case 0:
+          return "Waiting";
+        case 1:
+          return "Portfolio Edit Period";
+        case 2:
+          return "Started";
+        case 3: 
+          return "Ended";
+        default:
+          return "Waiting";
       }
     }
 }

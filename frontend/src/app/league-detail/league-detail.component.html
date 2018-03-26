@@ -2,10 +2,7 @@
 	<app-sidebar page="league" [league]="league">
 	</app-sidebar>
 	<div class="page-content">
-		<div *ngIf="league && league.status == 0;else leagueDetail" style="height: 100%;">
-			<app-league-waiting-overlay [league]="league"></app-league-waiting-overlay>
-		</div>
-		<ng-template #leagueDetail>
+		<div *ngIf="league && league.status != 0;else leagueWaiting" style="height: 100%;">
 			<div class="uk-container uk-margin-top">
 				<div class="uk-text-lead">League #{{league.league_id}}</div>
 				<div class="uk-margin-top card-container uk-grid-small uk-grid-match" uk-grid>
@@ -24,7 +21,7 @@
 									<ul class="uk-list uk-list-large">
 									    <li>Your Rank: #{{rank}}</li>
 									    <li>User at #1: {{leader}}</li>
-											<!-- <li>League status: {{status}}</li> -->
+											<li>League status: {{getStatus(league.status)}}</li>
 											<li>{{timeRemaining}} until the league {{status}}</li>
 									</ul>
 									<ul class="uk-list uk-list-large">
@@ -88,6 +85,9 @@
 					<p>The league has ended.</p>
 				</ng-template>
 			</div>
+		</div>
+		<ng-template #leagueWaiting>
+			<app-league-waiting-overlay [league]="league"></app-league-waiting-overlay>
 		</ng-template>
 	</div>
 </div>
