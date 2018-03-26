@@ -1,0 +1,47 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Ritwik Bhardwaj
+
+Week 6 (Summary)
+03/25 0.25 hr 8c6749a cleaned code, updated messages  
+03/25 N/A hr 5264e52 Merge branch 'frontend/portfolio' of https://github.com/gupta298/CryptoLeague into frontend/portfolio
+03/25 0.25 hr ef11b32 cleaned code  
+03/25 1 hr e6767e1 UIkit modal implemented 
+03/25 2 hr 451f608 round off done, modal added  
+03/24 N/A hr 555d84e Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/24 2 hr f1177f1 fixed a lot of bugs with chart, added edit portfolio percentages  
+03/23 N/A hr c89f339 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio  
+03/23 1 hr 7ed6827 fixed a lot of bugs, implemented PUT portfolio service and functionality in frontend  
+03/23 N/A hr ebd56bb Merge branch 'backend/portfolio' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/23 0.5 hr 31eb8d4 bug fixes for chart  
+03/23 1.5 hr 51583ce bug fixes  
+03/23 0.25 hr b2b6727 fixed conflicts
+03/23 0.25 hr 581e23d bug fixes  
+03/23 0.5 hr bdd3a40 fixed bugs, cleared hard-coded code  
+03/23 1 hr da40c58 get portfolio called and functionality added in frontend 
+03/23 N/A hr a3c8078 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio
+03/23 3 hr 8c8956f coins added to league-details page, bug fixed for percentages vanishing 
+03/23 N/A hr 6f8dd54 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/23 1 hr 4c329ed added portfolio object implementation 
+03/23 1 hr b806a51 made cards on league page responsive  
+03/23 N/A hr a6d75a2 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio  
+03/23 N/A hr ccb57cb Merge branch 'frontend/portfolio' of https://github.com/gupta298/CryptoLeague into frontend/portfolio
+03/23 1 hr 7e29f37 made pie chart and list view synchronous 
+03/22 2 hr 878aa47 chart functionality added and working  
+03/22 1 hr e952998 portfolio validity function added to frontend
+03/22 0.5 hr 72b9da2 random color generation added 
+03/22 N/A hr b55d880 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/20 N/A hr ef24169 Merge branch 'master' of https://github.com/gupta298/CryptoLeague into frontend/portfolio 
+03/20 2 hr b56b3a5 cleaned code and made the page more responsive 
+03/20 1 hr ed0ce7e made portfolio page responsive 
+03/20 2 hr 6f5aa06 added more css, submit portfolio added 
+03/20 1 hr 5a43662 captain coin added 
+03/20 1 hr 35af998 search functionality working  
+03/19 4 hr 49f1d3e implemented frontend for search bar, adding a new row, UI for these components, deleting the row
+
+
+
+Week 7 (Plan) 
+03/26 4 hr Sprint 2 retrospective
+03/27 4 hr Sprint 3 doc
+04/01 6 hr Work on pie-chart 
+
