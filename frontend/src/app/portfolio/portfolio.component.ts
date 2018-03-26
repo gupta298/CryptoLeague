@@ -27,15 +27,15 @@ export class PortfolioComponent implements OnInit {
 	 @ViewChild("piechart") piechart: ElementRef; 
 
 
-	private portfolioFieldArray: Array<any> = [];
-  private portfolioNewAttribute: any = {};
+	portfolioFieldArray: Array<any> = [];
+  portfolioNewAttribute: any = {};
   private user: User;
   isNewRow: boolean = false;
   coinsArray: Array<any> = [];
   autoComplete: Array<any> = [];
   inSearchBar: boolean = false;
   addWithSearch: boolean = false;
-  captainCoin: String;
+  captainCoin: String = null;
   draggablePieChart: any;
   isPortfolioValid: boolean = false;
   percentage: number = 100;
@@ -265,7 +265,7 @@ export class PortfolioComponent implements OnInit {
 	  	this.portfolioService.putPortfolio(body)
 				.subscribe(
 					result => {
-						console.log(result);
+						console.log("result", result);
 						this.showSubmitPopup = true;
 						UIkit.modal('#modal-center').show();
 						this.submitMessage = result.message;
@@ -275,6 +275,11 @@ export class PortfolioComponent implements OnInit {
 
 					}, error => {
 						console.log(error);
+						if(error.status == 400) {
+							UIkit.modal('#modal-center').show();
+							this.submitMessage = JSON.parse(error._body).message;
+						}
+						
 					}
 				)
   	

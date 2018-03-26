@@ -19,6 +19,7 @@
 						[leader]="leader" 
 						[timeRemaining]="timeRemaining"
 						[status]="status"
+						[hideCards]="hideCards"
 						class="uk-width-1-2@m">	
 					</app-league-statistics>
 				</div>
@@ -48,7 +49,7 @@
 							    <tr *ngFor="let portfolio of league.portfolio_ids">
 							     	<td *ngIf="league.status >= 2">{{portfolio.rank}}</td>
 							     	<td><span class="uk-icon uk-icon-image uk-margin-right" [ngStyle]="{'background-image': 'url(' + portfolio.profilePicture +')'}"></span></td>
-							     	<td>{{user.username}}</td>
+							     	<td>{{portfolio.username}}</td>
 						        <td>{{portfolio.tokens}}</td>
 						        <td *ngIf="league.status >= 2" [class.uk-text-success]="portfolio.portfolio_value > 0" [class.uk-text-danger]="portfolio.portfolio_value < 0">
 						        	<span *ngIf="portfolio.portfolio_value > 0;else negChange" uk-icon="triangle-up"></span>
