@@ -19,10 +19,6 @@ import * as moment from 'moment';
 export class LeagueDetailComponent implements OnInit {
 
   user: User;
-  length: number;
-  topTen: number;
-  topTwentyfive: number;
-  topFifty: number;
   loadingLeague: boolean = true;
 	portfolioOpened: boolean = false;
 	hideCards: boolean = false;
@@ -68,11 +64,6 @@ export class LeagueDetailComponent implements OnInit {
               result.portfolio_ids[i].rank = i + 1;
               //console.log(result.portfolio_ids[i].rank);
             }
-
-            this.length = result.portfolio_ids.length;
-            this.topTen = Math.ceil(this.length / 10);
-            this.topTwentyfive = Math.ceil(this.length / 4);
-            this.topFifty = Math.ceil(this.length / 2);
             
             let currRank = 1;
             result.portfolio_ids[0].rank = 1;
@@ -159,25 +150,12 @@ export class LeagueDetailComponent implements OnInit {
       // what's left is seconds
       var seconds = delta % 60;
 
-      if(days > 0){
+      if(this.league.status == 4){
+        this.timeRemaining = null;
+      } else if(days > 0){
         this.timeRemaining = days + "d " + hours + "h " + minutes + "m " + seconds + "s";//  + "s until the league " + status;
       } else {
         this.timeRemaining = hours + "h " + minutes + "m " + seconds + "s"; //+ "s until the league " + status;
-      }
-    }
-
-    getStatus(leagueStatus: number){
-      switch (leagueStatus) {
-        case 0:
-          return "Waiting";
-        case 1:
-          return "Portfolio Edit Period";
-        case 2:
-          return "Started";
-        case 3: 
-          return "Ended";
-        default:
-          return "Waiting";
       }
     }
 }
