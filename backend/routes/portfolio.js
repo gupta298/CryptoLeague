@@ -77,7 +77,7 @@ var express = require('express');
  	if (req.user.currentLeague_id && req.body && req.body.holdings) {
  		//console.log(req.body.holdings.length);
  		if(req.body.holdings.length < 3 || req.body.holdings.length > 6){
- 			res.send({'message' : "Number of coins is not correct"});
+ 			res.send({'message' : "You should have a minimum of 3 coins and a maximum of 6 (both inclusive)"});
       return;
  		} else {
       mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
