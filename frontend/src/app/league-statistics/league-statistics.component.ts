@@ -1,5 +1,12 @@
 import { Component, OnInit, OnChanges, SimpleChanges, SimpleChange, Input } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { JwtHelper } from 'angular2-jwt';
+
 import { League } from '../league';
+
+import { UserService } from '../services/index'
+
+declare var UIkit: any;
 
 @Component({
   selector: 'app-league-statistics',
@@ -13,18 +20,21 @@ export class LeagueStatisticsComponent implements OnInit {
 	@Input() leader: string;
 	@Input() timeRemaining: string;
 	@Input() status: string;
+	@Input() hideCards: boolean;
 
 	length: number;
   totalPool: number;
   topTwentyFive: number;
   topPool: number;
   topFifty: number;
-  middlePool: number;
-  topSeventyFive: number;
-  lowerPool: number;
-  buy_in: number;
+  loading: boolean = false;
 
-  constructor() { }
+  jwtHelper: JwtHelper = new JwtHelper();
+
+  constructor(
+  	private userService: UserService,
+  	private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -83,5 +93,24 @@ export class LeagueStatisticsComponent implements OnInit {
       default:
         return "Waiting";
     }
+  }
+
+  quitLeagueOnCLick(){
+  	this.loading = true;
+  	UIkit.alert('#quitAlert', {});
+  	this.userService.quitLeague().subscribe(
+  		result => {
+  			this.loading = false;
+  			UIkit.alert('#quitAlert', {}).close();
+  			var user = this.jwtHelper.decodeToken(result.jwt);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('jwtToken', result.jwt);
+  			this.router.navigate(['/']);
+  		}, error => {
+				this.loading = false;
+				console.log(error);
+  			this.router.navigate(['/']);
+  		}
+  	);
   }
 }

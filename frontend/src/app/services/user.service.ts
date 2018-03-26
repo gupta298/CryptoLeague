@@ -39,6 +39,10 @@ export class UserService {
     return this.http.get(environment.apiUrl+'/user_rank', this.authService.generateJwt()).map((response: Response)=> response.json());
   }
 
+  quitLeague(){
+    return this.http.get(environment.apiUrl+'/user/null_out', this.authService.generateJwt()).map((response: Response) => response.json());
+  }
+
   public convertJsonToFormData(item){
     var formData = new FormData();
 

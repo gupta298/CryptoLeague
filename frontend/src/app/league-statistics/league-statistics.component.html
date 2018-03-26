@@ -6,7 +6,10 @@
 				<li>Your Rank: #{{rank}}</li>
 				<li>User at #1: {{leader}}</li>
 				<li>League status: {{getStatus(league.status)}}</li>
-				<li *ngIf="league.status < 4; else endMessage">{{timeRemaining}} until the league {{status}}</li>
+				<li *ngIf="league.status < 4; else quitLeague">{{timeRemaining}} until the league {{status}}</li>
+				<ng-template #quitLeague>
+					<button class="uk-button uk-button-danger uk-margin-top" (click)="quitLeagueOnCLick()">Quit League</button>
+				</ng-template>
 			</ul>
 			<ul class="uk-list uk-list-large" id="statsText2">
 				<li><b>Expected Prize Distribution:</b></li>
@@ -16,4 +19,7 @@
 			</ul>
 		</div>
 	</div>
+</div>
+<div uk-alert id="quitAlert" *ngIf="loading">Quiting league...
+	<div uk-spinner class="uk-margin-small-left"></div>
 </div>

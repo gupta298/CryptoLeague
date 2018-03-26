@@ -130,31 +130,35 @@ function getUserObject(user_id, callback) {
 
 function updateUserInLeagues(user) {
   var all_leagues = user.past_leagues;
-  all_leagues.push(user.currentLeague_id);
 
-  asyncLoop(all_leagues, function (item, next) {
-    MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("cryptoleague_database");
-      dbo.collection("Leagues").findOne({'league_id' : item}, function(err, result) {
+  if(user.currentLeague_id)
+    all_leagues.push(user.currentLeague_id);
+
+  if(all_leagues.length > 0){
+    asyncLoop(all_leagues, function (item, next) {
+      MongoClient.connect(mongodbUrl, function (err, db) {
         if (err) throw err;
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("Leagues").findOne({'league_id' : item}, function(err, result) {
+          if (err) throw err;
 
-        asyncLoop(result.portfolio_ids, function (portfolio, next_portfolio) {
-          if (portfolio.user_id.toString() === user._id.toString()) {
-            portfolio.username = user.username;
-            portfolio.profilePicture = user.profilePicture;
-          }
-          next_portfolio();
-        }, function () {
-          dbo.collection("Leagues").findOneAndUpdate({'league_id': item}, {$set: {'portfolio_ids': result.portfolio_ids}});
+          asyncLoop(result.portfolio_ids, function (portfolio, next_portfolio) {
+            if (portfolio.user_id.toString() === user._id.toString()) {
+              portfolio.username = user.username;
+              portfolio.profilePicture = user.profilePicture;
+            }
+            next_portfolio();
+          }, function () {
+            dbo.collection("Leagues").findOneAndUpdate({'league_id': item}, {$set: {'portfolio_ids': result.portfolio_ids}});
+          });
+
+          db.close();
+          next();
         });
-
-        db.close();
-        next();
       });
+    }, function () {
     });
-  }, function () {
-  });
+  }
 }
 
 function makeNewPortfolio(callback) {
@@ -608,10 +612,10 @@ module.exports = {
                 var date = new Date();
                 var lockingDate = new Date(date);
                 //lockingDate.setDate(date.getDate() + 1);
-                lockingDate.setMinutes(date.getMinutes() + 1);
+                lockingDate.setMinutes(date.getMinutes() + 5);
                 var endingDate = new Date(date);
                 //endingDate.setDate(date.getDate() + 7);
-                endingDate.setMinutes(date.getMinutes() + 3);
+                endingDate.setMinutes(date.getMinutes() + 6);
 
                 league_result.status = "1";
                 league_result.start_time = lockingDate;
@@ -659,7 +663,7 @@ module.exports = {
                     if (result.status.toString() !== '4') {
                       item.portfolio_id = null;
                     }
-                    item.user_id = null;
+                    //item.user_id = null;
                   }
                 }
                 next();
@@ -670,7 +674,8 @@ module.exports = {
                   league_id: result.league_id,
                   league_type: result.league_type,
                   status: result.status,
-                  start_time: result.start_time
+                  start_time: result.start_time,
+                  league_buy_in: result: league_buy_in
                 };
                 if (foundUser == false) {
                   if (response.status.toString() === '4') {
@@ -693,7 +698,7 @@ module.exports = {
                   if (result.status.toString() !== '4') {
                     item.portfolio_id = null;
                   }
-                  item.user_id = null;
+                  //item.user_id = null;
                 }
               }
               next();
