@@ -93,9 +93,10 @@ router.get('/null_out', passport.authenticate(['jwt'], { session: false }), (req
   if (req.user.currentLeague_id) {
     mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
       console.log(req.user.currentLeague_id);
-      if(response.status == 4) {
-        req.user.currentLeague_id = null;
-        mongo.updateUserLeague(req.user, function(error, result) {
+        if(response.status == 4) {
+          req.user.past_leagues.push(req.user.currentLeague_id);
+          req.user.currentLeague_id = null;
+          mongo.updateUserLeague(req.user, function(error, result) {
           if(error) console.log(error);
           res.send({'jwt' : token.generateAccessToken(req.user)});
         });

@@ -2,10 +2,7 @@
 	<app-sidebar page="league" [league]="league">
 	</app-sidebar>
 	<div class="page-content">
-		<div *ngIf="league && league.status == 0;else leagueDetail" style="height: 100%;">
-			<app-league-waiting-overlay [league]="league"></app-league-waiting-overlay>
-		</div>
-		<ng-template #leagueDetail>
+		<div *ngIf="league && league.status != 0;else leagueWaiting" style="height: 100%;">
 			<div class="uk-container uk-margin-top">
 				<div class="uk-text-lead">League #{{league.league_id}}</div>
 				<div class="uk-margin-top card-container uk-grid-small uk-grid-match" uk-grid>
@@ -24,7 +21,7 @@
 									<ul class="uk-list uk-list-large">
 									    <li>Your Rank: #{{rank}}</li>
 									    <li>User at #1: {{leader}}</li>
-											<!-- <li>League status: {{status}}</li> -->
+											<li>League status: {{getStatus(league.status)}}</li>
 											<li>{{timeRemaining}} until the league {{status}}</li>
 									</ul>
 									<ul class="uk-list uk-list-large">
@@ -56,33 +53,41 @@
 							            <th *ngIf="league.status >= 2">Rank</th>
 							            <th></th>
 							            <th>Username</th>
-							            <th *ngIf="league.status >= 2">Total Gains</th>
 							            <th>Tokens</th>
+							            <th *ngIf="league.status >= 2">Total Gains</th>
+							            <th *ngIf="league.status == 4">Payout</th>
 							        </tr>
 							    </thead>
-							    <tr *ngFor="let user of league.portfolio_ids">
-							     	<td *ngIf="league.status >= 2">{{user.rank}}</td>
-							     	<td><span class="uk-icon uk-icon-image uk-margin-right" [ngStyle]="{'background-image': 'url(' + user.profilePicture +')'}"></span></td>
+							    <tr *ngFor="let portfolio of league.portfolio_ids">
+							     	<td *ngIf="league.status >= 2">{{portfolio.rank}}</td>
+							     	<td><span class="uk-icon uk-icon-image uk-margin-right" [ngStyle]="{'background-image': 'url(' + portfolio.profilePicture +')'}"></span></td>
 							     	<td>{{user.username}}</td>
-						        <td *ngIf="league.status >= 2" [class.uk-text-success]="user.portfolio_value > 0" [class.uk-text-danger]="user.portfolio_value < 0">
-						        	<span *ngIf="user.portfolio_value > 0;else negChange" uk-icon="triangle-up"></span>
+						        <td>{{portfolio.tokens}}</td>
+						        <td *ngIf="league.status >= 2" [class.uk-text-success]="portfolio.portfolio_value > 0" [class.uk-text-danger]="portfolio.portfolio_value < 0">
+						        	<span *ngIf="portfolio.portfolio_value > 0;else negChange" uk-icon="triangle-up"></span>
 											<ng-template #negChange>
 												<span uk-icon="triangle-down"></span>
 											</ng-template>
-											{{user.portfolio_value | number:'1.2-2'}}
+											{{portfolio.portfolio_value | number:'1.2-2'}}%
 										</td>
-						        <td>{{user.tokens}}</td>
-						        </tr>
+										<td *ngIf="league.status == 4">{{portfolio.payout}}</td>
+						      </tr>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="progress-bar" [class.starting]="league.status == 1" [class.started]="league.status == 3" >
+			<div class="progress-bar" [class.starting]="league.status == 1" [class.started]="league.status >= 3" >
 				<div class="progress" [style.width]="timeRemainingPercent + '%'" [class.starting]="league.status == 1" [class.started]="league.status == 3"></div>
-				<p>{{timeRemaining}} until the league {{status}}</p>
+				<p *ngIf="league.status < 4; else endMessage">{{timeRemaining}} until the league {{status}}</p>
+				<ng-template #endMessage>
+					<p>The league has ended.</p>
+				</ng-template>
 			</div>
+		</div>
+		<ng-template #leagueWaiting>
+			<app-league-waiting-overlay [league]="league"></app-league-waiting-overlay>
 		</ng-template>
 	</div>
 </div>
