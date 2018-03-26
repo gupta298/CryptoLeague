@@ -275,6 +275,11 @@ export class PortfolioComponent implements OnInit {
 
 					}, error => {
 						console.log(error);
+						if(error.status == 400) {
+							UIkit.modal('#modal-center').show();
+							this.submitMessage = JSON.parse(error._body).message;
+						}
+						
 					}
 				)
   	
