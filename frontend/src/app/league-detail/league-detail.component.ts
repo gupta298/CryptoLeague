@@ -126,10 +126,10 @@ export class LeagueDetailComponent implements OnInit {
         }
 
         //endDate.add(6, 'd');
-        endDate.add(10, 'm')
+        endDate.add(6, 'm')
         this.status = "ends.";
         //totaltime = 518400;
-        totaltime = 600;
+        totaltime = 360;
         this.timeRemainingPercent = 100 - Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
       } else {
         this.timeRemainingPercent = Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);

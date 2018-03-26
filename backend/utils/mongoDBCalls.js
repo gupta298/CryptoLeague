@@ -611,7 +611,7 @@ module.exports = {
                 lockingDate.setMinutes(date.getMinutes() + 5);
                 var endingDate = new Date(date);
                 //endingDate.setDate(date.getDate() + 7);
-                endingDate.setMinutes(date.getMinutes() + 10);
+                endingDate.setMinutes(date.getMinutes() + 6);
 
                 league_result.status = "1";
                 league_result.start_time = lockingDate;
@@ -659,7 +659,7 @@ module.exports = {
                     if (result.status.toString() !== '4') {
                       item.portfolio_id = null;
                     }
-                    item.user_id = null;
+                    //item.user_id = null;
                   }
                 }
                 next();
@@ -693,7 +693,7 @@ module.exports = {
                   if (result.status.toString() !== '4') {
                     item.portfolio_id = null;
                   }
-                  item.user_id = null;
+                  //item.user_id = null;
                 }
               }
               next();
