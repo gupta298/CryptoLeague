@@ -9,10 +9,10 @@
 				<li *ngIf="league.status < 4; else endMessage">{{timeRemaining}} until the league {{status}}</li>
 			</ul>
 			<ul class="uk-list uk-list-large" id="statsText2">
-				<li><b>Prize Distribution:</b></li>
-				<li>#1 - #{{this.topTen}}: 50</li>
-				<li>#{{this.topTen+ 1}} - #{{this.topTwentyfive}}: 37.5</li>
-				<li>#{{this.topTwentyfive + 1}} - #{{this.topFifty}}: 25</li>
+				<li><b>Expected Prize Distribution:</b></li>
+				<li>#1 - #{{this.topTwentyfive}}: {{this.topPool}}</li>
+				<li>#{{this.topTwentyfive + 1}} - #{{this.topFifty}}: {{this.middlePool}}</li>
+				<li>#{{this.topFifty + 1}} - #{{this.topSeventyFive}}: {{this.lowerPool}}</li>
 			</ul>
 		</div>
 	</div>
