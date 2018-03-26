@@ -11,7 +11,7 @@ declare var UIkit: any;
 })
 export class LeagueSelectComponent implements OnInit {
 
-  leagues: string[] = [];
+  leagues: any[] = [];
   loading: boolean = false;
 
   constructor(
