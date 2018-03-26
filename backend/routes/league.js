@@ -36,7 +36,7 @@ router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 	      res.send(response);
 	    });
 	} else {
-		res.send({'message' : "Not in a league"})
+		res.send(400, {'message' : "Not in a league"})
 	}
 });
 
@@ -53,7 +53,7 @@ router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 router.post('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
 	if (!req.user.currentLeague_id) {
 		if (!req.body.league_type_id) {
-	  		res.send({'message': "No league type found!!"});
+	  		res.send(400, {'message': "No league type found!!"});
 	  	} else {
 	  		mongo.checkLeagueType(req.body.league_type_id, req.user._id, function(error, response) {
 				if (!error && response) {
@@ -65,12 +65,12 @@ router.post('/', passport.authenticate(['jwt'], { session: false }), (req, res) 
 						});
 					});
 				} else {
-					res.send({'message': error});
+					res.send(400, {'message': error});
 				}
 		    });
 	  	}
 	} else {
-		res.send({'message' : "Already in a league"});
+		res.send(400, {'message' : "Already in a league"});
 	}
 });
 

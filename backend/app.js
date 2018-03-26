@@ -21,7 +21,6 @@ var totalUsers = require('./routes/totalUsers');
 var league = require('./routes/league');
 var league_types = require('./routes/leagueTypes');
 var portfolio = require('./routes/portfolio');
-var nulling = require('./routes/nullLeague');
 
 const config = require('./config/config');
 const passport = require('passport');
@@ -64,7 +63,6 @@ app.use(market.router);
 // League
 app.use('/league_types', passport.authenticate(['jwt'], { session: false }), league_types);
 app.use('/league', passport.authenticate(['jwt'], { session: false }), league);
-app.use('/nullLeague', passport.authenticate(['jwt'], { session: false }), nulling);
 // app.use('/league/:league_id', passport.authenticate(['jwt'], { session: false }), league);
 
 // Portfolio

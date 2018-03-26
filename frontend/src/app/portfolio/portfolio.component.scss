@@ -33,44 +33,6 @@
 	font-weight: bold;
 }
 
-.modal {
-	position: absolute; 
-	width:50%; 
-	height: 25%; 
-	z-index: 3;
-	left: 25%;
-	top: 25%;
-	background: white;
-	color: grey;
-}
-
-.modal-view {
-    position: fixed; /* Stay in place */
-    z-index: 2; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-contents {
-
-	position: absolute;
-	z-index: 3;
-	top: 20%;
-	color: grey;
-	text-align: center;
-	width: 100%;
-}
-
-.okButton {
-	height: 100%;
-	background: blue;
-}
-
 @media only screen and (min-width: 1200px) {
   .upper-half { 
     font-size: 1.2em; 
