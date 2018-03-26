@@ -6,6 +6,7 @@ import { User } from '../user';
 declare var $: any;
 declare var browser: any;
 declare var DraggablePiechart: any;
+declare var UIkit: any;
 
 @Component({
 	selector: 'app-portfolio',
@@ -266,9 +267,10 @@ export class PortfolioComponent implements OnInit {
 					result => {
 						console.log(result);
 						this.showSubmitPopup = true;
+						UIkit.modal('#modal-center').show();
 						this.submitMessage = result.message;
 						if(result.message == "success") {
-							
+							this.submitMessage = "Your portfolio was saved successfully.";
 						}
 
 					}, error => {
@@ -280,6 +282,7 @@ export class PortfolioComponent implements OnInit {
 
   submitPopupClick() {
   	this.showSubmitPopup = false;
+  	UIkit.modal('#modal-center').show();
   }
 
   populatePieChart() {
