@@ -270,7 +270,7 @@ export class PortfolioComponent implements OnInit {
 						UIkit.modal('#modal-center').show();
 						this.submitMessage = result.message;
 						if(result.message == "success") {
-							
+							this.submitMessage = "Your portfolio was saved successfully.";
 						}
 
 					}, error => {
