@@ -608,10 +608,10 @@ module.exports = {
                 var date = new Date();
                 var lockingDate = new Date(date);
                 //lockingDate.setDate(date.getDate() + 1);
-                lockingDate.setMinutes(date.getMinutes() + 1);
+                lockingDate.setMinutes(date.getMinutes() + 5);
                 var endingDate = new Date(date);
                 //endingDate.setDate(date.getDate() + 7);
-                endingDate.setMinutes(date.getMinutes() + 3);
+                endingDate.setMinutes(date.getMinutes() + 10);
 
                 league_result.status = "1";
                 league_result.start_time = lockingDate;
