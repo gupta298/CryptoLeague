@@ -130,31 +130,35 @@ function getUserObject(user_id, callback) {
 
 function updateUserInLeagues(user) {
   var all_leagues = user.past_leagues;
-  all_leagues.push(user.currentLeague_id);
 
-  asyncLoop(all_leagues, function (item, next) {
-    MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("cryptoleague_database");
-      dbo.collection("Leagues").findOne({'league_id' : item}, function(err, result) {
+  if(user.currentLeague_id)
+    all_leagues.push(user.currentLeague_id);
+
+  if(all_leagues.length > 0){
+    asyncLoop(all_leagues, function (item, next) {
+      MongoClient.connect(mongodbUrl, function (err, db) {
         if (err) throw err;
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("Leagues").findOne({'league_id' : item}, function(err, result) {
+          if (err) throw err;
 
-        asyncLoop(result.portfolio_ids, function (portfolio, next_portfolio) {
-          if (portfolio.user_id.toString() === user._id.toString()) {
-            portfolio.username = user.username;
-            portfolio.profilePicture = user.profilePicture;
-          }
-          next_portfolio();
-        }, function () {
-          dbo.collection("Leagues").findOneAndUpdate({'league_id': item}, {$set: {'portfolio_ids': result.portfolio_ids}});
+          asyncLoop(result.portfolio_ids, function (portfolio, next_portfolio) {
+            if (portfolio.user_id.toString() === user._id.toString()) {
+              portfolio.username = user.username;
+              portfolio.profilePicture = user.profilePicture;
+            }
+            next_portfolio();
+          }, function () {
+            dbo.collection("Leagues").findOneAndUpdate({'league_id': item}, {$set: {'portfolio_ids': result.portfolio_ids}});
+          });
+
+          db.close();
+          next();
         });
-
-        db.close();
-        next();
       });
+    }, function () {
     });
-  }, function () {
-  });
+  }
 }
 
 function makeNewPortfolio(callback) {
