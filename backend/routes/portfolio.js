@@ -70,12 +70,7 @@ var express = require('express');
   * @apiSuccess {JSON} Portfolio_Object Returns the final updated portfolio object.
  */
  router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
-
-	console.log(req.body);
-	console.log(req.body._id);
-
  	if (req.user.currentLeague_id && req.body && req.body.holdings) {
- 		//console.log(req.body.holdings.length);
  		if(req.body.holdings.length < 3 || req.body.holdings.length > 6){
  			res.send(400, {'message' : "You should have a minimum of 3 coins and a maximum of 6 (both inclusive)"});
       return;
@@ -92,32 +87,51 @@ var express = require('express');
 
       var counter = 0;
       var capcoinFlag = 1;
+      if (!req.body.captain_coin) {
+        capcoinFlag = 0;
+      }
+
       var coins = market.getCoinTickers();
       asyncLoop(req.body.holdings, function (item, next) {
         counter += item.percentage;
         if(item.percentage <= 0){res.send(400, {'message' : "Coins can not have percentage less than or equal to 0"}); return;}
         if(item.percentage > 35){res.send(400, {'message' : "Coins can not make up more than 35% of your portfolio"}); return;}
         if(!coins.includes(item.coin_symbol.toString())){res.send(400, {'message' : "Please select a valid coin"}); return;}
-        if(req.body.captain_coin.toString() && item.coin_symbol.toString() == req.body.captain_coin){capcoinFlag = 0;}
+        if(req.body.captain_coin && item.coin_symbol.toString() == req.body.captain_coin.toString()){capcoinFlag = 0;}
         next();
       }, function () {
           if(counter != 100){
             res.send(400, {'message' : "Total percentage is not equal to 100"});
             return;
-          }else if(capcoinFlag != 0){
+          } else if(capcoinFlag != 0){
             res.send(400, {'message' : "Captain Coin must be a coin that you've chosen in your portfolio. It can not be a new coin"});
             return;
           } else {
             mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
               if (response.status.toString() == "0" || response.status.toString() == "1" || response.status.toString() == "2") {
-              
-              mongo.updatePortfolioWithID(req.body._id, req.body.holdings, req.body.captain_coin, function(error, result) {
-                if(error)
-                  console.log(error);
 
-                res.send(400, {'message' : "success"});
-                return;
-              });
+                var portfolio_id_user = null;
+                for (var i = 0; i < response.portfolio_ids.length; i++) {
+                  if (req.user._id.toString() === response.portfolio_ids[i].user_id.toString()) {
+                    portfolio_id_user = response.portfolio_ids[i].portfolio_id;
+                    break;
+                  }
+                }
+
+                if (portfolio_id_user) {
+                  mongo.updatePortfolioWithID(portfolio_id_user, req.body.holdings, req.body.captain_coin, function(error, result) {
+                    if(error)
+                      console.log(error);
+
+                    res.send({'message' : "success"});
+                    return;
+                  });
+                } else {
+                  res.send(400, {'message' : "Can not edit someone else's portfolio."});
+                  return;
+                }
+              
+                
               
               } else {
                 res.send(400, {'message' : "League Locked"});
