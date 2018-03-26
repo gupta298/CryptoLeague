@@ -74,7 +74,7 @@ var express = require('express');
 	console.log(req.body);
 	console.log(req.body._id);
 
- 	if (req.user.currentLeague_id) {
+ 	if (req.user.currentLeague_id && req.body && req.body.holdings) {
  		//console.log(req.body.holdings.length);
  		if(req.body.holdings.length < 3 && req.body.holdings.length > 6){
  			res.send({'message' : "Number of coins is not correct"});
@@ -89,7 +89,7 @@ var express = require('express');
             if(item.percentage <= 0){res.send({'message' : "Coins can not have percentage less than or equal to 0"});return;}
             if(item.percentage > 35){res.send({'message' : "Coins can not make up more than 35% of your portfolio"});return;}
             if(!market.getCoinTickers().includes(item.coin_symbol.toString())){res.send({'message' : "Please select a valid coin"});return;}
-            if(item.coin_symbol.toString() == req.body.captain_coin){capcoinFlag = 0;}
+            if(req.body.captain_coin && item.coin_symbol.toString() == req.body.captain_coin){capcoinFlag = 0;}
             next();
           }, function () {
               if(counter != 100){
@@ -120,7 +120,7 @@ var express = require('express');
 
 		}
 	} else {
-		res.send({'message' : "Not in any league"});
+		res.send({'message' : "Not in any league or invalid body"});
     return;
 	}
  });

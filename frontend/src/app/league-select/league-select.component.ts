@@ -11,13 +11,24 @@ declare var UIkit: any;
 })
 export class LeagueSelectComponent implements OnInit {
 
+  leagues: string[] = [];
   loading: boolean = false;
 
   constructor(
     private leagueService: LeagueService,
-    private router: Router) { }
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.leagueService.getLeagueTypes()
+    .subscribe(
+      result => {
+        this.leagues = result;
+        console.log(result);
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
   selected(leagueType) {
@@ -34,7 +45,7 @@ export class LeagueSelectComponent implements OnInit {
             UIkit.alert(UIkit.alert('#joiningAlert')).close();
             this.loading = false;
             console.log(error);
-          } 
+          }
         );
     }, function () {
       console.log('Cancel.');
