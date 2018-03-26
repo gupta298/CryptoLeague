@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 
 import { League } from '../league';
 
@@ -16,15 +17,18 @@ export class LeagueWaitingOverlayComponent implements OnInit {
   	constructor(private leagueService: LeagueService) { }
 
   	ngOnInit() {
-      setTimeout(()=>{
+      let timer = Observable.timer(0,5000);
+      timer.subscribe(() =>{
+        console.log("checking for new data");
     		this.leagueService.getLeague().subscribe(
     			result => {
+            this.league.deserialize(result);
     				console.log(result);
     			}, error => {
     				console.log(error);
     			}
     		);
-      }, 5000);
+      });
   	}
 
 
