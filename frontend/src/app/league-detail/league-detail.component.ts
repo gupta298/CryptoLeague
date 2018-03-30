@@ -137,6 +137,10 @@ export class LeagueDetailComponent implements OnInit {
 
       var delta = endDate.diff(currDate, 'seconds');
 
+      if(delta == 0){
+        this.loadLeague();
+      }
+
       // calculate (and subtract) whole days
       var days = Math.floor(delta / 86400);
       delta -= days * 86400;
