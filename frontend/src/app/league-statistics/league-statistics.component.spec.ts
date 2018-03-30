@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpModule, Http, Headers, Response, RequestOptions } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { AuthenticationService, LeagueService } from '../services';
+import { AuthenticationService, LeagueService, UserService } from '../services';
 
 import { League } from '../league';
 
@@ -19,7 +19,7 @@ describe('LeagueStatisticsComponent', () => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, RouterTestingModule ],
       declarations: [ LeagueStatisticsComponent, TestHostComponent ],
-      providers: [ AuthenticationService, LeagueService ]
+      providers: [ AuthenticationService, LeagueService, UserService ]
     })
     .compileComponents();
   }));
