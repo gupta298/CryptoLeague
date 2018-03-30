@@ -24,7 +24,6 @@ jwtOptions.issuer = config.JWT_ISSUER;
 jwtOptions.audience = config.JWT_AUDIENCE;
 
 var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
-  console.log('payload received', jwt_payload);
   mongo.checkUserExists(jwt_payload, function(error, result) {
     next(null, result);
   });
@@ -33,12 +32,10 @@ var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
 passport.use(strategy);
 
 passport.serializeUser(function(user, done) {
-  console.log("serializing " + user.id);
   done(null, user);
 });
 
 passport.deserializeUser(function(obj, done) {
-  console.log("deserializing " + obj);
   done(null, obj);
 });
 
@@ -55,7 +52,8 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'email', 'name', 'picture']
   },
   function(accessToken, refreshToken, profile, cb) {
-    //console.log(profile);
+    console.log("Adding a new user using Facebook");
+
     var user = new userSchema();
     user.id = profile.id;
     user.email = profile.emails[0].value;
@@ -84,7 +82,7 @@ passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    //console.log(profile);
+    console.log("Adding a new user using Google");
 
     var user = new userSchema();
     user.id = profile.id;

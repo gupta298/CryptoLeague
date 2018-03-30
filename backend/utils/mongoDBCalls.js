@@ -1,13 +1,3 @@
-/*
-League statuses/stati number to string
-
-0 - Waiting
-1 - Waiting_Locked
-2 - Locked
-3 - Started
-4 - Finished
-*/
-
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert')
   , ObjectId = require('mongodb').ObjectID;
@@ -455,6 +445,24 @@ module.exports = {
     });
   },
 
+  updateUserLeagueForNullLeague:
+  function updateUserLeagueForNullLeague(user, callback) {
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) throw err;
+
+      var dbo = db.db("cryptoleague_database");
+      dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {currentLeague_id: user.currentLeague_id, past_leagues: user.past_leagues}},
+        function(err, res) {
+          if (err) {
+            throw err;
+          }
+
+          callback(null, token.generateAccessToken(user));
+          db.close();
+      });
+    });
+  },
+
   getAllUsers:
   function getAllUsers(page, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
@@ -663,7 +671,6 @@ module.exports = {
                     if (result.status.toString() !== '4') {
                       item.portfolio_id = null;
                     }
-                    //item.user_id = null;
                   }
                 }
                 next();
@@ -698,7 +705,6 @@ module.exports = {
                   if (result.status.toString() !== '4') {
                     item.portfolio_id = null;
                   }
-                  //item.user_id = null;
                 }
               }
               next();

@@ -20,7 +20,11 @@ var express = require('express');
  */
  router.get('/:league_id/:user_id', passport.authenticate(['jwt'], { session: false }), (req, res) => {
   mongo.getPortfolio(req.params.league_id, req.params.user_id, req.user._id, function(error, response) {
-    res.send(response);
+    if (error) {
+      res.send(400, { "message" : error });
+    } else {
+      res.send(response);
+    }
   });
  });
 
@@ -36,7 +40,11 @@ var express = require('express');
  */
  router.get('/:league_id', passport.authenticate(['jwt'], { session: false }), (req, res) => {
   mongo.getPortfolio(req.params.league_id, req.user._id, req.user._id, function(error, response) {
-    res.send(response);
+    if (error) {
+      res.send(400, { "message" : error });
+    } else {
+      res.send(response);
+    }
   });
  });
 
@@ -52,7 +60,11 @@ var express = require('express');
  router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
  	if (req.user.currentLeague_id) {
  		mongo.getPortfolio(req.user.currentLeague_id, req.user._id, req.user._id, function(error, response) {
-      res.send(response);
+      if (error) {
+        res.send(400, { "message" : error });
+      } else {
+        res.send(response);
+      }
     });
  	} else {
  		res.send(400, {'message' : "Not in any league"})
@@ -71,9 +83,8 @@ var express = require('express');
  */
  router.put('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
  	if (req.user.currentLeague_id && req.body && req.body.holdings && req.body.captain_coin !== undefined) {
- 		if(req.body.holdings.length < 3 || req.body.holdings.length > 6){
+ 		if(req.body.holdings.length < 3 || req.body.holdings.length > 6) {
  			res.send(400, {'message' : "You should have a minimum of 3 coins and a maximum of 6 (both inclusive)"});
-      return;
  		} else {
       var temp_holdings = [];
       for (var i = 0; i < req.body.holdings.length; i++) {
@@ -94,22 +105,39 @@ var express = require('express');
       var coins = market.getCoinTickers();
       asyncLoop(req.body.holdings, function (item, next) {
         counter += item.percentage;
-        if(item.percentage <= 0){res.send(400, {'message' : "Coins can not have percentage less than or equal to 0"}); return;}
-        if(item.percentage > 35){res.send(400, {'message' : "Coins can not make up more than 35% of your portfolio"}); return;}
-        if(!coins.includes(item.coin_symbol.toString())){res.send(400, {'message' : "Please select a valid coin"}); return;}
-        if(req.body.captain_coin && item.coin_symbol.toString() == req.body.captain_coin.toString()){capcoinFlag = 0;}
+        if(item.percentage <= 0) {
+          res.send(400, {'message' : "Coins can not have percentage less than or equal to 0"}); 
+          return;
+        }
+
+        if(item.percentage > 35) {
+          res.send(400, {'message' : "Coins can not make up more than 35% of your portfolio"}); 
+          return;
+        }
+
+        if(!coins.includes(item.coin_symbol.toString())) {
+          res.send(400, {'message' : "Please select a valid coin"}); 
+          return;
+        }
+
+        if(req.body.captain_coin && item.coin_symbol.toString() == req.body.captain_coin.toString()) {
+          capcoinFlag = 0;
+        }
+
         next();
       }, function () {
           if(counter != 100){
             res.send(400, {'message' : "Total percentage is not equal to 100"});
-            return;
           } else if(capcoinFlag != 0){
             res.send(400, {'message' : "Captain Coin must be a coin that you've chosen in your portfolio. It can not be a new coin"});
-            return;
           } else {
             mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
-              if (response.status.toString() == "0" || response.status.toString() == "1" || response.status.toString() == "2") {
+              if (error) {
+                res.send(400, {"message" : error});
+                return;
+              }
 
+              if (response.status.toString() == "0" || response.status.toString() == "1" || response.status.toString() == "2") {
                 var portfolio_id_user = null;
                 for (var i = 0; i < response.portfolio_ids.length; i++) {
                   if (req.user._id.toString() === response.portfolio_ids[i].user_id.toString()) {
@@ -120,31 +148,24 @@ var express = require('express');
 
                 if (portfolio_id_user) {
                   mongo.updatePortfolioWithID(portfolio_id_user, req.body.holdings, req.body.captain_coin, function(error, result) {
-                    if(error)
-                      console.log(error);
-
-                    res.send({'message' : "success"});
-                    return;
+                    if (error) {
+                      res.send(400, {'message' : "Error updating the portfolio! Please try again later."});
+                    } else {
+                      res.send({'message' : "success"});
+                    }
                   });
                 } else {
                   res.send(400, {'message' : "Can not edit someone else's portfolio."});
-                  return;
                 }
-              
-                
-              
               } else {
                 res.send(400, {'message' : "League Locked"});
-                return;
               }
             });
           }
       });
-
 		}
 	} else {
 		res.send(400, {'message' : "Not in any league or invalid body"});
-    return;
 	}
  });
 
