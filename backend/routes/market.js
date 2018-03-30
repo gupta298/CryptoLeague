@@ -19,8 +19,8 @@ var coinNames = [];
  * @apiHeader {String} JWT JWT token of the user.
  *
  * @apiSuccess {JSON} Coin_Data Returns an array of the top 100 coins based on the chasing_coin.
-*/
-router.get('/market/', function(req, res, next) {
+ */
+ router.get('/market/', function(req, res, next) {
   if (coinData.lenght <= 0) {
     res.send(400, {'message': "Error retrieving the data!"});
   } else {
@@ -76,7 +76,7 @@ function getCurrentCoinPricesMap() {
 }
 
 //Make array of just the coin tickers
-function getCoinTickers(){
+function getCoinTickers() {
   var coinTickers = [];
 
   for(coin of coinData){
@@ -171,15 +171,15 @@ setInterval( function() {
 //Gets Json from a url
 function getJsonFromUrl(url, callback) {
   request({
-      url: url,
-      json: true
+    url: url,
+    json: true
   }, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-        var result = JSON.parse(JSON.stringify(body));
-        callback(result);
-      } else {
-        callback(null);
-      }
+    if (!error && response.statusCode === 200) {
+      var result = JSON.parse(JSON.stringify(body));
+      callback(result);
+    } else {
+      callback(null);
+    }
   });
 }
 
