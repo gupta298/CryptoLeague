@@ -11,7 +11,9 @@ var config = require('./config')
 
 // Use connect method to connect to the server
 mongo.connectToMongo(function(error, response) {
-  console.log("connected: " + response);
+  if (!error) {
+    console.log("connected: " + response);
+  }
 });
 
 var ExtractJwt = passportJWT.ExtractJwt;
@@ -25,7 +27,7 @@ jwtOptions.audience = config.JWT_AUDIENCE;
 
 var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
   mongo.checkUserExists(jwt_payload, function(error, result) {
-    next(null, result);
+    next(error, result);
   });
 });
 
@@ -65,7 +67,7 @@ passport.use(new FacebookStrategy({
     user.currentLeague_id = null;
 
     mongo.addUser(user, function(error, result) {
-      return cb(null, JSON.parse(JSON.stringify(result)));
+      return cb(error, JSON.parse(JSON.stringify(result)));
     });
   }
 ));
@@ -95,7 +97,7 @@ passport.use(new GoogleStrategy({
     user.currentLeague_id = null;
 
     mongo.addUser(user, function(error, result) {
-      return cb(null, JSON.parse(JSON.stringify(result)));
+      return cb(error, JSON.parse(JSON.stringify(result)));
     });
   }
 ));

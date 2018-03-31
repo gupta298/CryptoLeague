@@ -22,7 +22,7 @@ router.get('/',
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
     mongo.getUserViaID(req.user._id, function(error, result) {
-      if (error) {
+      if (error || !result) {
         res.send(400, { "message" : "Error finding the user!" });
       } else {
         res.send({ 'jwt' : token.generateAccessToken(result) });
@@ -45,7 +45,7 @@ router.put('/',
   passport.authenticate(['jwt'], { session: false }),
   (req, res) => {
     mongo.getUserViaID(req.user._id, function(error, result) {
-      if (error) {
+      if (error || !result) {
         res.send(400, { "message" : "Error finding the user!" });
       } else {
         if (req.body.email) result.email = req.body.email;
@@ -93,7 +93,7 @@ router.get('/null_out', passport.authenticate(['jwt'], { session: false }), (req
   if (req.user.currentLeague_id) {
     mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
       if (error) {
-        res.send(400, {"message", error });
+        res.send(400, {"message" : error });
       } else {
         if(response.status == 4) {
           req.user.past_leagues.push(req.user.currentLeague_id);

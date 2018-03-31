@@ -34,7 +34,7 @@ function findLeagueType(league_Types_id, callback) {
             if (result) {
               callback(null, JSON.parse(JSON.stringify(result)));
             } else  {
-              callback(null, false);
+              callback(null, null);
             }
           }
 
@@ -67,7 +67,7 @@ function findWaitingLeague(league_type, callback) {
                 if (result) {
                   callback(null, JSON.parse(JSON.stringify(result)));
                 } else  {
-                  callback(null, false);
+                  callback(null, null);
                 }
               }
 
@@ -93,7 +93,7 @@ function getNextSequenceValue(callback) {
           if (result) {
             callback(null, result.value.sequence_value);
           } else {
-            callback(null, false);
+            callback(null, null);
           }
         }
 
@@ -134,7 +134,7 @@ function getRankOfUser(id, callback) {
                 db.close();
               });
             } else  {
-              callback(null, false);
+              callback(null, null);
               db.close();
             }
           }
@@ -310,289 +310,360 @@ function startLeague(league_id){
   }
 }
 
-function endLeague(league_id){
-  MongoClient.connect(mongodbUrl, function (err, db) {
-    if (err) throw err;
-    var dbo = db.db("cryptoleague_database");
+function endLeague(league_id) {
+  if (!league_id) {
+    console.log("Error ending the league!");
+  } else {
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) {
+        console.log("Error connecting to MongoClient! Could not end the league : " + league_id + ". Will try again in a minute");
+        var lockingDate = new Date();
+        var newDate = new Date(lockingDate);
+        newDate.setMinutes(lockingDate.getMinutes() + 1);
 
-    dbo.collection("Leagues").findOne({'league_id' : league_id}, function(err, result) {
-      if (err) throw err;
+        schedule.scheduleJob(endLeague, startLeague.bind(null, league_id));
+      } else {
+        var dbo = db.db("cryptoleague_database");
 
-      if (result) {
-        calculatePortfoliosValues(result, function(){
-          //Sort portfolios by value
-          result.portfolio_ids.sort(function(a, b) {
-            return b.portfolio_value - a.portfolio_value;
-          });
+        dbo.collection("Leagues").findOne({'league_id' : league_id}, function(err, result) {
+          if (err) {
+            console.log("League id : " + league_id + " does not exist, hence could not end it!");
+          } else {
+            if (result) {
+              calculatePortfoliosValues(result, function() {
+                //Sort portfolios by value
+                result.portfolio_ids.sort(function(a, b) {
+                  return b.portfolio_value - a.portfolio_value;
+                });
 
-          //Set rankings and payouts
-          for(let i = 0; i < result.portfolio_ids.length; i++) {
-              // original ranking
-              result.portfolio_ids[i].rank = i + 1;
-              result.portfolio_ids[i].payout = 0;
+                //Set rankings and payouts
+                for(let i = 0; i < result.portfolio_ids.length; i++) {
+                  // original ranking
+                  result.portfolio_ids[i].rank = i + 1;
+                  result.portfolio_ids[i].payout = 0;
+                }
+
+                let currRank = 1;
+                result.portfolio_ids[0].rank = 1;
+                for(let i = 1; i < result.portfolio_ids.length; i++){
+                  if(result.portfolio_ids[i].portfolio_value === result.portfolio_ids[i - 1].portfolio_value){
+                    result.portfolio_ids[i].rank = currRank;
+                  } else {
+                    result.portfolio_ids[i].rank = ++currRank;
+                  }
+                }
+
+                let totalCoins = result.league_buy_in * result.portfolio_ids.length;
+
+                //Count number of people
+                let numTop25 = 0, numTop50 = 0, numTop75 = 0;
+                for(let i = 0; i < result.portfolio_ids.length; i++){
+                  if(result.portfolio_ids[i].rank <= 25)
+                    numTop25++;
+                  if(result.portfolio_ids[i].rank <= 50)
+                    numTop50++;
+                  if(result.portfolio_ids[i].rank <= 75)
+                    numTop75++;
+                }
+
+                for(let i = 0; i < result.portfolio_ids.length; i++){
+                  if(result.portfolio_ids[i].rank <= 25) {
+                    result.portfolio_ids[i].payout += (0.2 * totalCoins) / numTop25;
+                  }
+                  if(result.portfolio_ids[i].rank <= 50) {
+                    result.portfolio_ids[i].payout += (0.3 * totalCoins) / numTop50;
+                  }
+                  if(result.portfolio_ids[i].rank <= 75) {
+                    result.portfolio_ids[i].payout += (0.5 * totalCoins) / numTop75;
+                  }
+                }
+
+                MongoClient.connect(mongodbUrl, function (err, db) {
+                  if (err) {
+                    console.log("Error connecting to MongoClient! Could not end the league : " + league_id + ". Will try again in a minute");
+                    var lockingDate = new Date();
+                    var newDate = new Date(lockingDate);
+                    newDate.setMinutes(lockingDate.getMinutes() + 1);
+
+                    schedule.scheduleJob(endLeague, startLeague.bind(null, league_id));
+                  } else {
+                    var dbo = db.db("cryptoleague_database");
+
+                    //Update all the users
+                    for(let i = 0; i < result.portfolio_ids.length; i++){
+                      dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$inc: {'tokens' : result.portfolio_ids[i].payout}});
+                    }
+
+                    //Update league
+                    dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4'}});
+                    db.close();
+                  }
+                });
+              });
             }
-            let currRank = 1;
-            result.portfolio_ids[0].rank = 1;
-            for(let i = 1; i < result.portfolio_ids.length; i++){
-              if(result.portfolio_ids[i].portfolio_value === result.portfolio_ids[i - 1].portfolio_value){
-                result.portfolio_ids[i].rank = currRank;
-              } else {
-                result.portfolio_ids[i].rank = ++currRank;
-              }
-            }
-
-            console.log("current rankings");
-            console.log(result.portfolio_ids);
-
-            let totalCoins = result.league_buy_in * result.portfolio_ids.length;
-
-          //Count number of people
-          let numTop25 = 0, numTop50 = 0, numTop75 = 0;
-          for(let i = 0; i < result.portfolio_ids.length; i++){
-            if(result.portfolio_ids[i].rank <= 25)
-              numTop25++;
-            if(result.portfolio_ids[i].rank <= 50)
-              numTop50++;
-            if(result.portfolio_ids[i].rank <= 75)
-              numTop75++;
           }
-
-          for(let i = 0; i < result.portfolio_ids.length; i++){
-            if(result.portfolio_ids[i].rank <= 25) {
-              result.portfolio_ids[i].payout += (0.2 * totalCoins) / numTop25;
-            }
-            if(result.portfolio_ids[i].rank <= 50) {
-              result.portfolio_ids[i].payout += (0.3 * totalCoins) / numTop50;
-            }
-            if(result.portfolio_ids[i].rank <= 75) {
-              result.portfolio_ids[i].payout += (0.5 * totalCoins) / numTop75;
-            }
-          }
-
-          console.log("after calculating payouts");
-          console.log(result.portfolio_ids);
-
-          MongoClient.connect(mongodbUrl, function (err, db) {
-            if (err) throw err;
-            var dbo = db.db("cryptoleague_database");
-
-            //Update all the users
-            for(let i = 0; i < result.portfolio_ids.length; i++){
-              dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$inc: {'tokens' : result.portfolio_ids[i].payout}});
-            }
-
-            //Update league
-            dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4'}});
-            db.close();
-          });
+          if (db) db.close();
         });
       }
-      db.close();
     });
-  });
+  }
 }
 
 function calculatePortfoliosValues(league, callback) {
   // All of the validations should be done before calling this function and you have to pass the entire league object to it
 
   var current_coin_data = market.getCurrentCoinPricesMap();
-  var league_coins = league.locked_prices;
+  if (current_coin_data.toString() === "Error retrieving the coin prices") {
+    console.log(current_coin_data);
+    callback();
+  } else {
+    var league_coins = league.locked_prices;
 
-  asyncLoop(league.portfolio_ids, function (item, next) {
-    getPortfolioWithID(item.portfolio_id, function(err, portfolio) {
-      var overall_percentage_value = 0;
-      if(portfolio && portfolio.holdings){
-        for (index in portfolio.holdings) {
-          //var found_current_market = current_coin_data.find( coin => coin.symbol.toString() === portfolio.holdings[index].coin_symbol.toString() );
-          //var found_league_market = league_coins.find( coin => coin.symbol.toString() === portfolio.holdings[index].coin_symbol.toString() );
-          var found_current_market = current_coin_data[portfolio.holdings[index].coin_symbol];
-          var found_league_market = league_coins[portfolio.holdings[index].coin_symbol];
-          
-          var return_over_period = ((found_current_market - found_league_market) / found_league_market);
-          var value = portfolio.holdings[index].percentage * return_over_period;
+    asyncLoop(league.portfolio_ids, function (item, next) {
+      getPortfolioWithID(item.portfolio_id, function(err, portfolio) {
+        if (err) {
+          item.portfolio_value = 0;
+        } else {
+          var overall_percentage_value = 0;
+          if (portfolio && portfolio.holdings) {
+            for (index in portfolio.holdings) {
+              var found_current_market = current_coin_data[portfolio.holdings[index].coin_symbol];
+              var found_league_market = league_coins[portfolio.holdings[index].coin_symbol];
+              
+              var return_over_period = ((found_current_market - found_league_market) / found_league_market);
+              var value = portfolio.holdings[index].percentage * return_over_period;
 
-          if (portfolio.captain_coin && portfolio.captain_coin.toString() === portfolio.holdings[index].coin_symbol.toString()) {
-            value *= 2;
+              if (portfolio.captain_coin && portfolio.captain_coin.toString() === portfolio.holdings[index].coin_symbol.toString()) {
+                value *= 2;
+              }
+
+              overall_percentage_value += value;
+            }
           }
 
-          overall_percentage_value += value;
+          item.portfolio_value = overall_percentage_value;
         }
-      }
-
-      item.portfolio_value = overall_percentage_value;
-      next();
-    });
-  }, callback);
+        next();
+      });
+    }, callback);
+  }
 }
 
 module.exports = {
   connectToMongo:
   function connectToMongo(callback) {
     MongoClient.connect(mongodbUrl, function(err, db) {
-      assert.equal(null, err);
-      console.log("Connected successfully to database");
-      db.close();
+      if (err) {
+        console.log("Error connecting to mongodb");
+      } else {
+        console.log("Connected successfully to database");
+      }
 
-      callback(null, true);
+      callback(err, true);
+      db.close();
     });
   },
 
   checkUserExists:
   function checkUserExists(jwt_payload, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOne({'id' : jwt_payload.id}, function(err, result) {
-        if (err) throw err;
+      if (err) {
+        callback("We are currently facing some technically difficulties, please try again later!", null);
+      } else {
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("Users").findOne({'id' : jwt_payload.id}, function(err, result) {
+          if (err) {
+            callback("No user found!", null);
+          } else {
+            if (result) {
+              callback(null, result);
+            } else  {
+              callback(null, null);
+            }
+          }
 
-        if (result) {
-          callback(null, result);
-        } else  {
-          callback(null, false);
-        }
-
-        db.close();
-      });
+          db.close();
+        });
+      }
     });
   },
 
   addUser:
   function addUser(user, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOne({'id' : user.id}, function(err, result) {
-        if (err) throw err;
+      if (err) {
+        callback("We are currently facing some technically difficulties, please try again later!", null);
+      } else {
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("Users").findOne({'id' : user.id}, function(err, result) {
+          if (err) {
+            callback("Error adding the user!", null);
+          } else {
+            if (result) {
+              callback(null, result);
+            } else  {
+              dbo.collection("Users").insertOne(user, function(err, res) {
+                if (err) {
+                  console.log("Error inserting the user : " + user);
+                }
+                db.close();
+              });
+              callback(null, user);
+            }
+          }
 
-        if (result) {
-          callback(null, result);
-        } else  {
-          dbo.collection("Users").insertOne(user, function(err, res) {
-            if (err) throw err;
-            db.close();
-          });
-          callback(null, user);
-        }
-
-        db.close();
-      });
+          if (db) db.close();
+        });
+      }
     });
   },
 
   getUserViaID:
   function getUserViaID(userID, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOne({'_id' : ObjectId(userID)}, function(err, result) {
-        if (err) throw err;
+      if (err) {
+        callback("We are currently facing some technically difficulties, please try again later!", null);
+      } else {
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("Users").findOne({'_id' : ObjectId(userID)}, function(err, result) {
+          if (err) {
+            callback("Error finding the user!", null);
+          } else {
+            if (result) {
+              callback(null, JSON.parse(JSON.stringify(result)));
+            } else  {
+              callback(null, null);
+            }
+          }
 
-        if (result) {
-          callback(null, JSON.parse(JSON.stringify(result)));
-        } else  {
-          callback(null, false);
-        }
-
-        db.close();
-      });
+          db.close();
+        });
+      }
     });
   },
 
   getUserViaUsername:
   function getUserViaUsername(username, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOne({'username' : username}, function(err, result) {
-        if (err) throw err;
+      if (err) {
+        callback("We are currently facing some technically difficulties, please try again later!", null);
+      } else {
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("Users").findOne({'username' : username}, function(err, result) {
+          if (err) {
+            callback("Error finding the user via username!", null);
+          } else {
+            if (result) {
+              callback(null, true);
+            } else  {
+              callback(null, false);
+            }
+          }
 
-        if (result) {
-          callback(null, true);
-        } else  {
-          callback(null, false);
-        }
-
-        db.close();
-      });
+          db.close();
+        });
+      }
     });
   },
 
   updateUser:
   function updateUser(user, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
+      if (err) {
+        callback("We are currently facing some technically difficulties, please try again later!", null);
+      } else {
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {email: user.email, username: user.username,
+          profilePicture: user.profilePicture}}, function(err, res) {
+            if (err) {
+              callback("Error updating the user!", null);
+            } else {
+              res.value.email = user.email;
+              res.value.username = user.username;
+              res.value.profilePicture = user.profilePicture;
+              updateUserInLeagues(res.value);
 
-      var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {email: user.email, username: user.username,
-        profilePicture: user.profilePicture}}, function(err, res) {
-          if (err) {
-            throw err;
-          }
+              callback(null, token.generateAccessToken(res.value));
+            }
 
-          res.value.email = user.email;
-          res.value.username = user.username;
-          res.value.profilePicture = user.profilePicture;
-          updateUserInLeagues(res.value);
-
-          callback(null, token.generateAccessToken(user));
-
-          db.close();
+            db.close();
         });
+      }
     });
   },
 
   updateUserLeague:
   function updateUserLeague(user, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-
-      var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {currentLeague_id: user.currentLeague_id, tokens: user.tokens}},
-        function(err, res) {
-          if (err) {
-            throw err;
-          }
-
-          callback(null, token.generateAccessToken(user));
-          db.close();
+      if (err) {
+        callback("We are currently facing some technically difficulties, please try again later!", null);
+      } else {
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {currentLeague_id: user.currentLeague_id, tokens: user.tokens}},
+          function(err, res) {
+            if (err) {
+              callback("Error updating the user's league!", null);
+            } else {
+              res.value.currentLeague_id = user.currentLeague_id;
+              res.value.tokens = user.tokens;
+              callback(null, token.generateAccessToken(res.value));
+            }
+            db.close();
         });
+      }
     });
   },
 
   updateUserLeagueForNullLeague:
   function updateUserLeagueForNullLeague(user, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-
-      var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {currentLeague_id: user.currentLeague_id, past_leagues: user.past_leagues}},
-        function(err, res) {
-          if (err) {
-            throw err;
-          }
-
-          callback(null, token.generateAccessToken(user));
-          db.close();
+      if (err) {
+        callback("We are currently facing some technically difficulties, please try again later!", null);
+      } else {
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {currentLeague_id: user.currentLeague_id, past_leagues: user.past_leagues}},
+          function(err, res) {
+            if (err) {
+              callback("Error existing the league!", null);
+            } else {
+              res.value.currentLeague_id = user.currentLeague_id;
+              res.value.past_leagues = user.past_leagues;
+              callback(null, token.generateAccessToken(res.value));
+            }
+            db.close();
         });
+      }
     });
   },
 
   getAllUsers:
   function getAllUsers(page, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").find({}).sort( { tokens: -1 } ).limit(25).skip(page).toArray(function(err, result) {
-        if (err) throw err;
+      if (err) {
+        callback("We are currently facing some technically difficulties, please try again later!", null);
+      } else {
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("Users").find({}).sort( { tokens: -1 } ).limit(25).skip(page).toArray(function(err, result) {
+          if (err) {
+            callback("Error finding users!", null);
+          } else {
+            if (result) {
+              for (user in result) {
+                result[user].id = null;
+                result[user].email = null;
+                result[user].firstname = null;
+                result[user].lastname = null;
+              }
 
-        if (result) {
-          callback(null, JSON.parse(JSON.stringify(result)));
-        } else  {
-          callback(null, false);
-        }
+              callback(null, JSON.parse(JSON.stringify(result)));
+            } else  {
+              callback(null, null);
+            }
+          }
 
-        db.close();
-      });
+          db.close();
+        });
+      }
     });
   },
 
@@ -606,19 +677,22 @@ module.exports = {
   getTotalUsers:
   function getTotalUsers(callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("cryptoleague_database");
-      dbo.collection("Users").find({}).toArray(function(err, result) {
-        if (err) throw err;
+      if (err) {
+        callback("We are currently facing some technically difficulties, please try again later!", null);
+      } else {
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("Users").find({}).toArray(function(err, result) {
+          if (err) throw err;
 
-        if (result) {
-          var object = { "totalUsers" : result.length };
-          callback(null, JSON.parse(JSON.stringify(object)));
-        } else  {
-          callback(null, false);
-        }
-        db.close();
-      });
+          if (result) {
+            var object = { "totalUsers" : result.length };
+            callback(null, JSON.parse(JSON.stringify(object)));
+          } else  {
+            callback(null, null);
+          }
+          db.close();
+        });
+      }
     });
   },
 
@@ -633,7 +707,7 @@ module.exports = {
         if (result) {
           callback(null, JSON.parse(JSON.stringify(result)));
         } else  {
-          callback(null, false);
+          callback(null, null);
         }
         db.close();
       });
@@ -669,7 +743,7 @@ module.exports = {
   function createLeague(league_Type, user, callback) {
     makeNewPortfolio(function(err, portfolio) {
       findWaitingLeague(league_Type.title, function(error, league_result) {
-        if (league_result == false) {
+        if (league_result) {
           getNextSequenceValue(function(error, next_number) {
 
             var league = new league_schema();
