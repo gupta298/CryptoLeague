@@ -24,9 +24,12 @@ export class LeagueStatisticsComponent implements OnInit {
 
 	length: number;
   totalPool: number;
-  topTwentyFive: number;
   topPool: number;
+  middlePool: number;
+  lowerPool: number;
+  topTwentyFive: number;
   topFifty: number;
+  topSeventyFive: number;
   loading: boolean = false;
 
   jwtHelper: JwtHelper = new JwtHelper();
@@ -41,40 +44,41 @@ export class LeagueStatisticsComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
   	if(this.league.portfolio_ids){
-      //this.buy_in = this.league.league_buy_in;
-      console.log("chutiya");
       console.log(this.league);
-      //this.totalPool = this.buy_in * length;
+      this.totalPool = this.league.league_buy_in * length;
 	    this.length = this.league.portfolio_ids.length;
 	    // this.topTen = Math.ceil(this.length / 10);
 	    // this.topTwentyfive = Math.ceil(this.length / 4);
 	    // this.topFifty = Math.ceil(this.length / 2);
 
-      //let numTop25 = 0, numTop50 = 0, numTop75 = 0;
-      // for(let i = 0; i < this.league.portfolio_ids.length; i++){
-      //   if(this.league.portfolio_ids[i].rank <= 25)
-      //     this.topTwentyFive++;
-      //   if(this.league.portfolio_ids[i].rank <= 50)
-      //     this.topFifty++;
-      //   if(this.league.portfolio_ids[i].rank <= 75)
-      //     this.topSeventyFive++;
-      // }
-      // this.topTwentyFive = numTop25;
-      // this.topFifty = numTop50;
-      // this.topSeventyFive = numTop75;
-
+      //calculate the number of players in the sections
+      var numTop25 = 0;
+      var numTop50 = 0;
+      var numTop75 = 0;
       for(let i = 0; i < this.league.portfolio_ids.length; i++){
-        if(this.league.portfolio_ids[i].rank <= 25) {
-          this.topPool += (0.2 * this.totalPool) / this.topTwentyFive;
-        }
-        if(this.league.portfolio_ids[i].rank <= 50) {
-        //  this.middlePool += (0.3 * this.totalPool) / this.topFifty;
-        }
-        if(this.league.portfolio_ids[i].rank <= 75) {
-        //  this.lowerPool += (0.5 * this.totalPool) / this.topSeventyFive;
-        }
+        if(this.league.portfolio_ids[i].rank <= 25)
+          numTop25++;
+        if(this.league.portfolio_ids[i].rank <= 50)
+          numTop50++;
+        if(this.league.portfolio_ids[i].rank <= 75)
+          numTop75++;
       }
+      this.topTwentyFive = numTop25;
+      this.topFifty = numTop50;
+      this.topSeventyFive = numTop75;
 
+      console.log(this.league);
+
+      var a = 0;
+      var b = 0;
+      var c = 0;
+      a = (0.2 * this.totalPool) / this.topTwentyFive;
+      b = (0.3 * this.totalPool) / this.topFifty;
+      c = (0.5 * this.totalPool) / this.topSeventyFive;
+
+      this.topPool = a + b + c;
+      this.middlePool = b + c;
+      this.lowerPool = c;
 
 	  }
   }

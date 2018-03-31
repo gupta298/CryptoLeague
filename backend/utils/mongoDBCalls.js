@@ -296,7 +296,7 @@ function lockLeague(league_id) {
       } else {
         var dbo = db.db("cryptoleague_database");
         dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '2'}});
-        db.close(); 
+        db.close();
       }
     });
   }
@@ -329,7 +329,7 @@ function startLeague(league_id) {
         } else {
           dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', locked_prices: coins }});
         }
-        db.close(); 
+        db.close();
       }
     });
   }
@@ -446,7 +446,7 @@ function calculatePortfoliosValues(league, callback) {
             for (index in portfolio.holdings) {
               var found_current_market = current_coin_data[portfolio.holdings[index].coin_symbol];
               var found_league_market = league_coins[portfolio.holdings[index].coin_symbol];
-              
+
               var return_over_period = ((found_current_market - found_league_market) / found_league_market);
               var value = portfolio.holdings[index].percentage * return_over_period;
 
@@ -1008,6 +1008,7 @@ module.exports = {
                       next();
                     }, function () {
                       var response = {
+                        buy_in: result.league_buy_in,
                         _id: result._id,
                         portfolio_ids: result.portfolio_ids,
                         league_id: result.league_id,
@@ -1043,6 +1044,7 @@ module.exports = {
                       league_id: result.league_id,
                       league_type: result.league_type,
                       status: result.status,
+                      buy_in: result.league_buy_in,
                       start_time: result.start_time
                     };
 
