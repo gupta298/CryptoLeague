@@ -1,3 +1,4 @@
+var cors = require('cors');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -27,7 +28,7 @@ const passport = require('passport');
 
 require('./config/passport');
 
-var app = express();
+var app = express(cors());
 
 app.use(function(req, res, next) {
   var allowedOrigins = ['http://api.cryptoleague.win', 'http://cryptoleague.win'];
