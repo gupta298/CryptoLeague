@@ -645,6 +645,42 @@
     "groupTitle": "User"
   },
   {
+    "type": "GET",
+    "url": "/user/search",
+    "title": "Request to get all the users username",
+    "name": "Get_All_Usernames",
+    "group": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "Usernames",
+            "description": "<p>Returns all of the username's of the current users.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/user.js",
+    "groupTitle": "User"
+  },
+  {
     "type": "POST",
     "url": "/all_users/:page",
     "title": "Request the User information for the leader board",
@@ -835,6 +871,55 @@
     },
     "version": "0.0.0",
     "filename": "routes/userRank.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "GET",
+    "url": "/user/search/:username",
+    "title": "Request to get the users with a similar username",
+    "name": "Search_Via_Username",
+    "group": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "JWT",
+            "description": "<p>JWT token of the user.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Username",
+            "description": "<p>Username of the user for look up.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "Usernames",
+            "description": "<p>Returns the usernames that match the given username in params.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/user.js",
     "groupTitle": "User"
   },
   {

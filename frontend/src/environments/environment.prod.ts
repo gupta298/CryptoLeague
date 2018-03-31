@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://api.cryptoleague.com'
+  apiUrl: 'http://api.cryptoleague.win'
 };
