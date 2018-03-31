@@ -425,7 +425,7 @@ function calculatePortfoliosValues(league, callback) {
   // All of the validations should be done before calling this function and you have to pass the entire league object to it
 
   if (!league || !league.portfolio_ids) {
-    callback("Not a valid league!", null);
+    callback();
     return;
   }
 
@@ -949,90 +949,92 @@ module.exports = {
 
   getLeague:
   function getLeague(league_id, user_id, callback) {
-    MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("cryptoleague_database");
+    if (!league_id || !user_id) {
+      callback("Error getting the league!", null);
+    } else {
+      MongoClient.connect(mongodbUrl, function (err, db) {
+        if (err) {
+          callback("We are currently facing some technically difficulties, please try again later!", null);
+        } else {
+          var dbo = db.db("cryptoleague_database");
+          dbo.collection("Leagues").findOne({'league_id' : league_id}, function(err, result) {
+            if (err) {
+              callback("Error getting the league!", null);
+            } else {
+              if (result) {
+                if (result.status === "3") {
+                  calculatePortfoliosValues(result, function() {
+                    var foundUser = false;
+                    asyncLoop(result.portfolio_ids, function (item, next) {
+                      if (item) {
+                        if (item.user_id.toString() === user_id.toString()) {
+                          foundUser = true;
+                        } else {
+                          item.portfolio_id = null;
+                        }
+                      }
+                      next();
+                    }, function () {
+                      var response = {
+                        _id: result._id,
+                        portfolio_ids: result.portfolio_ids,
+                        league_id: result.league_id,
+                        league_type: result.league_type,
+                        status: result.status,
+                        start_time: result.start_time
+                      };
 
-      dbo.collection("Leagues").findOne({'league_id' : league_id}, function(err, result) {
-        if (err) throw err;
-
-        if (result) {
-
-          if(result.status === "3"){
-            calculatePortfoliosValues(result, function(){
-              var foundUser = false;
-              asyncLoop(result.portfolio_ids, function (item, next) {
-                if (item) {
-                  if (item.user_id.toString() === user_id.toString()) {
-                    foundUser = true;
-                  } else {
-                    if (result.status.toString() !== '4') {
-                      item.portfolio_id = null;
+                      if (foundUser == false) {
+                        callback("Access denied! User not in the league!", null);
+                      } else {
+                        callback(null, JSON.parse(JSON.stringify(response)));
+                      }
+                    });
+                  });
+                } else {
+                  var foundUser = false;
+                  asyncLoop(result.portfolio_ids, function (item, next) {
+                    if (item) {
+                      if (item.user_id.toString() === user_id.toString()) {
+                        foundUser = true;
+                      } else {
+                        if (result.status.toString() !== '4') {
+                          item.portfolio_id = null;
+                        }
+                      }
                     }
-                  }
-                }
-                next();
-              }, function () {
-                var response = {
-                  _id: result._id,
-                  portfolio_ids: result.portfolio_ids,
-                  league_id: result.league_id,
-                  league_type: result.league_type,
-                  status: result.status,
-                  start_time: result.start_time,
-                  league_buy_in: result.league_buy_in
-                };
-                if (foundUser == false) {
-                  if (response.status.toString() === '4') {
-                    callback(null, JSON.parse(JSON.stringify(response)));
-                  } else {
-                    callback(null, {'message' : "Access denied! User not in the league!"});
-                  }
-                } else {
-                  callback(null, JSON.parse(JSON.stringify(response)));
-                }
-              });
-            });
-          } else {
-            var foundUser = false;
-            asyncLoop(result.portfolio_ids, function (item, next) {
-              if (item) {
-                if (item.user_id.toString() === user_id.toString()) {
-                  foundUser = true;
-                } else {
-                  if (result.status.toString() !== '4') {
-                    item.portfolio_id = null;
-                  }
-                }
-              }
-              next();
-            }, function () {
-              var response = {
-                _id: result._id,
-                portfolio_ids: result.portfolio_ids,
-                league_id: result.league_id,
-                league_type: result.league_type,
-                status: result.status,
-                start_time: result.start_time
-              };
-              if (foundUser == false) {
-                if (response.status.toString() === '4') {
-                  callback(null, JSON.parse(JSON.stringify(response)));
-                } else {
-                  callback(null, {'message' : "Access denied! User not in the league!"});
+                    next();
+                  }, function () {
+                    var response = {
+                      _id: result._id,
+                      portfolio_ids: result.portfolio_ids,
+                      league_id: result.league_id,
+                      league_type: result.league_type,
+                      status: result.status,
+                      start_time: result.start_time
+                    };
+
+                    if (foundUser == false) {
+                      if (response.status.toString() === '4') {
+                        callback(null, JSON.parse(JSON.stringify(response)));
+                      } else {
+                        callback("Access denied! User not in the league!", null);
+                      }
+                    } else {
+                      callback(null, JSON.parse(JSON.stringify(response)));
+                    }
+                  });
                 }
               } else {
-                callback(null, JSON.parse(JSON.stringify(response)));
+                callback("League does not exist!", null);
               }
-            });
-          }
-        } else  {
-          callback(null, { 'message' : "League does not exist!" });
-        }
+            }
 
-        db.close();
+            db.close();
+          });
+        }
       });
-    });
+    }
   },
 
   getPortfolio:

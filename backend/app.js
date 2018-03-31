@@ -33,7 +33,7 @@ var app = express(cors());
 app.use(function(req, res, next) {
   var allowedOrigins = ['http://api.cryptoleague.win', 'http://cryptoleague.win'];
   var origin = req.headers.origin;
-  if(allowedOrigins.indexOf(origin) > -1){
+  if (allowedOrigins.indexOf(origin) > -1) {
        res.setHeader('Access-Control-Allow-Origin', origin);
   }
   //res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8020');
