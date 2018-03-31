@@ -646,7 +646,7 @@ define({ "api": [
   },
   {
     "type": "GET",
-    "url": "/user/search/",
+    "url": "/user/search",
     "title": "Request to get all the users username",
     "name": "Get_All_Usernames",
     "group": "User",

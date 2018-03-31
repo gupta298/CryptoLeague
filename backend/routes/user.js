@@ -138,7 +138,7 @@ router.get('/search/:username', (req, res) => {
 });
 
 /**
- * @api {GET} /user/search/ Request to get all the users username
+ * @api {GET} /user/search Request to get all the users username
  * @apiName Get_All_Usernames
  * @apiGroup User
  *
