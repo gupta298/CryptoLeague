@@ -696,7 +696,7 @@ module.exports = {
   getAllUsers:
   function getAllUsers(page, callback) {
     if (!page) {
-      page = 1;
+      page = 0;
     }
 
     MongoClient.connect(mongodbUrl, function (err, db) {
