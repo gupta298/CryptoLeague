@@ -1039,57 +1039,61 @@ module.exports = {
 
   getPortfolio:
   function getPortfolio(league_id, user_id, user_actual_id, callback) {
-    MongoClient.connect(mongodbUrl, function (err, db) {
-      if (err) {
-        callback("We are currently facing some technically difficulties, please try again later!", null);
-      } else {
-        var dbo = db.db("cryptoleague_database");
-        dbo.collection("Leagues").findOne({'league_id' : league_id}, function(err, result) {
-          if (err) {
-            callback("Must ")
-          } else {
-            if (result) {
-              asyncLoop(result.portfolio_ids, function (item, next) {
-                if (item) {
-                  if (item.user_id.toString() === user_id.toString()) {
+    if (!league_id || !user_id || !user_actual_id) {
+      callback("Error getting the user's portfolio!", null);
+    } else {
+      MongoClient.connect(mongodbUrl, function (err, db) {
+        if (err) {
+          callback("We are currently facing some technically difficulties, please try again later!", null);
+        } else {
+          var dbo = db.db("cryptoleague_database");
+          dbo.collection("Leagues").findOne({'league_id' : league_id}, function(err, result) {
+            if (err) {
+              callback("Unable to find the league to get the portfolio!", null);
+            } else {
+              if (result) {
+                asyncLoop(result.portfolio_ids, function (item, next) {
+                  if (item) {
+                    if (item.user_id.toString() === user_id.toString()) {
 
-                    if (user_id.toString() !== user_actual_id.toString()) {
+                      if (user_id.toString() !== user_actual_id.toString()) {
 
-                      if (result.status.toString() === '4') {
+                        if (result.status.toString() === '4') {
+                          getPortfolioWithID(item.portfolio_id, function(err, res) {
+                            callback(err, res);
+                            return;
+                          });
+                        } else {
+                          callback("Can not access the portfolio at this time!", null);
+                          return;
+                        }
+
+                      } else {
                         getPortfolioWithID(item.portfolio_id, function(err, res) {
-                          callback(null, res);
+                          callback(err, res);
                           return;
                         });
-                      } else {
-                        callback(null, {'message' : 'Can not access the portfolio at this time!'});
-                        return;
                       }
 
                     } else {
-                      getPortfolioWithID(item.portfolio_id, function(err, res) {
-                        callback(null, res);
-                        return;
-                      });
+                      next();
                     }
-
                   } else {
                     next();
                   }
-                } else {
-                  next();
-                }
-              }, function () {
-                callback(null, { 'message' : "User not found in the league!" })
-              });
-            } else  {
-              callback(null, { 'message' : "League does not exist!" });
+                }, function () {
+                  callback("User not found in the league!", null);
+                });
+              } else  {
+                callback("League does not exist!", null);
+              }
             }
-          }
 
-          db.close();
-        });
-      }
-    });
+            db.close();
+          });
+        }
+      });
+    }
   },
 
   updatePortfolioWithID:
