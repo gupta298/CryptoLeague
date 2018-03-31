@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
 
     mongo.getAllUsers(start, function(error, response) {
       if (error) {
-        res.send(400, {"message" : error});
+        res.send(400, { "message" : error });
       } else {
         res.send(response);
       }

@@ -7,7 +7,7 @@ var mongo = require('../utils/mongoDBCalls');
 var mongoose = require('mongoose');
 const userSchema = require('./../models/user');
 
-var config = require('./config')
+const config = require('./config')
 
 // Use connect method to connect to the server
 mongo.connectToMongo(function(error, response) {
