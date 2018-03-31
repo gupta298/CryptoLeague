@@ -599,6 +599,38 @@ module.exports = {
     }
   },
 
+  getUserViaPartialUsername:
+  function getUserViaPartialUsername(username, callback) {
+    if (!username) {
+      callback("Error finding usernames!", null);
+    } else {
+      MongoClient.connect(mongodbUrl, function (err, db) {
+        if (err) {
+          callback("We are currently facing some technically difficulties, please try again later!", null);
+        } else {
+          var dbo = db.db("cryptoleague_database");
+          dbo.collection("Users").find({'username' : {'$regex': new RegExp(username, "i") }}).sort( {username : 1} ).toArray(function(err, result) {
+            if (err) {
+              callback("Error finding the usernames!", null);
+            } else {
+              if (result) {
+                var usernames = [];
+                for (user in result) {
+                  usernames.push(result[user].username);
+                }
+                callback(null, usernames);
+              } else  {
+                callback(null, null);
+              }
+            }
+
+            db.close();
+          });
+        }
+      });
+    }
+  },
+
   updateUser:
   function updateUser(user, callback) {
     if (!user || !user._id) {
