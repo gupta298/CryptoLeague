@@ -5,7 +5,7 @@ var leagueSchema = new mongoose.Schema({
     league_type: String,
     league_buy_in: Number,
     status: String,
-    portfolio_ids: [{ 
+    portfolio_ids: [{
     	"username": String,
         "tokens": Number,
         "profilePicture": String,
@@ -14,7 +14,9 @@ var leagueSchema = new mongoose.Schema({
         "portfolio_value" : Number
     }],
     start_time: Date,
-    current_market_coin: [String]
+    current_market_coin: [String],
+		payouts: [Number],
+		portfolio_ranks: [String]
 });
 
 var League = mongoose.model('League', leagueSchema);
