@@ -116,7 +116,7 @@ export class LeagueDetailComponent implements OnInit {
       let endDate: moment.Moment = moment(this.league.start_time);
       this.status = "starts.";
       //let totaltime = 86400;
-      let totaltime = 300;
+      let totaltime = 60 * 4;
       let currDate: moment.Moment = moment();
 
       if(startDate.isBefore(currDate)){
@@ -126,10 +126,10 @@ export class LeagueDetailComponent implements OnInit {
         }
 
         //endDate.add(6, 'd');
-        endDate.add(1, 'm')
+        endDate.add(4, 'm')
         this.status = "ends.";
         //totaltime = 518400;
-        totaltime = 360;
+        totaltime = 60 * 4;
         this.timeRemainingPercent = 100 - Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
       } else {
         this.timeRemainingPercent = Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
