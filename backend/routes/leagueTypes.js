@@ -15,7 +15,11 @@ const mongo = require('../utils/mongoDBCalls');
 */
 router.get('/', function(req, res, next) {
     mongo.getLeagueTypes(function(error, response) {
-      res.send(response);
+    	if (error) {
+    		res.send(400, {'message': error});
+    	} else {
+    		res.send(response);
+    	}
     });
 });
 
