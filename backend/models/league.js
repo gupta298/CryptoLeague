@@ -11,12 +11,12 @@ var leagueSchema = new mongoose.Schema({
         "profilePicture": String,
         "user_id": String,
         "portfolio_id" : String,
-        "portfolio_value" : Number
+        "portfolio_value" : Number,
+				"payout": Number,
+				"portfolio_rank": Number
     }],
     start_time: Date,
-    current_market_coin: [String],
-		payouts: [Number],
-		portfolio_ranks: [String]
+    current_market_coin: [String]
 });
 
 var League = mongoose.model('League', leagueSchema);

@@ -417,13 +417,15 @@ function endLeague(league_id) {
                   }
                 }
 
+                console.log("CHUTIYACHUTIYACHUTIYACHUTIYACHUTIYACHUTIYACHUTIYACHUTIYA");
+
                 //Update all the users
                 for(let i = 0; i < result.portfolio_ids.length; i++){
                   dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$inc: {'tokens' : result.portfolio_ids[i].payout}});
                 }
 
                 //Update league
-                dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4', 'payouts': finalPayout, 'portfolio_ranks': ranks}});
+                dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4'}});
                 db.close();
               });
             }
