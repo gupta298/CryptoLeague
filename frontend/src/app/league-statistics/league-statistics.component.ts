@@ -61,6 +61,8 @@ export class LeagueStatisticsComponent implements OnInit {
       this.topFifty = numTop50;
       this.topSeventyFive = numTop75;
 
+      console.log(this.topTwentyFive);
+
       let a = 0, b = 0, c = 0;
       for(let i = 0; i < this.league.portfolio_ids.length; i++){
         if(this.league.portfolio_ids[i].rank <= 25) {

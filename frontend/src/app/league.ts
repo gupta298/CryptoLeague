@@ -31,7 +31,7 @@ export class League implements Serializable<League>{
             current_market_coin: this.current_market_coin,
             portfolio_ids: this.portfolio_ids,
             locked_prices: this.locked_prices,
-						buy_in: this.buy_in;
+						buy_in: this.buy_in
         }
 
         return obj;
