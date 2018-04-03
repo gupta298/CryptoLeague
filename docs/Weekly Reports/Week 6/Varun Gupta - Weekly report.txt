@@ -1,0 +1,39 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Varun Gupta
+
+Week 6 (Summary)
+03/25 N/A fa5226a Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+03/25 5 min 1ac7b7d6 Updated documentation
+03/25 1 hr e4964b2 Fixed some errors and added error codes
+03/25 1 hr 3084a54 Adding more validation to the portfolio put request
+03/23 3 hr 47e71ac Adding portfolio value calculations
+03/23 2 hr 261e025 Added sample coin data and the portfolio value field in the league
+03/22 0.25 hr c187479 Added the update holdings part
+03/22 0.5 hr d8242fc Updated the portfolio sample
+03/22 0.5 hr afdf34b Adding comments
+03/21 0.25 hr 076b8e1 Removed some unused code
+03/21 N/A 24bf693 Merge branch 'backend/portfolio' of https://github.com/gupta298/CryptoLeague into backend/portfolio
+03/21 1 hr 1566815 Added enum for the league status
+03/21 N/A baf52c8 Merge branch 'backend/portfolio' of https://github.com/gupta298/CryptoLeague into backend/portfolio
+03/21 N/A ae0382e Merge branch 'master' of https://github.com/gupta298/CryptoLeague into backend/portfolio
+03/21 N/A 1d72ce9 Fixed some spelling errors
+03/21 N/A 52fa3c4 Merge branch 'backend/portfolio' of https://github.com/gupta298/CryptoLeague into backend/portfolio
+03/21 0.5 hr 502a40a Fixed an error on the backend
+03/20 5 min 2f31bcc Updating some spaces
+03/20 N/A 31800f0 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+03/20 0.75 hr e3852b6 Adding more routes and documentation
+03/20 0.5 hr 5deb2b2 Updated the string compare with the npm update
+03/20 1.25 hr 56fb567 Get route for the portfolio is implemented and tested
+03/20 1.25 hr f579d90 A sample portfolio is automatically created for the user when joining a league
+03/20 1 hr d2da045 Decreased the amount of time it takes to join a league by 2 and made some other functions more efficient
+03/19 3.5 hr 915abe6 Changed the update user route to update all of the past and current league username and profile pic and fix some minor bugs
+03/19 5 min 775d83e Updated the documentation and the npm packages
+03/19 2.5 hr daec036 Both post and get routes are implemented robustly in the backend and tested via manual testing (Postman)
+03/19 4 hr b6c1311 Get league implemented and it returns the user object instead of the user id
+03/19 N/A e165ce5 Adding all of the weekly reports for week 5
+03/19 4 hr dfeebde Finished the post league route - it checks for the tokens and subtracts the tokens accordingly
+
+Week 7 (Plan)
+03/26 4 hr Sprint 2 retrospective 
+03/27 4 hr Sprint 3 doc 
+04/01 6 hr Finish up user APIs including user profiles and statistics

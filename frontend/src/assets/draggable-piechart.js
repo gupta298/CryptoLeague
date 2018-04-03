@@ -6,6 +6,15 @@
 
     var DraggablePiechart = function(setup) {
 
+
+        if(setup.count > 1) {
+
+             // delete window.DraggablePiechart;
+             // this = new DraggablePiechart(setup);
+             //this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        }
+
         var piechart = this;
         this.data = null;
         this.proportions = null;
@@ -38,6 +47,7 @@
         this.onchange = setup.onchange;
         this.dragDisabled = setup.dragDisabled;
         this.scope = setup.scope;
+
 
         if(!this.dragDisabled){
             // Bind appropriate events
@@ -142,6 +152,29 @@
     /*
      * Move angle specified by index: i, by amount: angle in rads
      */
+
+    DraggablePiechart.prototype.generateDataFromProportions = function(proportions) {
+
+                // sum of proportions
+                var total = proportions.reduce(function(a, v) { return a + v.proportion; }, 0);
+
+                // begin at 0
+                var currentAngle = 0;
+
+                // use the proportions to reconstruct angles
+                return proportions.map(function(v, i) {
+                    var arcSize = TAU * v.proportion / total;
+                    var data = {
+                        angle: currentAngle,
+                        format: v.format,
+                        collapsed: arcSize <= 0
+                    };
+                    currentAngle = normaliseAngle(currentAngle + arcSize);
+                    return data;
+                });
+
+    }
+
     DraggablePiechart.prototype.moveAngle = function(i, amount) {
 
         if (this.data[i].collapsed && amount < 0) {
@@ -541,6 +574,10 @@
     };
 
     DraggablePiechart.prototype.defaults = {
+
+        // deletePie: function() {
+        //     delete window.DraggablePiechart;
+        // }
 
         onchange: function(piechart, waste) {},
         radius: 0.9,

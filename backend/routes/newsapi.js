@@ -18,8 +18,8 @@ var tempNews = [];
  * @apiSuccess {JSON} News_Data Returns an array of the top 15 news related to cryptocurrency.
 */
 router.get('/', function(req, res, next) {
- var req = new Request(url);
-  if(tempNews.length < 1){
+  var req = new Request(url);
+  if(tempNews.length <= 0){
     callNewsOrgAPI(res);
   } else {
     res.send(JSON.parse(JSON.stringify(tempNews)));
@@ -34,19 +34,23 @@ function callNewsOrgAPI(res) {
   }, function (error, response, body) {
       if (!error) {
           var data = JSON.parse(JSON.stringify(body));
-          tempNews = [];
+          tempNews_temp = [];
           var counter = 0;
-          while(counter < 16)
-          {
-              tempNews.push(response.body.articles[counter]);
+          while(counter < 16) {
+              tempNews_temp.push(response.body.articles[counter]);
               counter++;
           }
+
+          tempNews = [];
+          tempNews = tempNews_temp;
+          
           if(res)
             res.send(JSON.stringify(tempNews));
       } else {
         console.log("Error updating the news data");
+
         if(res)
-          res.send("Error updating the news data");
+          res.send(400, { "message" : "Error updating the news data!" });
       }
 
   });

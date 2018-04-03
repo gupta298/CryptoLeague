@@ -1,0 +1,25 @@
+<div *ngIf="!hideCards" class="uk-card uk-card-secondary uk-card-small uk-card-body uk-animation-slide-right" [class.uk-animation-reverse]="portfolioOpened">
+	<h3 class="uk-card-title">Stats & Distribution</h3>
+	<div class="uk-flex uk-flex-bottom uk-card-body">
+		<div uk-grid *ngIf="!hideCards">
+			<ul class="uk-list uk-list-large" id="statsText1">
+				<li>Your Rank: #{{rank}}</li>
+				<li>User at #1: {{leader}}</li>
+				<li>League status: {{getStatus(league.status)}}</li>
+				<li *ngIf="league.status < 4; else quitLeague">{{timeRemaining}} until the league {{status}}</li>
+				<ng-template #quitLeague>
+					<button class="uk-button uk-button-danger uk-margin-top" (click)="quitLeagueOnCLick()">Quit League</button>
+				</ng-template>
+			</ul>
+			<ul class="uk-list uk-list-large" id="statsText2">
+				<li><b>Expected Prize Distribution:</b></li>
+				<li>#1 - #{{this.topTwentyfive}}: {{this.topPool}}</li>
+				<li>#{{this.topTwentyfive + 1}} - #{{this.topFifty}}: {{this.middlePool}}</li>
+				<li>#{{this.topFifty + 1}} - #{{this.topSeventyFive}}: {{this.lowerPool}}</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div uk-alert id="quitAlert" *ngIf="loading">Quiting league...
+	<div uk-spinner class="uk-margin-small-left"></div>
+</div>

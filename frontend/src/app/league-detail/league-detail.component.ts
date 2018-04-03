@@ -3,9 +3,11 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { MomentModule } from 'angular2-moment';
 
-import { LeagueService } from '../services/index';
+import { AuthenticationService, NewsService, UserService, LeagueService } from '../services/index';
 
 import { League } from '../league';
+
+import { User } from '../user';
 
 import * as moment from 'moment';
 
@@ -16,6 +18,7 @@ import * as moment from 'moment';
 })
 export class LeagueDetailComponent implements OnInit {
 
+  user: User;
   loadingLeague: boolean = true;
 	portfolioOpened: boolean = false;
 	hideCards: boolean = false;
@@ -23,17 +26,21 @@ export class LeagueDetailComponent implements OnInit {
   leagueID: string;
   league: League = new League();
   timeRemaining: string;
+  status: string;
+  rank: number;
+  leader: string;
   timeRemainingPercent: number;
   leagueStarted: boolean = false;
 
   	constructor(
+      private authService: AuthenticationService,
       private leagueService: LeagueService,
       private route: ActivatedRoute,
       private router: Router) { }
 
   	ngOnInit() {
+      this.user = this.authService.loadUserFromLocalStorage();
       this.loadLeague();
-      this.getTimeRemaining();
   		this.portfolioClicked = this.portfolioClicked.bind(this);
   	}
 
@@ -46,6 +53,42 @@ export class LeagueDetailComponent implements OnInit {
         this.loadingLeague = true;
         this.leagueService.getLeague().subscribe(
           result => {
+
+            result.portfolio_ids.sort(function(a, b) {
+              return b.portfolio_value - a.portfolio_value;
+            });
+
+            for(var i = 0; i < result.portfolio_ids.length; i++) {
+              // original ranking
+              result.portfolio_ids[i].rank = i + 1;
+              //console.log(result.portfolio_ids[i].rank);
+            }
+            
+            let currRank = 1;
+            result.portfolio_ids[0].rank = 1;
+            for(let i = 1; i < result.portfolio_ids.length; i++){
+              if(result.portfolio_ids[i].portfolio_value === result.portfolio_ids[i - 1].portfolio_value){
+                result.portfolio_ids[i].rank = currRank;
+              } else {
+                result.portfolio_ids[i].rank = ++currRank;
+              }
+            }
+
+            for(var i = 0; i < result.portfolio_ids.length; i++){
+              if(result.portfolio_ids[i].username == this.user.username){
+                this.rank = result.portfolio_ids[i].rank;
+                if(result.portfolio_ids[i].rank == 1){
+                  this.leader = result.portfolio_ids[i].username;
+                }
+              }
+              else if(result.portfolio_ids[i].rank == 1){
+                this.leader = result.portfolio_ids[i].username;
+              }
+            }
+
+            console.log('Printing here');
+            console.log(result);
+
             this.league.deserialize(result);
             console.log(this.league);
 
@@ -55,7 +98,7 @@ export class LeagueDetailComponent implements OnInit {
           }, error => {
             console.log(error);
             this.router.navigate(['/']);
-          } 
+          }
         );
       });
     }
@@ -63,7 +106,7 @@ export class LeagueDetailComponent implements OnInit {
   	portfolioClicked(){
   		console.log("onPortfolioclicked");
   		this.portfolioOpened = !this.portfolioOpened;
-  		setTimeout(()=>{ 
+  		setTimeout(()=>{
   			this.hideCards = !this.hideCards;
   		}, 500);
   	}
@@ -71,25 +114,32 @@ export class LeagueDetailComponent implements OnInit {
     getTimeRemaining() {
       let startDate: moment.Moment = moment(this.league.start_time);
       let endDate: moment.Moment = moment(this.league.start_time);
-      let status = "starts.";
-      let totaltime = 86400;
+      this.status = "starts.";
+      //let totaltime = 86400;
+      let totaltime = 60 * 4;
       let currDate: moment.Moment = moment();
 
       if(startDate.isBefore(currDate)){
         if(!this.leagueStarted){ //reload league if initial countdown is over
           this.leagueStarted = true;
-          this.loadLeague(); 
+          this.loadLeague();
         }
 
-        endDate.add(6, 'd');
-        status = "ends.";
-        totaltime = 518400;
+        //endDate.add(6, 'd');
+        endDate.add(4, 'm')
+        this.status = "ends.";
+        //totaltime = 518400;
+        totaltime = 60 * 4;
         this.timeRemainingPercent = 100 - Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
       } else {
         this.timeRemainingPercent = Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
       }
 
       var delta = endDate.diff(currDate, 'seconds');
+
+      if(delta == 0){
+        this.loadLeague();
+      }
 
       // calculate (and subtract) whole days
       var days = Math.floor(delta / 86400);
@@ -104,12 +154,14 @@ export class LeagueDetailComponent implements OnInit {
       delta -= minutes * 60;
 
       // what's left is seconds
-      var seconds = delta % 60; 
+      var seconds = delta % 60;
 
-      if(days > 0){
-        this.timeRemaining = days + "d " + hours + "h " + minutes + "m " + seconds + "s until the league " + status;
+      if(this.league.status == 4){
+        this.timeRemaining = null;
+      } else if(days > 0){
+        this.timeRemaining = days + "d " + hours + "h " + minutes + "m " + seconds + "s";//  + "s until the league " + status;
       } else {
-        this.timeRemaining = hours + "h " + minutes + "m " + seconds + "s until the league " + status;
+        this.timeRemaining = hours + "h " + minutes + "m " + seconds + "s"; //+ "s until the league " + status;
       }
     }
 }

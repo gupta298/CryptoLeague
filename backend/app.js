@@ -1,3 +1,4 @@
+var cors = require('cors');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -20,14 +21,27 @@ var userRank = require('./routes/userRank');
 var totalUsers = require('./routes/totalUsers');
 var league = require('./routes/league');
 var league_types = require('./routes/leagueTypes');
-var portfolio = require('./routes/portfolio')
+var portfolio = require('./routes/portfolio');
 
-const config = require('./config/config')
+const config = require('./config/config');
 const passport = require('passport');
 
 require('./config/passport');
 
-var app = express();
+var app = express(cors());
+
+app.use(function(req, res, next) {
+  var allowedOrigins = ['http://api.cryptoleague.win', 'http://cryptoleague.win'];
+  var origin = req.headers.origin;
+  if (allowedOrigins.indexOf(origin) > -1) {
+       res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  //res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8020');
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', true);
+  return next();
+});
 
 app.use(passport.initialize());
 
@@ -43,6 +57,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.options('*', cors()) 
+
 //Defining Routes
 app.use('/', index);
 
@@ -51,9 +67,8 @@ app.use('/auth', auth);
 app.use('/user', user);
 app.use('/validate_user', passport.authenticate(['jwt'], { session: false }), validateUser);
 app.use('/user_rank', passport.authenticate(['jwt'], { session: false }), userRank);
-app.use('/total_users', passport.authenticate(['jwt'], { session: false }), totalUsers); 
+app.use('/total_users', passport.authenticate(['jwt'], { session: false }), totalUsers);
 app.use('/all_users', passport.authenticate(['jwt'], { session: false }), all_users);
-
 // News
 app.use('/news', passport.authenticate(['jwt'], { session: false }), newsapi);
 

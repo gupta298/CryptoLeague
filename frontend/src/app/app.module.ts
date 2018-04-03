@@ -25,6 +25,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LeagueDetailComponent } from './league-detail/league-detail.component';
 import { LeagueWaitingOverlayComponent } from './league-waiting-overlay/league-waiting-overlay.component';
 import { LeagueSelectComponent } from './league-select/league-select.component';
+import { LeagueStatisticsComponent } from './league-statistics/league-statistics.component';
 
 @NgModule({
     declarations: [
@@ -41,6 +42,7 @@ import { LeagueSelectComponent } from './league-select/league-select.component';
     LeagueDetailComponent,
     LeagueWaitingOverlayComponent,
     LeagueSelectComponent,
+    LeagueStatisticsComponent,
   ],
   imports: [
     BrowserModule,

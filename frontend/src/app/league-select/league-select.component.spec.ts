@@ -24,6 +24,7 @@ describe('LeagueSelectComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LeagueSelectComponent);
     component = fixture.componentInstance;
+    component.leagues = [{"_id":"5aa8a23df36d2876ecd2b15f","league_type_id":1,"buy_in":5,"title":"Bronze League","color":"#965A38"},{"_id":"5aa8a25df36d2876ecd2b164","league_type_id":2,"buy_in":10,"title":"Silver League","color":"#A8A8A8"},{"_id":"5aa8a271f36d2876ecd2b197","league_type_id":3,"buy_in":50,"title":"Gold League","color":"#C98910"},{"_id":"5aa8a27bf36d2876ecd2b19d","league_type_id":4,"buy_in":100,"title":"Platinum League","color":"#CCC2C2"}];
     fixture.detectChanges();
   });
 

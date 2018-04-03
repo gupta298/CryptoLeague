@@ -1,0 +1,102 @@
+=== Weekly Individual Report (Team 8: CryptoLeague) ===
+Name: Nisarg Kolhe
+
+Week 6 (Summary)
+03/25 N/A a17f087 Merge remote-tracking branch 'origin/master'  
+03/25 0.5 hr da797e6 Updated league detail design  
+03/25 5 min 2846a57 Aesthetic changes  
+03/25 0.5 hr 94f2e73 Fixed league select onClick  
+03/25 5 min daf7d08 Fixed league select test cases  
+03/25 N/A e846547 Fixed typo  
+03/25 N/A 1b35dc7 Merge remote-tracking branch 'origin/master'  
+03/25 N/A 48d0dfa Made changes to league detail when league has ended  
+03/25 N/A b17248f Merge branch 'master' into frontend/portfolio  
+03/25 N/A 6b419a9 Merge branch 'frontend/portfolio'  
+03/25 N/A 18366d5 Merge branch 'master' into frontend/portfolio  
+03/25 N/A a27d2de Merge branch 'master' of github.com:gupta298/CryptoLeague  
+03/25 N/A c069f08 Merge branch 'backend/leagues'  
+03/25 1 hr 2c68806 Fixed league ending logic  
+03/25 0.5 hr 0144b06 Added league buy in to league object  
+03/25 0.5 hr de5d72a Made league rank calculation more efficient  
+03/25 4 hr 153f79e Added league end logic  
+03/25 5 min e4d711f Updated /nullLeague to /user/null_out  
+03/25 N/A 7931be7 Merge branch 'master' into backend/leagues  
+03/25 N/A 6e0d00e Merge branch 'frontend/stats'  
+03/25 5 min ed285a8 Removed unneeded import  
+03/24 N/A 3b6f024 Merge branch 'frontend/leagues'  
+03/24 N/A 1d8b8bb Merge branch 'master' into frontend/leagues  
+03/24 N/A 8110b98 Merge remote-tracking branch 'origin/master'  
+03/24 N/A 2e55eda Merge branch 'frontend/leagues'  
+03/24 1.5 hr 8a19971 Added rankings to league leaderboard  
+03/24 N/A bd1b7a4 Merge branch 'master' into frontend/leagues  
+03/24 N/A 94ac692 Merge branch 'backend/leagues'  
+03/24 1 hr 162bd1f Made changes on backend and frontend for league leaderboard  
+03/23 0.5 hr bf6c424 Updated leaderboard in frontend  
+03/23 2.5 hr 8cc8819 Updated calculatePortfolio and endLeaguelogin  
+03/23 N/A 63c1869 On backend/leagues:  
+03/23 N/A 0451cec index on backend/leagues: 3712904 Merge branch 'master' into backend/leagues  
+03/23 N/A 3712904 Merge branch 'master' into backend/leagues  
+03/23 N/A b68e1ad Merge branch 'master' into frontend/leagues  
+03/23 0.25 hr 02d1550 Added locked_prices to league object on league start  
+03/23 N/A a8f97e2 Merge branch 'frontend/dev'  
+03/23 0.5 hr f9e1d4b Added test case for checking leagueWaitingOverlay  
+03/23 0.5 hr d2d94d2 Added test cases for leagueSelect  
+03/23 5 min 2b6172a Added test cases for leagueDetail  
+03/23 0.5 hr 997d4d7 Fixed test cases for leagueDetail  
+03/23 0.5 hr acf4a05 Fixed leagueDetail unit tests  
+03/23 1.5 hr 41eb5c4 Added testHostCompnent for leagueWaitingOverlay tests  
+03/23 5 min 1e32560 Fixed and added unit tests to portfolio component  
+03/23 5 min 54ccd49 Added authService stub to unit tests  
+03/23 2 hr 15122f3 Created authService stub for unit testing  
+03/23 0.5 hr 619b2ff Fixed test cases for auth guard  
+03/23 N/A becedc7 Merge branch 'master' into frontend/dev  
+03/23 N/A 2c1e671 Merge branch 'master' into frontend/dev  
+03/23 5 min f2704a8 Fixed typo  
+03/23 N/A 3041944 Merge branch 'frontend/portfolio'  
+03/23 N/A ba9852b Merge branch 'frontend/leagues'  
+03/23 0.5 hr f24e73f Added check to reload league once it has started  
+03/23 2 hr 0d090db Made card expand animations smoother  
+03/22 1 hr a6f36a8 Made stats card responsive  
+03/22 0.5 hr 8459178 Binded refresh button to loadLeague  
+03/22 N/A 627fd21 Merge branch 'master' into frontend/leagues  
+03/22 N/A 73266d3 Merge branch 'master' into frontend/leagues  
+03/22 5 min 0804625 Added empty endLeague function  
+03/22 0.25 hr e3a52ac Updated league status to number  
+03/22 N/A de9c257 Merge branch 'frontend/portfolio'  
+03/22 N/A 95c2947 Merge branch 'master' into frontend/portfolio  
+03/22 N/A b801c73 Merge remote-tracking branch 'origin/master'  
+03/22 N/A a6b8189 Merge branch 'frontend/portfolio'  
+03/22 0.25 hr b4f897d Updated league status to number  
+03/22 N/A b334359 Merge branch 'master' into frontend/portfolio  
+03/21 N/A b40b3c7 Merge branch 'backend/cronjobs'  
+03/21 5 min 03d86cf Removed TODOs  
+03/21 5 min 15cf0c4 Removed unnessary files  
+03/21 1.5 hr 8751c12 League start scheduling works  
+03/21 1 hr f5a3e35 Scheduling job works  
+03/21 3 hr 0198b02 Created cron jobs  
+03/21 N/A 6b5cdbd Merge remote-tracking branch 'origin/master'  
+03/21 4 hr 8df9705 Implemented league countdown  
+03/20 N/A 1722faf Merge branch 'frontend/leagues'  
+03/20 0.25 hr 4b701c4 Fixed styling  
+03/20 N/A 7f30cb6 Merge branch 'frontend/portfolio' into frontend/leagues  
+03/20 N/A 635d98f Merge branch 'master' into frontend/portfolio  
+03/20 5 min 17c2ca5 Updated apidoc  
+03/20 N/A 1b3db5e Merge branch 'frontend/portfolio-Ritwik' into frontend/leagues  
+03/20 N/A b85ae5b Merge branch 'master' into frontend/portfolio-Ritwik  
+03/20 N/A d9a90c9 Merge branch 'master' into frontend/leagues  
+03/20 N/A 79493bc Merge remote-tracking branch 'origin/master'  
+03/20 0.5 hr 2fedd5b Waiting overlay shows real data now  
+03/20 N/A 837dd68 Merge branch 'master' into frontend/leagues  
+03/20 N/A be55331 Merge remote-tracking branch 'origin/master'  
+03/20 0.25 hr 2b29c29 Dashboard and sidebar now reflects currentLeague  
+03/20 N/A 0602903 Merge branch 'frontend/leagues'  
+03/20 N/A f57d162 Merge branch 'master' into frontend/leagues  
+03/20 N/A ee99007 Merge branch 'frontend/leagues'  
+03/20 5 min 6e549d2 Fixed league undefined issue  
+03/20 N/A 3f3265e Merge branch 'master' into frontend/leagues  
+
+Week 6 (Plan) 
+03/26 4 hr Discuss sprint 2 retrospective
+03/27 4 hr Discuss sprint 3
+03/30 4 hr Design and implement user profile UI
+03/01	6 hr Fix bugs and/or work on Ethereum SDK

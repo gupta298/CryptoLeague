@@ -24,7 +24,7 @@ export class SettingsComponent implements OnInit {
 	    private userService: UserService
 	  ) { }
 
-	onSubmit(form) { 
+	onSubmit() { 
 		this.submitted = true;
 		this.userExists = false;
 

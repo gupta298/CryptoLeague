@@ -4,15 +4,15 @@ import { HttpModule, Http, Headers, Response, RequestOptions } from '@angular/ht
 import { RouterTestingModule } from '@angular/router/testing';
 
 import * as moment from 'moment';
-
 import { LeagueDetailComponent } from './league-detail.component';
 import { LeagueWaitingOverlayComponent } from '../league-waiting-overlay/league-waiting-overlay.component';
+import { LeagueStatisticsComponent } from '../league-statistics/league-statistics.component';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
 import { League } from '../league'
 
-import { AuthenticationService, MarketService, LeagueService, PortfolioService } from '../services';
+import { AuthenticationService, MarketService, LeagueService, PortfolioService, UserService } from '../services';
 import { AuthenticationServiceStub } from '../stubs/authentication.service.stub'
 
 describe('LeagueDetailComponent', () => {
@@ -22,8 +22,8 @@ describe('LeagueDetailComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
-      declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService ]
+      declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, UserService ]
     })
     .compileComponents();
   }));
@@ -46,8 +46,8 @@ describe('LeagueDetailComponent with waiting room', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
-      declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService ]
+      declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService , UserService]
     })
     .compileComponents();
   }));
@@ -81,8 +81,8 @@ describe('LeagueDetailComponent with league locked but not started', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
-      declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService ]
+      declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, UserService ]
     })
     .compileComponents();
   }));
@@ -128,8 +128,8 @@ describe('LeagueDetailComponent with league locked and started', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
-      declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService ]
+      declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, UserService ]
     })
     .compileComponents();
   }));

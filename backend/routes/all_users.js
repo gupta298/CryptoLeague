@@ -24,7 +24,11 @@ router.post('/', (req, res) => {
     var start = (page - 1) * 25;
 
     mongo.getAllUsers(start, function(error, response) {
-      res.send(response);
+      if (error) {
+        res.send(400, { "message" : error });
+      } else {
+        res.send(response);
+      }
     });
   }
 );
