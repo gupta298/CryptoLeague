@@ -39,11 +39,10 @@ export class LeagueStatisticsComponent implements OnInit {
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-  	if(this.league.portfolio_ids){
+  ngOnChanges(changes: SimpleChange) {
+  	if(this.league.portfolio_ids && this.league.status >= 2){
       //this.buy_in = this.league.league_buy_in;
-      console.log("chutiya");
-      console.log(this.league);
+      //console.log(this.league);
       //this.totalPool = this.buy_in * length;
 	    this.length = this.league.portfolio_ids.length;
 	    // this.topTen = Math.ceil(this.length / 10);
@@ -74,8 +73,6 @@ export class LeagueStatisticsComponent implements OnInit {
         //  this.lowerPool += (0.5 * this.totalPool) / this.topSeventyFive;
         }
       }
-
-
 	  }
   }
 
