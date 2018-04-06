@@ -20,17 +20,38 @@
 					<div *ngIf="league;else joinLeague" style="height: 100%;">
 						<div class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body ">
 							<h3 class="uk-card-title">League #{{league.league_id}}</h3>
-							<a class="uk-flex uk-flex-center" href="/league/{{league.league_id}}">
-						    	<span class="join-button" uk-icon="icon: users; ratio: 5"></span>
-							</a>
+							<div class="uk-grid-divider" uk-grid>
+								<div class="uk-width-1-2@m">
+									<ul class="uk-list">
+										<li><span class="uk-text-bold">{{league.league_type}}</span></li>
+										<li><span class="uk-text-bold">Players:</span> {{league.portfolio_ids.length}}</li>
+										<li><span class="uk-text-bold">Status:</span> {{getStatus(league.status)}}</li>
+									</ul>
+								</div>
+								<div class="uk-width-1-2@m">
+									<a class="uk-flex uk-flex-center" href="/league/{{league.league_id}}">
+							    	<span class="join-button" uk-icon="icon: users; ratio: 5"></span>
+									</a>
+								</div>
+							</div>
+
+							
 						</div>
 					</div>
 					<ng-template #joinLeague>
 						<div class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body ">
-							<h3 class="uk-card-title">Join a League</h3>
-							<a class="uk-flex uk-flex-center" href="/join">
-						    	<span class=" join-button" uk-icon="icon: plus; ratio: 5"></span>
-							</a>
+							<div *ngIf="loadingLeague;else leagueLoaded" style="height: 100%;">
+								<h3 class="uk-card-title">Loading League...</h3>
+								<span class="uk-flex uk-flex-center">
+									<div uk-spinner="ratio: 4"></div>
+								</span>
+							</div>
+							<ng-template #leagueLoaded>
+								<h3 class="uk-card-title">Join a League</h3>
+								<a class="uk-flex uk-flex-center" href="/join">
+							    	<span class=" join-button" uk-icon="icon: plus; ratio: 5"></span>
+								</a>
+							</ng-template>
 						</div>
 					</ng-template>
 				</div>
