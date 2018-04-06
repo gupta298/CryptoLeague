@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../user';
 import { NgForm, NgModel, NG_VALUE_ACCESSOR, FormGroup,FormBuilder,Validators } from '@angular/forms';
-import { AuthenticationService, UserService } from '../services/index';
+import { AuthenticationService, UserService, AlertService } from '../services/index';
 import { Router } from '@angular/router';
 
 declare var UIkit: any;
@@ -21,7 +21,7 @@ export class LandingComponent implements OnInit {
 		private router: Router,
     private authService: AuthenticationService,
     private userService: UserService,
-
+    private alertService: AlertService
   ) { }
   submitted = false;
  
@@ -41,6 +41,7 @@ export class LandingComponent implements OnInit {
 					          this.router.navigate(['/dashboard']);
 
 					        }, error => {
+					        	this.alertService.error(JSON.parse(error._body).message);
 					          console.log(error);
 					        }
 					    	);
@@ -48,6 +49,7 @@ export class LandingComponent implements OnInit {
 	          	this.userExists = true;
 	          }
 	        }, error => {
+	        	this.alertService.error(JSON.parse(error._body).message);
 	          console.log(error);
 	        }
   		)

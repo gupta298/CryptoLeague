@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { MomentModule } from 'angular2-moment';
 
-import { AuthenticationService, NewsService, UserService, LeagueService } from '../services/index';
+import { AuthenticationService, NewsService, UserService, LeagueService, AlertService } from '../services/index';
 
 import { League } from '../league';
 
@@ -35,6 +35,7 @@ export class LeagueDetailComponent implements OnInit {
   	constructor(
       private authService: AuthenticationService,
       private leagueService: LeagueService,
+      private alertService: AlertService,
       private route: ActivatedRoute,
       private router: Router) { }
 
@@ -52,6 +53,7 @@ export class LeagueDetailComponent implements OnInit {
           this.leagueService.getLeague().subscribe(
             result => this.initLeague(result), error => {
               console.log(error);
+              this.alertService.error(JSON.parse(error._body).message);
               this.router.navigate(['/']);
             }
           );
@@ -61,6 +63,7 @@ export class LeagueDetailComponent implements OnInit {
           this.leagueService.getLeagueById(this.leagueID).subscribe(
             result => this.initLeague(result), error => {
               console.log(error);
+              this.alertService.error(JSON.parse(error._body).message);
               this.router.navigate(['/']);
             }
           );

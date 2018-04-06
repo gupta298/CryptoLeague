@@ -4,7 +4,7 @@ import { JwtHelper } from 'angular2-jwt';
 
 import { League } from '../league';
 
-import { UserService } from '../services/index'
+import { UserService, AlertService } from '../services/index'
 
 declare var UIkit: any;
 
@@ -33,6 +33,7 @@ export class LeagueStatisticsComponent implements OnInit {
 
   constructor(
   	private userService: UserService,
+    private alertService: AlertService,
   	private route: ActivatedRoute,
     private router: Router) { }
 
@@ -106,6 +107,7 @@ export class LeagueStatisticsComponent implements OnInit {
   		}, error => {
 				this.loading = false;
 				console.log(error);
+        this.alertService.error(JSON.parse(error._body).message);
   			this.router.navigate(['/']);
   		}
   	);

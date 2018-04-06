@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
-import { AuthenticationService, UserService } from '../services/index'; 
+import { AuthenticationService, UserService, AlertService } from '../services/index'; 
 
 
 @Component({
@@ -29,7 +29,8 @@ export class LeaderboardComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private userService: UserService
+    private userService: UserService,
+    private alertService: AlertService
   ) { }
 
   clickPrev() {
@@ -65,6 +66,7 @@ export class LeaderboardComponent implements OnInit {
             } 
             console.log(result);
           }, error => {
+            this.alertService.error(JSON.parse(error._body).message);
             console.log(error);
           }
       );
@@ -88,6 +90,7 @@ export class LeaderboardComponent implements OnInit {
           };
           this.currentUser = tmp;
         }, error => {
+          this.alertService.error(JSON.parse(error._body).message);
           console.log(error);
         }
     );
@@ -98,6 +101,7 @@ export class LeaderboardComponent implements OnInit {
           console.log("total users:  ", result.totalUsers);
           this.totalUsers = result.totalUsers;
         }, error => {
+          this.alertService.error(JSON.parse(error._body).message);
           console.log(error);
         }
     );
