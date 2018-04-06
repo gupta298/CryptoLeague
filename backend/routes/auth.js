@@ -17,7 +17,7 @@ var router = express.Router();
  * @apiSuccess {Redirect} User Redirects the user to Facebook for login.
 */
 router.get('/facebook/',
-  passport.authenticate('facebook', {scope: ['email', 'public_profile', 'user_photos', 'user_friends', 'user_about_me'], session: false }));
+  passport.authenticate('facebook', {scope: ['email', 'public_profile'], session: false }));
 
 /**
  * @api {GET} /auth/facebook/callback Callback route from Facebook Login

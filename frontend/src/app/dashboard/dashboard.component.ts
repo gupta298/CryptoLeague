@@ -4,7 +4,7 @@
   import { Observable } from "rxjs";
   import { TimerObservable } from "rxjs/observable/TimerObservable";
 
-  import { AuthenticationService, NewsService, UserService, LeagueService } from '../services/index';
+  import { AuthenticationService, NewsService, UserService, LeagueService, AlertService } from '../services/index';
 
   @Component({
     selector: 'app-dashboard',
@@ -16,6 +16,7 @@
   	user: User;
   	newsArray: any[] = [];
     loadingNews: boolean = false;
+    loadingLeague: boolean = true;
     ranking: number;
     league: League = null;
 
@@ -23,7 +24,8 @@
     		private authService: AuthenticationService,
     		private newsService: NewsService,
         private userService: UserService,
-        private leagueService: LeagueService
+        private leagueService: LeagueService,
+        private alertService: AlertService
     		) {
       }
 
@@ -42,6 +44,7 @@
               this.ranking = result.rank;
             }, error => {
               console.log(error);
+              this.alertService.error(JSON.parse(error._body).message);
             }
         );
         if(this.user.currentLeague_id){
@@ -50,9 +53,12 @@
               result => {
                 this.league = new League();
                 this.league.deserialize(result);
+                this.loadingLeague = false;
                 console.log(this.league);
               }, error => {
                 console.log(error);
+                this.loadingLeague = false;
+                this.alertService.error(JSON.parse(error._body).message);
               }
             );
         }
@@ -71,7 +77,25 @@
             }, error => {
               this.loadingNews = false;
               console.log(error);
+              this.alertService.error(JSON.parse(error._body).message);
             }
         );
       }
+
+      getStatus(leagueStatus: number){
+        switch (leagueStatus) {
+          case 0:
+            return "Waiting";
+          case 1:
+          case 2:
+            return "Portfolio Edit Period";
+          case 3:
+            return "Started";
+          case 4:
+            return "Ended"
+          default:
+            return "Waiting";
+        }
+      }
+  }
   }

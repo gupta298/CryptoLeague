@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MarketService } from '../services/index'; 
+import { MarketService, AlertService } from '../services/index'; 
 
 
 @Component({
@@ -12,7 +12,9 @@ export class MarketComponent implements OnInit {
 
 	coinArray: any[] = [];
 
-  	constructor(private marketService: MarketService) { }
+  	constructor(
+  		private marketService: MarketService,
+  		private alertService: AlertService) { }
 
   	ngOnInit() {
   		this.marketService.getMarketData()
@@ -21,6 +23,7 @@ export class MarketComponent implements OnInit {
 	          this.coinArray = result;
 	          console.log(result);
 	        }, error => {
+	        	this.alertService.error(JSON.parse(error._body).message);
 	          console.log(error);
 	        }
 	    );

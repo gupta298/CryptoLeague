@@ -427,10 +427,13 @@ function endLeague(league_id) {
                 //Update league
                 dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4'}});
                 db.close();
+
+                console.log("done updating league");
               });
+            } else {
+              console.log("League not found! : " + league_id);
             }
           }
-          if (db) db.close();
         });
       }
     });
@@ -551,8 +554,6 @@ module.exports = {
                 callback(null, user);
               }
             }
-
-            if (db) db.close();
           });
         }
       });
@@ -862,8 +863,6 @@ module.exports = {
                 callback('League does not exist', null);
               }
             }
-
-            if (db) db.close();
           });
         }
       });
@@ -971,6 +970,10 @@ module.exports = {
 
                         league_result.status = "1";
                         league_result.start_time = startTime;
+
+                        console.log(lockingTime);
+                        console.log(startTime);
+                        console.log(endingDate);
 
                         schedule.scheduleJob(lockingTime, lockLeague.bind(null, league_result.league_id));
                         schedule.scheduleJob(startTime, startLeague.bind(null, league_result.league_id));

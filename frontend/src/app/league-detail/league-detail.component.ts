@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { MomentModule } from 'angular2-moment';
 
-import { AuthenticationService, NewsService, UserService, LeagueService } from '../services/index';
+import { AuthenticationService, NewsService, UserService, LeagueService, AlertService } from '../services/index';
 
 import { League } from '../league';
 
@@ -35,6 +35,7 @@ export class LeagueDetailComponent implements OnInit {
   	constructor(
       private authService: AuthenticationService,
       private leagueService: LeagueService,
+      private alertService: AlertService,
       private route: ActivatedRoute,
       private router: Router) { }
 
@@ -46,61 +47,72 @@ export class LeagueDetailComponent implements OnInit {
 
     loadLeague(){
       this.route.params.subscribe(params => {
-        if(!params['id'])
-          this.router.navigate(['/']);
-
-        this.leagueID = params['id'];
-        this.loadingLeague = true;
-        this.leagueService.getLeague().subscribe(
-          result => {
-
-            result.portfolio_ids.sort(function(a, b) {
-              return b.portfolio_value - a.portfolio_value;
-            });
-
-            for(var i = 0; i < result.portfolio_ids.length; i++) {
-              // original ranking
-              result.portfolio_ids[i].rank = i + 1;
-              //console.log(result.portfolio_ids[i].rank);
+        //debugger;
+        if(!params['id']){
+          this.loadingLeague = true;
+          this.leagueService.getLeague().subscribe(
+            result => this.initLeague(result), error => {
+              console.log(error);
+              this.alertService.error(JSON.parse(error._body).message);
+              this.router.navigate(['/']);
             }
-            
-            let currRank = 1;
-            result.portfolio_ids[0].rank = 1;
-            for(let i = 1; i < result.portfolio_ids.length; i++){
-              if(result.portfolio_ids[i].portfolio_value === result.portfolio_ids[i - 1].portfolio_value){
-                result.portfolio_ids[i].rank = currRank;
-              } else {
-                result.portfolio_ids[i].rank = ++currRank;
-              }
+          );
+        } else {
+          this.leagueID = params['id'];
+          this.loadingLeague = true;
+          this.leagueService.getLeagueById(this.leagueID).subscribe(
+            result => this.initLeague(result), error => {
+              console.log(error);
+              this.alertService.error(JSON.parse(error._body).message);
+              this.router.navigate(['/']);
             }
-
-            for(var i = 0; i < result.portfolio_ids.length; i++){
-              if(result.portfolio_ids[i].username == this.user.username){
-                this.rank = result.portfolio_ids[i].rank;
-                if(result.portfolio_ids[i].rank == 1){
-                  this.leader = result.portfolio_ids[i].username;
-                }
-              }
-              else if(result.portfolio_ids[i].rank == 1){
-                this.leader = result.portfolio_ids[i].username;
-              }
-            }
-
-            console.log('Printing here');
-            console.log(result);
-
-            this.league.deserialize(result);
-            console.log(this.league);
-
-            let timer = Observable.timer(0,1000);
-            timer.subscribe(() => this.getTimeRemaining());
-            this.loadingLeague = false;
-          }, error => {
-            console.log(error);
-            this.router.navigate(['/']);
-          }
-        );
+          );
+        }
       });
+    }
+
+    initLeague(result: any){
+      result.portfolio_ids.sort(function(a, b) {
+        return b.portfolio_value - a.portfolio_value;
+      });
+
+      for(var i = 0; i < result.portfolio_ids.length; i++) {
+        // original ranking
+        result.portfolio_ids[i].rank = i + 1;
+        //console.log(result.portfolio_ids[i].rank);
+      }
+      
+      let currRank = 1;
+      result.portfolio_ids[0].rank = 1;
+      for(let i = 1; i < result.portfolio_ids.length; i++){
+        if(result.portfolio_ids[i].portfolio_value === result.portfolio_ids[i - 1].portfolio_value){
+          result.portfolio_ids[i].rank = currRank;
+        } else {
+          result.portfolio_ids[i].rank = ++currRank;
+        }
+      }
+
+      for(var i = 0; i < result.portfolio_ids.length; i++){
+        if(result.portfolio_ids[i].username == this.user.username){
+          this.rank = result.portfolio_ids[i].rank;
+          if(result.portfolio_ids[i].rank == 1){
+            this.leader = result.portfolio_ids[i].username;
+          }
+        }
+        else if(result.portfolio_ids[i].rank == 1){
+          this.leader = result.portfolio_ids[i].username;
+        }
+      }
+
+      console.log('Printing here');
+      console.log(result);
+
+      this.league.deserialize(result);
+      console.log(this.league);
+
+      let timer = Observable.timer(0,1000);
+      timer.subscribe(() => this.getTimeRemaining());
+      this.loadingLeague = false;
     }
 
   	portfolioClicked(){
@@ -116,7 +128,7 @@ export class LeagueDetailComponent implements OnInit {
       let endDate: moment.Moment = moment(this.league.start_time);
       this.status = "starts.";
       //let totaltime = 86400;
-      let totaltime = 300;
+      let totaltime = 60 * 4;
       let currDate: moment.Moment = moment();
 
       if(startDate.isBefore(currDate)){
@@ -126,10 +138,10 @@ export class LeagueDetailComponent implements OnInit {
         }
 
         //endDate.add(6, 'd');
-        endDate.add(1, 'm')
+        endDate.add(4, 'm')
         this.status = "ends.";
         //totaltime = 518400;
-        totaltime = 360;
+        totaltime = 60 * 4;
         this.timeRemainingPercent = 100 - Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
       } else {
         this.timeRemainingPercent = Math.floor((totaltime - endDate.diff(currDate, 'seconds'))/(totaltime) * 100);
