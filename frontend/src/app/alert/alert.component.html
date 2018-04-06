@@ -1,0 +1,5 @@
+<div class="alert-container">
+	<div uk-alert id="joiningAlert" *ngIf="message" [ngClass]="{ 'alert': message, 'uk-alert-success': message.type === 'success', 'uk-alert-danger': message.type === 'error' }">{{message.text}}
+		<div uk-spinner class="uk-margin-small-left" *ngIf="loading"></div>
+	</div>
+</div>
