@@ -1,0 +1,112 @@
+=== Weekly Team Report (Team 8: CryptoLeague) ===
+
+Week 7 (Summary) (Scrum master: Varun Gupta)
+04/01 3 hr 0eeb5be league payout works  
+04/01 0.5 hr 796b35d Fixed status  bar timing  
+04/01 5 min 3e03123 Fixed status bar  
+04/01 0.5 hr c562f77 Updated frontend league timings  
+04/01 N/A 9b517c3 Merge remote-tracking branch 'origin/master' into backend/leagues  
+04/01 1 hr 8fc12a6 League sends buy_ins  
+04/01 N/A 4c62ae1 Merge branch 'master' of github.com:gupta298/CryptoLeague  
+04/01 5 min f0ee57a Updated package and removed dist  
+04/01 3 hr 6925e6b Appending endLeague  
+03/31 1 hr 0984488 still not working  
+03/31 N/A 6ca6a50 Merge remote-tracking branch 'origin/master'  
+03/31 1 hr 24efe3f updated favicon  
+03/31 5 min 1b466e6 Updating documentation  
+03/31 0.75 hr 39c4731 Searching for usernames implemented  
+03/31 0.75 hr e1b15ba Fixing some errors in the backend  
+03/31 5 min e94abc8 Cleaning up the backend  
+03/31 0.25 hr 0faefe6 Mongodb singleton is fully robust and should not crash in any instance  
+03/31 0.25 hr 71fd6eb Fixed some errors in get league and made it robust  
+03/31 N/A d727b50 Merge branch 'master' of https://github.com/gupta298/CryptoLeague  
+03/31 0.75 hr 9bead60 Made create / join league robust  
+03/31 5 min 2081239 Added options header for /news  
+03/31 N/A 215c35e Merge branch 'master' of https://github.com/gupta297/CryptoLeague  
+03/31 0.5 hr 042922e Added cors check  
+03/31 5 min 5399a4a Readded cors package  
+03/30 5 min 4f4a4d7 Tried fixing cors again  
+03/30 4 hr 8379293 Fixed some code and added a more error checking  
+03/30 5 min c1bb92a Enabled cors  
+03/30 5 min ccef51f Fixed env URL  
+03/30 0.5 hr c74a4b4 Fixed error  
+03/30 0.5 hr fae3405 Fixing some code and adding more robust code to the server  
+03/30 N/A b2835b5 Merge branch 'master' of https://github.com/gupta298/CryptoLeague  
+03/30 N/A 1b82b41 Merging  
+03/30 10 min 9cb3b30 Updating packages  
+03/30 N/A 8b51ddc Merge remote-tracking branch 'origin/master'  
+03/30 N/A 405e0b7 Updating index.html  
+03/30 N/A 5dc53bb Changing the path of the scripts  
+03/30 N/A 07114b7 Making changes to the index.html  
+03/30 5 min 197663f NVM reverting /dist to be ignored again  
+03/30 N/A bfc3ac3 Merge branch 'master' of github.com:gupta298/CryptoLeague  
+03/30 N/A 423a8f5 Added /dist  
+03/30 5 min c7d71ae Added /dist  
+03/30 5 min 1588cee Updated gitignore to include /dist  
+03/30 5 hr b332230 Updating all of the error message and making the backend more robust  
+03/30 5 min a30845c Updated Karma to Chrome  
+03/30 1 hr e5915a3 Fixed unit tests  
+03/26 1 hr b4ce49e Fixing pool  
+03/26 5 min dced70d Adding the league buy in tokens to the league  
+03/26 1.5 hr 108e63d Fixing pool  
+03/26 N/A c6fe7c1 Merge branch 'master' of https://github.com/gupta298/CryptoLeague  
+03/26 2.5 hr 14b2971 Adding the league buy in tokens to the league  
+03/26 5 min e3bb440 Fixed errors  
+03/26 5 min b92abbc did stuff  
+03/26 N/A f3cf35f Merge remote-tracking branch 'origin/master'  
+03/26 0.5 hr d2b5ff4 changed data in portfolio wrt changes in backend  
+03/26 N/A efe8282 Merge remote-tracking branch 'origin/master'  
+03/26 0.5 hr 29078fe Added timer to update league on waiting room  
+03/26 1 hr 9cb9336 test cases cleaned and fixed  
+03/26 N/A f9ece6f Merge branch 'frontend/portfolio'  
+03/26 5 min 6235c62 Changed league timings for demo  
+03/26 2 hr e371d76 10 unit tests added for portfolio  
+03/26 1 hr 70631d2 Implemented quitting league  
+03/26 0.5 hr ba74d09 Updating testing doc  
+03/26 N/A cf45453 Merge remote-tracking branch 'origin/master'  
+03/26 0.5 hr ffffc39 Added test cases for league statistics  
+03/26 2 hr 5a07c6a test added for portfolio  
+03/26 5 min c1dc48c Get league does not return the user id now 2.0  
+03/26 0.25 hr a4adfbd Get league does not return the user id now  
+03/26 0.25 hr ec78577 Fixed some errors in post request of portfolio  
+03/26 N/A ef556d6 Added week6 log  
+03/26 2 hr 9a6f5ad Updated league detail and moved league statistics to a component  
+03/25 10 min 8a34026 Adding weekly reports  
+03/25 1 hr 8f8ce83 User can only edit their portfolio now  
+03/25 N/A fa5226a Merge branch 'master' of https://github.com/gupta298/CryptoLeague  
+03/25 5 min 1a7b7d6 Updated documentation  
+03/25 N/A a17f087 Merge remote-tracking branch 'origin/master'  
+03/25 1 hr da797e6 Updated league detail design  
+03/25 2 hr e4964b2 Fixed some errors and added error codes  
+03/25 5 min 2846a57 Aesthetic changes  
+03/25 1 hr 94f2e73 Fixed league select onClick  
+03/25 5 min daf7d08 Fixed league select test cases  
+03/25 5 min e846547 Fixed typo  
+03/25 N/A 0f694ed Merge pull request #34 from gupta298/frontend/portfolio Frontend/portfolio 
+03/25 N/A 1b35dc7 Merge remote-tracking branch 'origin/master'  
+03/25 1 hr 48d0dfa Made changes to league detail when league has ended  
+03/25 1 hr 8c6749a cleaned code, updated messages  
+03/25 1 hr da909bc Improved error message  
+03/25 N/A 5264e52 Merge branch 'frontend/portfolio' of https://github.com/gupta298/CryptoLeague into frontend/portfolio  
+03/25 N/A b17248f Merge branch 'master' into frontend/portfolio  
+03/25 0.5 hr ef11b32 cleaned code  
+03/25 1 hr e6767e1 UIkit modal implemented  
+03/25 2 hr c8fe391 Bug I'm not even going to tell you about  
+03/25 N/A 6b419a9 Merge branch 'frontend/portfolio'  
+03/25 N/A 18366d5 Merge branch 'master' into frontend/portfolio  
+03/25 N/A a27d2de Merge branch 'master' of github.com:gupta298/CryptoLeague  
+03/25 N/A c069f08 Merge branch 'backend/leagues'  
+03/25 1 hr 2c68806 Fixed league ending logic  
+03/25 1.5 hr 451f608 round off done, modal added  
+03/25 1 hr 3084a54 Adding more validation to the portfolio put request  
+
+Week 8 (Plan) (Scrum master: Varun Gupta)
+[Meetings]
+04/01 Discuss user search and sending tokens
+04/04 Discuss user profiles and past leagues
+
+[Individual Goals]
+Varun: Finish working on User APIs
+Ritwik: Design and implement search bar in leaderboard UI and make pie chart robust
+Utkarsh: Fix bugs and add unit tests
+Nisarg: Design and implement User profiles UI
