@@ -296,7 +296,7 @@ function lockLeague(league_id) {
       } else {
         var dbo = db.db("cryptoleague_database");
         dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '2'}});
-        db.close(); 
+        db.close();
       }
     });
   }
@@ -329,7 +329,7 @@ function startLeague(league_id) {
         } else {
           dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', locked_prices: coins }});
         }
-        db.close(); 
+        db.close();
       }
     });
   }
@@ -391,6 +391,10 @@ function endLeague(league_id) {
                     numTop75++;
                 }
 
+                var a = (0.2 * totalCoins) / numTop25;
+                var b = (0.3 * totalCoins) / numTop50;
+                var c = (0.5 * totalCoins) / numTop75;
+
                 for(let i = 0; i < result.portfolio_ids.length; i++){
                   if(result.portfolio_ids[i].rank <= 25) {
                     result.portfolio_ids[i].payout += (0.2 * totalCoins) / numTop25;
@@ -402,6 +406,18 @@ function endLeague(league_id) {
                     result.portfolio_ids[i].payout += (0.5 * totalCoins) / numTop75;
                   }
                 }
+
+                var finalPayout = [a, b, c];
+                var ranks = [];
+                for(let i = 0; i < result.portfolio_ids.length; i++){
+                  for(let j = 0; j < result.portfolio_ids.length; j++){
+                      if(result.portfolio_ids[j].rank == i){
+                        ranks.insert(i, result.portfolio_ids[j]);
+                      }
+                  }
+                }
+
+                console.log("CHUTIYACHUTIYACHUTIYACHUTIYACHUTIYACHUTIYACHUTIYACHUTIYA");
 
                 //Update all the users
                 for(let i = 0; i < result.portfolio_ids.length; i++){
@@ -449,7 +465,7 @@ function calculatePortfoliosValues(league, callback) {
             for (index in portfolio.holdings) {
               var found_current_market = current_coin_data[portfolio.holdings[index].coin_symbol];
               var found_league_market = league_coins[portfolio.holdings[index].coin_symbol];
-              
+
               var return_over_period = ((found_current_market - found_league_market) / found_league_market);
               var value = portfolio.holdings[index].percentage * return_over_period;
 
