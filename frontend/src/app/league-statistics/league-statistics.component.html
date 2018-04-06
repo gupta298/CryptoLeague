@@ -8,7 +8,7 @@
 				<li>League status: {{getStatus(league.status)}}</li>
 				<li *ngIf="league.status < 4; else quitLeague">{{timeRemaining}} until the league {{status}}</li>
 				<ng-template #quitLeague>
-					<button class="uk-button uk-button-danger uk-margin-top" (click)="quitLeagueOnCLick()">Quit League</button>
+					<button class="uk-button uk-button-danger uk-margin-top" (click)="quitLeagueOnCLick()" *ngIf="user.currentLeague_id == league.league_id">Quit League</button>
 				</ng-template>
 			</ul>
 			<ul class="uk-list uk-list-large" id="statsText2">

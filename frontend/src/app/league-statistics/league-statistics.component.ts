@@ -3,8 +3,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
 
 import { League } from '../league';
+import { User } from '../user';
 
-import { UserService, AlertService } from '../services/index'
+import { UserService, AlertService, AuthenticationService } from '../services/index'
 
 declare var UIkit: any;
 
@@ -22,6 +23,7 @@ export class LeagueStatisticsComponent implements OnInit {
 	@Input() status: string;
 	@Input() hideCards: boolean;
 
+  user: User;
 	length: number;
   totalPool: number;
   topTwentyFive: number;
@@ -35,9 +37,11 @@ export class LeagueStatisticsComponent implements OnInit {
   	private userService: UserService,
     private alertService: AlertService,
   	private route: ActivatedRoute,
+    private authService: AuthenticationService,
     private router: Router) { }
 
   ngOnInit() {
+    this.user = this.authService.loadUserFromLocalStorage();
   }
 
   ngOnChanges(changes: SimpleChange) {
