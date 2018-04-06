@@ -8,11 +8,16 @@
 				<div>
 					<div class="uk-card uk-card-primary uk-card-small uk-card-body ">
 						<h3 class="uk-card-title">{{user.username || "Username not set"}}</h3>
-						<div class="uk-flex uk-flex-bottom uk-card-body">
-							<ul class="uk-list">
-								<li><span class="uk-text-bold">Your Tokens:</span> {{user.tokens}}</li>
-								<li><span class="uk-text-bold">World Rank:</span> #{{ranking}}</li>
-							</ul>
+						<div class="uk-card-body">
+							<div class="uk-grid-divider" uk-grid>
+								<div class="uk-width-1-2@m">
+									<ul class="uk-list">
+										<li><span class="uk-text-bold">Your Tokens:</span> {{user.tokens}}</li>
+										<li><span class="uk-text-bold">World Rank:</span> #{{ranking}}</li>
+										<li><span class="uk-text-bold">Leagues Participated:</span> {{user.pastLeagues.length}}</li>
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -20,21 +25,22 @@
 					<div *ngIf="league;else joinLeague" style="height: 100%;">
 						<div class="uk-card uk-card-default uk-card-small uk-card-hover uk-card-body ">
 							<h3 class="uk-card-title">League #{{league.league_id}}</h3>
-							<div class="uk-grid-divider" uk-grid>
-								<div class="uk-width-1-2@m">
-									<ul class="uk-list">
-										<li><span class="uk-text-bold">{{league.league_type}}</span></li>
-										<li><span class="uk-text-bold">Players:</span> {{league.portfolio_ids.length}}</li>
-										<li><span class="uk-text-bold">Status:</span> {{getStatus(league.status)}}</li>
-									</ul>
-								</div>
-								<div class="uk-width-1-2@m">
-									<a class="uk-flex uk-flex-center" href="/league/{{league.league_id}}">
-							    	<span class="join-button" uk-icon="icon: users; ratio: 5"></span>
-									</a>
+							<div class="uk-card-body">
+								<div class="uk-grid-divider" uk-grid>
+									<div class="uk-width-1-2@m">
+										<ul class="uk-list">
+											<li><span class="uk-text-bold">{{league.league_type}}</span></li>
+											<li><span class="uk-text-bold">Players:</span> {{league.portfolio_ids.length}}</li>
+											<li><span class="uk-text-bold">Status:</span> {{getStatus(league.status)}}</li>
+										</ul>
+									</div>
+									<div class="uk-width-1-2@m">
+										<a class="uk-flex uk-flex-center" href="/league/{{league.league_id}}">
+								    	<span class="join-button" uk-icon="icon: users; ratio: 5"></span>
+										</a>
+									</div>
 								</div>
 							</div>
-
 							
 						</div>
 					</div>
