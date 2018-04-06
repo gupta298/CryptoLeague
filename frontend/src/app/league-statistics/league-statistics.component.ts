@@ -29,9 +29,9 @@ export class LeagueStatisticsComponent implements OnInit {
   topTwentyFive: number;
   topSeventyFive: number;
   topFifty: number;
-  topPool: number;
-  middlePool: number;
-  lowerPool: number;
+  topPool: string;
+  middlePool: string;
+  lowerPool: string;
   loading: boolean = false;
   buy_in: number;
 
