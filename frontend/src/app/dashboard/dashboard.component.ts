@@ -16,6 +16,7 @@
   	user: User;
   	newsArray: any[] = [];
     loadingNews: boolean = false;
+    loadingLeague: boolean = true;
     ranking: number;
     league: League = null;
 
@@ -52,9 +53,11 @@
               result => {
                 this.league = new League();
                 this.league.deserialize(result);
+                this.loadingLeague = false;
                 console.log(this.league);
               }, error => {
                 console.log(error);
+                this.loadingLeague = false;
                 this.alertService.error(JSON.parse(error._body).message);
               }
             );
@@ -78,4 +81,21 @@
             }
         );
       }
+
+      getStatus(leagueStatus: number){
+        switch (leagueStatus) {
+          case 0:
+            return "Waiting";
+          case 1:
+          case 2:
+            return "Portfolio Edit Period";
+          case 3:
+            return "Started";
+          case 4:
+            return "Ended"
+          default:
+            return "Waiting";
+        }
+      }
+  }
   }
