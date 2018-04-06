@@ -417,8 +417,6 @@ function endLeague(league_id) {
                   }
                 }
 
-                console.log("CHUTIYACHUTIYACHUTIYACHUTIYACHUTIYACHUTIYACHUTIYACHUTIYA");
-
                 //Update all the users
                 for(let i = 0; i < result.portfolio_ids.length; i++){
                   dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$inc: {'tokens' : result.portfolio_ids[i].payout}});
