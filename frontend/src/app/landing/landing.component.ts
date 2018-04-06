@@ -16,6 +16,7 @@ export class LandingComponent implements OnInit {
 
 	user: User;
 	userExists: boolean;
+	loading: boolean = false;
 
 	constructor(
 		private router: Router,
@@ -28,6 +29,7 @@ export class LandingComponent implements OnInit {
   onSubmit(form) { 
   	this.submitted = true;
   	console.log('username: ',this.user.username);
+  	this.loading = true;
   	this.userService.isUsernameValid(this.user)
   		.subscribe(
   			result => {
@@ -36,19 +38,23 @@ export class LandingComponent implements OnInit {
 	          	this.userService.updateUser(this.user)
 					      .subscribe(
 					        result => {
+					        	this.loading = false;
 					          console.log(result);
 					          this.authService.saveJwt(result.jwt);
 					          this.router.navigate(['/dashboard']);
 
 					        }, error => {
+					        	this.loading = false;
 					        	this.alertService.error(JSON.parse(error._body).message);
 					          console.log(error);
 					        }
 					    	);
 	          } else {
+	          	this.loading = false;
 	          	this.userExists = true;
 	          }
 	        }, error => {
+	        	this.loading = false;
 	        	this.alertService.error(JSON.parse(error._body).message);
 	          console.log(error);
 	        }

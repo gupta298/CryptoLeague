@@ -21,7 +21,12 @@
 						<p>Your username is a unique name that only consists of alphanumeric characters</p>
         	</div>
 					<div class="uk-margin">
-				    <button type="submit" class="uk-button uk-button-default">Submit</button>
+				    <button type="submit" class="uk-button uk-button-default" ng-disabled="loading">
+				    	<div *ngIf="loading;else other_content">
+								<div uk-spinner></div>
+							</div>
+							<ng-template #other_content>Submit</ng-template>
+				    </button>
 				   </div>
 				</form>
 			</div>
