@@ -5,13 +5,15 @@ var leagueSchema = new mongoose.Schema({
     league_type: String,
     league_buy_in: Number,
     status: String,
-    portfolio_ids: [{ 
+    portfolio_ids: [{
     	"username": String,
         "tokens": Number,
         "profilePicture": String,
         "user_id": String,
         "portfolio_id" : String,
-        "portfolio_value" : Number
+        "portfolio_value" : Number,
+		"payout": Number,
+		"portfolio_rank": Number
     }],
     start_time: Date,
     current_market_coin: [String]

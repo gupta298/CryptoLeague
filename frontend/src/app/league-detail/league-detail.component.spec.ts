@@ -12,7 +12,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 
 import { League } from '../league'
 
-import { AuthenticationService, MarketService, LeagueService, PortfolioService } from '../services';
+import { AuthenticationService, MarketService, LeagueService, PortfolioService, UserService } from '../services';
 import { AuthenticationServiceStub } from '../stubs/authentication.service.stub'
 
 describe('LeagueDetailComponent', () => {
@@ -23,7 +23,7 @@ describe('LeagueDetailComponent', () => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
       declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, UserService ]
     })
     .compileComponents();
   }));
@@ -47,7 +47,7 @@ describe('LeagueDetailComponent with waiting room', () => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
       declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService , UserService]
     })
     .compileComponents();
   }));
@@ -82,7 +82,7 @@ describe('LeagueDetailComponent with league locked but not started', () => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
       declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, UserService ]
     })
     .compileComponents();
   }));
@@ -129,7 +129,7 @@ describe('LeagueDetailComponent with league locked and started', () => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
       declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, UserService ]
     })
     .compileComponents();
   }));

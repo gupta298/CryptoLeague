@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { MarketService } from '../services/index';
-import { PortfolioService, AuthenticationService } from '../services/index';
+import { PortfolioService, AuthenticationService, AlertService } from '../services/index';
 import { User } from '../user';
 
 declare var $: any;
@@ -22,6 +22,7 @@ export class PortfolioComponent implements OnInit {
 		private marketService: MarketService,
 		private portfolioService: PortfolioService,
     private authService: AuthenticationService,
+    private alertService: AlertService
 	) { }
 
 	 @ViewChild("piechart") piechart: ElementRef; 
@@ -84,11 +85,13 @@ export class PortfolioComponent implements OnInit {
 						  		}, 1000);
 
 								}, error => {
+									this.alertService.error(JSON.parse(error._body).message);
 									console.log(error);
 								}
 							)
 	          console.log(result);
 	        }, error => {
+	        	this.alertService.error(JSON.parse(error._body).message);
 	          console.log(error);
 	        }
 	  		);
@@ -275,6 +278,7 @@ export class PortfolioComponent implements OnInit {
 						}
 
 					}, error => {
+						this.alertService.error(JSON.parse(error._body).message);
 						console.log(error);
 						if(error.status == 400) {
 							UIkit.modal('#modal-center').show();

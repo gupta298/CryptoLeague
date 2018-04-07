@@ -17,7 +17,11 @@ const mongo = require('../utils/mongoDBCalls');
 */
 router.get('/:league_id', passport.authenticate(['jwt'], { session: false }), (req, res) => {
     mongo.getLeague(req.params.league_id, req.user._id, function(error, response) {
-      res.send(response);
+    	if (error) {
+    		res.send(400, {"message" : error});
+    	} else {
+    		res.send(response);
+    	}
     });
 });
 
@@ -33,10 +37,14 @@ router.get('/:league_id', passport.authenticate(['jwt'], { session: false }), (r
 router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
 	if (req.user.currentLeague_id) {
 		mongo.getLeague(req.user.currentLeague_id, req.user._id, function(error, response) {
-	      res.send(response);
+			if (error) {
+				res.send(400, {"message" : error});
+	    	} else {
+	    		res.send(response);
+	    	}
 	    });
 	} else {
-		res.send(400, {'message' : "Not in a league"})
+		res.send(400, {'message' : "Not in a league!"})
 	}
 });
 
@@ -53,24 +61,36 @@ router.get('/', passport.authenticate(['jwt'], { session: false }), (req, res) =
 router.post('/', passport.authenticate(['jwt'], { session: false }), (req, res) => {
 	if (!req.user.currentLeague_id) {
 		if (!req.body.league_type_id) {
-	  		res.send(400, {'message': "No league type found!!"});
+	  		res.send(400, {'message': "League type id is required for joining a league. No league type id found in the request body!"});
 	  	} else {
 	  		mongo.checkLeagueType(req.body.league_type_id, req.user._id, function(error, response) {
 				if (!error && response) {
-					mongo.createLeague(response.league_type, response.user, function(error, response_league) {
-						req.user.currentLeague_id = response_league.league_id;
-						req.user.tokens -=  response.league_type.buy_in;
-						mongo.updateUserLeague(req.user, function(err, resp) {
-							res.send(response_league);
+					if (response.user.currentLeague_id) {
+						res.send(400, {'message': "Already in a league!!"});
+					} else {
+						mongo.createLeague(response.league_type, response.user, function(error, response_league) {
+							if (error) {
+								res.send(400, {'message': error});
+							} else {
+								req.user.currentLeague_id = response_league.league_id;
+								req.user.tokens -=  response.league_type.buy_in;
+								mongo.updateUserLeague(req.user, function(err, resp) {
+									if (error) {
+										res.send(400, {'message': "User joined the league, but there was an error updating there current league and tokens left."});
+									} else {
+										res.send(response_league);
+									}
+								});
+							}
 						});
-					});
+					}
 				} else {
 					res.send(400, {'message': error});
 				}
 		    });
 	  	}
 	} else {
-		res.send(400, {'message' : "Already in a league"});
+		res.send(400, {'message' : "Already in a league. You can only be in one league at a time."});
 	}
 });
 

@@ -20,6 +20,7 @@ const routes: Routes = [
 	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
 	{ path: 'market', component: MarketComponent, canActivate: [AuthGuard] },
 	{ path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+	{ path: 'league', component: LeagueDetailComponent, canActivate: [AuthGuard] },
 	{ path: 'league/:id', component: LeagueDetailComponent, canActivate: [AuthGuard] },
 	{ path: 'join', component: LeagueSelectComponent, canActivate: [AuthGuard]},
   { path: 'leaderboard', component: LeaderboardComponent, canActivate: [AuthGuard]},
