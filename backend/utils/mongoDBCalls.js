@@ -1011,7 +1011,7 @@ module.exports = {
               callback("Error getting the league!", null);
             } else {
               if (result) {
-                if (result.status === "3") {
+                if (result.status.toString() === '3') {
                   calculatePortfoliosValues(result, function() {
                     var foundUser = false;
                     asyncLoop(result.portfolio_ids, function (item, next) {
@@ -1044,16 +1044,21 @@ module.exports = {
                 } else {
                   var foundUser = false;
                   asyncLoop(result.portfolio_ids, function (item, next) {
-                    if (item) {
-                      if (item.user_id.toString() === user_id.toString()) {
-                        foundUser = true;
-                      } else {
-                        if (result.status.toString() !== '4') {
+                    if (item && result.status.toString() === '4') {
+                      getPortfolioWithID(item.portfolio_id, function(err, res) {
+                        if (res) {
+                          item.portfolio_id = res;
+                        }
+                        next();
+                      });
+                    } else if (result.status.toString() !== '4') {
+                        if (item.user_id.toString() === user_id.toString()) {
+                          foundUser = true;
+                        } else {
                           item.portfolio_id = null;
                         }
-                      }
+                        next();
                     }
-                    next();
                   }, function () {
                     var response = {
                       _id: result._id,
