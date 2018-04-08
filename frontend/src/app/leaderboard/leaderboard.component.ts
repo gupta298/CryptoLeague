@@ -23,6 +23,7 @@ export class LeaderboardComponent implements OnInit {
   totalUsers: number;
   usernames: String[];
   trieDS: Trie;
+  searchResults: any[];
 
 	// tmp = [{rank: 1, username: "ritw123", tokens: 1000}, 
 	// 				{rank: 2, username: "bobby", tokens: 100},
@@ -77,8 +78,12 @@ export class LeaderboardComponent implements OnInit {
       );
   }
 
-  onSearchChange(value) {
-
+  onSearchChange(value: String) {
+    if(value == "") {
+      this.searchResults = [];
+    } else {
+      this.searchResults = this.trieDS.findWord(value);
+    }
   }
 
   ngOnInit() {
@@ -119,17 +124,20 @@ export class LeaderboardComponent implements OnInit {
         .subscribe(
           result => {
             this.usernames = result;
-            console.log(this.usernames);
+            //console.log(this.usernames);
+            for(let i = 0; i < this.usernames.length; i++) {
+              this.trieDS.addWord(this.usernames[i]);
+            }
           }, error => {
             this.alertService.error(JSON.parse(error._body).message);
             console.log(error);
           }
       );
-    this.trieDS.add("HI", 0, 2);
-    this.trieDS.add("Heya", 0, 4);
-    this.trieDS.add("Hi there", 0, 8);
-    this.trieDS.add("Heyabc", 0, 6);
-    console.log(this.trieDS.find("He",0,2));
+    // this.trieDS.add("HI", 0, 2);
+    // this.trieDS.add("Heya", 0, 4);
+    // this.trieDS.add("Hi there", 0, 8);
+    // this.trieDS.add("Heyabc", 0, 6);
+    // console.log(this.trieDS.find("He",0,2));
   }
 
 }
