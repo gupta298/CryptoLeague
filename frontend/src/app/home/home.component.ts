@@ -13,15 +13,17 @@ declare var UIkit: any;
 export class HomeComponent implements OnInit {
 	environment: any;
 
-  	constructor(
-      private router: Router,
-      private authService: AuthenticationService) { 
-  		this.environment = environment;
-  	}
+  inviteCode: string;
 
-  	ngOnInit() {
-  		if(this.authService.loadUserFromLocalStorage()){
-        this.router.navigate(['/dashboard']);
-      }
-  	}
+	constructor(
+    private router: Router,
+    private authService: AuthenticationService) { 
+		this.environment = environment;
+	}
+
+	ngOnInit() {
+		if(this.authService.loadUserFromLocalStorage()){
+      this.router.navigate(['/dashboard']);
+    }
+	}
 }

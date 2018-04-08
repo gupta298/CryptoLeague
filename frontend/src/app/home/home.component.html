@@ -16,15 +16,24 @@
 		</div>
 	</div>
 	<div>
-		<div class="uk-container uk-container-large flexbox-center rightBox">
-			<div>
-				<h2>Signup or Login</h2>
+		<div class="uk-container uk-container-large flexbox-center rightBox uk-text-center">
+			<div *ngIf="inviteCode == 'DEMODAY18';else askInviteCode">
+				<div>
+					<h2>Signup or Login</h2>
+				</div>
+				<!-- <div>
+					<a href="{{environment.apiUrl}}/auth/facebook" class="uk-button uk-button-primary">Login with Facebook</a>	
+				</div> -->
+				<a href="{{environment.apiUrl}}/auth/facebook"><div class="facebook-button"></div></a>
+				<a href="{{environment.apiUrl}}/auth/google"><div class="google-button"></div></a>
 			</div>
-			<!-- <div>
-				<a href="{{environment.apiUrl}}/auth/facebook" class="uk-button uk-button-primary">Login with Facebook</a>	
-			</div> -->
-			<a href="{{environment.apiUrl}}/auth/facebook"><div class="facebook-button"></div></a>
-			<a href="{{environment.apiUrl}}/auth/google"><div class="google-button"></div></a>
+			<ng-template #askInviteCode>
+				<legend class="uk-legend ">CryptoLeague is Private Beta Currently</legend>
+
+        <div class="uk-margin">
+            <input class="uk-input" type="text" placeholder="Enter Invite Code" [(ngModel)]="inviteCode">
+        </div>
+			</ng-template>
 		</div>
 	</div>
 </div>
