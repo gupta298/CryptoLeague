@@ -1044,21 +1044,16 @@ module.exports = {
                 } else {
                   var foundUser = false;
                   asyncLoop(result.portfolio_ids, function (item, next) {
-                    if (item && result.status.toString() === '4') {
-                      getPortfolioWithID(item.portfolio_id, function(err, res) {
-                        if (res) {
-                          item.portfolio_id = res;
-                        }
-                        next();
-                      });
-                    } else if (result.status.toString() !== '4') {
+                    if (item) {
+                      if (result.status.toString() !== '4') {
                         if (item.user_id.toString() === user_id.toString()) {
                           foundUser = true;
                         } else {
                           item.portfolio_id = null;
                         }
-                        next();
+                      }
                     }
+                    next();
                   }, function () {
                     var response = {
                       _id: result._id,
