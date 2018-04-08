@@ -13,15 +13,31 @@ declare var UIkit: any;
 export class HomeComponent implements OnInit {
 	environment: any;
 
-  	constructor(
-      private router: Router,
-      private authService: AuthenticationService) { 
-  		this.environment = environment;
-  	}
+  inviteCode: string;
 
-  	ngOnInit() {
-  		if(this.authService.loadUserFromLocalStorage()){
-        this.router.navigate(['/dashboard']);
-      }
-  	}
+	constructor(
+    private router: Router,
+    private authService: AuthenticationService) { 
+		this.environment = environment;
+	}
+
+	ngOnInit() {
+		if(this.authService.loadUserFromLocalStorage()){
+      this.router.navigate(['/dashboard']);
+    }
+
+    let inviteCode = localStorage.getItem('inviteCode');
+    if(inviteCode) {
+      this.inviteCode = inviteCode;
+    }
+	}
+
+  checkInviteCode(inviteCode: string){
+    if(inviteCode == "DEMODAY18"){
+      localStorage.setItem('inviteCode', inviteCode);
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
