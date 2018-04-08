@@ -21,6 +21,7 @@ export class LeaderboardComponent implements OnInit {
   currentUser: any;
   currentPage: number = 1;
   totalUsers: number;
+  usernames: String[];
 
 	// tmp = [{rank: 1, username: "ritw123", tokens: 1000}, 
 	// 				{rank: 2, username: "bobby", tokens: 100},
@@ -73,7 +74,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   onSearchChange(value) {
-    
+
   }
 
   ngOnInit() {
@@ -109,6 +110,17 @@ export class LeaderboardComponent implements OnInit {
           console.log(error);
         }
     );
+
+    this.userService.getAllUsernames()
+        .subscribe(
+          result => {
+            this.usernames = result;
+            console.log(this.usernames);
+          }, error => {
+            this.alertService.error(JSON.parse(error._body).message);
+            console.log(error);
+          }
+      );
 
   }
 
