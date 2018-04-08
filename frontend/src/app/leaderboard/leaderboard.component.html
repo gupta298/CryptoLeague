@@ -5,6 +5,19 @@
 	<div class="page-content">
 		<div class="uk-container uk-table-striped uk-margin-top uk-overflow-auto">
 			<div class="uk-text-lead">Live Rankings</div>
+			<form class="uk-search uk-search-default">
+					<a class="uk-search-icon-flip" uk-search-icon></a>
+					<input class="uk-search-input" type="search" placeholder="Search for a user" (input)="onSearchChange($event.target.value)">
+			  <div uk-dropdown="mode: click" class="background">
+					<ul class="uk-nav uk-dropdown-nav dropdown">					        
+			      <!--li class="uk-margin-right item" align="center" *ngFor="let c of autoComplete">
+			      	<div (click)="addRowFromSearch(c)">{{c}}</div>
+			      	<div class="uk-margin-small uk-nav-divider">
+			      	</div>
+			      </li--> 
+			    </ul>
+				</div>
+			</form>
 			<table class="uk-table uk-margin-top uk-table-divider uk-table-middle">
 		    <thead>
 		        <tr>

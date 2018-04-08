@@ -72,6 +72,10 @@ export class LeaderboardComponent implements OnInit {
       );
   }
 
+  onSearchChange(value) {
+    
+  }
+
   ngOnInit() {
     //this.currentPage = 1;
   	//this.allUsers = this.tmp;
