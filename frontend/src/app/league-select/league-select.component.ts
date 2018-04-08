@@ -33,25 +33,27 @@ export class LeagueSelectComponent implements OnInit {
   }
 
   selected(leagueType) {
-    UIkit.modal.confirm('Please make sure that you are joining the league. Once you join, you will not be able to exit the league. ').then(()=>{
-      UIkit.alert('#joiningAlert', {});
-      this.loading = true;
-      this.leagueService.joinLeague(leagueType).subscribe(
-          result => {
-            //UIkit.alert('#joiningAlert').close();
-            this.loading = false;
-            this.router.navigate(['/league/'+result.league_id]);
-            console.log(result);
-          }, error => {
-            //UIkit.alert(UIkit.alert('#joiningAlert')).close();
-            this.loading = false;
-            this.alertService.error(JSON.parse(error._body).message);
-            console.log(error);
-          }
-        );
-    }, function () {
-      console.log('Cancel.');
-    });
+    if(!this.loading){
+      UIkit.modal.confirm('Please make sure that you are joining the league. Once you join, you will not be able to exit the league. ').then(()=>{
+        UIkit.alert('#joiningAlert', {});
+        this.loading = true;
+        this.leagueService.joinLeague(leagueType).subscribe(
+            result => {
+              //UIkit.alert('#joiningAlert').close();
+              this.loading = false;
+              this.router.navigate(['/league/'+result.league_id]);
+              console.log(result);
+            }, error => {
+              //UIkit.alert(UIkit.alert('#joiningAlert')).close();
+              this.loading = false;
+              this.alertService.error(JSON.parse(error._body).message);
+              console.log(error);
+            }
+          );
+      }, function () {
+        console.log('Cancel.');
+      });
+    }
   }
 
 }
