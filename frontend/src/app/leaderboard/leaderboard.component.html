@@ -11,7 +11,7 @@
 			  <div uk-dropdown="mode: click" class="background">
 					<ul class="uk-nav uk-dropdown-nav dropdown">					        
 			      <li class="uk-margin-right item" align="center" *ngFor="let c of searchResults">
-			      	<div>{{c}}</div>
+			      	<div class="click" (click)="onUserClick(c)">{{c}}</div>
 			      	<div class="uk-margin-small uk-nav-divider">
 			      	</div>
 			      </li> 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../user';
 import { AuthenticationService, UserService, AlertService } from '../services/index'; 
 import { Trie } from '../trie'
@@ -31,6 +32,7 @@ export class LeaderboardComponent implements OnInit {
 	// 				{rank: 4, username: "utky", tokens: 1}];	
 
   constructor(
+    private router: Router,
     private authService: AuthenticationService,
     private userService: UserService,
     private alertService: AlertService
@@ -44,7 +46,7 @@ export class LeaderboardComponent implements OnInit {
       this.currentPage--;
       this.getRankings();
     }
-    console.log("after prev click: ", this.currentPage);
+    // console.log("after prev click: ", this.currentPage);
 
   }
 
@@ -53,7 +55,7 @@ export class LeaderboardComponent implements OnInit {
       this.currentPage++;
       this.getRankings();
     }
-    console.log("after next click: ", this.currentPage);
+    // console.log("after next click: ", this.currentPage);
   }
 
   getRankings() {
@@ -84,6 +86,11 @@ export class LeaderboardComponent implements OnInit {
     } else {
       this.searchResults = this.trieDS.findWord(value);
     }
+  }
+
+  onUserClick(username: String) {
+    this.router.navigate(['/']);
+    //this.router.navigate(['/user/'+username]);
   }
 
   ngOnInit() {
