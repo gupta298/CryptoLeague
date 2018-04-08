@@ -25,5 +25,19 @@ export class HomeComponent implements OnInit {
 		if(this.authService.loadUserFromLocalStorage()){
       this.router.navigate(['/dashboard']);
     }
+
+    let inviteCode = localStorage.getItem('inviteCode');
+    if(inviteCode) {
+      this.inviteCode = inviteCode;
+    }
 	}
+
+  checkInviteCode(inviteCode: string){
+    if(inviteCode == "DEMODAY18"){
+      localStorage.setItem('inviteCode', inviteCode);
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
