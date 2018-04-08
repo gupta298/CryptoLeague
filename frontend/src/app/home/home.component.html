@@ -9,22 +9,99 @@
 					<img src="../assets/WhiteFullLogo.svg" >
 				</div>
 				<ul class="uk-list hero-text uk-margin-auto-vertical@m">
-				    <li class="hero-item"><span uk-icon="icon: world; " class="hero-item-icon"></span><span class="hero-item-text uk-margin-small-left">Create your crypto portfolio.</span></li>
-				    <li class="hero-item"><span uk-icon="icon: users; " class="hero-item-icon"></span><span class="hero-item-text uk-margin-small-left">Compete with other players.</span></li>
-				    <li class="hero-item"><span uk-icon="icon: bolt; " class="hero-item-icon"></span><span class="hero-item-text uk-margin-small-left">Win prizes!</span></li>
+				    <li class="hero-item"><span uk-icon="icon: world; " class="hero-item-icon"></span><span class="hero-item-text uk-margin-small-left"><a class="uk-link-heading" href="#create" uk-scroll>Create your crypto portfolio.</a></span></li>
+				    <li class="hero-item"><span uk-icon="icon: users; " class="hero-item-icon"></span><span class="hero-item-text uk-margin-small-left"><a class="uk-link-heading" href="#compete" uk-scroll>Compete with other players.</a></span></li>
+				    <li class="hero-item"><span uk-icon="icon: bolt; " class="hero-item-icon"></span><span class="hero-item-text uk-margin-small-left"><a class="uk-link-heading" href="#win" uk-scroll>Win prizes!</a></span></li>
 				</ul>
 		</div>
 	</div>
 	<div>
-		<div class="uk-container uk-container-large flexbox-center rightBox">
-			<div>
-				<h2>Signup or Login</h2>
+		<div class="uk-container uk-container-large flexbox-center rightBox uk-text-center">
+			<div *ngIf="checkInviteCode(inviteCode);else askInviteCode">
+				<div>
+					<h2>Signup or Login</h2>
+				</div>
+				<!-- <div>
+					<a href="{{environment.apiUrl}}/auth/facebook" class="uk-button uk-button-primary">Login with Facebook</a>	
+				</div> -->
+				<a href="{{environment.apiUrl}}/auth/facebook"><div class="facebook-button"></div></a>
+				<a href="{{environment.apiUrl}}/auth/google"><div class="google-button"></div></a>
 			</div>
-			<!-- <div>
-				<a href="{{environment.apiUrl}}/auth/facebook" class="uk-button uk-button-primary">Login with Facebook</a>	
-			</div> -->
-			<a href="{{environment.apiUrl}}/auth/facebook"><div class="facebook-button"></div></a>
-			<a href="{{environment.apiUrl}}/auth/google"><div class="google-button"></div></a>
+			<ng-template #askInviteCode>
+				<legend class="uk-legend ">CryptoLeague is in Private Beta Currently</legend>
+
+        <div class="uk-margin">
+            <input class="uk-input" type="text" placeholder="Enter Invite Code" [(ngModel)]="inviteCode">
+        </div>
+			</ng-template>
 		</div>
 	</div>
+</div>
+<div class="uk-height-large uk-background-cover uk-overflow-hidden uk-light uk-flex uk-flex-top" uk-parallax="bgy: -200" style="background-image: url('../assets/portfolioedit.png');" id="create">
+    <div class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical">
+        <h1 uk-parallax="opacity: 0,1; y: -100,0; scale: 2,1; viewport: 0.5;">Create Your Crypto Portfolio</h1>
+        <p uk-parallax="opacity: 0,1; y: 100,0; scale: 0.5,1; viewport: 0.5;">Control volatility by diversifying your holdings.</p>
+    </div>
+</div>
+<div class="uk-card uk-card-secondary uk-card-body">
+	 
+	 <div uk-grid>
+	 	<div class="uk-width-1-2@m uk-flex uk-flex-center">
+	 		<img src="../assets/coins.png" alt="" style="max-height: 300px; height: auto; max-width: 300px;">
+	 	</div>
+	 	<div class="uk-width-1-2@m uk-flex uk-flex-middle" style="font-size: 1.25em;">
+	 		<ul class="uk-list uk-list-bullet">
+			    <li><p class="">Create and visualize your own custom cryptocurrency portfolio easily with intuitive UI.</p></li>
+			    <li><p class="">Choose from over top 100 cryptocurrencies to build your custom portfolio.</p></li>
+			</ul>
+	 	</div>
+	 </div>
+</div>
+<div class="uk-height-large uk-background-cover uk-overflow-hidden uk-light uk-flex uk-flex-top" uk-parallax="bgy: -200" style="background-image: url('../assets/league.png');" id="compete">
+    <div class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical">
+        <h1 uk-parallax="opacity: 0,1; y: -100,0; scale: 2,1; viewport: 0.5;">Compete With Other Players In Weekly Leagues</h1>
+        <p uk-parallax="opacity: 0,1; y: 100,0; scale: 0.5,1; viewport: 0.5;">Trading simulation has never been this fun!</p>
+    </div>
+</div>
+<div class="uk-card uk-card-secondary uk-card-body">
+	 <div uk-grid>
+	 	<div class="uk-width-1-2@m uk-flex uk-flex-center">
+	 		<iframe width="854" height="420" src="https://www.youtube.com/embed/WAomo3y5HDE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+	 	</div>
+	 	<div class="uk-width-1-2@m uk-flex uk-flex-middle">
+	 		<ul class="uk-list uk-list-bullet" style="font-size: 1.25em;">
+			    <li><p class="">Get 25 free tokens to join leagues when you first sign up.</p></li>
+			    <li><p class="">Join leagues with buyins ranging from 5 tokens to 25 tokens.</p></li>
+			    <li><p class="">Create a portfolio with your current best knowledge of coins' prices in upcoming week.</p></li>
+			</ul>
+	 	</div>
+	 </div>
+</div>
+<div class="uk-height-large uk-background-cover uk-overflow-hidden uk-light uk-flex uk-flex-top" uk-parallax="bgy: -200" style="background-image: url('../assets/bg-landing_home.png');" id="win">
+    <div class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical">
+        <h1 uk-parallax="opacity: 0,1; y: -100,0; scale: 2,1; viewport: 0.5;">Win Prizes When You Win Leagues!</h1>
+        <p uk-parallax="opacity: 0,1; y: 100,0; scale: 0.5,1; viewport: 0.5;">Earn tokens for making the best predictions.</p>
+    </div>
+</div>
+<div class="uk-card uk-card-secondary uk-card-body">
+	 <div uk-grid>
+	 	<div class="uk-width-1-2@m uk-flex uk-flex-center">
+	 		<img src="../assets/logo_bg.png" alt="" style="max-height: 300px; height: auto; max-width: 300px; opacity: 0.9;">
+	 	</div>
+	 	<div class="uk-width-1-2@m uk-flex uk-flex-middle">
+	 		<ul class="uk-list uk-list-bullet" style="font-size: 1.25em;">
+	 			<li><p class="">Win CryptoLeague tokens by having the most gains in your portfolio.</p></li>
+		    <li><p class="">Payouts for leagues range from 15 tokens to 100 tokens based on the league class.</p></li>
+		    <li><p class="">Spend the tokens to enter in bigger leagues.</p></li>
+		    <li><p class="">Or send/receive tokens to/from other players.</p></li>
+			</ul>
+	 	</div>
+	 </div>
+	</div>
+<div class="uk-card uk-card-secondary uk-card-body">
+	<br>
+	 <hr>
+	 <div class="uk-text-center">
+	 		<p>&copy; 2018 CryptoLeague. For any queries contact admin@cryptoleague.win</p>
+	 </div>
 </div>
