@@ -614,6 +614,34 @@ module.exports = {
     }
   },
 
+  getUserObjectViaUsername:
+  function getUserObjectViaUsername(username, callback) {
+    if (!username) {
+      callback("Error finding the user via username!", null);
+    } else {
+      MongoClient.connect(mongodbUrl, function (err, db) {
+        if (err) {
+          callback("We are currently facing some technically difficulties, please try again later!", null);
+        } else {
+          var dbo = db.db("cryptoleague_database");
+          dbo.collection("Users").findOne({'username' : username}, function(err, result) {
+            if (err) {
+              callback("Error finding the user via username!", null);
+            } else {
+              if (result) {
+                callback(null, result);
+              } else  {
+                callback("Error finding the user via username!", null);
+              }
+            }
+
+            db.close();
+          });
+        }
+      });
+    }
+  },
+
   getUserViaPartialUsername:
   function getUserViaPartialUsername(username, callback) {
     if (!username) {
