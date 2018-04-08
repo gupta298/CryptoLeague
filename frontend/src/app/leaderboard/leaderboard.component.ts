@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { AuthenticationService, UserService, AlertService } from '../services/index'; 
-
+import { Trie } from '../trie'
 
 @Component({
   selector: 'app-leaderboard',
@@ -22,6 +22,7 @@ export class LeaderboardComponent implements OnInit {
   currentPage: number = 1;
   totalUsers: number;
   usernames: String[];
+  trieDS: Trie;
 
 	// tmp = [{rank: 1, username: "ritw123", tokens: 1000}, 
 	// 				{rank: 2, username: "bobby", tokens: 100},
@@ -32,7 +33,10 @@ export class LeaderboardComponent implements OnInit {
     private authService: AuthenticationService,
     private userService: UserService,
     private alertService: AlertService
-  ) { }
+  ) { 
+    this.trieDS = new Trie();
+    this.trieDS.children[""] = new Trie();
+  }
 
   clickPrev() {
     if(this.currentPage > 1) {
@@ -121,7 +125,11 @@ export class LeaderboardComponent implements OnInit {
             console.log(error);
           }
       );
-
+    this.trieDS.add("HI", 0, 2);
+    this.trieDS.add("Heya", 0, 4);
+    this.trieDS.add("Hi there", 0, 8);
+    this.trieDS.add("Heyabc", 0, 6);
+    console.log(this.trieDS.find("He",0,2));
   }
 
 }
