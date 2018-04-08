@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../user';
 import { AuthenticationService, UserService, AlertService } from '../services/index'; 
-
+import { Trie } from '../trie'
 
 @Component({
   selector: 'app-leaderboard',
@@ -21,6 +22,9 @@ export class LeaderboardComponent implements OnInit {
   currentUser: any;
   currentPage: number = 1;
   totalUsers: number;
+  usernames: String[];
+  trieDS: Trie;
+  searchResults: any[];
 
 	// tmp = [{rank: 1, username: "ritw123", tokens: 1000}, 
 	// 				{rank: 2, username: "bobby", tokens: 100},
@@ -28,17 +32,21 @@ export class LeaderboardComponent implements OnInit {
 	// 				{rank: 4, username: "utky", tokens: 1}];	
 
   constructor(
+    private router: Router,
     private authService: AuthenticationService,
     private userService: UserService,
     private alertService: AlertService
-  ) { }
+  ) { 
+    this.trieDS = new Trie();
+    //this.trieDS.children[""] = new Trie();
+  }
 
   clickPrev() {
     if(this.currentPage > 1) {
       this.currentPage--;
       this.getRankings();
     }
-    console.log("after prev click: ", this.currentPage);
+    // console.log("after prev click: ", this.currentPage);
 
   }
 
@@ -47,7 +55,7 @@ export class LeaderboardComponent implements OnInit {
       this.currentPage++;
       this.getRankings();
     }
-    console.log("after next click: ", this.currentPage);
+    // console.log("after next click: ", this.currentPage);
   }
 
   getRankings() {
@@ -70,6 +78,19 @@ export class LeaderboardComponent implements OnInit {
             console.log(error);
           }
       );
+  }
+
+  onSearchChange(value: String) {
+    if(value == "") {
+      this.searchResults = [];
+    } else {
+      this.searchResults = this.trieDS.findWord(value);
+    }
+  }
+
+  onUserClick(username: String) {
+    this.router.navigate(['/']);
+    //this.router.navigate(['/user/'+username]);
   }
 
   ngOnInit() {
@@ -106,6 +127,19 @@ export class LeaderboardComponent implements OnInit {
         }
     );
 
+    this.userService.getAllUsernames()
+        .subscribe(
+          result => {
+            this.usernames = result;
+            //console.log(this.usernames);
+            for(let i = 0; i < this.usernames.length; i++) {
+              this.trieDS.addWord(this.usernames[i]);
+            }
+          }, error => {
+            this.alertService.error(JSON.parse(error._body).message);
+            console.log(error);
+          }
+      );
   }
 
 }

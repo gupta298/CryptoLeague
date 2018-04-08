@@ -244,13 +244,14 @@ export class PortfolioComponent implements OnInit {
   }
 
   submitPortfolio(form) {
-  	console.log("inside submit portfolio");
+  	console.log("inside submit portfolio",this.portfolioFieldArray);
   	//this.showSubmitPopup = false;
   	var percent = 0;
   	for(var i=0;i<this.portfolioFieldArray.length; i++) {
+  		this.portfolioFieldArray[i].percentage = Math.round(this.portfolioFieldArray[i].percentage);
   		percent += this.portfolioFieldArray[i].percentage;
   	}
-  	
+  	console.log("percent ", percent);
   		var holdings = [];
   		for(var i=0;i<this.portfolioFieldArray.length; i++) {
 	  		var obj = {
