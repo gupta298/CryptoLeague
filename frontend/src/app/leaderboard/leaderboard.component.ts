@@ -133,11 +133,6 @@ export class LeaderboardComponent implements OnInit {
             console.log(error);
           }
       );
-    // this.trieDS.add("HI", 0, 2);
-    // this.trieDS.add("Heya", 0, 4);
-    // this.trieDS.add("Hi there", 0, 8);
-    // this.trieDS.add("Heyabc", 0, 6);
-    // console.log(this.trieDS.find("He",0,2));
   }
 
 }
