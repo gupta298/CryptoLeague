@@ -614,6 +614,34 @@ module.exports = {
     }
   },
 
+  getUserObjectViaUsername:
+  function getUserObjectViaUsername(username, callback) {
+    if (!username) {
+      callback("Error finding the user via username!", null);
+    } else {
+      MongoClient.connect(mongodbUrl, function (err, db) {
+        if (err) {
+          callback("We are currently facing some technically difficulties, please try again later!", null);
+        } else {
+          var dbo = db.db("cryptoleague_database");
+          dbo.collection("Users").findOne({'username' : username}, function(err, result) {
+            if (err) {
+              callback("Error finding the user via username!", null);
+            } else {
+              if (result) {
+                callback(null, result);
+              } else  {
+                callback("Error finding the user via username!", null);
+              }
+            }
+
+            db.close();
+          });
+        }
+      });
+    }
+  },
+
   getUserViaPartialUsername:
   function getUserViaPartialUsername(username, callback) {
     if (!username) {
@@ -1044,21 +1072,16 @@ module.exports = {
                 } else {
                   var foundUser = false;
                   asyncLoop(result.portfolio_ids, function (item, next) {
-                    if (item && result.status.toString() === '4') {
-                      getPortfolioWithID(item.portfolio_id, function(err, res) {
-                        if (res) {
-                          item.portfolio_id = res;
-                        }
-                        next();
-                      });
-                    } else if (result.status.toString() !== '4') {
+                    if (item) {
+                      if (result.status.toString() !== '4') {
                         if (item.user_id.toString() === user_id.toString()) {
                           foundUser = true;
                         } else {
                           item.portfolio_id = null;
                         }
-                        next();
+                      }
                     }
+                    next();
                   }, function () {
                     var response = {
                       _id: result._id,
