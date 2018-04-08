@@ -30,6 +30,10 @@ export class UserService {
     return this.http.post(environment.apiUrl+'/validate_user', user.serialize() ,this.authService.generateJwt()).map((response: Response)=> response.json());
   }
 
+  getAllUsernames() {
+    return this.http.get(environment.apiUrl+'/user/search/', this.authService.generateJwt()).map((response: Response) => response.json());
+  }
+
   updateUser(user: User) {
     console.log(user.serialize());
     return this.http.put(environment.apiUrl+'/user', user.serialize() ,this.authService.generateJwt()).map((response: Response)=> response.json());
