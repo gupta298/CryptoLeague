@@ -8,6 +8,7 @@ export class League implements Serializable<League>{
 	current_market_coin: any[];
 	portfolio_ids: any[];
 	locked_prices: any;
+	buy_in: number;
 
 	deserialize(input) {
 		this.league_id = input.league_id;
@@ -17,6 +18,7 @@ export class League implements Serializable<League>{
 		this.current_market_coin = input.current_market_coin;
 		this.portfolio_ids = input.portfolio_ids;
 		this.locked_prices = input.locked_prices;
+		this.buy_in = input.buy_in;
 		return this;
 	}
 
@@ -28,9 +30,10 @@ export class League implements Serializable<League>{
             start_time: this.start_time,
             current_market_coin: this.current_market_coin,
             portfolio_ids: this.portfolio_ids,
-            locked_prices: this.locked_prices
+            locked_prices: this.locked_prices,
+						buy_in: this.buy_in
         }
-        
+
         return obj;
     }
 }

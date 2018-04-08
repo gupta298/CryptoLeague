@@ -16,7 +16,7 @@
   	user: User;
   	newsArray: any[] = [];
     loadingNews: boolean = false;
-    loadingLeague: boolean = true;
+    loadingLeague: boolean = false;
     ranking: number;
     league: League = null;
 
@@ -48,6 +48,7 @@
             }
         );
         if(this.user.currentLeague_id){
+          this.loadingLeague = true;
           this.leagueService.getLeague()
             .subscribe(
               result => {
@@ -61,7 +62,7 @@
                 this.alertService.error(JSON.parse(error._body).message);
               }
             );
-        }
+        } 
         console.log(this.user.id);
     	}
 
@@ -97,5 +98,4 @@
             return "Waiting";
         }
       }
-  }
   }

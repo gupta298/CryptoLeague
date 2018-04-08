@@ -1,24 +1,26 @@
 <div *ngIf="!hideCards" class="uk-card uk-card-secondary uk-card-small uk-card-body uk-animation-slide-right" [class.uk-animation-reverse]="portfolioOpened">
 	<h3 class="uk-card-title">Stats & Distribution</h3>
-	<div class="uk-grid-divider" uk-grid>
-		<div class="uk-width-1-2@m">
-			<ul class="uk-list">
-				<li>Your Rank: #{{rank}}</li>
-				<li>User at #1: {{leader}}</li>
-				<li>League status: {{getStatus(league.status)}}</li>
-				<li *ngIf="league.status < 4; else quitLeague">{{timeRemaining}} until the league {{status}}</li>
-				<ng-template #quitLeague>
-					<button class="uk-button uk-button-danger uk-margin-top" (click)="quitLeagueOnCLick()" *ngIf="user.currentLeague_id == league.league_id">Quit League</button>
-				</ng-template>
-			</ul>
-		</div>
-		<div class="uk-width-1-2@m">
-			<ul class="uk-list uk-list-large" id="statsText2">
-				<li><b>Expected Prize Distribution:</b></li>
-				<li>#1 - #{{this.topTwentyfive}}: {{this.topPool}}</li>
-				<li>#{{this.topTwentyfive + 1}} - #{{this.topFifty}}: {{this.middlePool}}</li>
-				<li>#{{this.topFifty + 1}} - #{{this.topSeventyFive}}: {{this.lowerPool}}</li>
-			</ul>
+	<div class="uk-card-body">
+		<div class="uk-grid-divider" uk-grid>
+			<div class="uk-width-1-2@m">
+				<ul class="uk-list">
+					<li>Your Rank: #{{rank}}</li>
+					<li>User at #1: {{leader}}</li>
+					<li>League status: {{getStatus(league.status)}}</li>
+					<li *ngIf="league.status < 4; else quitLeague">{{timeRemaining}} until the league {{status}}</li>
+					<ng-template #quitLeague>
+						<button class="uk-button uk-button-danger uk-margin-top" (click)="quitLeagueOnCLick()" *ngIf="user.currentLeague_id == league.league_id">Quit League</button>
+					</ng-template>
+				</ul>
+			</div>
+			<div class="uk-width-1-2@m">
+				<ul class="uk-list uk-list-large" id="statsText2">
+					<li><b>Expected Prize Distribution:</b></li>
+					<li>#1 - #{{topTwentyFive}}: {{this.topPool}}</li>
+					<li *ngIf="(topFifty - topTwentyFive) > topTwentyFive">#{{(topFifty - topTwentyFive) + 1}} - #{{topSeventyFive - topFifty}}: {{middlePool}}</li>
+					<li *ngIf="(topSeventyFive - topFifty) > (topSeventyFive - topFifty)">#{{(topSeventyFive - topFifty) + 1}} - #{{length}}: {{lowerPool}}</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	
@@ -35,8 +37,8 @@
 			</ul>
 			<ul class="uk-list uk-list-large" id="statsText2">
 				<li><b>Expected Prize Distribution:</b></li>
-				<li>#1 - #{{this.topTwentyfive}}: {{this.topPool}}</li>
-				<li>#{{this.topTwentyfive + 1}} - #{{this.topFifty}}: {{this.middlePool}}</li>
+				<li>#1 - #{{this.topTwentyFive}}: {{this.topPool}}</li>
+				<li>#{{this.topTwentyFive + 1}} - #{{this.topFifty}}: {{this.middlePool}}</li>
 				<li>#{{this.topFifty + 1}} - #{{this.topSeventyFive}}: {{this.lowerPool}}</li>
 			</ul>
 		</div>
