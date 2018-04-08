@@ -35,7 +35,7 @@ export class LeaderboardComponent implements OnInit {
     private alertService: AlertService
   ) { 
     this.trieDS = new Trie();
-    this.trieDS.children[""] = new Trie();
+    //this.trieDS.children[""] = new Trie();
   }
 
   clickPrev() {
