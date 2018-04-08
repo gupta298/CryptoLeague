@@ -986,20 +986,23 @@ module.exports = {
                         var date = new Date();
 
                         var lockingTime = new Date(date);
-                        lockingTime.setMinutes(date.getMinutes() + 2);
+                        //lockingTime.setMinutes(date.getMinutes() + 2);
+                        lockingTime.setHours(date.getHours() + 12);
 
                         var startTime = new Date(date);
-                        startTime.setMinutes(date.getMinutes() + 4);
+                        //startTime.setMinutes(date.getMinutes() + 4);
+                        startTime.setDate(date.getDate() + 1);
 
                         var endingDate = new Date(date);
-                        endingDate.setMinutes(date.getMinutes() + 8);
+                        //endingDate.setMinutes(date.getMinutes() + 8);
+                        endingDate.setDate(date.getDate() + 2);
 
                         league_result.status = "1";
                         league_result.start_time = startTime;
 
-                        console.log(lockingTime);
-                        console.log(startTime);
-                        console.log(endingDate);
+                        console.log("Scheduled locking at: "+ lockingTime);
+                        console.log("Scheduled starting at: "+startTime);
+                        console.log("Scheduled ending at: "+endingDate);
 
                         schedule.scheduleJob(lockingTime, lockLeague.bind(null, league_result.league_id));
                         schedule.scheduleJob(startTime, startLeague.bind(null, league_result.league_id));
