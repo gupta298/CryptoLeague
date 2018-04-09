@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
 	}
 
   checkInviteCode(inviteCode: string){
-    if(inviteCode == "DEMODAY18"){
+    if(inviteCode == "DEMODAY18" || inviteCode == "THEBOILER18"){
       localStorage.setItem('inviteCode', inviteCode);
       return true;
     } else {
