@@ -27,6 +27,7 @@ import { LeagueWaitingOverlayComponent } from './league-waiting-overlay/league-w
 import { LeagueSelectComponent } from './league-select/league-select.component';
 import { LeagueStatisticsComponent } from './league-statistics/league-statistics.component';
 import { AlertComponent } from './alert/alert.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { AlertComponent } from './alert/alert.component';
     LeagueSelectComponent,
     LeagueStatisticsComponent,
     AlertComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
