@@ -1,3 +1,12 @@
-<p>
-  user-profile works!
-</p>
+<div class="page-container">
+	<app-sidebar page="settings">
+	</app-sidebar>
+	<div class="page-content" *ngIf="!loading">
+		<div class="uk-container uk-margin-top">
+			<div class="uk-text-lead">{{user.username}}</div>
+
+			<div class="uk-card-large uk-card-default uk-card-body uk-margin-top">
+			</div>
+		</div>
+	</div>
+</div>

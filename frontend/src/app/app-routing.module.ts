@@ -12,6 +12,7 @@ import { MarketComponent }   from './market/market.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LeagueSelectComponent } from './league-select/league-select.component';
 import { LeagueDetailComponent } from './league-detail/league-detail.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
@@ -24,7 +25,9 @@ const routes: Routes = [
 	{ path: 'league/:id', component: LeagueDetailComponent, canActivate: [AuthGuard] },
 	{ path: 'join', component: LeagueSelectComponent, canActivate: [AuthGuard]},
   { path: 'leaderboard', component: LeaderboardComponent, canActivate: [AuthGuard]},
-    { path: '**', redirectTo: '' }
+  { path: 'user', component: UserProfileComponent, canActivate: [AuthGuard]},
+  { path: 'user/:id', component: UserProfileComponent, canActivate: [AuthGuard]},
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
