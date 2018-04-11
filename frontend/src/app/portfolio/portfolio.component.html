@@ -171,8 +171,8 @@
 	    	</div>
 
 
-	    	<div id="captain" class="uk-align-center">
-		    	<form *ngIf="hideCards" #f="ngForm" (ngSubmit)="submitPortfolio(f.value)">
+	    	<div id="captain" class="uk-align-center" *ngIf="hideCards">
+		    	<form #f="ngForm" (ngSubmit)="submitPortfolio(f.value)">
 					    <fieldset class="uk-fieldset">
 					        <div class="uk-margin">
 					            <select [(ngModel)]="captainCoin" class="uk-select" placeholder="select a captain coin" name="captainCoin">

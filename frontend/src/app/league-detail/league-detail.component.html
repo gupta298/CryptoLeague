@@ -66,8 +66,8 @@
 				</div>
 			</div>
 
-			<div class="progress-bar" [class.starting]="league.status == 1" [class.started]="league.status >= 3" >
-				<div class="progress" [style.width]="timeRemainingPercent + '%'" [class.starting]="league.status == 1" [class.started]="league.status == 3"></div>
+			<div class="progress-bar" [class.starting]="league.status <= 2" [class.started]="league.status >= 3" >
+				<div class="progress" [style.width]="timeRemainingPercent + '%'" [class.starting]="league.status <= 2" [class.started]="league.status >= 3"></div>
 				<p *ngIf="league.status < 4; else endMessage">{{timeRemaining}} until the league {{status}}</p>
 				<ng-template #endMessage>
 					<p>The league has ended.</p>

@@ -1,0 +1,67 @@
+=== Weekly Team Report (Team 8: CryptoLeague) ===
+
+Week 8 (Summary) (Scrum master: Varun Gupta)
+04/08 N/A 8c1cc79 Merge branch 'master' of github.com:gupta298/CryptoLeague
+04/08 0.5 hr 0803534 Updated landing bg color
+04/08 0.5 hr ddccf94 Fixed multiple league joining bug
+04/08 N/A 041ec59 Merge remote-tracking branch 'origin/master'
+04/08 N/A b0c5c1d Merge branch 'frontend/dev'
+04/08 4 hr 60fb3c4 Updated home page design
+04/08 1 hr b85d140 code cleaned and polished search bar functionality
+04/08 0.5 hr 04a3753 search bar code cleaned
+04/08 1 hr a060ed4 leaderboard search bar autocomplete done
+04/08 0.5 hr ed35290 cleaned trie code
+04/08 3 hr 563f347 Trie data structure implemented and works!
+04/07 3 hr b02c479 Get user object via username is implemented
+04/07 0.5 hr 87a6553 Get league does not return the portfolios any more
+04/07 2 hr 01173c4 Implemented invite code
+04/07 1 hr a5e9afc usernames correctly being received
+04/07 N/A f36b399 Merge branch 'master' into frontend/dev
+04/07 N/A 61a9593 Merge remote-tracking branch 'origin/master'
+04/07 0.5 hr 4c530df Added more logo assets
+04/07 1 hr d195ea7 service for getAllUsernames added
+04/07 3 hr e2ce752 UI for search added
+04/07 N/A eca1529 Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+04/07 4 hr 512bfaa Get league returns the portfolios when the league is over
+04/06 0.5 hr 3919497 Fixed league loader
+04/06 0.5 hr d5cf95d Fixed some bugs
+04/06 0.5 hr 78ae059 Fixed some UI elements
+04/06 0.5 hr ed2af86 Fixed league payouts estimation
+04/06 N/A 97ce095 Merge branch 'backend/leagues'
+04/06 N/A e6ab479 Merge branch 'master' into backend/leagues
+04/06 N/A e9abfc5 Merge branch 'frontend/dev'
+04/06 2 hr 0a3d2ff Added past leagues to user object and divider in stats card
+04/06 2 hr a1f78da Added loaders, messages and made some styles changes
+04/06 N/A 0d0b850 Merge branch 'master' into frontend/dev
+04/06 0.5 hr 3ad9483 Updated facebook permissions
+04/06 N/A 994d872 Merge branch 'frontend/dev'
+04/06 N/A 77fd5bc Merge branch 'master' into frontend/dev
+04/06 0.5 hr ff81db9 Removed quit league when user is not in league
+04/06 1 hr e127139 Added loader to landing component
+04/06 4 hr 3cb7924 Implemented alert component and added alert messages everywhere
+04/06 N/A 103d6e4 Merge remote-tracking branch 'origin/master'
+04/06 N/A 8e1c8cb Merge branch 'master' into frontend/dev
+04/06 0.5 hr e38a841 Fixed home responsiveness on iPhones
+04/06 0.5 hr d47e0b1 Updated design assets
+04/05 N/A d9248dd Merge branch 'master' of https://github.com/gupta298/CryptoLeague
+04/05 1.5 hr 61eba53 fixed facebook auth
+04/03 N/A 125e922 Merge branch 'frontend/dev'
+04/03 1 hr 33d5a7e Updated league detail to load leagues by ID
+04/03 N/A dd27fc2 Merge branch 'master' into frontend/dev
+04/03 N/A 7f464df Added week7 git log
+04/03 N/A 3752420 Merge branch 'master' into frontend/dev
+04/02 2 hr c748bc5 adding rank and tokens to league after it ends. needs a bug fix
+04/02 2 hr 347b28c Fixed an error with post league
+04/02 2 hr b1f03f3 bug fix on frontend
+
+
+Week 9 (Plan) (Scrum master: Varun Gupta)
+\[Meetings\]
+04/09 Discuss user profiles and the respective UI's
+04/11 Discuss email notifications
+
+\[Individual Goals\]
+Varun: Finish working on User object routes for the profiles
+Ritwik: Design and implement static portfolios in league leaderboard and make pie chart robust
+Utkarsh: Design and implement sending tokens for the UI
+Nisarg: Design and implement User profiles UI

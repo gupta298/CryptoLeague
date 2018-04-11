@@ -417,8 +417,6 @@ function endLeague(league_id) {
                   }
                 }
 
-                console.log("CHUTIYACHUTIYACHUTIYACHUTIYACHUTIYACHUTIYACHUTIYACHUTIYA");
-
                 //Update all the users
                 for(let i = 0; i < result.portfolio_ids.length; i++){
                   dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$inc: {'tokens' : result.portfolio_ids[i].payout}});
@@ -427,10 +425,13 @@ function endLeague(league_id) {
                 //Update league
                 dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4'}});
                 db.close();
+
+                console.log("done updating league");
               });
+            } else {
+              console.log("League not found! : " + league_id);
             }
           }
-          if (db) db.close();
         });
       }
     });
@@ -551,8 +552,6 @@ module.exports = {
                 callback(null, user);
               }
             }
-
-            if (db) db.close();
           });
         }
       });
@@ -605,6 +604,34 @@ module.exports = {
                 callback(null, true);
               } else  {
                 callback(null, false);
+              }
+            }
+
+            db.close();
+          });
+        }
+      });
+    }
+  },
+
+  getUserObjectViaUsername:
+  function getUserObjectViaUsername(username, callback) {
+    if (!username) {
+      callback("Error finding the user via username!", null);
+    } else {
+      MongoClient.connect(mongodbUrl, function (err, db) {
+        if (err) {
+          callback("We are currently facing some technically difficulties, please try again later!", null);
+        } else {
+          var dbo = db.db("cryptoleague_database");
+          dbo.collection("Users").findOne({'username' : username}, function(err, result) {
+            if (err) {
+              callback("Error finding the user via username!", null);
+            } else {
+              if (result) {
+                callback(null, result);
+              } else  {
+                callback("Error finding the user via username!", null);
               }
             }
 
@@ -862,8 +889,6 @@ module.exports = {
                 callback('League does not exist', null);
               }
             }
-
-            if (db) db.close();
           });
         }
       });
@@ -961,16 +986,23 @@ module.exports = {
                         var date = new Date();
 
                         var lockingTime = new Date(date);
-                        lockingTime.setMinutes(date.getMinutes() + 2);
+                        //lockingTime.setMinutes(date.getMinutes() + 2);
+                        lockingTime.setHours(date.getHours() + 12);
 
                         var startTime = new Date(date);
-                        startTime.setMinutes(date.getMinutes() + 4);
+                        //startTime.setMinutes(date.getMinutes() + 4);
+                        startTime.setDate(date.getDate() + 1);
 
                         var endingDate = new Date(date);
-                        endingDate.setMinutes(date.getMinutes() + 8);
+                        //endingDate.setMinutes(date.getMinutes() + 8);
+                        endingDate.setDate(date.getDate() + 2);
 
                         league_result.status = "1";
                         league_result.start_time = startTime;
+
+                        console.log("Scheduled locking at: "+ lockingTime);
+                        console.log("Scheduled starting at: "+startTime);
+                        console.log("Scheduled ending at: "+endingDate);
 
                         schedule.scheduleJob(lockingTime, lockLeague.bind(null, league_result.league_id));
                         schedule.scheduleJob(startTime, startLeague.bind(null, league_result.league_id));
@@ -1010,7 +1042,7 @@ module.exports = {
               callback("Error getting the league!", null);
             } else {
               if (result) {
-                if (result.status === "3") {
+                if (result.status.toString() === '3') {
                   calculatePortfoliosValues(result, function() {
                     var foundUser = false;
                     asyncLoop(result.portfolio_ids, function (item, next) {
@@ -1044,10 +1076,10 @@ module.exports = {
                   var foundUser = false;
                   asyncLoop(result.portfolio_ids, function (item, next) {
                     if (item) {
-                      if (item.user_id.toString() === user_id.toString()) {
-                        foundUser = true;
-                      } else {
-                        if (result.status.toString() !== '4') {
+                      if (result.status.toString() !== '4') {
+                        if (item.user_id.toString() === user_id.toString()) {
+                          foundUser = true;
+                        } else {
                           item.portfolio_id = null;
                         }
                       }
