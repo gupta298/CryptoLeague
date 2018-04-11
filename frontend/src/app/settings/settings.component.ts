@@ -1,6 +1,4 @@
 import { Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-//import { OnChanges } from 'angular2/core';
 import { User } from '../user';
 import { NgForm, NgModel, NG_VALUE_ACCESSOR, FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { AuthenticationService, UserService } from '../services/index';
