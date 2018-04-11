@@ -417,13 +417,15 @@ function endLeague(league_id) {
                   }
                 }
 
-                //Update all the users
+                //Update the users tokens
                 for(let i = 0; i < result.portfolio_ids.length; i++){
                   dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$inc: {'tokens' : result.portfolio_ids[i].payout}});
+                  //dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$addToSet: {'past_leagues' : {result.league_type, result.league_id, result.portfolio_ids[i].payout, result.portfolio_ids[i].rank, result.portfolio_ids[i].portfolio_value}}});
+                  dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$addToSet: {'past_leagues' : [result.league_type, result.league_id, result.portfolio_ids[i].payout, result.portfolio_ids[i].rank, result.portfolio_ids[i].portfolio_value]}});
                 }
 
                 //Update league
-                dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4'}});
+                dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4', 'payouts': finalPayout, 'portfolio_ranks': ranks}});
                 db.close();
 
                 console.log("done updating league");
