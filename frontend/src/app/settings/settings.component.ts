@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { User } from '../user';
 import { NgForm, NgModel, NG_VALUE_ACCESSOR, FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { AuthenticationService, UserService } from '../services/index';
@@ -14,9 +14,12 @@ declare var UIkit: any;
 export class SettingsComponent implements OnInit {
 
   	user: User;
-  	submitted: boolean = false;
+  	loading: boolean = false;
   	success: boolean = false;
   	userExists: boolean = false;
+    usernameChange: boolean = false;
+    profilePictureChange: boolean = false;
+    usernameNew: String = null;
 
    	constructor(
 		private router: Router,
@@ -24,41 +27,49 @@ export class SettingsComponent implements OnInit {
 	    private userService: UserService
 	  ) { }
 
-	onSubmit() { 
-		this.submitted = true;
-		this.userExists = false;
+  	ngOnInit() {
+  		this.user = this.authService.loadUserFromLocalStorage();
+      this.usernameNew = this.user.username;
+  	}
 
-		console.log('username: ', this.user.username);
-		this.userService.isUsernameValid(this.user)
-	  		.subscribe(
-	  			result => {
-	  				this.submitted = false;
-	  				this.success = true;
-		          console.log("user exists: ",result);
-		          if(!result.exists) {
-		          	this.userService.updateUser(this.user)
-						      .subscribe(
-						        result => {
-						          console.log(result);
-						          this.authService.saveJwt(result.jwt);
-						        }, error => {
-						          console.log(error);
-						        }
-						    	);
-		          } else {
-		          	this.submitted = false;
-		          	this.userExists = true;
-		          	this.success = false;
-		        	}
-		        }, error => {
-		        	this.submitted = false;
-		        	this.success = false;
-		          console.log(error);
-		        }
-	  		);
+	onSubmit() {
+		this.loading = true;
+    console.log(this.user.username);
+    console.log(this.usernameNew);
+    if(this.user.username !== this.usernameNew){
+      this.userExists = false;
+      this.userService.isUsernameValid(this.user)
+          .subscribe(
+            result => {
+              this.loading = false;
+              this.success = true;
+                if(!result.exists) {
+                  this.userService.updateUser(this.user)
+                    .subscribe(
+                      result => {
+                        console.log(result);
+                        this.authService.saveJwt(result.jwt);
+                      }, error => {
+                        console.log(error);
+                      }
+                    );
+                } else {
+                  this.loading = false;
+                  this.userExists = true;
+                  this.success = false;
+                }
+              }, error => {
+                this.loading = false;
+                this.success = false;
+                console.log(error);
+              }
+          );
+          this.usernameNew = this.user.username;
+    }
+    else{
+      this.loading = true;
+      this.success = false;
+    }
 	}
 
-	ngOnInit() {
-		this.user = this.authService.loadUserFromLocalStorage();
-	}
 }
