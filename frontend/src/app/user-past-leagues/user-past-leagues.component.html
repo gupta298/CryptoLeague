@@ -5,20 +5,23 @@
 				<h3 class="uk-card-title">Past Leagues</h3>
 			</div>
 		</div>
-		<div class="uk-container uk-table-striped uk-margin-top uk-overflow-auto">
+		<div class="uk-container uk-table-striped uk-overflow-auto">
 			<table class="uk-table uk-margin-top uk-table-divider uk-table-middle">
 			    <thead>
 			        <tr>
-			           <!--  <th *ngIf="league.status >= 2">Rank</th>
-			            <th></th>
-			            <th>Username</th>
-			            <th>Tokens</th>
-			            <th *ngIf="league.status >= 2">Total Gains</th>
-			            <th *ngIf="league.status == 4">Payout</th> -->
+		            <th>#</th>
+		            <th>Class</th>
+		            <th>Final Rank</th>
+		            <th>Payout</th>
+		            <th>Portfolio Gains</th>
 			        </tr>
 			    </thead>
 			    <tr *ngFor="let league of user.past_leagues">
-			    	{{league}}
+			    	<th>{{league}}</th>
+			    	<th></th>
+			    	<th></th>
+			    	<th></th>
+			    	<th></th>
 		      </tr>
 			</table>
 		</div>
