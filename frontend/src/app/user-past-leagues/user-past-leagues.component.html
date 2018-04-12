@@ -6,7 +6,7 @@
 			</div>
 		</div>
 		<div class="uk-container uk-table-striped uk-overflow-auto">
-			<table class="uk-table uk-margin-top uk-table-divider uk-table-middle">
+			<table class="uk-table uk-margin-top uk-table-middle">
 			    <thead>
 			        <tr>
 		            <th>#</th>
@@ -16,12 +16,18 @@
 		            <th>Portfolio Gains</th>
 			        </tr>
 			    </thead>
-			    <tr *ngFor="let league of user.past_leagues">
-			    	<th>{{league}}</th>
-			    	<th></th>
-			    	<th></th>
-			    	<th></th>
-			    	<th></th>
+			    <tr *ngFor="let league of user.pastLeagues">
+			    	<th><a href="/league/{{league.league_id}}">{{league.league_id}}</a></th>
+			    	<th>{{league.league_type}}</th>
+			    	<th>{{league.user_rank}}</th>
+			    	<th>{{league.user_payout}}</th>
+			    	<th [class.uk-text-success]="league.portfolio_value >= 0" [class.uk-text-danger]="league.portfolio_value < 0">
+			    		<span *ngIf="league.portfolio_value > 0;else negChange" uk-icon="triangle-up"></span>
+							<ng-template #negChange>
+								<span uk-icon="triangle-down"></span>
+							</ng-template>
+							{{league.portfolio_value | number:'1.2-2'}}%
+			    	</th>
 		      </tr>
 			</table>
 		</div>
