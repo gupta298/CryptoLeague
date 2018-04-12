@@ -1,0 +1,26 @@
+<div class="uk-container uk-card-small uk-margin-top uk-margin-large-bottom uk-animation-slide-bottom">
+	<div class="uk-card uk-card-default uk-card-body">
+		<div class="uk-flex uk-flex-between">
+			<div>
+				<h3 class="uk-card-title">Past Leagues</h3>
+			</div>
+		</div>
+		<div class="uk-container uk-table-striped uk-margin-top uk-overflow-auto">
+			<table class="uk-table uk-margin-top uk-table-divider uk-table-middle">
+			    <thead>
+			        <tr>
+			           <!--  <th *ngIf="league.status >= 2">Rank</th>
+			            <th></th>
+			            <th>Username</th>
+			            <th>Tokens</th>
+			            <th *ngIf="league.status >= 2">Total Gains</th>
+			            <th *ngIf="league.status == 4">Payout</th> -->
+			        </tr>
+			    </thead>
+			    <tr *ngFor="let league of user.past_leagues">
+			    	{{league}}
+		      </tr>
+			</table>
+		</div>
+	</div>
+</div>

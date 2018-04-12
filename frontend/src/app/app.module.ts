@@ -28,6 +28,7 @@ import { LeagueSelectComponent } from './league-select/league-select.component';
 import { LeagueStatisticsComponent } from './league-statistics/league-statistics.component';
 import { AlertComponent } from './alert/alert.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserPastLeaguesComponent } from './user-past-leagues/user-past-leagues.component';
 
 @NgModule({
     declarations: [
@@ -47,6 +48,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     LeagueStatisticsComponent,
     AlertComponent,
     UserProfileComponent,
+    UserPastLeaguesComponent,
   ],
   imports: [
     BrowserModule,
