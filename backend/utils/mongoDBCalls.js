@@ -18,18 +18,18 @@ const myEnum = new Enum({'Waiting' : 0, 'Waiting_Locked' : 1, 'Locked' : 2, 'Sta
 
 function findLeagueType(league_Types_id, callback) {
   if (!league_Types_id) {
-    callback("Error finding the league type!", null);
+    callback("Cannot find the league type!", null);
   } else {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
         console.log(err);
-        callback("We are currently facing some technically difficulties, please try again later!", null);
+        callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
       } else {
         var dbo = db.db("cryptoleague_database");
         dbo.collection("League_Types").findOne({'league_type_id' : league_Types_id}, function(err, result) {
           if (err) {
             console.log(err);
-            callback("Error finding the league type!", null);
+            callback("Cannot find the league type!", null);
           } else {
             if (result) {
               callback(null, JSON.parse(JSON.stringify(result)));
@@ -47,12 +47,12 @@ function findLeagueType(league_Types_id, callback) {
 
 function findWaitingLeague(league_type, callback) {
   if (!league_type) {
-    callback("Error finding the league with a specific status!", null);
+    callback("Cannot find a league with waiting status!", null);
   } else {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
         console.log(err);
-        callback("We are currently facing some technically difficulties, please try again later!", null);
+        callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
       } else {
         var dbo = db.db("cryptoleague_database");
         dbo.collection("Leagues").findOne({ $and : [ {'league_type' : league_type},
@@ -62,7 +62,7 @@ function findWaitingLeague(league_type, callback) {
             ] }, function(err, result) {
               if (err) {
                 console.log(err);
-                callback("Error finding the league with a specific status!", null);
+                callback("Cannot find a league with waiting status!", null);
               } else {
                 if (result) {
                   callback(null, JSON.parse(JSON.stringify(result)));
@@ -82,7 +82,7 @@ function getNextSequenceValue(callback) {
   MongoClient.connect(mongodbUrl, function (err, db) {
     if (err) {
       console.log(err);
-      callback("We are currently facing some technically difficulties, please try again later!", null);
+      callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
     } else {
       var dbo = db.db("cryptoleague_database");
       dbo.collection("League_Counter").findOneAndUpdate({'_id': 'Leagues' }, {$inc: { 'sequence_value': 1 }}, function(error, result) {
@@ -105,18 +105,18 @@ function getNextSequenceValue(callback) {
 
 function getRankOfUser(id, callback) {
   if (!id) {
-    callback("Error finding the user's rank!", null);
+    callback("Can't find user's rank!", null);
   } else {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
         console.log(err);
-        callback("We are currently facing some technically difficulties, please try again later!", null);
+        callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
       } else {
         var dbo = db.db("cryptoleague_database");
         dbo.collection("Users").find({}).sort( { tokens: -1 } ).toArray(function(err, result) {
           if (err) {
             console.log(err);
-            callback("Error finding the user's rank!", null);
+            callback("Can't find user's rank!", null);
             db.close();
           } else {
             if (result) {
@@ -146,7 +146,7 @@ function getRankOfUser(id, callback) {
 
 function getUserObject(user_id, callback) {
   if (!user_id) {
-    callback("Error finding the user!", null);
+    callback("Can't find user!", null);
   } else {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
@@ -412,18 +412,19 @@ function endLeague(league_id) {
                 for(let i = 0; i < result.portfolio_ids.length; i++){
                   for(let j = 0; j < result.portfolio_ids.length; j++){
                       if(result.portfolio_ids[j].rank == i){
-                        ranks.insert(i, result.portfolio_ids[j]);
+                        ranks.push(i, result.portfolio_ids[j]);
                       }
                   }
                 }
 
-                //Update all the users
+                //Update the users tokens
                 for(let i = 0; i < result.portfolio_ids.length; i++){
                   dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$inc: {'tokens' : result.portfolio_ids[i].payout}});
+                  dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$addToSet: {'past_leagues' : {'league_type' : result.league_type, 'league_id' : result.league_id, 'user_payout' : result.portfolio_ids[i].payout,  'user_rank' :result.portfolio_ids[i].rank, 'portfolio_value' : result.portfolio_ids[i].portfolio_value }}});
                 }
 
                 //Update league
-                dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4'}});
+                dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4', 'payouts': finalPayout, 'portfolio_ranks': ranks}});
                 db.close();
 
                 console.log("done updating league");
@@ -986,16 +987,16 @@ module.exports = {
                         var date = new Date();
 
                         var lockingTime = new Date(date);
-                        //lockingTime.setMinutes(date.getMinutes() + 2);
-                        lockingTime.setHours(date.getHours() + 12);
+                        lockingTime.setMinutes(date.getMinutes() + 2);
+                        //lockingTime.setHours(date.getHours() + 12);
 
                         var startTime = new Date(date);
-                        //startTime.setMinutes(date.getMinutes() + 4);
-                        startTime.setDate(date.getDate() + 1);
+                        startTime.setMinutes(date.getMinutes() + 4);
+                        //startTime.setDate(date.getDate() + 1);
 
                         var endingDate = new Date(date);
-                        //endingDate.setMinutes(date.getMinutes() + 8);
-                        endingDate.setDate(date.getDate() + 2);
+                        endingDate.setMinutes(date.getMinutes() + 8);
+                        //endingDate.setDate(date.getDate() + 2);
 
                         league_result.status = "1";
                         league_result.start_time = startTime;
