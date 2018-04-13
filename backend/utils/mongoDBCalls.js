@@ -5,6 +5,8 @@ var MongoClient = require('mongodb').MongoClient
 const config = require('../config/config');
 const mongodbUrl = config.mongoDBHost;
 const portfolio_schema = require('../models/portfolio');
+const nodemailer = require('nodemailer');
+const mailer = config.smtp;
 
 var token = require('../utils/token');
 var market = require('../routes/market');
@@ -15,6 +17,26 @@ const league_schema = require('../models/league');
 
 var Enum = require('enum');
 const myEnum = new Enum({'Waiting' : 0, 'Waiting_Locked' : 1, 'Locked' : 2, 'Started' : 3, 'Finished' : 4}, { freez: true });
+
+
+// create reusable transporter object using the default SMTP transport
+let transporter = nodemailer.createTransport({
+    host: ' in-v3.mailjet.com',
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+        user: account.user, // generated ethereal user
+        pass: account.pass // generated ethereal password
+    }
+});
+
+let mailOptions = {
+    from: '"Fred Foo 👻" <foo@example.com>', // sender address
+    to: 'bar@example.com, baz@example.com', // list of receivers
+    subject: 'Hello ✔', // Subject line
+    text: 'Hello world?', // plain text body
+    html: '<b>Hello world?</b>' // html body
+};
 
 function findLeagueType(league_Types_id, callback) {
   if (!league_Types_id) {
@@ -151,13 +173,13 @@ function getUserObject(user_id, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
         console.log(err);
-        callback("We are currently facing some technically difficulties, please try again later!", null);
+        callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
       } else {
         var dbo = db.db("cryptoleague_database");
         dbo.collection("Users").findOne({'_id' : ObjectId(user_id)}, function(err, result) {
           if (err) {
             console.log(err);
-            callback("Error finding the user!", null);
+            callback("Can't find the user!", null);
           } else {
             if (result) {
               var object = {
@@ -194,7 +216,7 @@ function updateUserInLeagues(user) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
         console.log(err);
-        console.log("Error updating the user's past league : " + user);
+        console.log("Can't update user's past league : " + user);
       } else {
         asyncLoop(all_leagues, function (item, next) {
           var dbo = db.db("cryptoleague_database");
@@ -235,13 +257,13 @@ function makeNewPortfolio(callback) {
       MongoClient.connect(mongodbUrl, function (err, db) {
         if (err) {
           console.log(err);
-          callback("We are currently facing some technically difficulties, please try again later!", null);
+          callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
         } else {
           var dbo = db.db("cryptoleague_database");
           dbo.collection("Portfolios").insertOne(portfolio, function(err, result) {
             if (err) {
               console.log(err);
-              callback("We are currently facing some technically difficulties, please try again later!", null);
+              callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
             } else {
               callback(null, portfolio);
             }
@@ -255,22 +277,22 @@ function makeNewPortfolio(callback) {
 
 function getPortfolioWithID(portfolio_id, callback) {
   if (!portfolio_id) {
-    callback("Portfolio id does not exist!", null);
+    callback("Portfolio ID does not exist!", null);
   } else {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
         console.log(err);
-        callback("We are currently facing some technically difficulties, please try again later!", null);
+        callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
       } else {
         var dbo = db.db("cryptoleague_database");
         dbo.collection("Portfolios").findOne({ '_id' : ObjectId(portfolio_id) }, function(err, result) {
           if (err) {
-            callback("Portfolios does not exist!", null);
+            callback("Portfolio does not exist!", null);
           } else {
             if (result) {
               callback(null, result);
             } else {
-              callback("Error finding the Portfolio", null);
+              callback("Can't find the Portfolio", null);
             }
           }
 
@@ -283,7 +305,7 @@ function getPortfolioWithID(portfolio_id, callback) {
 
 function lockLeague(league_id) {
   if (!league_id) {
-    console.log("Error locking the league!");
+    console.log("Can't lock the league!");
   } else {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
@@ -304,7 +326,7 @@ function lockLeague(league_id) {
 
 function startLeague(league_id) {
   if (!league_id) {
-    console.log("Error starting the league!");
+    console.log("Can't start the league!");
   } else {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
