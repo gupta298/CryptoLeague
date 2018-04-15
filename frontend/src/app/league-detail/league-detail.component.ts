@@ -15,6 +15,7 @@ declare var UIkit: any;
 declare var $: any;
 declare var browser: any;
 declare var Chart: any;
+declare var fa: any;
 
 @Component({
   selector: 'app-league-detail',

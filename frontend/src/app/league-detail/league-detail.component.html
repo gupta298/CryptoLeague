@@ -44,12 +44,13 @@
 							            <th>Tokens</th>
 							            <th *ngIf="league.status >= 2">Total Gains</th>
 							            <th *ngIf="league.status == 4">Payout</th>
+							            <th *ngIf="league.status == 4">Portfolio</th>
 							        </tr>
 							    </thead>
 							    <tr *ngFor="let portfolio of league.portfolio_ids">
 							     	<td *ngIf="league.status >= 2">{{portfolio.rank}}</td>
 							     	<td><span class="uk-icon uk-icon-image uk-margin-right" [ngStyle]="{'background-image': 'url(' + portfolio.profilePicture +')'}"></span></td>
-							     	<td (click)="getUserPortfolio(portfolio.user_id)">{{portfolio.username}}</td>
+							     	<td>{{portfolio.username}}</td>
 						        <td>{{portfolio.tokens}}</td>
 						        <td *ngIf="league.status >= 2" [class.uk-text-success]="portfolio.portfolio_value > 0" [class.uk-text-danger]="portfolio.portfolio_value < 0">
 						        	<span *ngIf="portfolio.portfolio_value > 0;else negChange" uk-icon="triangle-up"></span>
@@ -59,6 +60,7 @@
 											{{portfolio.portfolio_value | number:'1.2-2'}}%
 										</td>
 										<td *ngIf="league.status == 4">{{portfolio.payout}}</td>
+										<td *ngIf="league.status == 4" (click)="getUserPortfolio(portfolio.user_id)"><i class="click fas fa-chart-pie"></i></td>
 						      </tr>
 							</table>
 						</div>
