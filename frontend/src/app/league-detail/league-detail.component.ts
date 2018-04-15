@@ -37,7 +37,7 @@ export class LeagueDetailComponent implements OnInit {
   	constructor(
       private authService: AuthenticationService,
       private leagueService: LeagueService,
-      private PortfolioService: PortfolioService,
+      private portfolioService: PortfolioService,
       private alertService: AlertService,
       private route: ActivatedRoute,
       private router: Router) { }
@@ -180,7 +180,14 @@ export class LeagueDetailComponent implements OnInit {
       }
     }
     getUserPortfolio(user_id) {
-      
       UIkit.modal('#portfolio-modal').show();
+      this.portfolioService.getPortfolioByLeagueID(this.league.league_id, user_id)
+        .subscribe(
+          result => {
+                 console.log(result);
+          }, error => {
+            this.alertService.error(JSON.parse(error._body).message);
+            console.log(error);
+          });
     }
 }
