@@ -119,29 +119,6 @@ router.get('/null_out', passport.authenticate(['jwt'], { session: false }), (req
 });
 
 /**
- * @api {GET} /user/search/:username Request to get the users with a similar username
- * @apiName Search_Via_Username
- * @apiGroup User
- *
- * @apiHeader {String} JWT JWT token of the user.
- * @apiParam {String} Username Username of the user for look up.
- *
- * @apiSuccess {JSON} Usernames Returns the usernames that match the given username in params.
-*/
-router.get('/search/:username', (req, res) => {
-  var username = '.*' + req.params.username + '.*';
-
-  mongo.getUserViaPartialUsername(username, function(error, result) {
-    if (error) {
-      res.send(400, { "message" : error });
-    } else {
-      res.send(JSON.parse(JSON.stringify(result)));
-    }
-  });
-});
-
-
-/**
  * @api {GET} /user/search Request to get all the users username
  * @apiName Get_All_Usernames
  * @apiGroup User
