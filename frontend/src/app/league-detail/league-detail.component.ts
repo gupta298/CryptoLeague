@@ -12,6 +12,9 @@ import { User } from '../user';
 import * as moment from 'moment';
 
 declare var UIkit: any;
+declare var $: any;
+declare var browser: any;
+declare var Chart: any;
 
 @Component({
   selector: 'app-league-detail',
@@ -184,7 +187,34 @@ export class LeagueDetailComponent implements OnInit {
       this.portfolioService.getPortfolioByLeagueID(this.league.league_id, user_id)
         .subscribe(
           result => {
-                 console.log(result);
+                console.log(result);
+                
+                var data = [];
+                var labels = [];
+                for(var i=0; i<result.holdings.length; i++) {
+                  labels[i] = result.holdings[i].coin_symbol;
+                  data[i] = Math.round(result.holdings[i].percentage);
+                }
+
+                var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '# of Colors',
+                            data: data,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)'
+                            ]
+                        }]
+                    },
+                    options: {
+                        
+                    }
+                });
           }, error => {
             this.alertService.error(JSON.parse(error._body).message);
             console.log(error);
