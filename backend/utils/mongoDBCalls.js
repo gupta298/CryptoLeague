@@ -574,6 +574,29 @@ module.exports = {
               callback("Error finding the user!", null);
             } else {
               if (result) {
+                var average_rank = 0;
+                var average_gains = 0;
+                var total_tokens = 0;
+                var number_top_three = 0;
+
+                for (index in result.past_leagues) {
+                  average_rank += result.past_leagues[index].user_rank;
+                  average_gains += result.past_leagues[index].portfolio_value;
+                  total_tokens += result.past_leagues[index].user_payout;
+
+                  if (result.past_leagues[index].user_rank <= 3) {
+                    number_top_three += 1;
+                  }
+                }
+
+                average_rank = average_rank/result.past_leagues.length;
+                average_gains = average_gains/result.past_leagues.length;
+
+                result.average_rank = average_rank;
+                result.average_gains = average_gains;
+                result.total_tokens = total_tokens;
+                result.number_top_three = number_top_three;
+
                 callback(null, JSON.parse(JSON.stringify(result)));
               } else  {
                 callback(null, null);
@@ -630,7 +653,30 @@ module.exports = {
               callback("Error finding the user via username!", null);
             } else {
               if (result) {
-                callback(null, result);
+                var average_rank = 0;
+                var average_gains = 0;
+                var total_tokens = 0;
+                var number_top_three = 0;
+
+                for (index in result.past_leagues) {
+                  average_rank += result.past_leagues[index].user_rank;
+                  average_gains += result.past_leagues[index].portfolio_value;
+                  total_tokens += result.past_leagues[index].user_payout;
+
+                  if (result.past_leagues[index].user_rank <= 3) {
+                    number_top_three += 1;
+                  }
+                }
+
+                average_rank = average_rank/result.past_leagues.length;
+                average_gains = average_gains/result.past_leagues.length;
+
+                result.average_rank = average_rank;
+                result.average_gains = average_gains;
+                result.total_tokens = total_tokens;
+                result.number_top_three = number_top_three;
+
+                callback(null, JSON.parse(JSON.stringify(result)));
               } else  {
                 callback("Error finding the user via username!", null);
               }
