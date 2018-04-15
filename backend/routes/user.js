@@ -138,4 +138,21 @@ router.get('/search', (req, res) => {
   });
 });
 
+router.get('/:username', (req, res) => {
+  var username = req.params.username;
+
+  mongo.getUserObjectViaUsername(username, function(error, response) {
+    if (error || !response) {
+      res.send(400, {"message" : error});
+    } else {
+      response.email = null;
+      response.firstname = null;
+      response.lastname = null;
+      response.id = null;
+
+      res.send(JSON.parse(JSON.stringify(response)));
+    }
+  });
+});
+
 module.exports = router;
