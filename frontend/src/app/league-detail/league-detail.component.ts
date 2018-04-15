@@ -3,13 +3,15 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { MomentModule } from 'angular2-moment';
 
-import { AuthenticationService, NewsService, UserService, LeagueService, AlertService } from '../services/index';
+import { AuthenticationService, NewsService, UserService, LeagueService, AlertService, PortfolioService } from '../services/index';
 
 import { League } from '../league';
 
 import { User } from '../user';
 
 import * as moment from 'moment';
+
+declare var UIkit: any;
 
 @Component({
   selector: 'app-league-detail',
@@ -35,6 +37,7 @@ export class LeagueDetailComponent implements OnInit {
   	constructor(
       private authService: AuthenticationService,
       private leagueService: LeagueService,
+      private PortfolioService: PortfolioService,
       private alertService: AlertService,
       private route: ActivatedRoute,
       private router: Router) { }
@@ -175,5 +178,9 @@ export class LeagueDetailComponent implements OnInit {
       } else {
         this.timeRemaining = hours + "h " + minutes + "m " + seconds + "s"; //+ "s until the league " + status;
       }
+    }
+    getUserPortfolio(user_id) {
+      
+      UIkit.modal('#portfolio-modal').show();
     }
 }
