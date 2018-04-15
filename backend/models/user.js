@@ -17,7 +17,8 @@ var userSchema = new mongoose.Schema({
             user_rank: Number,
             portfolio_value: Number
         }
-    ]
+    ],
+    email_notification: Boolean
 });
 
 var User = mongoose.model('User', userSchema);

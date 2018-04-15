@@ -50,6 +50,7 @@ router.put('/',
       } else {
         if (req.body.email) result.email = req.body.email;
         if (req.body.profilePicture) result.profilePicture = req.body.profilePicture;
+        if (req.body.email_notification != undefined) result.email_notification = req.body.email_notification;
 
         if (req.body.username) {
           mongo.getUserViaUsername(req.body.username, function(error, response) {
