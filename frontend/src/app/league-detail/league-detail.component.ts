@@ -192,6 +192,7 @@ export class LeagueDetailComponent implements OnInit {
                 
                 var data = [];
                 var labels = [];
+                var backgroundColor = [];
                 for(var i=0; i<result.holdings.length; i++) {
                   labels[i] = result.holdings[i].coin_symbol;
                   data[i] = Math.round(result.holdings[i].percentage);
@@ -206,9 +207,13 @@ export class LeagueDetailComponent implements OnInit {
                             label: '# of Colors',
                             data: data,
                             backgroundColor: [
+                                '#8c9eff',
+                                '#ff8a80',
+                                '#3d5afe',
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)'
+                                'rgba(255, 206, 86, 0.2)',
+
                             ]
                         }]
                     },
