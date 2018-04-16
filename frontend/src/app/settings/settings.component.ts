@@ -19,6 +19,7 @@ export class SettingsComponent implements OnInit {
   	userExists: boolean = false;
     usernameChange: boolean = false;
     profilePictureChange: boolean = false;
+    submitted: boolean = false;
     usernameNew: String = null;
 
    	constructor(
