@@ -20,23 +20,57 @@ const myEnum = new Enum({'Waiting' : 0, 'Waiting_Locked' : 1, 'Locked' : 2, 'Sta
 
 
 // create reusable transporter object using the default SMTP transport
-let transporter = nodemailer.createTransport({
-    host: ' in-v3.mailjet.com',
+var transporter = nodemailer.createTransport({
+    host: 'in-v3.mailjet.com',
     port: 587,
-    secure: false, // true for 465, false for other ports
+    secure: false,
     auth: {
-        user: account.user, // generated ethereal user
-        pass: account.pass // generated ethereal password
+        user: config.smtp.USERNAME,
+        pass: config.smtp.PASSWORD
+    },
+    tls:{
+        rejectUnauthorized: false
     }
 });
 
-let mailOptions = {
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: 'bar@example.com, baz@example.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world?', // plain text body
-    html: '<b>Hello world?</b>' // html body
-};
+function sendEmailsViaLeague(league, message){
+  MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) {
+        console.log(err);
+        callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
+      }
+      else {
+        var dbo = db.db("cryptoleague_database");
+        for(let i = 0; i < league.portfolio_ids.length; i++){
+          dbo.collection("Users").findOne({'_id' : ObjectId(league.portfolio_ids[i].user_id)}, function(err, result) {
+            if (err) {
+              console.log(err);
+              callback("Can't find the user!", null);
+            } else {
+              if (result) {
+                if(result.email_notification){
+                  //send email here
+                  message.to = result.email;
+                  transporter.sendMail(message, (error, info) => {
+                          if (error) {
+                              console.log('ERROR hua');
+                              return console.log(error);
+                          }
+                          console.log('Message sent: %s', info.messageId);
+                          transporter.close();
+                      });
+                }
+              } else  {
+                callback(null, null);
+              }
+            }
+            db.close();
+          });
+        }
+      }
+  }
+)};
+
 
 function findLeagueType(league_Types_id, callback) {
   if (!league_Types_id) {
@@ -320,8 +354,26 @@ function lockLeague(league_id) {
         schedule.scheduleJob(newDate, lockLeague.bind(null, league_id));
       } else {
         var dbo = db.db("cryptoleague_database");
-        dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '2'}});
+        let mailLeagueLocked = {
+            from: '"CryptoLeague" <noreply@cryptoleague.win>',
+            to: '',
+            subject: 'Your CryptoLeague League has Locked',
+            html: '<p>Hello there, </p>  <br> <p> Your CryptoLeague has locked. Login to edit your portfolio and compete for the highest gains!</p>'
+        };
+        dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '2'}}, function(err, result){
+          sendEmailsViaLeague(result, mailLeagueLocked);
+        });
         db.close();
+        //
+        // transporter.sendMail(mailLeagueLocked, (error, info) => {
+        //         if (error) {
+        //             console.log('ERROR hua');
+        //             return console.log(error);
+        //         }
+        //         console.log('Message sent: %s', info.messageId);
+        //         transporter.close();
+        //     });
+
       }
     });
   }
@@ -355,6 +407,24 @@ function startLeague(league_id) {
           dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', locked_prices: coins }});
         }
         db.close();
+
+        //mail
+        let mailLeagueStarted = {
+          from: '"CryptoLeague" <noreply@cryptoleague.win>',
+          to: 'utkjain@gmail.com',
+          subject: 'Your CryptoLeague League has started',
+          html: '<p>Hello there, </p>  <br> <p> Your CryptoLeague has started. Login to see your current standing and gains from your portfolio!</p>'
+        };
+
+        transporter.sendMail(mailLeagueStarted, (error, info) => {
+                if (error) {
+                    console.log('ERROR hua');
+                    return console.log(error);
+                }
+                console.log('Message sent: %s', info.messageId);
+                transporter.close();
+            });
+
       }
     });
   }
@@ -456,6 +526,22 @@ function endLeague(league_id) {
                 //Update league
                 dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4', 'payouts': finalPayout, 'portfolio_ranks': ranks}});
                 db.close();
+
+                let mailLeagueEnded= {
+                    from: '"CryptoLeague" <noreply@cryptoleague.win>',
+                    to: 'utkjain@gmail.com',
+                    subject: 'Your CryptoLeague League has ended',
+                    html: '<p>Hello there, </p>  <br> <p> Your CryptoLeague has ended. Login to see your rank and payout!</p>'
+                };
+
+                transporter.sendMail(mailLeagueEnded, (error, info) => {
+                        if (error) {
+                            console.log('ERROR hua');
+                            return console.log(error);
+                        }
+                        console.log('Message sent: %s', info.messageId);
+                        transporter.close();
+                    });
 
                 console.log("done updating league");
               });
