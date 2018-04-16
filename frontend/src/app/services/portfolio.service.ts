@@ -20,4 +20,8 @@ export class PortfolioService {
    	return this.http.put(environment.apiUrl+'/portfolio/', portfolio, this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
+  getPortfolioByLeagueID(leagueId, userId) {
+    return this.http.get(environment.apiUrl+'/portfolio/'+leagueId+'/'+userId,  this.authService.generateJwt()).map((response: Response) => response.json());
+  }
+
 }

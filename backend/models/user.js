@@ -9,7 +9,16 @@ var userSchema = new mongoose.Schema({
     tokens: Number,
     profilePicture: String,
     currentLeague_id: String,
-    past_leagues: [String]
+    past_leagues: [
+    	{
+            league_type: String,
+            league_id: String,
+            user_payout: Number,
+            user_rank: Number,
+            portfolio_value: Number
+        }
+    ],
+    email_notification: Boolean
 });
 
 var User = mongoose.model('User', userSchema);
