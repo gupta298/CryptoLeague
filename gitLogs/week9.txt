@@ -1,0 +1,47 @@
+=== Weekly Team Report (Team 8: CryptoLeague) ===
+
+Week 8 (Summary) (Scrum master: Varun Gupta)
+04/15 0.5 hr 236de11 code cleaned, fixed bugs in modal
+04/15 2 hr e3ab7bb font awesome installed, leaderboard edited, static portfolios modal done
+04/15 1 hr d78ef3f static portfolios being shown now
+04/15 0.5 hr a90cd9f service for getting portfolios of different users working
+04/15 3 hr 5cdfa4b portfolio modal added
+04/15 2 hr 30b7f23 User tokens get replenished and user schema updated with email notification
+04/15 4 hr b04ab54 User stats are not implemented with the get user routes
+04/15 5 min 0b73f22 Added comments for get user by username
+04/15 0.5 hr 68d9d9b Added back get user by username
+04/15 5 hr d086c14 Updating user schema and user routes
+04/15 5 min 8a87605 Updating frontend packages
+04/15 5 min 35e60d5 Updating packages
+04/13 1 hr a882054 Started nodemailer
+04/13 0.75 hr 8b50da2 Updating documentation
+04/13 N/A 3da985e Removed the search username route
+04/12 3 hr 19de75d Implemented past leagues component
+04/12 N/A f568780 Merge branch 'master' into frontend/userProfiles
+04/12 2 hr d42b73f Added table for past leagues
+04/12 N/A 4a1e5b8 Merge pull request #35 from gupta298/backend/leagues Backend/leagues
+04/12 2 hr dcae5f2 Added tags to endLeague object
+04/12 1 hr 05904d3 Added user past leagues component
+04/11 2 hr f13f79d appending league object to user after league is over
+04/11 N/A 67537a8 Merge branch 'master' into backend/leagues
+04/11 1 hr 1fca14e removed unnecessary imports
+04/11 1 hr 5e945b0 Added tokens to profile card
+04/11 2 hr f95a0fc Implemented basic user card design
+04/11 3 hr 0a8c9b2 Fixed settings page bug
+04/10 1 hr e8604a6 Implemented getUserByUsername for user profiles
+04/10 5 mins 803cc4c fixed settings page bug
+04/10 1 hr 0d00c5c fixed settings page bug
+04/10 1 hr 7f13052 Added user profile component
+04/09 5 min 893aad6 Updated invite code
+04/09 N/A 24585de Updated week8 logs
+
+Week 9 (Plan) (Scrum master: Varun Gupta)
+[Meetings]
+04/16 Discuss email notifications
+04/18 Discuss Unit Tests
+
+[Individual Goals]
+Varun: Implement the Unit Tests on the backend
+Ritwik: Add unit tests for front-end
+Utkarsh: Implement the email notifications
+Nisarg: Design and implement sending user token form
