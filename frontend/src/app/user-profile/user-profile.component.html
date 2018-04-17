@@ -1,0 +1,20 @@
+<div class="page-container">
+	<app-sidebar page="profile">
+	</app-sidebar>
+	<div class="page-content" *ngIf="!loading">
+		<div class="uk-container uk-margin-top">
+			<div class="userpic uk-margin-left@m">
+				<img src="{{user.profilePicture}}" />
+				<div class="uk-text-lead username">{{user.username}}</div>
+				<div class="uk-text-lead uk-light tokens">{{user.tokens}} tokens</div>
+			</div>
+
+			<div class="uk-card-large uk-card-primary uk-card-body ">
+
+			</div>
+			<app-user-past-leagues
+				[user]="user"
+			></app-user-past-leagues>
+		</div>
+	</div>
+</div>
