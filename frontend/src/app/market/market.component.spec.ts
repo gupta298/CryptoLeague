@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MarketComponent } from './market.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
-import { AuthenticationService, MarketService } from '../services/index'; 
+import { AuthenticationService, MarketService, AlertService } from '../services/index'; 
 
 import { User } from '../user';
 
@@ -35,7 +35,7 @@ describe('MarketComponent', () => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, RouterTestingModule ],
       declarations: [ MarketComponent, SidebarComponent ],
-      providers: [ {provide: AuthenticationService, useValue: userServiceStub }, MarketService ]
+      providers: [ {provide: AuthenticationService, useValue: userServiceStub }, MarketService, AlertService ]
     })
     .compileComponents();
   }));

@@ -12,7 +12,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 
 import { League } from '../league'
 
-import { AuthenticationService, MarketService, LeagueService, PortfolioService, UserService } from '../services';
+import { AuthenticationService, MarketService, LeagueService, PortfolioService, UserService, AlertService } from '../services';
 import { AuthenticationServiceStub } from '../stubs/authentication.service.stub'
 
 describe('LeagueDetailComponent', () => {
@@ -23,7 +23,7 @@ describe('LeagueDetailComponent', () => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
       declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, UserService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, UserService, AlertService ]
     })
     .compileComponents();
   }));

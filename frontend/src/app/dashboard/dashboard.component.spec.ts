@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DashboardComponent } from './dashboard.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
-import { AuthenticationService, NewsService, UserService, LeagueService } from '../services';
+import { AuthenticationService, NewsService, UserService, LeagueService, AlertService } from '../services';
 import { AuthenticationServiceStub } from '../stubs/authentication.service.stub';
 
 import { User } from '../user';
@@ -18,7 +18,7 @@ describe('DashboardComponent', () => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, RouterTestingModule ],
       declarations: [ DashboardComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, NewsService, UserService, LeagueService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, NewsService, UserService, LeagueService, AlertService ]
     })
     .compileComponents();
   }));

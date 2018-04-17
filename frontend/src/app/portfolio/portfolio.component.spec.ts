@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { PortfolioComponent } from './portfolio.component';
 
-import { AuthenticationService, MarketService, PortfolioService } from '../services';
+import { AuthenticationService, MarketService, PortfolioService, AlertService } from '../services';
 import { AuthenticationServiceStub } from '../stubs/authentication.service.stub'
 
 import { Portfolio } from '../portfolio';
@@ -19,7 +19,7 @@ describe('PortfolioComponent', () => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],
       declarations: [ PortfolioComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, MarketService, PortfolioService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, MarketService, PortfolioService, AlertService ]
     })
     .compileComponents();
   }));

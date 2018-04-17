@@ -3,7 +3,7 @@ import { HttpModule, Http, Headers, Response, RequestOptions } from '@angular/ht
 import { FormsModule }   from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { AuthenticationService, UserService } from '../services';
+import { AuthenticationService, UserService, AlertService } from '../services';
 
 import { LandingComponent } from './landing.component';
 
@@ -35,7 +35,7 @@ describe('LandingComponent', () => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, FormsModule, RouterTestingModule ],
       declarations: [ LandingComponent ],
-      providers: [ {provide: AuthenticationService, useValue: userServiceStub }, UserService ]
+      providers: [ {provide: AuthenticationService, useValue: userServiceStub }, UserService, AlertService ]
     })
     .compileComponents();
   }));

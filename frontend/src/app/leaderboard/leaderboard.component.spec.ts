@@ -5,7 +5,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 
 import { HttpModule, Http, Headers, Response, RequestOptions } from '@angular/http';
 
-import { AuthenticationService, UserService } from '../services/index'; 
+import { AuthenticationService, UserService, AlertService } from '../services/index'; 
 
 import { User } from '../user';
 

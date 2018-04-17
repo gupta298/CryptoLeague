@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LeagueSelectComponent } from './league-select.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
-import { LeagueService, AuthenticationService } from '../services';
+import { LeagueService, AuthenticationService, AlertService } from '../services';
 import { AuthenticationServiceStub } from '../stubs/authentication.service.stub'
 
 describe('LeagueSelectComponent', () => {
@@ -16,7 +16,7 @@ describe('LeagueSelectComponent', () => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, RouterTestingModule ],
       declarations: [ LeagueSelectComponent, SidebarComponent ],
-      providers: [ LeagueService, { provide: AuthenticationService, useClass: AuthenticationServiceStub } ]
+      providers: [ LeagueService, { provide: AuthenticationService, useClass: AuthenticationServiceStub }, AlertService ]
     })
     .compileComponents();
   }));
