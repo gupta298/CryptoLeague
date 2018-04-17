@@ -18,7 +18,9 @@
 	    </div>
 	    <div class="uk-flex uk-flex-column">
 	    	 <ul class="uk-nav uk-nav-primary uk-margin-auto-vertical">
-	            <li class="sidebar-item" [class.uk-active]="page=='settings'"><a href="/settings"><span class="sidebar-item-icon" uk-icon="icon: user"></span><span class="sidebar-item-text">{{user.firstname}} {{user.lastname}}</span></a></li>
+	    	 	    <li class="sidebar-item" [class.uk-active]="page=='profile'"><a href="/user"><span class="sidebar-item-icon" uk-icon="icon: user"></span><span class="sidebar-item-text">{{user.firstname}} {{user.lastname}}</span></a></li>
+	    	 	    <li class="uk-nav-divider"></li>
+	            <li class="sidebar-item" [class.uk-active]="page=='settings'"><a href="/settings"><span class="sidebar-item-icon" uk-icon="icon: cog"></span><span class="sidebar-item-text">Settings</span></a></li>
 	            <li class="uk-nav-divider"></li>
 	            <li class="sidebar-item uk-margin-small-bottom"><a (click)="logout()"><span class="sidebar-item-icon" uk-icon="icon:  sign-out"></span><span class="sidebar-item-text">Sign Out</span></a></li>
 	        </ul>
