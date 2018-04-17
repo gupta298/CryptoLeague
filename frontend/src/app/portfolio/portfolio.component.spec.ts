@@ -75,7 +75,7 @@ describe('Portfolio table list view', () => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],
       declarations: [ PortfolioComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, MarketService, PortfolioService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, MarketService, PortfolioService, AlertService ]
     })
     .compileComponents();
   }));
