@@ -43,19 +43,14 @@ function sendEmailsViaLeague(league, message){
       else {
         var dbo = db.db("cryptoleague_database");
         for(let i = 0; i < league.portfolio_ids.length; i++){
-          console.log('this is the user id');
-          console.log(league.portfolio_ids[i].user_id);
           dbo.collection("Users").findOne({'_id' : ObjectId(league.portfolio_ids[i].user_id)}, function(err, result) {
             if (err) {
               console.log(err);
               callback("Can't find the user!", null);
             } else {
               if (result) {
-                console.log('Came Here Famy');
                 if(result.email_notification){
-                  //send email here
-                  console.log('launde ki email');
-                  console.log(result.email);
+                  //send email heres
                   message.to = result.email;
                   transporter.sendMail(message, (error, info) => {
                           if (error) {

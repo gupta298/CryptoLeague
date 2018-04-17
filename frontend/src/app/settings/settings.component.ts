@@ -21,7 +21,7 @@ export class SettingsComponent implements OnInit {
     profilePictureChange: boolean = false;
     submitted: boolean = false;
     usernameNew: String = null;
-    emailNotification: boolean = true;
+    email_notification: boolean = false;
 
    	constructor(
 		private router: Router,
@@ -36,8 +36,6 @@ export class SettingsComponent implements OnInit {
 
 	onSubmit() {
 		this.loading = true;
-    console.log(this.user.username);
-    console.log(this.usernameNew);
     if(this.user.username !== this.usernameNew) {
       this.userExists = false;
       this.userService.isUsernameValid(this.user)
@@ -49,7 +47,8 @@ export class SettingsComponent implements OnInit {
                   this.userService.updateUser(this.user)
                     .subscribe(
                       result => {
-                        console.log(result);
+                        console.log('this is the notif');
+                        console.log(this.user.email_notification);
                         this.authService.saveJwt(result.jwt);
                       }, error => {
                         console.log(error);
@@ -69,6 +68,8 @@ export class SettingsComponent implements OnInit {
           this.usernameNew = this.user.username;
     }
     else{
+        console.log('this is the Notif');
+        console.log(this.user.email_notification);
       this.userService.updateUser(this.user)
         .subscribe(
           result => {
