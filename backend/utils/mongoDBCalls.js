@@ -186,9 +186,12 @@ function updateUserInLeagues(user) {
   }
 
   var all_leagues = user.past_leagues;
+  var object = {
+            "league_id": user.currentLeague_id
+        };
 
   if(user.currentLeague_id)
-    all_leagues.push(user.currentLeague_id);
+    all_leagues.push(object);
 
   if(all_leagues.length > 0) {
     MongoClient.connect(mongodbUrl, function (err, db) {
@@ -198,7 +201,7 @@ function updateUserInLeagues(user) {
       } else {
         asyncLoop(all_leagues, function (item, next) {
           var dbo = db.db("cryptoleague_database");
-          dbo.collection("Leagues").findOne({'league_id' : item}, function(err, result) {
+          dbo.collection("Leagues").findOne({'league_id' : item.league_id}, function(err, result) {
             if (err) throw err;
 
             asyncLoop(result.portfolio_ids, function (portfolio, next_portfolio) {
@@ -208,7 +211,7 @@ function updateUserInLeagues(user) {
               }
               next_portfolio();
             }, function () {
-              dbo.collection("Leagues").findOneAndUpdate({'league_id': item}, {$set: {'portfolio_ids': result.portfolio_ids}});
+              dbo.collection("Leagues").findOneAndUpdate({'league_id': item.league_id}, {$set: {'portfolio_ids': result.portfolio_ids}});
             });
             next();
           });
@@ -418,7 +421,12 @@ function endLeague(league_id) {
                 }
 
                 //Update the users tokens
-                for(let i = 0; i < result.portfolio_ids.length; i++){
+                for(let i = 0; i < result.portfolio_ids.length; i++) {
+                  var current_tokens = result.portfolio_ids[i].tokens - result.league_buy_in + result.portfolio_ids[i].payout;
+                  if (current_tokens < 5) {
+                    result.portfolio_ids[i].payout += 5 - current_tokens;
+                  }
+
                   dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$inc: {'tokens' : result.portfolio_ids[i].payout}});
                   dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$addToSet: {'past_leagues' : {'league_type' : result.league_type, 'league_id' : result.league_id, 'user_payout' : result.portfolio_ids[i].payout,  'user_rank' :result.portfolio_ids[i].rank, 'portfolio_value' : result.portfolio_ids[i].portfolio_value }}});
                 }
@@ -574,6 +582,29 @@ module.exports = {
               callback("Error finding the user!", null);
             } else {
               if (result) {
+                var average_rank = 0;
+                var average_gains = 0;
+                var total_tokens = 0;
+                var number_top_three = 0;
+
+                for (index in result.past_leagues) {
+                  average_rank += result.past_leagues[index].user_rank;
+                  average_gains += result.past_leagues[index].portfolio_value;
+                  total_tokens += result.past_leagues[index].user_payout;
+
+                  if (result.past_leagues[index].user_rank <= 3) {
+                    number_top_three += 1;
+                  }
+                }
+
+                average_rank = average_rank/result.past_leagues.length;
+                average_gains = average_gains/result.past_leagues.length;
+
+                result.average_rank = average_rank;
+                result.average_gains = average_gains;
+                result.total_tokens = total_tokens;
+                result.number_top_three = number_top_three;
+
                 callback(null, JSON.parse(JSON.stringify(result)));
               } else  {
                 callback(null, null);
@@ -630,7 +661,30 @@ module.exports = {
               callback("Error finding the user via username!", null);
             } else {
               if (result) {
-                callback(null, result);
+                var average_rank = 0;
+                var average_gains = 0;
+                var total_tokens = 0;
+                var number_top_three = 0;
+
+                for (index in result.past_leagues) {
+                  average_rank += result.past_leagues[index].user_rank;
+                  average_gains += result.past_leagues[index].portfolio_value;
+                  total_tokens += result.past_leagues[index].user_payout;
+
+                  if (result.past_leagues[index].user_rank <= 3) {
+                    number_top_three += 1;
+                  }
+                }
+
+                average_rank = average_rank/result.past_leagues.length;
+                average_gains = average_gains/result.past_leagues.length;
+
+                result.average_rank = average_rank;
+                result.average_gains = average_gains;
+                result.total_tokens = total_tokens;
+                result.number_top_three = number_top_three;
+
+                callback(null, JSON.parse(JSON.stringify(result)));
               } else  {
                 callback("Error finding the user via username!", null);
               }
@@ -686,7 +740,7 @@ module.exports = {
         } else {
           var dbo = db.db("cryptoleague_database");
           dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {email: user.email, username: user.username,
-            profilePicture: user.profilePicture}}, function(err, res) {
+            profilePicture: user.profilePicture, email_notification: user.email_notification}}, function(err, res) {
               if (err) {
                 callback("Error updating the user!", null);
               } else {
@@ -694,6 +748,7 @@ module.exports = {
                   res.value.email = user.email;
                   res.value.username = user.username;
                   res.value.profilePicture = user.profilePicture;
+                  res.value.email_notification = user.email_notification;
                   updateUserInLeagues(res.value);
 
                   callback(null, token.generateAccessToken(res.value));

@@ -50,6 +50,7 @@ router.put('/',
       } else {
         if (req.body.email) result.email = req.body.email;
         if (req.body.profilePicture) result.profilePicture = req.body.profilePicture;
+        if (req.body.email_notification != undefined) result.email_notification = req.body.email_notification;
 
         if (req.body.username) {
           mongo.getUserViaUsername(req.body.username, function(error, response) {
@@ -119,55 +120,6 @@ router.get('/null_out', passport.authenticate(['jwt'], { session: false }), (req
 });
 
 /**
- * @api {GET} /user/search/:username Request to get the users with a similar username
- * @apiName Search_Via_Username
- * @apiGroup User
- *
- * @apiHeader {String} JWT JWT token of the user.
- * @apiParam {String} Username Username of the user for look up.
- *
- * @apiSuccess {JSON} Usernames Returns the usernames that match the given username in params.
-*/
-router.get('/search/:username', (req, res) => {
-  var username = '.*' + req.params.username + '.*';
-
-  mongo.getUserViaPartialUsername(username, function(error, result) {
-    if (error) {
-      res.send(400, { "message" : error });
-    } else {
-      res.send(JSON.parse(JSON.stringify(result)));
-    }
-  });
-});
-
-/**
- * @api {GET} /user/:username Request to get the user's profile with the given username
- * @apiName Get_User_Via_Username
- * @apiGroup User
- *
- * @apiHeader {String} JWT JWT token of the user.
- * @apiParam {String} Username Username of the user for look up.
- *
- * @apiSuccess {JSON} User_Profile Returns the profile of the user is the username exists
-*/
-router.get('/:username', (req, res) => {
-  var username = req.params.username;
-
-  mongo.getUserObjectViaUsername(username, function(error, response) {
-    if (error || !response) {
-      res.send(400, {"message" : error});
-    } else {
-      response.email = null;
-      response.firstname = null;
-      response.lastname = null;
-      response.id = null;
-
-      res.send(JSON.parse(JSON.stringify(response)));
-    }
-  });
-});
-
-/**
  * @api {GET} /user/search Request to get all the users username
  * @apiName Get_All_Usernames
  * @apiGroup User
@@ -183,6 +135,33 @@ router.get('/search', (req, res) => {
       res.send(400, { "message" : error });
     } else {
       res.send(JSON.parse(JSON.stringify(result)));
+    }
+  });
+});
+
+/** 
+ * @api {GET} /user/:username Request to get the user's profile with the given username 
+ * @apiName Get_User_Via_Username 
+ * @apiGroup User 
+ * 
+ * @apiHeader {String} JWT JWT token of the user. 
+ * @apiParam {String} Username Username of the user for look up. 
+ * 
+ * @apiSuccess {JSON} User_Profile Returns the profile of the user is the username exists 
+*/ 
+router.get('/:username', (req, res) => {
+  var username = req.params.username;
+
+  mongo.getUserObjectViaUsername(username, function(error, response) {
+    if (error || !response) {
+      res.send(400, {"message" : error});
+    } else {
+      response.email = null;
+      response.firstname = null;
+      response.lastname = null;
+      response.id = null;
+
+      res.send(JSON.parse(JSON.stringify(response)));
     }
   });
 });

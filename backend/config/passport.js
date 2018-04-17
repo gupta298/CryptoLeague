@@ -65,6 +65,8 @@ passport.use(new FacebookStrategy({
     user.profilePicture = 'http://graph.facebook.com/' + profile.id + '/picture?type=large';
     user.tokens = 25;
     user.currentLeague_id = null;
+    user.past_leagues = [];
+    user.email_notification = true;
 
     mongo.addUser(user, function(error, result) {
       return cb(error, JSON.parse(JSON.stringify(result)));
@@ -95,6 +97,8 @@ passport.use(new GoogleStrategy({
     user.profilePicture = profile._json.image.url + '0';
     user.tokens = 25;
     user.currentLeague_id = null;
+    user.past_leagues = [];
+    user.email_notification = true;
 
     mongo.addUser(user, function(error, result) {
       return cb(error, JSON.parse(JSON.stringify(result)));
