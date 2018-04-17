@@ -89,8 +89,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   onUserClick(username: String) {
-    this.router.navigate(['/']);
-    //this.router.navigate(['/user/'+username]);
+    this.router.navigate(['/user/'+username]);
   }
 
   ngOnInit() {
