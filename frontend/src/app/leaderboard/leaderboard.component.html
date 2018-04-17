@@ -30,7 +30,7 @@
 			  <tbody *ngIf="allUsers">
 		        <tr *ngFor="let user of allUsers" >
 		            <td>{{user.rank}}</td>
-		            <td>{{user.username}}</td>
+		            <td (click)="onUserClick(user.username)" class="click">{{user.username}}</td>
 		            <td>{{user.tokens}}</td>
 		        </tr>
 			  </tbody>  
