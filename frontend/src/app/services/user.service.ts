@@ -52,7 +52,7 @@ export class UserService {
   }
 
   sendTokens(toUser: string, tokens: number){
-    return this.http.put(environment.apiUrl+'/user/send_tokens?to='+toUser+'&tokens='+tokens, this.authService.generateJwt()).map((response: Response) => response.json());
+    return this.http.put(environment.apiUrl+'/user/send_tokens?to='+toUser+'&tokens='+tokens, {}, this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
   public convertJsonToFormData(item){
