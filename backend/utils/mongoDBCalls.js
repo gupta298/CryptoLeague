@@ -34,7 +34,6 @@ var transporter = nodemailer.createTransport({
 });
 
 function sendEmailsViaLeague(league, message){
-  console.log('came to the function');
   MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
         console.log(err);
@@ -411,9 +410,8 @@ function startLeague(league_id) {
             sendEmailsViaLeague(result.value, mailLeagueStarted);
           });
         db.close();
-
-
-      }
+        }
+      };
     });
   }
 }
