@@ -32,8 +32,12 @@ export class UserProfileComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.loadUsers();
+  }
+
+  loadUsers(){
     this.currentUser = this.authService.loadUserFromLocalStorage();
-  	this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       //debugger;
       if(!params['id']){
         this.user = this.authService.loadUserFromLocalStorage();
@@ -43,9 +47,9 @@ export class UserProfileComponent implements OnInit {
         this.loading = true;
         this.userService.getUserByUsername(this.username).subscribe(
           result => {
-          	this.user = new User();
-          	this.user.deserialize(result);
-          	console.log(result);
+            this.user = new User();
+            this.user.deserialize(result);
+            console.log(result);
 
             if(this.user.pastLeagues.length > 0){
               let totalRank = 0, totalGains = 0, totalPayout = 0;
@@ -59,9 +63,9 @@ export class UserProfileComponent implements OnInit {
               this.totalPayout = totalPayout;
             }
 
-          	this.loading = false;
+            this.loading = false;
           }, error => {
-          	this.loading = false;
+            this.loading = false;
             console.log(error);
             this.alertService.error(JSON.parse(error._body).message);
             //this.router.navigate(['/']);
@@ -72,11 +76,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   sendTokens(){
+    this.sendingTokens = true;
     this.userService.sendTokens(this.user.username, this.numTokens).subscribe(
       result => {
         UIkit.modal('#sendTokensModal').hide();
         console.log(result);
         this.authService.saveJwt(result.jwt);
+        this.loadUsers();
         this.sendingTokens = false;
         this.alertService.success("Tokens Sent Successfully.");
       }, error => {
