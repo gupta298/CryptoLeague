@@ -48,7 +48,7 @@ export class UserProfileComponent implements OnInit {
           	console.log(result);
 
             if(this.user.pastLeagues.length > 0){
-              let totalRank = 0, totalGains = 0, totalPayout;
+              let totalRank = 0, totalGains = 0, totalPayout = 0;
               for(let league of this.user.pastLeagues){
                 totalRank += league.user_rank;
                 totalGains += league.portfolio_value;
@@ -74,7 +74,7 @@ export class UserProfileComponent implements OnInit {
   sendTokens(){
     this.userService.sendTokens(this.user.username, this.numTokens).subscribe(
       result => {
-        UIkit.modal('sendTokensModal').hide();
+        UIkit.modal('#sendTokensModal').hide();
         console.log(result);
         this.authService.saveJwt(result.jwt);
         this.sendingTokens = false;
@@ -85,6 +85,10 @@ export class UserProfileComponent implements OnInit {
         this.alertService.error(JSON.parse(error._body).message);
       }
     );
+  }
+
+  sendMax() {
+    this.numTokens = this.currentUser.tokens - 25;
   }
 
 }
