@@ -3,13 +3,19 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { MomentModule } from 'angular2-moment';
 
-import { AuthenticationService, NewsService, UserService, LeagueService, AlertService } from '../services/index';
+import { AuthenticationService, NewsService, UserService, LeagueService, AlertService, PortfolioService } from '../services/index';
 
 import { League } from '../league';
 
 import { User } from '../user';
 
 import * as moment from 'moment';
+
+declare var UIkit: any;
+declare var $: any;
+declare var browser: any;
+declare var Chart: any;
+declare var fa: any;
 
 @Component({
   selector: 'app-league-detail',
@@ -35,6 +41,7 @@ export class LeagueDetailComponent implements OnInit {
   	constructor(
       private authService: AuthenticationService,
       private leagueService: LeagueService,
+      private portfolioService: PortfolioService,
       private alertService: AlertService,
       private route: ActivatedRoute,
       private router: Router) { }
@@ -175,5 +182,48 @@ export class LeagueDetailComponent implements OnInit {
       } else {
         this.timeRemaining = hours + "h " + minutes + "m " + seconds + "s"; //+ "s until the league " + status;
       }
+    }
+    getUserPortfolio(user_id) {
+      UIkit.modal('#portfolio-modal').show();
+      this.portfolioService.getPortfolioByLeagueID(this.league.league_id, user_id)
+        .subscribe(
+          result => {
+                console.log(result);
+                
+                var data = [];
+                var labels = [];
+                var backgroundColor = [];
+                for(var i=0; i<result.holdings.length; i++) {
+                  labels[i] = result.holdings[i].coin_symbol;
+                  data[i] = Math.round(result.holdings[i].percentage);
+                }
+
+                var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '# of Colors',
+                            data: data,
+                            backgroundColor: [
+                                '#8c9eff',
+                                '#ff8a80',
+                                '#3d5afe',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+
+                            ]
+                        }]
+                    },
+                    options: {
+                        
+                    }
+                });
+          }, error => {
+            this.alertService.error(JSON.parse(error._body).message);
+            console.log(error);
+          });
     }
 }

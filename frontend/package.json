@@ -23,10 +23,13 @@
     "@angular/router": "^5.2.10",
     "angular2-jwt": "^0.2.3",
     "angular2-moment": "^1.8.0",
+    "chart.js": "^2.7.2",
     "core-js": "^2.5.5",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "moment": "^2.22.1",
     "ng2-search-filter": "^0.4.7",
+    "random-material-color": "^1.0.3",
     "rxjs": "^5.5.10",
     "uikit": "^3.0.0-beta.42",
     "zone.js": "^0.8.26"

@@ -44,6 +44,7 @@
 							            <th>Tokens</th>
 							            <th *ngIf="league.status >= 2">Total Gains</th>
 							            <th *ngIf="league.status == 4">Payout</th>
+							            <th *ngIf="league.status == 4">Portfolio</th>
 							        </tr>
 							    </thead>
 							    <tr *ngFor="let portfolio of league.portfolio_ids">
@@ -59,12 +60,24 @@
 											{{portfolio.portfolio_value | number:'1.2-2'}}%
 										</td>
 										<td *ngIf="league.status == 4">{{portfolio.payout}}</td>
+										<td *ngIf="league.status == 4" (click)="getUserPortfolio(portfolio.user_id)"><i class="click fas fa-chart-pie"></i></td>
 						      </tr>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
+
+
+
+			<div id="portfolio-modal" class="uk-flex-top" uk-modal>
+	    	<div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+	        <button class="uk-modal-close-default" type="button" uk-close></button>
+	        <canvas id="myChart" width="400" height="400"></canvas>
+	    	</div>
+			</div>
+
 
 			<div class="progress-bar" [class.starting]="league.status <= 2" [class.started]="league.status >= 3" >
 				<div class="progress" [style.width]="timeRemainingPercent + '%'" [class.starting]="league.status <= 2" [class.started]="league.status >= 3"></div>
