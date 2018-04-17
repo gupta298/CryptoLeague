@@ -140,6 +140,7 @@ router.get('/search', (req, res) => {
   });
 });
 
+
 /** 
  * @api {GET} /user/:username Request to get the user's profile with the given username 
  * @apiName Get_User_Via_Username 
@@ -191,6 +192,5 @@ router.get('/:username', (req, res) => {
     }
   });
 });
-
 
 module.exports = router;
