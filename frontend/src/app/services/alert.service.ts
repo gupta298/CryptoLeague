@@ -3,6 +3,8 @@ import { Router, NavigationStart } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 
+declare var UIkit: any;
+
 @Injectable()
 export class AlertService {
 
@@ -26,12 +28,22 @@ export class AlertService {
 
   success(message: string, keepAfterNavigationChange = false) {
       this.keepAfterNavigationChange = keepAfterNavigationChange;
-      this.subject.next({ type: 'success', text: message });
+      //this.subject.next({ type: 'success', text: message });
+      UIkit.notification({
+          message: message,
+          status: 'success',
+          pos: 'bottom-center',
+      });
   }
 
   error(message: string, keepAfterNavigationChange = false) {
       this.keepAfterNavigationChange = keepAfterNavigationChange;
-      this.subject.next({ type: 'error', text: message });
+      //this.subject.next({ type: 'error', text: message });
+      UIkit.notification({
+          message: message,
+          status: 'danger',
+          pos: 'bottom-center',
+      });
   }
 
   getMessage(): Observable<any> {

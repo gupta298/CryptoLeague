@@ -10,12 +10,6 @@
 					<div uk-grid>
 					    <div class="uk-width-1-2@s uk-flex uk-flex-middle uk-flex-column">
 							<div class="userpic uk-margin-bottom"  [ngStyle]="{ 'background-image': 'url()'} ">
-								<!-- <div class=" hover .uk-align-center">
-									<div class="text" align="center">
-										Upload a new Picture
-										<input name="upload" type="file">
-									</div>
-								</div> -->
 								<img src="{{user.profilePicture}}" />
 							</div>
 							<div>
@@ -50,7 +44,7 @@
 						    </div>
 						    <div class="uk-margin">
 						        <div class="uk-form-controls">
-						            <label><input class="uk-checkbox" type="checkbox"> I would like to recieve notifications about my current league.</label><br>
+						            <label><input [(ngModel)]="user.email_notification" name="user.email_notification" type="checkbox"> I would like to recieve notifications about my current league.</label><br>
 						        </div>
 						    </div>
 						    <div class="uk-margin">
