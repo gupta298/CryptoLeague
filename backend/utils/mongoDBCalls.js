@@ -34,6 +34,7 @@ var transporter = nodemailer.createTransport({
 });
 
 function sendEmailsViaLeague(league, message){
+  console.log('came to the function');
   MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
         console.log(err);
@@ -42,14 +43,19 @@ function sendEmailsViaLeague(league, message){
       else {
         var dbo = db.db("cryptoleague_database");
         for(let i = 0; i < league.portfolio_ids.length; i++){
+          console.log('this is the user id');
+          console.log(league.portfolio_ids[i].user_id);
           dbo.collection("Users").findOne({'_id' : ObjectId(league.portfolio_ids[i].user_id)}, function(err, result) {
             if (err) {
               console.log(err);
               callback("Can't find the user!", null);
             } else {
               if (result) {
+                console.log('Came Here Famy');
                 if(result.email_notification){
                   //send email here
+                  console.log('launde ki email');
+                  console.log(result.email);
                   message.to = result.email;
                   transporter.sendMail(message, (error, info) => {
                           if (error) {
@@ -242,6 +248,8 @@ function updateUserInLeagues(user) {
   }
 
   var all_leagues = user.past_leagues;
+  console.log(all_leagues);
+  console.log();
   var object = {
             "league_id": user.currentLeague_id
         };
@@ -255,10 +263,14 @@ function updateUserInLeagues(user) {
         console.log(err);
         console.log("Can't update user's past league : " + user);
       } else {
+        console.log(all_leagues);
         asyncLoop(all_leagues, function (item, next) {
           var dbo = db.db("cryptoleague_database");
           dbo.collection("Leagues").findOne({'league_id' : item.league_id}, function(err, result) {
             if (err) throw err;
+
+            console.log(item.league_id);
+            console.log(result);
 
             asyncLoop(result.portfolio_ids, function (portfolio, next_portfolio) {
               if (portfolio.user_id.toString() === user._id.toString()) {
@@ -361,7 +373,9 @@ function lockLeague(league_id) {
             html: '<p>Hello there, </p>  <br> <p> Your CryptoLeague has locked. Login to edit your portfolio and compete for the highest gains!</p>'
         };
         dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '2'}}, function(err, result){
-          sendEmailsViaLeague(result, mailLeagueLocked);
+          console.log('This is the result');
+          console.log(result);
+          sendEmailsViaLeague(result.value, mailLeagueLocked);
         });
         db.close();
         //

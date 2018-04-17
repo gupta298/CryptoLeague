@@ -139,16 +139,16 @@ router.get('/search', (req, res) => {
   });
 });
 
-/** 
- * @api {GET} /user/:username Request to get the user's profile with the given username 
- * @apiName Get_User_Via_Username 
- * @apiGroup User 
- * 
- * @apiHeader {String} JWT JWT token of the user. 
- * @apiParam {String} Username Username of the user for look up. 
- * 
- * @apiSuccess {JSON} User_Profile Returns the profile of the user is the username exists 
-*/ 
+/**
+ * @api {GET} /user/:username Request to get the user's profile with the given username
+ * @apiName Get_User_Via_Username
+ * @apiGroup User
+ *
+ * @apiHeader {String} JWT JWT token of the user.
+ * @apiParam {String} Username Username of the user for look up.
+ *
+ * @apiSuccess {JSON} User_Profile Returns the profile of the user is the username exists
+*/
 router.get('/:username', (req, res) => {
   var username = req.params.username;
 
