@@ -54,7 +54,6 @@ function sendEmailsViaLeague(league, message){
                   message.to = result.email;
                   transporter.sendMail(message, (error, info) => {
                           if (error) {
-                              console.log('ERROR hua');
                               return console.log(error);
                           }
                           console.log('Message sent: %s', info.messageId);
@@ -368,21 +367,9 @@ function lockLeague(league_id) {
             html: '<p>Hello there, </p>  <br> <p> Your CryptoLeague has locked. Login to edit your portfolio and compete for the highest gains!</p>'
         };
         dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '2'}}, function(err, result){
-          console.log('This is the result');
-          console.log(result);
           sendEmailsViaLeague(result.value, mailLeagueLocked);
         });
         db.close();
-        //
-        // transporter.sendMail(mailLeagueLocked, (error, info) => {
-        //         if (error) {
-        //             console.log('ERROR hua');
-        //             return console.log(error);
-        //         }
-        //         console.log('Message sent: %s', info.messageId);
-        //         transporter.close();
-        //     });
-
       }
     });
   }
@@ -413,26 +400,18 @@ function startLeague(league_id) {
 
           schedule.scheduleJob(newDate, startLeague.bind(null, league_id));
         } else {
-          dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', locked_prices: coins }});
-        }
+          //mail
+          let mailLeagueStarted = {
+            from: '"CryptoLeague" <noreply@cryptoleague.win>',
+            to: '',
+            subject: 'Your CryptoLeague League has started',
+            html: '<p>Hello there, </p>  <br> <p> Your CryptoLeague has started. Login to see your current standing and gains from your portfolio!</p>'
+          };
+          dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', locked_prices: coins }}, function(err, result){
+            sendEmailsViaLeague(result.value, mailLeagueStarted);
+          });
         db.close();
 
-        //mail
-        let mailLeagueStarted = {
-          from: '"CryptoLeague" <noreply@cryptoleague.win>',
-          to: 'utkjain@gmail.com',
-          subject: 'Your CryptoLeague League has started',
-          html: '<p>Hello there, </p>  <br> <p> Your CryptoLeague has started. Login to see your current standing and gains from your portfolio!</p>'
-        };
-
-        transporter.sendMail(mailLeagueStarted, (error, info) => {
-                if (error) {
-                    console.log('ERROR hua');
-                    return console.log(error);
-                }
-                console.log('Message sent: %s', info.messageId);
-                transporter.close();
-            });
 
       }
     });
@@ -532,25 +511,18 @@ function endLeague(league_id) {
                   dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$addToSet: {'past_leagues' : {'league_type' : result.league_type, 'league_id' : result.league_id, 'user_payout' : result.portfolio_ids[i].payout,  'user_rank' :result.portfolio_ids[i].rank, 'portfolio_value' : result.portfolio_ids[i].portfolio_value }}});
                 }
 
-                //Update league
-                dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4', 'payouts': finalPayout, 'portfolio_ranks': ranks}});
-                db.close();
-
                 let mailLeagueEnded= {
                     from: '"CryptoLeague" <noreply@cryptoleague.win>',
-                    to: 'utkjain@gmail.com',
+                    to: '',
                     subject: 'Your CryptoLeague League has ended',
                     html: '<p>Hello there, </p>  <br> <p> Your CryptoLeague has ended. Login to see your rank and payout!</p>'
                 };
 
-                transporter.sendMail(mailLeagueEnded, (error, info) => {
-                        if (error) {
-                            console.log('ERROR hua');
-                            return console.log(error);
-                        }
-                        console.log('Message sent: %s', info.messageId);
-                        transporter.close();
-                    });
+                //Update league
+                dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4', 'payouts': finalPayout, 'portfolio_ranks': ranks}}, function(err, result){
+                  sendEmailsViaLeague(result.value, mailLeagueEnded);
+                });
+                db.close();
 
                 console.log("done updating league");
               });
