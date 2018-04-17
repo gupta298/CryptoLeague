@@ -160,7 +160,7 @@ router.put('/send_tokens', passport.authenticate(['jwt'], { session: false }), (
     } else {
       //res.send({"message": "Success"});
 
-      res.send(JSON.parse(JSON.stringify(response)));
+      res.send({"jwt": response});
     }
   });
 });
