@@ -5,6 +5,8 @@ var MongoClient = require('mongodb').MongoClient
 const config = require('../config/config');
 const mongodbUrl = config.mongoDBHost;
 const portfolio_schema = require('../models/portfolio');
+const nodemailer = require('nodemailer');
+const mailer = config.smtp;
 
 var token = require('../utils/token');
 var market = require('../routes/market');
@@ -15,6 +17,59 @@ const league_schema = require('../models/league');
 
 var Enum = require('enum');
 const myEnum = new Enum({'Waiting' : 0, 'Waiting_Locked' : 1, 'Locked' : 2, 'Started' : 3, 'Finished' : 4}, { freez: true });
+
+
+// create reusable transporter object using the default SMTP transport
+var transporter = nodemailer.createTransport({
+    host: 'in-v3.mailjet.com',
+    port: 587,
+    secure: false,
+    auth: {
+        user: config.smtp.USERNAME,
+        pass: config.smtp.PASSWORD
+    },
+    tls:{
+        rejectUnauthorized: false
+    }
+});
+
+function sendEmailsViaLeague(league, message){
+  MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) {
+        console.log(err);
+        callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
+      }
+      else {
+        var dbo = db.db("cryptoleague_database");
+        for(let i = 0; i < league.portfolio_ids.length; i++){
+          dbo.collection("Users").findOne({'_id' : ObjectId(league.portfolio_ids[i].user_id)}, function(err, result) {
+            if (err) {
+              console.log(err);
+              callback("Can't find the user!", null);
+            } else {
+              if (result) {
+                if(result.email_notification){
+                  //send email heres
+                  message.to = result.email;
+                  transporter.sendMail(message, (error, info) => {
+                          if (error) {
+                              return console.log(error);
+                          }
+                          console.log('Message sent: %s', info.messageId);
+                          transporter.close();
+                      });
+                }
+              } else  {
+                callback(null, null);
+              }
+            }
+            db.close();
+          });
+        }
+      }
+  }
+)};
+
 
 function findLeagueType(league_Types_id, callback) {
   if (!league_Types_id) {
@@ -151,13 +206,13 @@ function getUserObject(user_id, callback) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
         console.log(err);
-        callback("We are currently facing some technically difficulties, please try again later!", null);
+        callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
       } else {
         var dbo = db.db("cryptoleague_database");
         dbo.collection("Users").findOne({'_id' : ObjectId(user_id)}, function(err, result) {
           if (err) {
             console.log(err);
-            callback("Error finding the user!", null);
+            callback("Can't find the user!", null);
           } else {
             if (result) {
               var object = {
@@ -186,6 +241,8 @@ function updateUserInLeagues(user) {
   }
 
   var all_leagues = user.past_leagues;
+  console.log(all_leagues);
+  console.log();
   var object = {
             "league_id": user.currentLeague_id
         };
@@ -197,12 +254,16 @@ function updateUserInLeagues(user) {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
         console.log(err);
-        console.log("Error updating the user's past league : " + user);
+        console.log("Can't update user's past league : " + user);
       } else {
+        console.log(all_leagues);
         asyncLoop(all_leagues, function (item, next) {
           var dbo = db.db("cryptoleague_database");
           dbo.collection("Leagues").findOne({'league_id' : item.league_id}, function(err, result) {
             if (err) throw err;
+
+            console.log(item.league_id);
+            console.log(result);
 
             asyncLoop(result.portfolio_ids, function (portfolio, next_portfolio) {
               if (portfolio.user_id.toString() === user._id.toString()) {
@@ -238,13 +299,13 @@ function makeNewPortfolio(callback) {
       MongoClient.connect(mongodbUrl, function (err, db) {
         if (err) {
           console.log(err);
-          callback("We are currently facing some technically difficulties, please try again later!", null);
+          callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
         } else {
           var dbo = db.db("cryptoleague_database");
           dbo.collection("Portfolios").insertOne(portfolio, function(err, result) {
             if (err) {
               console.log(err);
-              callback("We are currently facing some technically difficulties, please try again later!", null);
+              callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
             } else {
               callback(null, portfolio);
             }
@@ -258,22 +319,22 @@ function makeNewPortfolio(callback) {
 
 function getPortfolioWithID(portfolio_id, callback) {
   if (!portfolio_id) {
-    callback("Portfolio id does not exist!", null);
+    callback("Portfolio ID does not exist!", null);
   } else {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
         console.log(err);
-        callback("We are currently facing some technically difficulties, please try again later!", null);
+        callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
       } else {
         var dbo = db.db("cryptoleague_database");
         dbo.collection("Portfolios").findOne({ '_id' : ObjectId(portfolio_id) }, function(err, result) {
           if (err) {
-            callback("Portfolios does not exist!", null);
+            callback("Portfolio does not exist!", null);
           } else {
             if (result) {
               callback(null, result);
             } else {
-              callback("Error finding the Portfolio", null);
+              callback("Can't find the Portfolio", null);
             }
           }
 
@@ -286,7 +347,7 @@ function getPortfolioWithID(portfolio_id, callback) {
 
 function lockLeague(league_id) {
   if (!league_id) {
-    console.log("Error locking the league!");
+    console.log("Can't lock the league!");
   } else {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
@@ -298,7 +359,15 @@ function lockLeague(league_id) {
         schedule.scheduleJob(newDate, lockLeague.bind(null, league_id));
       } else {
         var dbo = db.db("cryptoleague_database");
-        dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '2'}});
+        let mailLeagueLocked = {
+            from: '"CryptoLeague" <noreply@cryptoleague.win>',
+            to: '',
+            subject: 'Your CryptoLeague League has Locked',
+            html: '<p>Hello there, </p>  <br> <p> Your CryptoLeague has locked. Login to edit your portfolio and compete for the highest gains!</p>'
+        };
+        dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '2'}}, function(err, result){
+          sendEmailsViaLeague(result.value, mailLeagueLocked);
+        });
         db.close();
       }
     });
@@ -307,7 +376,7 @@ function lockLeague(league_id) {
 
 function startLeague(league_id) {
   if (!league_id) {
-    console.log("Error starting the league!");
+    console.log("Can't start the league!");
   } else {
     MongoClient.connect(mongodbUrl, function (err, db) {
       if (err) {
@@ -330,10 +399,19 @@ function startLeague(league_id) {
 
           schedule.scheduleJob(newDate, startLeague.bind(null, league_id));
         } else {
-          dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', locked_prices: coins }});
-        }
+          //mail
+          let mailLeagueStarted = {
+            from: '"CryptoLeague" <noreply@cryptoleague.win>',
+            to: '',
+            subject: 'Your CryptoLeague League has started',
+            html: '<p>Hello there, </p>  <br> <p> Your CryptoLeague has started. Login to see your current standing and gains from your portfolio!</p>'
+          };
+          dbo.collection("Leagues").findOneAndUpdate({'league_id': league_id}, {$set: {status : '3', locked_prices: coins }}, function(err, result){
+            sendEmailsViaLeague(result.value, mailLeagueStarted);
+          });
         db.close();
-      }
+        }
+      };
     });
   }
 }
@@ -431,8 +509,17 @@ function endLeague(league_id) {
                   dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$addToSet: {'past_leagues' : {'league_type' : result.league_type, 'league_id' : result.league_id, 'user_payout' : result.portfolio_ids[i].payout,  'user_rank' :result.portfolio_ids[i].rank, 'portfolio_value' : result.portfolio_ids[i].portfolio_value }}});
                 }
 
+                let mailLeagueEnded= {
+                    from: '"CryptoLeague" <noreply@cryptoleague.win>',
+                    to: '',
+                    subject: 'Your CryptoLeague League has ended',
+                    html: '<p>Hello there, </p>  <br> <p> Your CryptoLeague has ended. Login to see your rank and payout!</p>'
+                };
+
                 //Update league
-                dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4', 'payouts': finalPayout, 'portfolio_ranks': ranks}});
+                dbo.collection("Leagues").findOneAndUpdate({'league_id': result.league_id}, {$set: {'portfolio_ids' : result.portfolio_ids, 'status': '4', 'payouts': finalPayout, 'portfolio_ranks': ranks}}, function(err, result){
+                  sendEmailsViaLeague(result.value, mailLeagueEnded);
+                });
                 db.close();
 
                 console.log("done updating league");
