@@ -1,0 +1,24 @@
+@import 'variables';
+
+.userpic img {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  border-radius: 100%;
+  margin-bottom: -100px;
+	border-style: solid;
+	border-color: $off-white; 
+	border-width: 5px;
+}
+
+.username {
+	margin-top: -1em;
+	margin-left: 210px;
+	font-size: 2em;
+}
+
+.tokens {
+	margin-bottom: -1.5em;
+  margin-left: 210px;
+  font-size: 2em;
+}
