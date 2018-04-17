@@ -5,6 +5,7 @@ import { UserService, AlertService, AuthenticationService } from '../services/in
 
 import { User } from '../user';
 
+declare var UIkit: any;
 
 @Component({
   selector: 'app-user-profile',
@@ -21,6 +22,7 @@ export class UserProfileComponent implements OnInit {
   avgRank: number = 0;
   totalPayout: number = 0;
   sendingTokens: boolean = false;
+  numTokens: number = 0;
 
   constructor(
   	private userService: UserService,
@@ -67,6 +69,22 @@ export class UserProfileComponent implements OnInit {
         );
       }
     });
+  }
+
+  sendTokens(){
+    this.userService.sendTokens(this.user.username, this.numTokens).subscribe(
+      result => {
+        UIkit.modal('sendTokensModal').hide();
+        console.log(result);
+        this.authService.saveJwt(result.jwt);
+        this.sendingTokens = false;
+        this.alertService.success("Tokens Sent Successfully.");
+      }, error => {
+        console.log(error);
+        this.sendingTokens = false;
+        this.alertService.error(JSON.parse(error._body).message);
+      }
+    );
   }
 
 }
