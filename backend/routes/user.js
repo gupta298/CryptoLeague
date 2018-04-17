@@ -129,6 +129,7 @@ router.get('/null_out', passport.authenticate(['jwt'], { session: false }), (req
  * @apiSuccess {JSON} Usernames Returns all of the username's of the current users.
 */
 router.get('/search', (req, res) => {
+  console.log("In search");
   var username = ".*";
   mongo.getUserViaPartialUsername(username, function(error, result) {
     if (error) {
@@ -151,7 +152,7 @@ router.get('/search', (req, res) => {
 */ 
 router.get('/:username', (req, res) => {
   var username = req.params.username;
-
+  console.log("in username "+username);
   mongo.getUserObjectViaUsername(username, function(error, response) {
     if (error || !response) {
       res.send(400, {"message" : error});
