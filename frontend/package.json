@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^5.2.10",
     "@angular/platform-browser-dynamic": "^5.2.10",
     "@angular/router": "^5.2.10",
+    "@fortawesome/fontawesome": "^1.1.5",
     "angular2-jwt": "^0.2.3",
     "angular2-moment": "^1.8.0",
     "chart.js": "^2.7.2",

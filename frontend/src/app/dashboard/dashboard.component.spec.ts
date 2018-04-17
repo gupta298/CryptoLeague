@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { DashboardComponent } from './dashboard.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { AlertComponent } from '../alert/alert.component';
 
 import { AuthenticationService, NewsService, UserService, LeagueService, AlertService } from '../services';
 import { AuthenticationServiceStub } from '../stubs/authentication.service.stub';
@@ -17,8 +18,8 @@ describe('DashboardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, RouterTestingModule ],
-      declarations: [ DashboardComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, NewsService, UserService, LeagueService, AlertService ]
+      declarations: [ DashboardComponent, SidebarComponent, AlertComponent ],
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, NewsService, UserService, LeagueService, AlertService ],
     })
     .compileComponents();
   }));

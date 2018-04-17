@@ -35,7 +35,7 @@ describe('LeaderboardComponent', () => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, RouterTestingModule ],
       declarations: [ LeaderboardComponent, SidebarComponent ],
-      providers: [ {provide: AuthenticationService, useValue: userServiceStub }, UserService ]
+      providers: [ {provide: AuthenticationService, useValue: userServiceStub }, UserService, AlertService ]
     })
     .compileComponents();
   }));
