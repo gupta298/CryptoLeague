@@ -10,7 +10,9 @@ export class AuthenticationServiceStub extends AuthenticationService {
       currentUser.username = "johndoe"
       currentUser.email = "johndoe@email.com"
       currentUser.tokens = 25;
-      currentUser.currentLeague_id = "1";
+      currentUser.currentLeague_id = null;
+      currentUser.pastLeagues = [];
+      currentUser.email_notification = false;
       return currentUser;
   }
 }
