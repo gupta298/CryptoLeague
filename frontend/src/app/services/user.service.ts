@@ -51,6 +51,10 @@ export class UserService {
     return this.http.get(environment.apiUrl+'/user/null_out', this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
+  sendTokens(toUser: string, tokens: number){
+    return this.http.put(environment.apiUrl+'/user/send_tokens?to='+toUser+'&tokens='+tokens, {}, this.authService.generateJwt()).map((response: Response) => response.json());
+  }
+
   public convertJsonToFormData(item){
     var formData = new FormData();
 
