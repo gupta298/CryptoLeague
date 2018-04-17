@@ -1343,5 +1343,69 @@ module.exports = {
         }
       });
     }
+  },
+
+  sendTokens:
+  function sendTokens(from, to, change, callback) {
+    if (!from || !to || !change) {
+      callback("Error updating the tokens!", null);
+    } else {
+      MongoClient.connect(mongodbUrl, function (err, db) {
+        if (err) {
+          callback("We are currently facing some technically difficulties, please try again later!", null);
+        } else {
+          var dbo = db.db("cryptoleague_database");
+          dbo.collection("Users").findOne({'_id' : from}, function(err, result) {
+            if (err) {
+              callback("Error finding the payee!", null);
+            } else {
+              if(result) {
+                dbo.collection("Users").findOne({'_id' : from}, function(err, result1) {
+                  if (err) {
+                    callback("Error finding receiver!", null);
+                  } else {
+                    if(result1) {
+                      if(result.tokens - change >= 25) {
+                        dbo.collection("Users").findOneAndUpdate({'_id': from}, {$inc: {tokens: -change}}, function(err, res) {
+                            if (err) {
+                              callback("Error updating the payees tokens!", null);
+                            } else {
+                              if (res) {
+                                dbo.collection("Users").findOneAndUpdate({'username': to}, {$inc: {tokens: change}}, function(err, res1) {
+                                  if (err) {
+                                    console.log(err);
+                                    callback("Error updating the receiver's tokens!", null);
+                                  } else {
+                                    if (res1) {
+                                      // res.value.tokens = result.tokens - change;
+                                      callback(null, token.generateAccessToken(res.value));
+                                    } else {
+                                      callback("Error finding the receiver!", null);
+                                    }
+                                  }
+                                  });
+                              } else {
+                                callback("Error finding the payee!", null);
+                              }
+                            }
+
+                            db.close();
+                          });
+                      } else {
+                        callback("You do not have enough tokens to transfer", null);
+                      }
+                    } else {
+                      callback("Receiver does not exist", null);
+                    }
+                  }
+                });    
+              } else {
+                callback("Payee does not exist", null);
+              }
+            }
+          });        
+        }
+      });
+    }
   }
 };
