@@ -22,6 +22,7 @@
 		    <thead>
 		        <tr>
 		            <th>Rank</th>
+		            <th></th>
 		            <th>User</th>
 		            <th>Coins</th>
 		        </tr>
@@ -30,7 +31,8 @@
 			  <tbody *ngIf="allUsers">
 		        <tr *ngFor="let user of allUsers" >
 		            <td>{{user.rank}}</td>
-		            <td>{{user.username}}</td>
+		            <td><span class="uk-icon uk-icon-image uk-margin-right" [ngStyle]="{'background-image': 'url(' + user.profilePicture +')'}"></span></td>
+		            <td (click)="onUserClick(user.username)" class="click">{{user.username}}</td>
 		            <td>{{user.tokens}}</td>
 		        </tr>
 			  </tbody>  

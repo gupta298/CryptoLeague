@@ -18,6 +18,10 @@ export class UserService {
       return this.http.get(environment.apiUrl+'/user/', this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
+  getUserByUsername(username: string) {
+      return this.http.get(environment.apiUrl+'/user/'+username, this.authService.generateJwt()).map((response: Response) => response.json());
+  }
+
   getTotalUsers() {
       return this.http.get(environment.apiUrl+'/total_users/', this.authService.generateJwt()).map((response: Response) => response.json());
   }
@@ -31,7 +35,7 @@ export class UserService {
   }
 
   getAllUsernames() {
-    return this.http.get(environment.apiUrl+'/user/search', this.authService.generateJwt()).map((response: Response) => response.json());
+    return this.http.get(environment.apiUrl+'/user/search/', this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
   updateUser(user: User) {
