@@ -68,7 +68,8 @@ export class LeaderboardComponent implements OnInit {
               var tmpUser = {
                 username : result[i].username,
                 rank : (this.currentPage-1)*25 + (i+1),
-                tokens : result[i].tokens
+                tokens : result[i].tokens,
+                profilePicture: result[i].profilePicture
               };
               this.allUsers.push(tmpUser);
             } 
@@ -89,8 +90,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   onUserClick(username: String) {
-    this.router.navigate(['/']);
-    //this.router.navigate(['/user/'+username]);
+    this.router.navigate(['/user/'+username]);
   }
 
   ngOnInit() {

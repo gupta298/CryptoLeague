@@ -35,7 +35,7 @@ export class UserService {
   }
 
   getAllUsernames() {
-    return this.http.get(environment.apiUrl+'/user/search', this.authService.generateJwt()).map((response: Response) => response.json());
+    return this.http.get(environment.apiUrl+'/user/search/', this.authService.generateJwt()).map((response: Response) => response.json());
   }
 
   updateUser(user: User) {
