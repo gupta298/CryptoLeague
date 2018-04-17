@@ -16,9 +16,11 @@ export class UserProfileComponent implements OnInit {
 	loading: boolean = true;
 	username: string;
 	user: User;
+  currentUser: User;
   avgPortfolioGains: number = 0;
   avgRank: number = 0;
   totalPayout: number = 0;
+  sendingTokens: boolean = false;
 
   constructor(
   	private userService: UserService,
@@ -28,6 +30,7 @@ export class UserProfileComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.currentUser = this.authService.loadUserFromLocalStorage();
   	this.route.params.subscribe(params => {
       //debugger;
       if(!params['id']){

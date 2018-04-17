@@ -5,7 +5,7 @@
 		<div class="uk-container uk-margin-top">
 			<div class="userpic uk-margin-left@m">
 				<img src="{{user.profilePicture}}" />
-				<div class="uk-text-lead username">{{user.username}}</div>
+				<div class="uk-text-lead username">{{user.username}} <a href="" uk-toggle="target: #sendTokensModal" uk-tooltip="title: Send Tokens" class="sendTokens"><i class="fas fa-paper-plane fa-xs"></i></a></div>
 				<div class="uk-text-lead uk-light tokens">{{user.tokens}} tokens</div>
 			</div>
 
@@ -23,4 +23,40 @@
 			></app-user-past-leagues>
 		</div>
 	</div>
+</div>
+<div id="sendTokensModal" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Send Tokens</h2>
+        <form class="uk-form-stacked">
+			    <div class="uk-margin">
+			        <label class="uk-form-label" for="form-stacked-text">Recipient</label>
+			        <div class="uk-form-controls">
+			            <input class="uk-input uk-form-large" id="form-stacked-text" type="text" placeholder="{{user.username}}" disabled>
+			        </div>
+			    </div>
+			    <div class="uk-margin">
+			        <label class="uk-form-label" for="form-stacked-text">Wallet</label>
+			        <div class="uk-form-controls">
+			            <input class="uk-input uk-form-large" id="form-stacked-text" type="text" placeholder="CryptoLeague Wallet: {{currentUser.tokens}} tokens" disabled>
+			        </div>
+			    </div>
+			    <div class="uk-margin">
+			    	<label class="uk-form-label" for="form-stacked-text">Amount</label>
+			    	<div class="uk-form-controls">
+			        <div class="uk-inline full-width">
+			            <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: plus-circle" uk-tooltip="title: Send Max"></a>
+			            <input class="uk-input uk-form-large uk-form-width-large full-width" type="number">
+			        </div>
+			      </div>
+			    </div>
+			  </form>
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button class="uk-button uk-button-primary" type="button" *ngIf="!sendingTokens; else sendLoader">Send</button>
+            <ng-template #sendLoader>
+            	 <button class="uk-button" type="button" *ngIf="!sendingTokens; else sendLoader" disabled><div uk-spinner></div>
+</button>
+            </ng-template>
+        </p>
+    </div>
 </div>
