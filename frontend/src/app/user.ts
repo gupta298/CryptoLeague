@@ -1,7 +1,7 @@
 import { Serializable } from './serializable';
 
 export class User implements Serializable<User>{
-	id: number;
+		id: number;
     email: string;
     username: string;
     jwtToken: string;
@@ -10,19 +10,21 @@ export class User implements Serializable<User>{
     tokens: number;
     profilePicture: string;
     currentLeague_id: string;
-    pastLeagues: any[]; 
+    pastLeagues: any[];
+		email_notification: boolean;
 
     deserialize(input) {
     	this.id = input.id;
     	this.email = input.email;
-        this.username = input.username;
+      this.username = input.username;
     	this.jwtToken = input.jwtToken;
     	this.firstname = input.firstname;
     	this.lastname = input.lastname;
     	this.tokens = input.tokens;
     	this.profilePicture = input.profilePicture;
     	this.currentLeague_id = input.currentLeague_id;
-        this.pastLeagues = input.past_leagues;
+      this.pastLeagues = input.past_leagues;
+			this.email_notification = input.email_notification;
     	return this;
     }
 
@@ -37,7 +39,8 @@ export class User implements Serializable<User>{
             tokens : this.tokens,
             profilePicture : this.profilePicture,
             currentLeague_id : this.currentLeague_id,
-            pastLeagues: this.pastLeagues
+            pastLeagues: this.pastLeagues,
+						email_notification: this.email_notification
         }
         return obj;
     }
