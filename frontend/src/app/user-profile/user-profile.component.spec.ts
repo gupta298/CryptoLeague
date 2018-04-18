@@ -8,6 +8,7 @@ import { UserProfileComponent } from './user-profile.component';
 import { HttpModule, Http, Headers, Response, RequestOptions } from '@angular/http';
 import { AuthenticationService, UserService, AlertService } from '../services/index'; 
 import { User } from '../user';
+import 'rxjs/Rx';
 
 
 
@@ -52,7 +53,7 @@ describe('UserProfileComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should populate past leagues table', () => {
+  it('should populate table', () => {
     expect(fixture.nativeElement.querySelector('.uk-card-large').innerText).toContain("Leagues Participated:");
   });
 
