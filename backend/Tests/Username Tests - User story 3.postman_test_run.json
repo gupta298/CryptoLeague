@@ -1,0 +1,354 @@
+{
+	"id": "010cf48e-bf69-421e-a318-03b3b6187d6f",
+	"name": "Username Tests - User story 3",
+	"allTests": [],
+	"timestamp": "2018-04-18T06:36:00.525Z",
+	"collection_id": "4856c4b7-c323-4193-a443-6ee4c7303a2a",
+	"folder_id": "9041ee0b-109b-4adc-8e9c-eea705349dea",
+	"target_type": "folder",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "4856c4b7-c323-4193-a443-6ee4c7303a2a",
+		"name": "CryptoLeague",
+		"description": "",
+		"auth": null,
+		"events": [],
+		"variables": [],
+		"order": [],
+		"folders_order": [
+			"9041ee0b-109b-4adc-8e9c-eea705349dea",
+			"c812e1e2-e03b-434d-a2ec-fd9d4a2af5e6",
+			"556d0e53-635f-4c7a-bb7c-975d5826eac9",
+			"2a5eec9a-121b-4bae-81f4-85182ce44ac6",
+			"4242748e-054f-499f-9ff0-9c795e4ccc45",
+			"51c45fb4-7c03-467c-aefa-9aedf332a0f4",
+			"b95e9415-785a-40c4-92f5-8191f2783ea3"
+		],
+		"owner": "3846624",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": {
+		"id": "9041ee0b-109b-4adc-8e9c-eea705349dea",
+		"name": "Username Tests - User story 3",
+		"description": "",
+		"auth": {
+			"type": "bearer",
+			"bearer": [
+				{
+					"key": "token",
+					"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YWM5NDllNGE0YmM0ZTQ1ODAyYzgzMDciLCJwYXN0X2xlYWd1ZXMiOltdLCJpZCI6IjEwMjA3NDYyMDU4MzA0Nzc3OTA1NiIsImVtYWlsIjoiYm9iYnkuZ3VwdGExMTVAZ21haWwuY29tIiwibGFzdG5hbWUiOiJHdXB0YSIsImZpcnN0bmFtZSI6IkJvYmJ5IiwidXNlcm5hbWUiOiJCb2JieUciLCJwcm9maWxlUGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS8tWGRVSXFkTWtDV0EvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvNDI1MnJzY2J2NU0vcGhvdG8uanBnP3N6PTUwMCIsInRva2VucyI6MjAwLCJjdXJyZW50TGVhZ3VlX2lkIjpudWxsLCJlbWFpbF9ub3RpZmljYXRpb24iOnRydWUsImlhdCI6MTUyNDAyMDYwMCwiZXhwIjoxNTI0MTA3MDAwLCJhdWQiOiJ5b3Vyc2l0ZS5uZXQiLCJpc3MiOiJhY2NvdW50cy5leGFtcGxlc29mdC5jb20iLCJzdWIiOiIxMDIwNzQ2MjA1ODMwNDc3NzkwNTYifQ.FFjf3TtqzUV_wGemlh4reySyvidHG3QEMACd4URyag0"
+				}
+			]
+		},
+		"events": null,
+		"collection": "4856c4b7-c323-4193-a443-6ee4c7303a2a",
+		"folder": null,
+		"order": [
+			"46fd4803-72ba-4b2a-88ae-bf90c789f832",
+			"ea7b0aa4-793d-438f-a640-23c5487076aa",
+			"01215bdf-3b21-4647-b82f-a5dc5090f354",
+			"5c888fbd-ec9d-4ba5-894c-8d82f229e98a"
+		],
+		"folders_order": [],
+		"type": "folder",
+		"depth": 1
+	},
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "User with valid username in the params",
+			"id": "46fd4803-72ba-4b2a-88ae-bf90c789f832",
+			"url": "http://localhost:3000/user/search?username=Bob",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass",
+				"Schema is valid": true,
+				"Expect all elements to start with the username provided": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Expect all elements to start with the username provided": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"464"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Schema is valid": true,
+					"Expect all elements to start with the username provided": true
+				}
+			],
+			"time": "464",
+			"totalRequestTime": "464",
+			"iterationResults": {}
+		},
+		{
+			"name": "User with invalid username in the params",
+			"id": "ea7b0aa4-793d-438f-a640-23c5487076aa",
+			"url": "http://localhost:3000/user/search?username=",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass",
+				"Schema is valid": true,
+				"Expect all elements to start with the username provided": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Expect all elements to start with the username provided": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"394"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Schema is valid": true,
+					"Expect all elements to start with the username provided": true
+				}
+			],
+			"time": "394",
+			"totalRequestTime": "394",
+			"iterationResults": {}
+		},
+		{
+			"name": "Validate User JWT",
+			"id": "01215bdf-3b21-4647-b82f-a5dc5090f354",
+			"url": "http://localhost:3000/user/search/",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass",
+				"Schema is valid": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"449"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Schema is valid": true
+				}
+			],
+			"time": "449",
+			"totalRequestTime": "449",
+			"iterationResults": {}
+		},
+		{
+			"name": "Invalid User JWT",
+			"id": "5c888fbd-ec9d-4ba5-894c-8d82f229e98a",
+			"url": "http://localhost:3000/user/search",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized",
+				"detail": {
+					"name": "Unauthorized",
+					"detail": "Similar to 403 Forbidden, but specifically for use when authentication is possible but has failed or not yet been provided. The response must include a WWW-Authenticate header field containing a challenge applicable to the requested resource."
+				}
+			},
+			"tests": {
+				"name": "Status code is 401",
+				"status": "pass",
+				"Schema is valid": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"8"
+			],
+			"allTests": [
+				{
+					"Status code is 401": true,
+					"Schema is valid": true
+				}
+			],
+			"time": "8",
+			"totalRequestTime": "8",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 10,
+	"totalFail": 0,
+	"totalTime": 1315,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "User with valid username in the params",
+			"id": "46fd4803-72ba-4b2a-88ae-bf90c789f832",
+			"url": "http://localhost:3000/user/search?username=Bob",
+			"time": "2018-04-18T06:36:00.525Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Expect all elements to start with the username provided": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "User with invalid username in the params",
+			"id": "ea7b0aa4-793d-438f-a640-23c5487076aa",
+			"url": "http://localhost:3000/user/search?username=",
+			"time": "2018-04-18T06:36:00.525Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Expect all elements to start with the username provided": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Validate User JWT",
+			"id": "01215bdf-3b21-4647-b82f-a5dc5090f354",
+			"url": "http://localhost:3000/user/search/",
+			"time": "2018-04-18T06:36:00.525Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Invalid User JWT",
+			"id": "5c888fbd-ec9d-4ba5-894c-8d82f229e98a",
+			"url": "http://localhost:3000/user/search",
+			"time": "2018-04-18T06:36:00.525Z",
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized",
+				"detail": {
+					"name": "Unauthorized",
+					"detail": "Similar to 403 Forbidden, but specifically for use when authentication is possible but has failed or not yet been provided. The response must include a WWW-Authenticate header field containing a challenge applicable to the requested resource."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}

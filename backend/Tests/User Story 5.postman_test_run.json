@@ -1,0 +1,270 @@
+{
+	"id": "a38875fc-83e0-4122-a825-54789b6bf28c",
+	"name": "User Story 5",
+	"allTests": [],
+	"timestamp": "2018-04-18T06:36:47.696Z",
+	"collection_id": "4856c4b7-c323-4193-a443-6ee4c7303a2a",
+	"folder_id": "4242748e-054f-499f-9ff0-9c795e4ccc45",
+	"target_type": "folder",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "4856c4b7-c323-4193-a443-6ee4c7303a2a",
+		"name": "CryptoLeague",
+		"description": "",
+		"auth": null,
+		"events": [],
+		"variables": [],
+		"order": [],
+		"folders_order": [
+			"9041ee0b-109b-4adc-8e9c-eea705349dea",
+			"c812e1e2-e03b-434d-a2ec-fd9d4a2af5e6",
+			"556d0e53-635f-4c7a-bb7c-975d5826eac9",
+			"2a5eec9a-121b-4bae-81f4-85182ce44ac6",
+			"4242748e-054f-499f-9ff0-9c795e4ccc45",
+			"51c45fb4-7c03-467c-aefa-9aedf332a0f4",
+			"b95e9415-785a-40c4-92f5-8191f2783ea3"
+		],
+		"owner": "3846624",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": {
+		"id": "4242748e-054f-499f-9ff0-9c795e4ccc45",
+		"name": "User Story 5",
+		"description": "",
+		"auth": null,
+		"events": null,
+		"collection": "4856c4b7-c323-4193-a443-6ee4c7303a2a",
+		"folder": null,
+		"order": [
+			"f4d8c55f-5aad-4188-b9b1-74d916653829",
+			"bcc3eefa-ea92-4048-bed0-bf26a3b71f15",
+			"a12646d0-533f-4fc5-9099-b7e2d749ebcf"
+		],
+		"folders_order": [],
+		"type": "folder",
+		"depth": 1
+	},
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "Validate User JWT",
+			"id": "f4d8c55f-5aad-4188-b9b1-74d916653829",
+			"url": "http://localhost:3000/user",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Status code is 200",
+				"status": "pass",
+				"Schema is valid": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"571"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Schema is valid": true
+				}
+			],
+			"time": "571",
+			"totalRequestTime": "571",
+			"iterationResults": {}
+		},
+		{
+			"name": "Invalid User JWT",
+			"id": "bcc3eefa-ea92-4048-bed0-bf26a3b71f15",
+			"url": "http://localhost:3000/user",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized",
+				"detail": {
+					"name": "Unauthorized",
+					"detail": "Similar to 403 Forbidden, but specifically for use when authentication is possible but has failed or not yet been provided. The response must include a WWW-Authenticate header field containing a challenge applicable to the requested resource."
+				}
+			},
+			"tests": {
+				"name": "Status code is 401",
+				"status": "pass",
+				"Schema is valid": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"20"
+			],
+			"allTests": [
+				{
+					"Status code is 401": true,
+					"Schema is valid": true
+				}
+			],
+			"time": "20",
+			"totalRequestTime": "20",
+			"iterationResults": {}
+		},
+		{
+			"name": "Invalid UserID",
+			"id": "a12646d0-533f-4fc5-9099-b7e2d749ebcf",
+			"url": "http://localhost:3000/user",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized",
+				"detail": {
+					"name": "Unauthorized",
+					"detail": "Similar to 403 Forbidden, but specifically for use when authentication is possible but has failed or not yet been provided. The response must include a WWW-Authenticate header field containing a challenge applicable to the requested resource."
+				}
+			},
+			"tests": {
+				"name": "Status code is 401",
+				"status": "pass",
+				"Schema is valid": true,
+				"Error message is valid": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Error message is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"7"
+			],
+			"allTests": [
+				{
+					"Status code is 401": true,
+					"Schema is valid": true,
+					"Error message is valid": true
+				}
+			],
+			"time": "7",
+			"totalRequestTime": "7",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 7,
+	"totalFail": 0,
+	"totalTime": 598,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "Validate User JWT",
+			"id": "f4d8c55f-5aad-4188-b9b1-74d916653829",
+			"url": "http://localhost:3000/user",
+			"time": "2018-04-18T06:36:47.696Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Invalid User JWT",
+			"id": "bcc3eefa-ea92-4048-bed0-bf26a3b71f15",
+			"url": "http://localhost:3000/user",
+			"time": "2018-04-18T06:36:47.696Z",
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized",
+				"detail": {
+					"name": "Unauthorized",
+					"detail": "Similar to 403 Forbidden, but specifically for use when authentication is possible but has failed or not yet been provided. The response must include a WWW-Authenticate header field containing a challenge applicable to the requested resource."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Invalid UserID",
+			"id": "a12646d0-533f-4fc5-9099-b7e2d749ebcf",
+			"url": "http://localhost:3000/user",
+			"time": "2018-04-18T06:36:47.696Z",
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized",
+				"detail": {
+					"name": "Unauthorized",
+					"detail": "Similar to 403 Forbidden, but specifically for use when authentication is possible but has failed or not yet been provided. The response must include a WWW-Authenticate header field containing a challenge applicable to the requested resource."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Schema is valid": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Error message is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}

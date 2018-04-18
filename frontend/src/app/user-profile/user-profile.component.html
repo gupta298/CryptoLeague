@@ -3,9 +3,9 @@
 	</app-sidebar>
 	<div class="page-content" *ngIf="!loading">
 		<div class="uk-container uk-margin-top">
-			<div class="userpic uk-margin-left@m">
+			<div class="userpic uk-margin-left">
 				<img src="{{user.profilePicture}}" />
-				<div class="uk-text-lead username">{{user.username}} <a href="" uk-toggle="target: #sendTokensModal" uk-tooltip="title: Send Tokens" class="sendTokens"><i class="fas fa-paper-plane fa-xs"></i></a></div>
+				<div class="uk-text-lead username">{{user.username}} <a href="" uk-toggle="target: #sendTokensModal" uk-tooltip="title: Send Tokens" class="sendTokens" id="sendTokensButton" *ngIf="user.username != currentUser.username"><i class="fas fa-paper-plane fa-xs"></i></a></div>
 				<div class="uk-text-lead uk-light tokens">{{user.tokens}} tokens</div>
 			</div>
 
@@ -13,7 +13,7 @@
 				<div class="uk-margin-top">
 					<span class="uk-badge statsBadge">Leagues Participated: {{user.pastLeagues.length}}</span>
 					<span class="uk-badge statsBadge">Average Portfolio Gains: {{avgPortfolioGains | number:'1.2-2'}}%</span>
-					<span class="uk-badge statsBadge">Average Rank: {{avgRank}}</span>
+					<span class="uk-badge statsBadge">Average Rank: {{avgRank | number:'1.2-2'}}</span>
 					<span class="uk-badge statsBadge">Total Payout: {{totalPayout}}</span>
 				</div>
 
@@ -25,7 +25,7 @@
 	</div>
 </div>
 <div id="sendTokensModal" uk-modal *ngIf="user">
-    <div class="uk-modal-dialog uk-modal-body">
+    <div class="uk-modal-dialog uk-modal-body" *ngIf="!formSubmitted; else warning">
         <h2 class="uk-modal-title">Send Tokens</h2>
         <form class="uk-form-stacked">
 			    <div class="uk-margin">
@@ -51,12 +51,22 @@
 			    </div>
 			  </form>
         <p class="uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button" [disabled]="sendingTokens">Cancel</button>
-            <button class="uk-button uk-button-primary" type="button" *ngIf="!sendingTokens; else sendLoader" (click)="sendTokens()">Send</button>
-            <ng-template #sendLoader>
-            	 <button class="uk-button uk-button-default" type="button" disabled><div uk-spinner></div>
-</button>
-            </ng-template>
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button class="uk-button uk-button-primary" type="button" (click)="setFormSubmittedTrue()">Send</button>
         </p>
     </div>
+    <ng-template #warning>
+    	<div class="uk-modal-dialog uk-modal-body">
+	    	<h2 class="uk-modal-title">Confirm Transaction</h2>
+	    	<p>Are you sure you want to transfer <span class="uk-text-bold uk-text-danger">{{numTokens}}</span> tokens to <span class="uk-text-bold">{{user.username}}</span>? This action is irreversible and your tokens <span class="uk-text-bold">will</span> be transferred permanently.</p>
+	      <p class="uk-text-right">
+	          <button class="uk-button uk-button-default uk-modal-close" type="button" (click)="setFormSubmittedFalse()" [disabled]="sendingTokens">Cancel</button>
+	          <button class="uk-button uk-button-primary" type="button" *ngIf="!sendingTokens; else sendLoader" (click)="sendTokens()">Send</button>
+	            <ng-template #sendLoader>
+	            	 <button class="uk-button uk-button-default" type="button" disabled><div uk-spinner></div>
+	</button>
+	            </ng-template>
+	      </p>
+	    </div>
+    </ng-template>
 </div>

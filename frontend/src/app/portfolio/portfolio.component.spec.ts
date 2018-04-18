@@ -7,6 +7,8 @@ import { PortfolioComponent } from './portfolio.component';
 
 import { AuthenticationService, MarketService, PortfolioService, AlertService } from '../services';
 import { AuthenticationServiceStub } from '../stubs/authentication.service.stub'
+import { PortfolioServiceStub } from '../stubs/portfolio.service.stub';
+import { MarketServiceStub } from '../stubs/market.service.stub';
 
 import { Portfolio } from '../portfolio';
 
@@ -14,19 +16,17 @@ describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
   let fixture: ComponentFixture<PortfolioComponent>;
   let debugTable: any;
+  let portfolioService: PortfolioService;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],
       declarations: [ PortfolioComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, MarketService, PortfolioService, AlertService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, { provide: PortfolioService, useClass: PortfolioServiceStub }, MarketService, AlertService ]
     })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(PortfolioComponent);
     component = fixture.componentInstance;
+    portfolioService = TestBed.get(PortfolioService);
     fixture.detectChanges();
     debugTable = fixture.debugElement.queryAll(By.css('.ng-test-portfolio'));
   });
@@ -36,6 +36,7 @@ describe('PortfolioComponent', () => {
   });
 
   it('should populate modal and with the right message', () => {
+    fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('.ng-test-portfolio').innerText).toContain("validating");
   });
 
@@ -70,19 +71,17 @@ describe('Portfolio table list view', () => {
   let debugTable: any;
   let component: PortfolioComponent;
   let fixture: ComponentFixture<PortfolioComponent>;
+  let portfolioService: PortfolioService;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],
       declarations: [ PortfolioComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, MarketService, PortfolioService, AlertService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, { provide: MarketService, useClass: MarketServiceStub }, { provide: PortfolioService, useClass: PortfolioServiceStub }, AlertService ]
     })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(PortfolioComponent);
     component = fixture.componentInstance;
+    portfolioService = TestBed.get(PortfolioService);
     let portfolio = [{"name":"bit","ticker":"BTC", "percentage":30, "exp_coins": 20, "price":"123"}, {"name":"bit","ticker":"BTC", "percentage":30, "exp_coins": 20, "price":"123"}];
     component.portfolioFieldArray = portfolio;
     component.hideCards = true;

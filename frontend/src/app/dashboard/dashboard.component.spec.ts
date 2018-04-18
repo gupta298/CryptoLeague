@@ -7,6 +7,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 
 import { AuthenticationService, NewsService, UserService, LeagueService, AlertService } from '../services';
 import { AuthenticationServiceStub } from '../stubs/authentication.service.stub';
+import { UserServiceStub } from '../stubs/user.service.stub';
 
 import { User } from '../user';
 import { League } from '../league'
@@ -14,19 +15,17 @@ import { League } from '../league'
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
+  let userService: UserService;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, RouterTestingModule ],
       declarations: [ DashboardComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, NewsService, UserService, LeagueService, AlertService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, NewsService, { provide: UserService, useClass: UserServiceStub }, LeagueService, AlertService ]
     })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
+    userService = TestBed.get(UserService);
     let league = new League();
     league.league_id = 3;
     league.league_type = "Bronze League";
