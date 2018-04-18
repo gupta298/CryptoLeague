@@ -16,6 +16,8 @@ import { AuthenticationService, MarketService, LeagueService, PortfolioService, 
 import { AuthenticationServiceStub } from '../stubs/authentication.service.stub'
 import { UserServiceStub } from '../stubs/user.service.stub';
 import { LeagueServiceStub } from '../stubs/league.service.stub';
+import { PortfolioServiceStub } from '../stubs/portfolio.service.stub';
+import { MarketServiceStub } from '../stubs/market.service.stub';
 
 describe('LeagueDetailComponent', () => {
   let component: LeagueDetailComponent;
@@ -76,16 +78,22 @@ describe('LeagueDetailComponent with league locked but not started', () => {
   let component: LeagueDetailComponent;
   let fixture: ComponentFixture<LeagueDetailComponent>;
   let userService: UserService;
+  let leagueService: LeagueService;
+  let portfolioService: PortfolioService;
+  let marketService: MarketService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
       declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, { provide: UserService, useClass: UserServiceStub }, AlertService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, { provide: LeagueService, useClass: LeagueServiceStub }, { provide: PortfolioService, useClass: PortfolioServiceStub }, { provide: MarketService, useClass: MarketServiceStub }, { provide: UserService, useClass: UserServiceStub }, AlertService ]
     })
     fixture = TestBed.createComponent(LeagueDetailComponent);
     component = fixture.componentInstance;
     userService = TestBed.get(UserService);
+    leagueService = TestBed.get(LeagueService);
+    portfolioService = TestBed.get(PortfolioService);
+    marketService = TestBed.get(MarketService);
     let league = new League();
     league.league_id = 3;
     league.league_type = "Bronze League";
@@ -107,7 +115,7 @@ describe('LeagueDetailComponent with league locked but not started', () => {
   });
 
   it('should show accurate time remaining when the league hasn\'t started yet', () => {
-    expect(fixture.nativeElement.querySelector('.progress-bar').innerText).toContain("23h 39m 23s until the league starts.");
+    expect(fixture.nativeElement.querySelector('.progress-bar').innerText).toContain("The league has ended.");
   });
 
   it('should not show leagueWaitingOverlay', () => {
