@@ -7,7 +7,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 
 import { AuthenticationService, MarketService, AlertService } from '../services/index'; 
 import { MarketServiceStub } from '../stubs/market.service.stub';
-
+import { AuthenticationServiceStub } from '../stubs/authentication.service.stub' 
 import { User } from '../user';
 
 describe('MarketComponent', () => {
@@ -15,29 +15,11 @@ describe('MarketComponent', () => {
   let fixture: ComponentFixture<MarketComponent>;
   let marketService: MarketServiceStub;
 
-  let userServiceStub = {
-    loadUserFromLocalStorage() {
-      let currentUser = new User();
-      currentUser.firstname = "Nisarg";
-      return currentUser;
-    },
-
-    generateJwt() {
-      let jwtToken = localStorage.getItem('jwtToken');
-        if (jwtToken) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + jwtToken });
-            return new RequestOptions({ headers: headers });
-        } else {
-            return null;
-        }
-    }
-};
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, RouterTestingModule ],
       declarations: [ MarketComponent, SidebarComponent ],
-      providers: [ {provide: AuthenticationService, useValue: userServiceStub }, {provide: MarketService, useValue: marketService}, AlertService ]
+      providers: [ {provide: AuthenticationService, useClass: AuthenticationServiceStub }, {provide: MarketService, useValue: marketService}, AlertService ]
     })
     marketService = TestBed.get(MarketService);
     fixture = TestBed.createComponent(MarketComponent);
