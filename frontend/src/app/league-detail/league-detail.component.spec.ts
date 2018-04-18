@@ -14,23 +14,22 @@ import { League } from '../league'
 
 import { AuthenticationService, MarketService, LeagueService, PortfolioService, UserService, AlertService } from '../services';
 import { AuthenticationServiceStub } from '../stubs/authentication.service.stub'
+import { UserServiceStub } from '../stubs/user.service.stub';
 
 describe('LeagueDetailComponent', () => {
   let component: LeagueDetailComponent;
   let fixture: ComponentFixture<LeagueDetailComponent>;
+  let userService: UserService;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
       declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, UserService, AlertService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, { provide: UserService, useClass: UserServiceStub }, AlertService ]
     })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(LeagueDetailComponent);
     component = fixture.componentInstance;
+    userService = TestBed.get(UserService);
     fixture.detectChanges();
   });
 
@@ -42,19 +41,17 @@ describe('LeagueDetailComponent', () => {
 describe('LeagueDetailComponent with waiting room', () => {
   let component: LeagueDetailComponent;
   let fixture: ComponentFixture<LeagueDetailComponent>;
+  let userService: UserService;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
       declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService , UserService, AlertService]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService , { provide: UserService, useClass: UserServiceStub }, AlertService]
     })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(LeagueDetailComponent);
     component = fixture.componentInstance;
+    userService = TestBed.get(UserService);
     let league = new League();
     league.league_id = 3;
     league.league_type = "Bronze League";
@@ -77,19 +74,17 @@ describe('LeagueDetailComponent with waiting room', () => {
 describe('LeagueDetailComponent with league locked but not started', () => {
   let component: LeagueDetailComponent;
   let fixture: ComponentFixture<LeagueDetailComponent>;
+  let userService: UserService;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
       declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, UserService, AlertService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, { provide: UserService, useClass: UserServiceStub }, AlertService ]
     })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(LeagueDetailComponent);
     component = fixture.componentInstance;
+    userService = TestBed.get(UserService);
     let league = new League();
     league.league_id = 3;
     league.league_type = "Bronze League";
@@ -124,19 +119,17 @@ describe('LeagueDetailComponent with league locked but not started', () => {
 describe('LeagueDetailComponent with league locked and started', () => {
   let component: LeagueDetailComponent;
   let fixture: ComponentFixture<LeagueDetailComponent>;
+  let userService: UserService;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
       declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, UserService, AlertService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, { provide: UserService, useClass: UserServiceStub }, AlertService ]
     })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(LeagueDetailComponent);
     component = fixture.componentInstance;
+    userService = TestBed.get(UserService);
     let league = new League();
     league.league_id = 3;
     league.league_type = "Bronze League";
@@ -169,19 +162,17 @@ describe('LeagueDetailComponent with league locked and started', () => {
 describe('LeagueDetailComponent with league ended', () => {
   let component: LeagueDetailComponent;
   let fixture: ComponentFixture<LeagueDetailComponent>;
+  let userService: UserService;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],      
       declarations: [ LeagueDetailComponent, LeagueWaitingOverlayComponent, LeagueStatisticsComponent, PortfolioComponent, SidebarComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, UserService, AlertService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, LeagueService, PortfolioService, MarketService, { provide: UserService, useClass: UserServiceStub }, AlertService ]
     })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(LeagueDetailComponent);
     component = fixture.componentInstance;
+    userService = TestBed.get(UserService);
     let league = new League();
     league.league_id = 4;
     league.league_type = "Bronze League";
