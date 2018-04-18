@@ -39,6 +39,7 @@ describe('UserProfileComponent', () => {
       currentUser.pastLeagues = [];
       currentUser.email_notification = false;
       component.user = currentUser;
+      fixture.detectChanges();
   });
 
   // beforeEach(() => {
@@ -55,44 +56,36 @@ describe('UserProfileComponent', () => {
   it('should populate table', () => {
     expect(fixture.nativeElement.querySelector('.uk-card-large').innerText).toContain("Leagues Participated:");
   });
-
+  
 });
 
 describe('UserProfileStatistics', () => {
   let component: UserProfileComponent;
   let fixture: ComponentFixture<UserProfileComponent>;
-
-  let userServiceStub = {
-    loadUserFromLocalStorage() {
-      let currentUser = new User();
-      currentUser.firstname = "Nisarg";
-      return currentUser;
-    },
-
-    generateJwt() {
-      let jwtToken = localStorage.getItem('jwtToken');
-        if (jwtToken) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + jwtToken });
-            return new RequestOptions({ headers: headers });
-        } else {
-            return null;
-        }
-    }
-  };
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [ HttpModule, RouterTestingModule, FormsModule ],
-      declarations: [ UserProfileComponent, SidebarComponent, UserPastLeaguesComponent ],
-      providers: [ {provide: AuthenticationService, useValue: userServiceStub }, UserService, AlertService ],
-    })
-    .compileComponents();
-  }));
+  let userService: UserService;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ FormsModule, HttpModule, RouterTestingModule ],
+      declarations: [ UserProfileComponent, SidebarComponent, UserPastLeaguesComponent ],
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, { provide: UserService, useClass: UserServiceStub }, AlertService ]
+    });
     fixture = TestBed.createComponent(UserProfileComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    userService = TestBed.get(UserService);
+     let currentUser = new User();
+      currentUser.firstname = "John";
+      currentUser.lastname = "Doe";
+      currentUser.username = "johndoe";
+      currentUser.email = "johndoe@email.com";
+      currentUser.jwtToken = "";
+      currentUser.profilePicture = "";
+      currentUser.tokens = 25;
+      currentUser.currentLeague_id = null;
+      currentUser.pastLeagues = [];
+      currentUser.email_notification = false;
+      component.user = currentUser;
+      fixture.detectChanges();
   });
 
   it('should populate the statistics card', () => {
