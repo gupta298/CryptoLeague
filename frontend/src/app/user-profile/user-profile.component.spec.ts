@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpModule, Http, Headers, Response, RequestOptions } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Observable } from 'rxjs/Rx';
 
 import { UserProfileComponent } from './user-profile.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -56,7 +58,7 @@ describe('UserProfileComponent', () => {
   it('should populate table', () => {
     expect(fixture.nativeElement.querySelector('.uk-card-large').innerText).toContain("Leagues Participated:");
   });
-  
+
 });
 
 describe('UserProfileStatistics', () => {
@@ -68,7 +70,7 @@ describe('UserProfileStatistics', () => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],
       declarations: [ UserProfileComponent, SidebarComponent, UserPastLeaguesComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, { provide: UserService, useClass: UserServiceStub }, AlertService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, { provide: UserService, useClass: UserServiceStub }, AlertService, { provide: ActivatedRoute, useValue: { params: Observable.of({id: 'fakeTwo'})}} ]
     });
     fixture = TestBed.createComponent(UserProfileComponent);
     component = fixture.componentInstance;
@@ -84,7 +86,19 @@ describe('UserProfileStatistics', () => {
       currentUser.currentLeague_id = null;
       currentUser.pastLeagues = [];
       currentUser.email_notification = false;
-      component.user = currentUser;
+      component.currentUser = currentUser;
+      let user = new User();
+      user.firstname = "John";
+      user.lastname = "Doe";
+      user.username = "notjohndoe";
+      user.email = "johndoe@email.com";
+      user.jwtToken = "";
+      user.profilePicture = "";
+      user.tokens = 25;
+      user.currentLeague_id = null;
+      user.pastLeagues = [];
+      user.email_notification = false;
+      component.user = user;
       fixture.detectChanges();
   });
 
