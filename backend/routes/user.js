@@ -61,6 +61,10 @@ router.put('/',
                 result.username = req.body.username;
               }
 
+              if (result.username.toString() === 'null_out' || result.username.toString() === 'search' || result.username.toString() === 'send_tokens') {
+                return res.send(400, { "message" : "The provided username can not be set!" });
+              }
+
               mongo.updateUser(result, function(error, token) {
                 if (error) {
                   res.send(400, { "message" : "Error updating the user profile!" });
@@ -129,8 +133,11 @@ router.get('/null_out', passport.authenticate(['jwt'], { session: false }), (req
  * @apiSuccess {JSON} Usernames Returns all of the username's of the current users.
 */
 router.get('/search', (req, res) => {
-  console.log("In search");
   var username = ".*";
+  var search_username = req.param('username');
+  if (search_username) {
+    username = search_username + ".*";
+  }
   mongo.getUserViaPartialUsername(username, function(error, result) {
     if (error) {
       res.send(400, { "message" : error });

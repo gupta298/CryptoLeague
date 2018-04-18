@@ -64,7 +64,7 @@ app.use('/', index);
 
 // User
 app.use('/auth', auth);
-app.use('/user', user);
+app.use('/user', passport.authenticate(['jwt'], { session: false }), user);
 app.use('/validate_user', passport.authenticate(['jwt'], { session: false }), validateUser);
 app.use('/user_rank', passport.authenticate(['jwt'], { session: false }), userRank);
 app.use('/total_users', passport.authenticate(['jwt'], { session: false }), totalUsers);
