@@ -23,6 +23,7 @@ export class UserProfileComponent implements OnInit {
   totalPayout: number = 0;
   sendingTokens: boolean = false;
   numTokens: number = 0;
+  formSubmitted: boolean = false;
 
   constructor(
   	private userService: UserService,
@@ -79,22 +80,34 @@ export class UserProfileComponent implements OnInit {
     this.sendingTokens = true;
     this.userService.sendTokens(this.user.username, this.numTokens).subscribe(
       result => {
-        UIkit.modal('#sendTokensModal').hide();
         console.log(result);
         this.authService.saveJwt(result.jwt);
         this.loadUsers();
         this.sendingTokens = false;
+        this.formSubmitted = false;
         this.alertService.success("Tokens Sent Successfully.");
+        UIkit.modal('#sendTokensModal').hide();
       }, error => {
         console.log(error);
         this.sendingTokens = false;
+        this.formSubmitted = false;
         this.alertService.error(JSON.parse(error._body).message);
+        UIkit.modal('#sendTokensModal').hide();
       }
     );
   }
 
   sendMax() {
     this.numTokens = this.currentUser.tokens - 25;
+  }
+
+  setFormSubmittedTrue() {
+    this.formSubmitted = true;
+  }
+
+  setFormSubmittedFalse() {
+    this.formSubmitted = false;
+    UIkit.modal('#sendTokensModal').hide();
   }
 
 }
