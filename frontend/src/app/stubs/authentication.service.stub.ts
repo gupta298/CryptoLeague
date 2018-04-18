@@ -7,8 +7,10 @@ export class AuthenticationServiceStub extends AuthenticationService {
       let currentUser = new User();
       currentUser.firstname = "John";
       currentUser.lastname = "Doe";
-      currentUser.username = "johndoe"
-      currentUser.email = "johndoe@email.com"
+      currentUser.username = "johndoe";
+      currentUser.email = "johndoe@email.com";
+      currentUser.jwtToken = "";
+      currentUser.profilePicture = "";
       currentUser.tokens = 25;
       currentUser.currentLeague_id = null;
       currentUser.pastLeagues = [];
