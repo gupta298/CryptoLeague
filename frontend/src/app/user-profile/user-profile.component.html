@@ -5,7 +5,7 @@
 		<div class="uk-container uk-margin-top">
 			<div class="userpic uk-margin-left">
 				<img src="{{user.profilePicture}}" />
-				<div class="uk-text-lead username">{{user.username}} <a href="" uk-toggle="target: #sendTokensModal" uk-tooltip="title: Send Tokens" class="sendTokens" *ngIf="user.username != currentUser.username"><i class="fas fa-paper-plane fa-xs"></i></a></div>
+				<div class="uk-text-lead username">{{user.username}} <a href="" uk-toggle="target: #sendTokensModal" uk-tooltip="title: Send Tokens" class="sendTokens" id="sendTokensButton" *ngIf="user.username != currentUser.username"><i class="fas fa-paper-plane fa-xs"></i></a></div>
 				<div class="uk-text-lead uk-light tokens">{{user.tokens}} tokens</div>
 			</div>
 
@@ -13,7 +13,7 @@
 				<div class="uk-margin-top">
 					<span class="uk-badge statsBadge">Leagues Participated: {{user.pastLeagues.length}}</span>
 					<span class="uk-badge statsBadge">Average Portfolio Gains: {{avgPortfolioGains | number:'1.2-2'}}%</span>
-					<span class="uk-badge statsBadge">Average Rank: {{avgRank}}</span>
+					<span class="uk-badge statsBadge">Average Rank: {{avgRank | number:'1.2-2'}}</span>
 					<span class="uk-badge statsBadge">Total Payout: {{totalPayout}}</span>
 				</div>
 
