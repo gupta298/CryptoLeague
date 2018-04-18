@@ -24,13 +24,13 @@ export class UserServiceStub extends UserService {
 
   getUserByUsername(username: string) :Observable<any>{
     let currentUser = {
-        "_id" : "5ab89e68fff7a779d365e078",
+        "_id" : "5ab89e68fff7a779d3653213",
         "past_leagues" : [],
-        "id" : "108553822349472014578",
-        "email" : "fake@one.com",
+        "id" : "1085538223494720145231",
+        "email" : "fake@two.com",
         "lastname" : "Player",
-        "firstname" : "TestOne",
-        "username" : "testOne",
+        "firstname" : "TestTwo",
+        "username" : "testTwo",
         "profilePicture" : "https://lh4.googleusercontent.com/-jjL-HnHxONw/AAAAAAAAAAI/AAAAAAAADF4/CT-HTv5PIow/photo.jpg?sz=500",
         "tokens" : 25,
         "currentLeague_id" : null
