@@ -105,9 +105,54 @@ describe('UserProfileStatistics', () => {
   it('should populate the statistics card', () => {
     expect(fixture.nativeElement.querySelector('.userpic').innerText).toContain("tokens");
   });
+});
+
+describe('SendTokens', () => {
+  let component: UserProfileComponent;
+  let fixture: ComponentFixture<UserProfileComponent>;
+  let userService: UserService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ FormsModule, HttpModule, RouterTestingModule ],
+      declarations: [ UserProfileComponent, SidebarComponent, UserPastLeaguesComponent ],
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, { provide: UserService, useClass: UserServiceStub }, AlertService, { provide: ActivatedRoute, useValue: { params: Observable.of({id: 'fakeTwo'})}} ]
+    });
+    fixture = TestBed.createComponent(UserProfileComponent);
+    component = fixture.componentInstance;
+    userService = TestBed.get(UserService);
+     let currentUser = new User();
+      currentUser.firstname = "John";
+      currentUser.lastname = "Doe";
+      currentUser.username = "johndoe";
+      currentUser.email = "johndoe@email.com";
+      currentUser.jwtToken = "";
+      currentUser.profilePicture = "";
+      currentUser.tokens = 25;
+      currentUser.currentLeague_id = null;
+      currentUser.pastLeagues = [];
+      currentUser.email_notification = false;
+      component.currentUser = currentUser;
+      let user = new User();
+      user.firstname = "John";
+      user.lastname = "Doe";
+      user.username = "notjohndoe";
+      user.email = "johndoe@email.com";
+      user.jwtToken = "";
+      user.profilePicture = "";
+      user.tokens = 25;
+      user.currentLeague_id = null;
+      user.pastLeagues = [];
+      user.email_notification = false;
+      component.user = user;
+      fixture.detectChanges();
+  });
 
   it('should populate sendTokens icon', () => {
     expect(fixture.nativeElement.querySelector('.fa-paper-plane')).not.toBeNull(true);
   });
 
+  it('should populate the modal', () => {
+    expect(fixture.nativeElement.querySelector('.fa-paper-plane')).not.toBeNull(true);
+  });
 });
