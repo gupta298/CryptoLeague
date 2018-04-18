@@ -3,9 +3,9 @@
 	</app-sidebar>
 	<div class="page-content" *ngIf="!loading">
 		<div class="uk-container uk-margin-top">
-			<div class="userpic uk-margin-left@m">
+			<div class="userpic uk-margin-left">
 				<img src="{{user.profilePicture}}" />
-				<div class="uk-text-lead username">{{user.username}} <a href="" uk-toggle="target: #sendTokensModal" uk-tooltip="title: Send Tokens" class="sendTokens"><i class="fas fa-paper-plane fa-xs"></i></a></div>
+				<div class="uk-text-lead username">{{user.username}} <a href="" uk-toggle="target: #sendTokensModal" uk-tooltip="title: Send Tokens" class="sendTokens" *ngIf="user.username != currentUser.username"><i class="fas fa-paper-plane fa-xs"></i></a></div>
 				<div class="uk-text-lead uk-light tokens">{{user.tokens}} tokens</div>
 			</div>
 
