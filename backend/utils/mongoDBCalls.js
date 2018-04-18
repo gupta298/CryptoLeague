@@ -891,7 +891,7 @@ module.exports = {
           callback("We are currently facing some technically difficulties, please try again later!", null);
         } else {
           var dbo = db.db("cryptoleague_database");
-          dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {currentLeague_id: user.currentLeague_id, past_leagues: user.past_leagues}},
+          dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(user._id)}, {$set: {currentLeague_id: user.currentLeague_id}},
             function(err, res) {
               if (err) {
                 callback("Error existing the league!", null);
@@ -1398,12 +1398,12 @@ module.exports = {
                       callback("Receiver does not exist", null);
                     }
                   }
-                });    
+                });
               } else {
                 callback("Payee does not exist", null);
               }
             }
-          });        
+          });
         }
       });
     }
