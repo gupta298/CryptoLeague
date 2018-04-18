@@ -6,12 +6,14 @@ import { MarketComponent } from './market.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
 import { AuthenticationService, MarketService, AlertService } from '../services/index'; 
+import { MarketServiceStub } from '../stubs/market.service.stub';
 
 import { User } from '../user';
 
 describe('MarketComponent', () => {
   let component: MarketComponent;
   let fixture: ComponentFixture<MarketComponent>;
+  let marketService: MarketServiceStub;
 
   let userServiceStub = {
     loadUserFromLocalStorage() {
@@ -31,16 +33,13 @@ describe('MarketComponent', () => {
     }
 };
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, RouterTestingModule ],
       declarations: [ MarketComponent, SidebarComponent ],
-      providers: [ {provide: AuthenticationService, useValue: userServiceStub }, MarketService, AlertService ]
+      providers: [ {provide: AuthenticationService, useValue: userServiceStub }, {provide: MarketService, useValue: marketService}, AlertService ]
     })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
+    marketService = TestBed.get(MarketService);
     fixture = TestBed.createComponent(MarketComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
