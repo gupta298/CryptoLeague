@@ -29,7 +29,7 @@ describe('LeaderboardComponent', () => {
             return null;
         }
     }
-};
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -48,5 +48,9 @@ describe('LeaderboardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('search bar should populate', () => {
+    expect(fixture.nativeElement.querySelector('.uk-search-input')).not.toBeNull();
   });
 });
