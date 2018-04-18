@@ -8,6 +8,7 @@ import { PortfolioComponent } from './portfolio.component';
 import { AuthenticationService, MarketService, PortfolioService, AlertService } from '../services';
 import { AuthenticationServiceStub } from '../stubs/authentication.service.stub'
 import { PortfolioServiceStub } from '../stubs/portfolio.service.stub';
+import { MarketServiceStub } from '../stubs/market.service.stub';
 
 import { Portfolio } from '../portfolio';
 
@@ -70,15 +71,17 @@ describe('Portfolio table list view', () => {
   let debugTable: any;
   let component: PortfolioComponent;
   let fixture: ComponentFixture<PortfolioComponent>;
+  let portfolioService: PortfolioService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule, RouterTestingModule ],
       declarations: [ PortfolioComponent ],
-      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, MarketService, { provide: PortfolioService, useClass: PortfolioServiceStub }, AlertService ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, { provide: MarketService, useClass: MarketServiceStub }, { provide: PortfolioService, useClass: PortfolioServiceStub }, AlertService ]
     })
     fixture = TestBed.createComponent(PortfolioComponent);
     component = fixture.componentInstance;
+    portfolioService = TestBed.get(PortfolioService);
     let portfolio = [{"name":"bit","ticker":"BTC", "percentage":30, "exp_coins": 20, "price":"123"}, {"name":"bit","ticker":"BTC", "percentage":30, "exp_coins": 20, "price":"123"}];
     component.portfolioFieldArray = portfolio;
     component.hideCards = true;
