@@ -19,11 +19,12 @@ describe('MarketComponent', () => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, RouterTestingModule ],
       declarations: [ MarketComponent, SidebarComponent ],
-      providers: [ {provide: AuthenticationService, useClass: AuthenticationServiceStub }, {provide: MarketService, useValue: marketService}, AlertService ]
+      providers: [ {provide: AuthenticationService, useClass: AuthenticationServiceStub }, {provide: MarketService, useClass: MarketServiceStub}, AlertService ]
     })
     marketService = TestBed.get(MarketService);
     fixture = TestBed.createComponent(MarketComponent);
     component = fixture.componentInstance;
+    marketService = TestBed.get(MarketService);
     fixture.detectChanges();
   });
 
