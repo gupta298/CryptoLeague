@@ -153,6 +153,8 @@ describe('SendTokens', () => {
   });
 
   it('should populate the modal', () => {
-    expect(fixture.nativeElement.querySelector('.fa-paper-plane')).not.toBeNull(true);
+    let button = fixture.debugElement.nativeElement.querySelector('.fa-paper-plane');
+    button.click();
+    expect(fixture.nativeElement.querySelector('.uk-modal-dialog')).not.toBeNull("Recipient");
   });
 });
