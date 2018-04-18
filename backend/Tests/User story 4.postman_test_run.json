@@ -1,0 +1,214 @@
+{
+	"id": "b5ee5c9d-d3d1-43ca-baa2-0aa14ced09a9",
+	"name": "User story 4",
+	"allTests": [],
+	"timestamp": "2018-04-18T06:36:22.217Z",
+	"collection_id": "4856c4b7-c323-4193-a443-6ee4c7303a2a",
+	"folder_id": "556d0e53-635f-4c7a-bb7c-975d5826eac9",
+	"target_type": "folder",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "4856c4b7-c323-4193-a443-6ee4c7303a2a",
+		"name": "CryptoLeague",
+		"description": "",
+		"auth": null,
+		"events": [],
+		"variables": [],
+		"order": [],
+		"folders_order": [
+			"9041ee0b-109b-4adc-8e9c-eea705349dea",
+			"c812e1e2-e03b-434d-a2ec-fd9d4a2af5e6",
+			"556d0e53-635f-4c7a-bb7c-975d5826eac9",
+			"2a5eec9a-121b-4bae-81f4-85182ce44ac6",
+			"4242748e-054f-499f-9ff0-9c795e4ccc45",
+			"51c45fb4-7c03-467c-aefa-9aedf332a0f4",
+			"b95e9415-785a-40c4-92f5-8191f2783ea3"
+		],
+		"owner": "3846624",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": {
+		"id": "556d0e53-635f-4c7a-bb7c-975d5826eac9",
+		"name": "User story 4",
+		"description": "",
+		"auth": null,
+		"events": null,
+		"collection": "4856c4b7-c323-4193-a443-6ee4c7303a2a",
+		"folder": null,
+		"order": [
+			"f5bfb6a1-e173-4696-a266-15f70dc5689f",
+			"ba416131-1f0f-4866-9ba5-10f1dec5877f"
+		],
+		"folders_order": [],
+		"type": "folder",
+		"depth": 1
+	},
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "Invalid Username",
+			"id": "f5bfb6a1-e173-4696-a266-15f70dc5689f",
+			"url": "http://localhost:3000/user/randomUsernameThatShouldNotExist",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"tests": {
+				"name": "response is ok",
+				"status": "pass",
+				"response should be ok to process": true,
+				"The user body is valid": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be ok to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The user body is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"391"
+			],
+			"allTests": [
+				{
+					"response is ok": true,
+					"response should be ok to process": true,
+					"The user body is valid": true
+				}
+			],
+			"time": "391",
+			"totalRequestTime": "391",
+			"iterationResults": {}
+		},
+		{
+			"name": "Valid Username",
+			"id": "ba416131-1f0f-4866-9ba5-10f1dec5877f",
+			"url": "http://localhost:3000/user/shel",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "response is ok",
+				"status": "pass",
+				"response should be ok to process": true,
+				"The user body is valid": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be ok to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The user body is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"366"
+			],
+			"allTests": [
+				{
+					"response is ok": true,
+					"response should be ok to process": true,
+					"The user body is valid": true
+				}
+			],
+			"time": "366",
+			"totalRequestTime": "366",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 6,
+	"totalFail": 0,
+	"totalTime": 757,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "Invalid Username",
+			"id": "f5bfb6a1-e173-4696-a266-15f70dc5689f",
+			"url": "http://localhost:3000/user/randomUsernameThatShouldNotExist",
+			"time": "2018-04-18T06:36:22.217Z",
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be ok to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The user body is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Valid Username",
+			"id": "ba416131-1f0f-4866-9ba5-10f1dec5877f",
+			"url": "http://localhost:3000/user/shel",
+			"time": "2018-04-18T06:36:22.217Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be ok to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The user body is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}

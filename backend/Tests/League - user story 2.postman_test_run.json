@@ -1,0 +1,290 @@
+{
+	"id": "3a120beb-b0da-4be2-bb06-37b46628b24f",
+	"name": "League - user story 2",
+	"allTests": [],
+	"timestamp": "2018-04-18T06:34:30.290Z",
+	"collection_id": "4856c4b7-c323-4193-a443-6ee4c7303a2a",
+	"folder_id": "c812e1e2-e03b-434d-a2ec-fd9d4a2af5e6",
+	"target_type": "folder",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "4856c4b7-c323-4193-a443-6ee4c7303a2a",
+		"name": "CryptoLeague",
+		"description": "",
+		"auth": null,
+		"events": [],
+		"variables": [],
+		"order": [],
+		"folders_order": [
+			"9041ee0b-109b-4adc-8e9c-eea705349dea",
+			"c812e1e2-e03b-434d-a2ec-fd9d4a2af5e6",
+			"556d0e53-635f-4c7a-bb7c-975d5826eac9",
+			"2a5eec9a-121b-4bae-81f4-85182ce44ac6",
+			"4242748e-054f-499f-9ff0-9c795e4ccc45",
+			"51c45fb4-7c03-467c-aefa-9aedf332a0f4",
+			"b95e9415-785a-40c4-92f5-8191f2783ea3"
+		],
+		"owner": "3846624",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": {
+		"id": "c812e1e2-e03b-434d-a2ec-fd9d4a2af5e6",
+		"name": "League - user story 2",
+		"description": "",
+		"auth": null,
+		"events": null,
+		"collection": "4856c4b7-c323-4193-a443-6ee4c7303a2a",
+		"folder": null,
+		"order": [
+			"a00a20a8-4695-4592-8577-564c5926f3e1",
+			"533fea94-6a67-416f-afe8-7a465a82a016",
+			"dc3a10b0-6d9c-4773-900f-4fae6670136f"
+		],
+		"folders_order": [],
+		"type": "folder",
+		"depth": 1
+	},
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "Valid league",
+			"id": "a00a20a8-4695-4592-8577-564c5926f3e1",
+			"url": "localhost:3000/portfolio/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "response is ok",
+				"status": "pass",
+				"response should be ok to process": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be ok to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"864"
+			],
+			"allTests": [
+				{
+					"response is ok": true,
+					"response should be ok to process": true
+				}
+			],
+			"time": "864",
+			"totalRequestTime": "864",
+			"iterationResults": {}
+		},
+		{
+			"name": "Invalid league",
+			"id": "533fea94-6a67-416f-afe8-7a465a82a016",
+			"url": "localhost:3000/portfolio/100",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"tests": {
+				"name": "response is ok",
+				"status": "pass",
+				"response should be ok to process": true,
+				"Response time is less than 2 seconds": true,
+				"Error message is valid": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be ok to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 2 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Error message is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"552"
+			],
+			"allTests": [
+				{
+					"response is ok": true,
+					"response should be ok to process": true,
+					"Response time is less than 2 seconds": true,
+					"Error message is valid": true
+				}
+			],
+			"time": "552",
+			"totalRequestTime": "552",
+			"iterationResults": {}
+		},
+		{
+			"name": "Check for valid portfolio",
+			"id": "dc3a10b0-6d9c-4773-900f-4fae6670136f",
+			"url": "http://localhost:3000/portfolio/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "response is ok",
+				"status": "pass",
+				"response should be ok to process": true,
+				"The portfolio body is valid": true
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be ok to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The portfolio body is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"702"
+			],
+			"allTests": [
+				{
+					"response is ok": true,
+					"response should be ok to process": true,
+					"The portfolio body is valid": true
+				}
+			],
+			"time": "702",
+			"totalRequestTime": "702",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 9,
+	"totalFail": 0,
+	"totalTime": 2118,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "Valid league",
+			"id": "a00a20a8-4695-4592-8577-564c5926f3e1",
+			"url": "localhost:3000/portfolio/1",
+			"time": "2018-04-18T06:34:30.290Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be ok to process": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Invalid league",
+			"id": "533fea94-6a67-416f-afe8-7a465a82a016",
+			"url": "localhost:3000/portfolio/100",
+			"time": "2018-04-18T06:34:30.290Z",
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be ok to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 2 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Error message is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Check for valid portfolio",
+			"id": "dc3a10b0-6d9c-4773-900f-4fae6670136f",
+			"url": "http://localhost:3000/portfolio/1",
+			"time": "2018-04-18T06:34:30.290Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be ok to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The portfolio body is valid": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}
