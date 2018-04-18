@@ -205,7 +205,7 @@ describe('LeagueDetailComponent with league ended', () => {
   });
 
 
-  it('should show the portfolios in the leaderboard', () => {
+  it('should show the portfolios in the leaderboard (USER STORY #2)', () => {
     const mockedDateAndTime = '2018-03-25 14:55:00';
     const today = moment(mockedDateAndTime).toDate();
     jasmine.clock().mockDate(today);

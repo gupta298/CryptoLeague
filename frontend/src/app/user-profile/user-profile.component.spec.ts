@@ -50,12 +50,12 @@ describe('UserProfileComponent', () => {
   //   fixture.detectChanges();
   // });
 
-  it('should create', () => {
+  it('should create (USER STORY #4)', () => {
     component.ngOnInit();
     expect(component).toBeTruthy();
   });
 
-  it('should populate table', () => {
+  it('should display stats (USER STORY #4)', () => {
     expect(fixture.nativeElement.querySelector('.uk-card-large').innerText).toContain("Leagues Participated:");
   });
 
@@ -102,7 +102,7 @@ describe('UserProfileStatistics', () => {
       fixture.detectChanges();
   });
 
-  it('should populate the statistics card', () => {
+  it('should populate the statistics card (USER STORY #5)', () => {
     expect(fixture.nativeElement.querySelector('.userpic').innerText).toContain("tokens");
   });
 

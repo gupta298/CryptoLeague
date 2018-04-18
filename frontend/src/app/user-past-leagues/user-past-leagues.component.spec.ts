@@ -36,7 +36,7 @@ describe('UserPastLeaguesComponent', () => {
     testHostFixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create (USER STORY #6)', () => {
     expect(testHostComponent).toBeTruthy();
   });
 

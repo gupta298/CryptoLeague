@@ -33,11 +33,11 @@ describe('LeaderboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('search bar should populate', () => {
+  it('search bar should populate (USER STORY #3)', () => {
     expect(fixture.nativeElement.querySelector('.uk-search-input')).not.toBeNull();
   });
 
-  it('should populate user in the search drop-down', () => {
+  it('should populate user in the search drop-down (USER STORY #3)', () => {
     fixture.componentInstance.searchResults = ["user1", "user2"];
     let button = fixture.debugElement.nativeElement.querySelector('.background');
     button.click();
