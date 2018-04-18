@@ -55,7 +55,7 @@ function sendEmailsViaLeague(league, message){
                           if (error) {
                               return console.log(error);
                           }
-                          console.log('Message sent: %s', info.messageId);
+                          console.log('Message sent: %s', info);
                           transporter.close();
                       });
                 }
@@ -503,6 +503,16 @@ function endLeague(league_id) {
                   var current_tokens = result.portfolio_ids[i].tokens - result.league_buy_in + result.portfolio_ids[i].payout;
                   if (current_tokens < 5) {
                     result.portfolio_ids[i].payout += 5 - current_tokens;
+
+                    //send emails here
+                    let mailTokensReplenish= {
+                        from: '"CryptoLeague" <noreply@cryptoleague.win>',
+                        to: '',
+                        subject: 'We have creditted you with some tokens',
+                        html: '<p>Hello there, </p>  <br> <p> After your recent league, you ran out of tokens, and will not be able to join any league. We want you to play and learn. This is why we have creddited your account with 5 free tokens, so that you can participate in another league! Have fun! </p>'
+                    };
+                    sendMailAboutReplenish(result.portfolio_ids[i].user_id, mailTokensReplenish);
+
                   }
 
                   dbo.collection("Users").findOneAndUpdate({'_id': ObjectId(result.portfolio_ids[i].user_id)}, {$inc: {'tokens' : result.portfolio_ids[i].payout}});
@@ -528,6 +538,39 @@ function endLeague(league_id) {
               console.log("League not found! : " + league_id);
             }
           }
+        });
+      }
+    });
+  }
+}
+
+function sendMailAboutReplenish(userID, message){
+  if (!userID) {
+    callback("Cannot find the user", null);
+  } else {
+    MongoClient.connect(mongodbUrl, function (err, db) {
+      if (err) {
+        console.log(err);
+        callback("We are currently facing some technically difficulties, but code monkeys are on it. Please try again later!", null);
+      } else {
+        var dbo = db.db("cryptoleague_database");
+        dbo.collection("User").findOne({'_id' : ObjectId(userID)}, function(err, result) {
+          if (err) {
+            console.log(err);
+            callback("Cannot find the user", null);
+          } else {
+            if (result) {
+              message.to = result.email;
+              transporter.sendMail(message, (error, info) => {
+                      if (error) {
+                          return console.log(error);
+                      }
+                      console.log('Message sent: %s', info.messageId);
+                      transporter.close();
+                  });
+            }
+          }
+          db.close();
         });
       }
     });
@@ -1129,15 +1172,15 @@ module.exports = {
                         var date = new Date();
 
                         var lockingTime = new Date(date);
-                        lockingTime.setMinutes(date.getMinutes() + 2);
+                        lockingTime.setMinutes(date.getMinutes() + 1);
                         //lockingTime.setHours(date.getHours() + 12);
 
                         var startTime = new Date(date);
-                        startTime.setMinutes(date.getMinutes() + 4);
+                        startTime.setMinutes(date.getMinutes() + 2);
                         //startTime.setDate(date.getDate() + 1);
 
                         var endingDate = new Date(date);
-                        endingDate.setMinutes(date.getMinutes() + 8);
+                        endingDate.setMinutes(date.getMinutes() + 3);
                         //endingDate.setDate(date.getDate() + 2);
 
                         league_result.status = "1";

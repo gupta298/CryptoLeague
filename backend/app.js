@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var _ = require("lodash");
 var jwt = require('jsonwebtoken');
 var request = require("request");
+const config = require('./config/config');
 
 //Requiring Routes
 var index = require('./routes/index');
@@ -23,7 +24,6 @@ var league = require('./routes/league');
 var league_types = require('./routes/leagueTypes');
 var portfolio = require('./routes/portfolio');
 
-const config = require('./config/config');
 const passport = require('passport');
 
 require('./config/passport');
@@ -57,7 +57,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.options('*', cors()) 
+app.options('*', cors())
 
 //Defining Routes
 app.use('/', index);
@@ -103,6 +103,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 console.log("Success");
 module.exports = app;
