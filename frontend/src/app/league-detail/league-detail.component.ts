@@ -37,6 +37,8 @@ export class LeagueDetailComponent implements OnInit {
   leader: string;
   timeRemainingPercent: number;
   leagueStarted: boolean = false;
+  endPortfolioID: number = 0;
+  currentLeaderboardPortfolioID: string = "portfolio-modal" + this.endPortfolioID;
 
   	constructor(
       private authService: AuthenticationService,
@@ -184,7 +186,9 @@ export class LeagueDetailComponent implements OnInit {
       }
     }
     getUserPortfolio(user_id) {
-      UIkit.modal('#portfolio-modal').show();
+      var id = "" + this.currentLeaderboardPortfolioID;
+      console.log("id "+id);
+      UIkit.modal("#portfolio-modal").show();
       this.portfolioService.getPortfolioByLeagueID(this.league.league_id, user_id)
         .subscribe(
           result => {
@@ -198,7 +202,7 @@ export class LeagueDetailComponent implements OnInit {
                   data[i] = Math.round(result.holdings[i].percentage);
                 }
 
-                var ctx = document.getElementById("myChart");
+                var ctx = document.getElementById(id);
                 var myChart = new Chart(ctx, {
                     type: 'pie',
                     data: {
@@ -221,6 +225,9 @@ export class LeagueDetailComponent implements OnInit {
                         
                     }
                 });
+                this.endPortfolioID = this.endPortfolioID + 1;
+                this.currentLeaderboardPortfolioID = "portfolio-modal"+this.endPortfolioID;
+
           }, error => {
             this.alertService.error(JSON.parse(error._body).message);
             console.log(error);
