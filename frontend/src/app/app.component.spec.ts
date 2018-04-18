@@ -1,14 +1,14 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { AlertComponent } from './alert/alert.component';
+// import { AlertComponent } from './alert/alert.component';
 import { AlertService } from './services/index';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent, AlertComponent
+        AppComponent
       ],
       imports: [RouterTestingModule],
       providers: [AlertService]

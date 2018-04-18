@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home.component';
 
 import { AuthenticationService } from '../services/index'; 
+import { AuthenticationServiceStub } from '../stubs/authentication.service.stub';
+
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -14,7 +16,7 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, FormsModule ],
       declarations: [ HomeComponent ],
-      providers: [ AuthenticationService, { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } } ]
+      providers: [ { provide: AuthenticationService, useClass: AuthenticationServiceStub }, { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } } ]
     })
     .compileComponents();
   }));

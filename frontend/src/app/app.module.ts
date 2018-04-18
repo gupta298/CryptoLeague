@@ -26,7 +26,6 @@ import { LeagueDetailComponent } from './league-detail/league-detail.component';
 import { LeagueWaitingOverlayComponent } from './league-waiting-overlay/league-waiting-overlay.component';
 import { LeagueSelectComponent } from './league-select/league-select.component';
 import { LeagueStatisticsComponent } from './league-statistics/league-statistics.component';
-import { AlertComponent } from './alert/alert.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserPastLeaguesComponent } from './user-past-leagues/user-past-leagues.component';
 
@@ -46,7 +45,6 @@ import { UserPastLeaguesComponent } from './user-past-leagues/user-past-leagues.
     LeagueWaitingOverlayComponent,
     LeagueSelectComponent,
     LeagueStatisticsComponent,
-    AlertComponent,
     UserProfileComponent,
     UserPastLeaguesComponent,
   ],
