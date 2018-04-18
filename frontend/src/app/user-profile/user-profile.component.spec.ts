@@ -92,4 +92,8 @@ describe('UserProfileStatistics', () => {
     expect(fixture.nativeElement.querySelector('.userpic').innerText).toContain("tokens");
   });
 
+  it('should populate the modal view for sendTokens', () => {
+    expect(fixture.nativeElement.querySelector('.fa-paper-plane')).not.toBeNull(true);
+  });
+
 });
