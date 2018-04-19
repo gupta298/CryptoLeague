@@ -55,8 +55,8 @@ describe('UserProfileComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display stats (USER STORY #4)', () => {
-    expect(fixture.nativeElement.querySelector('.uk-card-large').innerText).toContain("Leagues Participated:");
+  it('should display user tokens (USER STORY #4)', () => {
+    expect(fixture.nativeElement.querySelector('.page-content').innerText).toContain("25 tokens");
   });
 
 });
@@ -148,11 +148,11 @@ describe('SendTokens', () => {
       fixture.detectChanges();
   });
 
-  it('should populate sendTokens icon', () => {
+  it('should populate sendTokens icon (USER STORY #7)', () => {
     expect(fixture.nativeElement.querySelector('.fa-paper-plane')).not.toBeNull(true);
   });
 
-  it('should populate the modal', () => {
+  it('should populate the sendTokens modal (USER STORY #7)', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('.uk-modal-dialog').innerText).toContain("Recipient");
   });

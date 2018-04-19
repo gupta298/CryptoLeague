@@ -11,7 +11,7 @@ describe('AlertService', () => {
     });
   });
 
-  it('should be created', inject([AlertService], (service: AlertService) => {
+  it('should be created (USER STORY #9)', inject([AlertService], (service: AlertService) => {
     expect(service).toBeTruthy();
   }));
 });
